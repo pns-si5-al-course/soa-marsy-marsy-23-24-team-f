@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  rocket-dept:
+      image: rocket-dept
+      constainer_name: rocket-dept
+      restart: always
+      ports:
+        - "3001:3001"
+      

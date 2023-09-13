@@ -16,8 +16,18 @@ exports.StatusController = void 0;
 const common_1 = require("@nestjs/common");
 const console_1 = require("console");
 let StatusController = class StatusController {
-    getStatus() {
-        return { status: "GO" };
+    getStatus(auth) {
+        if (auth == "missioncontrol-token") {
+            return { status: "GO" };
+        }
+        else {
+            throw new common_1.HttpException({
+                status: common_1.HttpStatus.UNAUTHORIZED,
+                error: 'Unauthorized access',
+            }, common_1.HttpStatus.UNAUTHORIZED, {
+                cause: console_1.error
+            });
+        }
     }
     postStatus(body, auth) {
         if (auth == "missioncontrol-token") {
@@ -30,8 +40,8 @@ let StatusController = class StatusController {
         }
         else {
             throw new common_1.HttpException({
-                status: common_1.HttpStatus.FORBIDDEN,
-                error: 'This is a custom message',
+                status: common_1.HttpStatus.UNAUTHORIZED,
+                error: 'Unauthorized access',
             }, common_1.HttpStatus.UNAUTHORIZED, {
                 cause: console_1.error
             });
@@ -41,8 +51,9 @@ let StatusController = class StatusController {
 exports.StatusController = StatusController;
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Headers)('Authorization')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], StatusController.prototype, "getStatus", null);
 __decorate([

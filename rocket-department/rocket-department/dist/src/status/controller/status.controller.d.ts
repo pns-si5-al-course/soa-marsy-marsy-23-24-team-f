@@ -1,5 +1,5 @@
 export declare class StatusController {
-    getStatus(): {
+    getStatus(auth: string): {
         status: string;
     };
     postStatus(body: {
