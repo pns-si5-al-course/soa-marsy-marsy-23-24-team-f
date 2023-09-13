@@ -14,17 +14,27 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StatusController = void 0;
 const common_1 = require("@nestjs/common");
+const console_1 = require("console");
 let StatusController = class StatusController {
     getStatus() {
         return { status: "GO" };
     }
     postStatus(body, auth) {
-        console.log(auth);
-        if (body.status === "GO") {
-            return { status: "ROCKET LAUNCHED" };
+        if (auth == "missioncontrol-token") {
+            if (body.status === "GO") {
+                return { status: "ROCKET LAUNCHED" };
+            }
+            else {
+                return { status: "ROCKET LAUNCH ABORTED" };
+            }
         }
         else {
-            return { status: "ROCKET LAUNCH ABORTED" };
+            throw new common_1.HttpException({
+                status: common_1.HttpStatus.FORBIDDEN,
+                error: 'This is a custom message',
+            }, common_1.HttpStatus.UNAUTHORIZED, {
+                cause: console_1.error
+            });
         }
     }
 };
