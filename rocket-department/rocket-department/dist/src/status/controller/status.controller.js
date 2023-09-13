@@ -19,7 +19,6 @@ let StatusController = class StatusController {
         return { status: "GO" };
     }
     postStatus(body, auth) {
-        console.log(auth);
         if (body.status === "GO") {
             return { status: "ROCKET LAUNCHED" };
         }
