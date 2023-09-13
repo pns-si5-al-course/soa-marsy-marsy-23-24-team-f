@@ -1,10 +1,8 @@
-FROM node:18-alpine
-ENV NODE_ENV development
+FROM node:18-alpine as development
 WORKDIR /app
-RUN apk update
 COPY . /app
 COPY package.json nest-cli.json yarn.lock ./
 RUN yarn
 RUN yarn build
 CMD ["yarn", "start"]
-EXPOSE 3000
+EXPOSE 3001

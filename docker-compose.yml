@@ -5,7 +5,7 @@ services:
       image: rocket-dept
       build:
         context: ./rocket-department/rocket-department/
-        dockerfile: Dockerfile
+        dockerfile: Dockerfile.production
       ports:
         - "3001:3001"
       

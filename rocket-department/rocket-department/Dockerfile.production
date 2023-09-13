@@ -1,0 +1,7 @@
+FROM node:18-alpine as production
+WORKDIR /app
+COPY node_modules /app/node_modules
+COPY ./dist /app/dist
+COPY package.json ./
+CMD ["node", "dist/src/main.js"]
+EXPOSE 3001
