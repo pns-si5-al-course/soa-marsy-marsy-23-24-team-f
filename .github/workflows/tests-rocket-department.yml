@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Running tests for rocket status controller
-      - run: yarn test
+        run: yarn test
