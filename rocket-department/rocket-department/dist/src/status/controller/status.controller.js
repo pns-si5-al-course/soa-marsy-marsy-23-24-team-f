@@ -14,24 +14,45 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StatusController = void 0;
 const common_1 = require("@nestjs/common");
-let StatusController = class StatusController {
-    getStatus() {
-        return { status: "GO" };
-    }
-    postStatus(body, auth) {
-        if (body.status === "GO") {
-            return { status: "ROCKET LAUNCHED" };
+const console_1 = require("console");
+let StatusController = exports.StatusController = class StatusController {
+    getStatus(auth) {
+        if (auth == "missioncontrol-token") {
+            return { status: "GO" };
         }
         else {
-            return { status: "ROCKET LAUNCH ABORTED" };
+            throw new common_1.HttpException({
+                status: common_1.HttpStatus.UNAUTHORIZED,
+                error: 'Unauthorized access',
+            }, common_1.HttpStatus.UNAUTHORIZED, {
+                cause: console_1.error
+            });
+        }
+    }
+    postStatus(body, auth) {
+        if (auth == "missioncontrol-token") {
+            if (body.status === "GO") {
+                return { status: "ROCKET LAUNCHED" };
+            }
+            else {
+                return { status: "ROCKET LAUNCH ABORTED" };
+            }
+        }
+        else {
+            throw new common_1.HttpException({
+                status: common_1.HttpStatus.UNAUTHORIZED,
+                error: 'Unauthorized access',
+            }, common_1.HttpStatus.UNAUTHORIZED, {
+                cause: console_1.error
+            });
         }
     }
 };
-exports.StatusController = StatusController;
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Headers)('Authorization')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], StatusController.prototype, "getStatus", null);
 __decorate([

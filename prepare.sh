@@ -8,6 +8,8 @@ function prepare() {
 }
 echo "Compiling services..."
 
+prepare "weather-department"
+
 prepare "rocket-department"
 
 echo "--- Done Building ---"
