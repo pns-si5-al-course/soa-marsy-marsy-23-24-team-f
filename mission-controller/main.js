@@ -10,6 +10,7 @@ const status = {
 }
 
 const post = async (url, data) => {
+    console.log(url)
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -21,17 +22,19 @@ const post = async (url, data) => {
         });
 
         if (!response.ok) {
-            throw new Error('Erreur de requête HTTP');
+            throw new Error(`Erreur de requête HTTP - Code d'état HTTP : ${response.status}`);
         }
 
         return response.json();
     } catch (error) {
-        console.error('Erreur lors de la requête :', error);
+        console.error(error.message);
         throw error; // Vous pouvez gérer l'erreur ici ou la propager
     }
 };
 
+
 const get = async (url) => {
+    console.log(url)
     try {
         const response = await fetch(url, {
             method: 'GET',
@@ -42,23 +45,24 @@ const get = async (url) => {
         });
 
         if (!response.ok) {
-            throw new Error('Erreur de requête HTTP');
+            throw new Error(`Erreur de requête HTTP - Code d'état HTTP : ${response.status}`);
         }
 
         return response.json();
     } catch (error) {
-        console.error('Erreur lors de la requête :', error);
+        console.error(error.message);
         throw error; // Vous pouvez gérer l'erreur ici ou la propager
     }
 }
 
-async function launchRocket() {
+
+async function launchRocket(path) {
     try {
         const data = {
             status: 'GO'
         };
 
-        const rocketData = await post(rocketServiceUrl, data);
+        const rocketData = await post(rocketServiceUrl + path, data);
         return rocketData;
     } catch (error) {
         console.error('Erreur lors du lancement de la fusée :', error);
@@ -66,9 +70,9 @@ async function launchRocket() {
     }
 }
 
-async function getRocketStatus() {
+async function getRocketStatus(path) {
     try {
-        const data = await get(rocketServiceUrl);
+        const data = await get(rocketServiceUrl + path);
         return data;
     } catch (error) {
         throw error;
@@ -86,7 +90,7 @@ async function getWeatherStatus() {
 
 async function main() {
     try {
-        const rocketStatus = await getRocketStatus();
+        const rocketStatus = await getRocketStatus("/status");
         console.log('Rocket status : ', rocketStatus);
         if (rocketStatus.status === 'GO') {
             status.rocketReady = true;
@@ -103,7 +107,7 @@ async function main() {
 
         if (status.rocketReady && status.weatherOK) {
             console.log('Mission commander status : GO');
-            rocketLaunched = await launchRocket();
+            rocketLaunched = await launchRocket("/status");
             console.log('Rocket launched : ', rocketLaunched);
         }   
 

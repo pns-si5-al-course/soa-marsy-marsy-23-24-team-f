@@ -2,7 +2,7 @@ version: "3"
 
 services:
   rocket-dept:
-      image: rocket-dept
+      image: rocket-status
       constainer_name: rocket-dept
       restart: always
       ports:
