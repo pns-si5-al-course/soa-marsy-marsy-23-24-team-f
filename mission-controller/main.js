@@ -79,9 +79,9 @@ async function getRocketStatus(path) {
     }
 }
 
-async function getWeatherStatus() {
+async function getWeatherStatus(path) {
     try {
-        const data = await get(weatherServiceUrl);
+        const data = await get(weatherServiceUrl + path);
         return data;
     } catch (error) {
         throw error;
@@ -96,7 +96,7 @@ async function main() {
             status.rocketReady = true;
         }
 
-        const weatherStatus = await getWeatherStatus();
+        const weatherStatus = await getWeatherStatus("/status");
         console.log('Weather status : ', weatherStatus);
         if (weatherStatus.status === 'GO') {
             status.weatherReady = true;
