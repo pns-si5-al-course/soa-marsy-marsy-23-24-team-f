@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const rocketServiceUrl = process.env.ROCKET_SERVICE_URL;
+const weatherServiceUrl = process.env.WEATHER_SERVICE_URL;
 const authToken = process.env.AUTH_TOKEN;
 
 const status = {
@@ -14,7 +15,7 @@ const post = async (url, data) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authToken}`
+                'Authorization': `${authToken}`
             },
             body: JSON.stringify(data)
         });
@@ -36,7 +37,7 @@ const get = async (url) => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authToken}`
+                'Authorization': `${authToken}`
             },
         });
 
@@ -74,6 +75,15 @@ async function getRocketStatus() {
     }
 }
 
+async function getWeatherStatus() {
+    try {
+        const data = await get(weatherServiceUrl);
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 async function main() {
     try {
         const rocketStatus = await getRocketStatus();
@@ -81,11 +91,18 @@ async function main() {
         if (rocketStatus.status === 'GO') {
             status.rocketReady = true;
         }
+
+        const weatherStatus = await getWeatherStatus();
+        console.log('Weather status : ', weatherStatus);
+        if (weatherStatus.status === 'GO') {
+            status.weatherReady = true;
+        }
         
         //TODO: get weather status
         status.weatherOK = true; //mock weather status
 
         if (status.rocketReady && status.weatherOK) {
+            console.log('Mission commander status : GO');
             rocketLaunched = await launchRocket();
             console.log('Rocket launched : ', rocketLaunched);
         }   
