@@ -2,7 +2,7 @@
 
 cd mission-controller
 
-Node main.js
+node main.js
 
 cd ..
 
