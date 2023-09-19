@@ -1,9 +1,8 @@
 version: "3"
 
 services:
-  rocket-dept:
+  rocket-service:
       image: rocket-status
-      constainer_name: rocket-dept
       restart: always
       ports:
         - "3001:3001"

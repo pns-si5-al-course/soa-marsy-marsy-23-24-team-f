@@ -10,10 +10,6 @@ if [ "$line_count" -eq 0 ]; then
     ./prepare.sh
 fi
 
-docker run -dp 3001:3001 rocket-status
-
-wait-for-it-to-be-up localhost:3001/rocket rocket-dept
-
 line_count=$(docker images | grep "weather-status" | wc -l)
 
 #get lenght of the return of shell command (docker images)
@@ -23,6 +19,9 @@ if [ "$line_count" -eq 0 ]; then
     ./prepare.sh
 fi
 
-docker run -dp 3002:3002 weather-status
+docker-compose --file rocket-department/rocket-department/docker-compose-rocket.yml \
+               --file weather-department/docker-compose-weather.yml up -d
+
+wait-for-it-to-be-up localhost:3001/rocket rocket-dept
 
 wait-for-it-to-be-up localhost:3002/weather weather-dept
