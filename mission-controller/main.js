@@ -9,7 +9,7 @@ const status = {
     weatherOK: false,
 }
 
-const post = async (url, data) => {
+const post = async(url, data) => {
     console.log(url)
     try {
         const response = await fetch(url, {
@@ -33,7 +33,7 @@ const post = async (url, data) => {
 };
 
 
-const get = async (url) => {
+const get = async(url) => {
     console.log(url)
     try {
         const response = await fetch(url, {
@@ -101,15 +101,12 @@ async function main() {
         if (weatherStatus.status === 'GO') {
             status.weatherReady = true;
         }
-        
-        //TODO: get weather status
-        status.weatherOK = true; //mock weather status
 
         if (status.rocketReady && status.weatherOK) {
             console.log('Mission commander status : GO');
             rocketLaunched = await launchRocket("/status");
             console.log('Rocket launched : ', rocketLaunched);
-        }   
+        }
 
     } catch (error) {
         console.error(error);
