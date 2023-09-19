@@ -4,6 +4,5 @@ WORKDIR /app
 COPY package.json tsconfig.json .env ./
 RUN yarn install --production
 RUN yarn build
-COPY ./dist /app/dist
 CMD ["node", "dist/src/main.js"]
 EXPOSE 3002
