@@ -6,7 +6,7 @@ const authToken = process.env.AUTH_TOKEN;
 
 const status = {
     rocketReady: false,
-    weatherOK: false,
+    weatherReady: false,
 }
 
 const post = async(url, data) => {
@@ -102,7 +102,7 @@ async function main() {
             status.weatherReady = true;
         }
 
-        if (status.rocketReady && status.weatherOK) {
+        if (status.rocketReady && status.weatherReady) {
             console.log('Mission commander status : GO');
             rocketLaunched = await launchRocket("/status");
             console.log('Rocket launched : ', rocketLaunched);

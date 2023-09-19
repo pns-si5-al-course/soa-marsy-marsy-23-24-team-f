@@ -1,6 +1,7 @@
 #!/bin/bash
 cd rocket-department
-yarn build
+
+echo "Building rocket-department image..."
 
 docker build -t rocket-status -f Dockerfile.production . --no-cache
 

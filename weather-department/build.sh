@@ -1,5 +1,5 @@
 #!/bin/bash
-yarn build
+echo "Building weather-department image..."
 
 docker build -t weather-status -f Dockerfile.production .
 
