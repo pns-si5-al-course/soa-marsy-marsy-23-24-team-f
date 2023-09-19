@@ -72,7 +72,7 @@ async function launchRocket(path) {
 
 async function getRocketStatus(path) {
     try {
-        const data = await get(rocketServiceUrl + path);
+        const data = await get('Getting' + rocketServiceUrl + path);
         return data;
     } catch (error) {
         throw error;
@@ -81,6 +81,7 @@ async function getRocketStatus(path) {
 
 async function getWeatherStatus(path) {
     try {
+        console.log('Getting : ' + weatherServiceUrl + path)
         const data = await get(weatherServiceUrl + path);
         return data;
     } catch (error) {
@@ -103,7 +104,7 @@ async function main() {
         }
 
         if (status.rocketReady && status.weatherReady) {
-            console.log('Mission commander status : GO');
+            console.log('All systems GO, sending launch command');
             rocketLaunched = await launchRocket("/status");
             console.log('Rocket launched : ', rocketLaunched);
         }
