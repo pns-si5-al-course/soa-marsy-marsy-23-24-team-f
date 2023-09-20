@@ -34,7 +34,6 @@ const post = async(url, data) => {
 
 
 const get = async(url) => {
-    console.log(url)
     try {
         const response = await fetch(url, {
             method: 'GET',
@@ -72,7 +71,7 @@ async function launchRocket(path) {
 
 async function getRocketStatus(path) {
     try {
-        const data = await get('Getting' + rocketServiceUrl + path);
+        const data = await get(rocketServiceUrl + path);
         return data;
     } catch (error) {
         throw error;
@@ -81,7 +80,6 @@ async function getRocketStatus(path) {
 
 async function getWeatherStatus(path) {
     try {
-        console.log('Getting : ' + weatherServiceUrl + path)
         const data = await get(weatherServiceUrl + path);
         return data;
     } catch (error) {
