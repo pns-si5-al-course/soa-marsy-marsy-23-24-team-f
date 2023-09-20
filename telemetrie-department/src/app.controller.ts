@@ -1,10 +1,16 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Render } from '@nestjs/common';
 
 @Controller()
 export class AppController {
 
   @Get()
-  getIsUp() {
-    return {status: "OK"};
+  @Render('index')
+  root() {
+    return { message: '' };
+  }
+
+  @Get('isAlive')
+  isAlive() {
+    return {status:"OK"};
   }
 }
