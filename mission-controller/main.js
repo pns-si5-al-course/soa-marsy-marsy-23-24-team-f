@@ -88,22 +88,41 @@ async function getWeatherStatus(path) {
 }
 
 async function main() {
+    console.log('Richard : chekings systems before launch');
     try {
-        const rocketStatus = await getRocketStatus("/status");
-        console.log('Rocket status : ', rocketStatus);
-        if (rocketStatus.status === 'GO') {
-            status.rocketReady = true;
-        }
 
+        // Weather service
+        console.log('Richard : asking weather department status');
+        console.log('Tory : cheking the status of the weather')
         const weatherStatus = await getWeatherStatus("/status");
         console.log('Weather status : ', weatherStatus);
         if (weatherStatus.status === 'GO') {
             status.weatherReady = true;
+            console.log('Tory : weather is good');
+        }
+        else {
+            console.log('Tory : weather is not good');
         }
 
+        // Rocket service
+        console.log('Richard : asking rocket department status');
+        console.log('Elon : monitoring the status of the rocket')
+        const rocketStatus = await getRocketStatus("/status");
+        console.log('Rocket status : ', rocketStatus);
+        if (rocketStatus.status === 'GO') {
+            status.rocketReady = true;
+            console.log('Elon : rocket is ready to launch');
+        }
+        else {
+            console.log('Elon : rocket is not ready to launch');
+        }
+
+        // Launch rocket if all systems are ready
         if (status.rocketReady && status.weatherReady) {
-            console.log('All systems GO, sending launch command');
+            console.log('All systems are ready !');
+            console.log('Richard : asking rocket department to launch the rocket');
             rocketLaunched = await launchRocket("/status");
+            console.log('Elon : monitoring the launch of the rocket')
             console.log('Rocket launched : ', rocketLaunched);
         }
 
