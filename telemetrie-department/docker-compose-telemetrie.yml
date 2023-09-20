@@ -1,0 +1,22 @@
+version: "3"
+
+networks:
+  nestjs-telemetrics-mongo:
+    driver: bridge
+
+services:
+  telemetrie-service:
+      image: telemetrie
+      restart: always
+      depends_on:
+        - mongo_db_telemetrics
+      ports:
+        - "3003:3003"
+  mongo_db_telemetrics:
+    image: "mongo:4.4.15"
+    restart: always
+    ports:
+      - 27018:27017
+    networks:
+      - nestjs-telemetrics-mongo
+      
