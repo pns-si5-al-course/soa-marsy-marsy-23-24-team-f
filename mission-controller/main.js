@@ -10,7 +10,6 @@ const status = {
 }
 
 const post = async(url, data) => {
-    console.log(url)
     try {
         const response = await fetch(url, {
             method: 'POST',
