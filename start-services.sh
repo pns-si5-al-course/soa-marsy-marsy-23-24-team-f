@@ -20,8 +20,11 @@ if [ "$line_count" -eq 0 ]; then
 fi
 
 docker-compose --file rocket-department/rocket-department/docker-compose-rocket.yml \
-               --file weather-department/docker-compose-weather.yml up -d
+               --file weather-department/docker-compose-weather.yml \
+               --file telemetrie-department/docker-compose-telemetrie.yml up -d
 
 wait-for-it-to-be-up localhost:3001/rocket rocket-dept
 
 wait-for-it-to-be-up localhost:3002/weather weather-dept
+
+wait-for-it-to-be-up localhost:3003/ weather-dept

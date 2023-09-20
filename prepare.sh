@@ -12,12 +12,10 @@ prepare "weather-department"
 
 prepare "rocket-department"
 
+prepare "telemetrie-department"
+
 echo "--- Done Building ---"
 
 echo "--- Starting services ---"
 
 ./start-services.sh
-
-
-
-

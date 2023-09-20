@@ -4,7 +4,7 @@ import { Controller, Get } from '@nestjs/common';
 export class AppController {
 
   @Get()
-  getIsUp(): string {
-    return 'Service is UP!';
+  getIsUp() {
+    return {status: "OK"};
   }
 }
