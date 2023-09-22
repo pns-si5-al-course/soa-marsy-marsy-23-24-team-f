@@ -1,0 +1,8 @@
+FROM node:18-alpine as development
+WORKDIR /app
+COPY package.json nest-cli.json yarn.lock ./
+RUN yarn
+COPY . /app
+RUN yarn run nest build
+CMD ["yarn", "start"]
+EXPOSE 3000
