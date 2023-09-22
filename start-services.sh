@@ -19,12 +19,24 @@ if [ "$line_count" -eq 0 ]; then
     ./prepare.sh
 fi
 
+line_count=$(docker images | grep "rocket-service" | wc -l)
+
+if [ "$line_count" -eq 0 ]; then
+    echo "rocket-service image not found.."
+    echo "Building rocket-service..."
+    ./prepare.sh
+fi
+
 docker-compose --file rocket-department/rocket-department/docker-compose-rocket.yml \
                --file weather-department/docker-compose-weather.yml \
-               --file telemetrie-department/docker-compose-telemetrie.yml up -d
+               --file telemetrie-department/docker-compose-telemetrie.yml \
+                --file rocket/docker-compose-rocket-object.yml up -d
 
-wait-for-it-to-be-up localhost:3001/rocket rocket-dept
+wait-for-it-to-be-up localhost:3001/rocket/status rocket-dept
 
 wait-for-it-to-be-up localhost:3002/weather weather-dept
 
 wait-for-it-to-be-up localhost:3003/isAlive telemetries-dept
+
+wait-for-it-to-be-up localhost:3000/rocket/info rocket-service
+

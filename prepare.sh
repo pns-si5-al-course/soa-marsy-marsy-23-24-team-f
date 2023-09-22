@@ -14,6 +14,8 @@ prepare "rocket-department"
 
 prepare "telemetrie-department"
 
+prepare "rocket" 
+
 echo "--- Done Building ---"
 
 echo "--- Starting services ---"
