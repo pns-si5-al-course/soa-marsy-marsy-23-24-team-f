@@ -11,6 +11,6 @@ export class AppController {
 
   @Get('isAlive')
   isAlive() {
-    return {status:"OK"};
+    return {status:"ok"};
   }
 }

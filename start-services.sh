@@ -27,4 +27,4 @@ wait-for-it-to-be-up localhost:3001/rocket rocket-dept
 
 wait-for-it-to-be-up localhost:3002/weather weather-dept
 
-wait-for-it-to-be-up localhost:3003/ weather-dept
+wait-for-it-to-be-up localhost:3003/isAlive telemetries-dept
