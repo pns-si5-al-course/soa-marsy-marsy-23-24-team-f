@@ -1,11 +1,11 @@
 import { Controller, Get, HttpCode } from "@nestjs/common";
 
-@Controller("weather")
-export class WeatherController {
+@Controller("payload")
+export class PayloadController {
     
     @Get()
     @HttpCode(200)
-    getWeatherStatus() {
+    getPayloadStatus() {
         return { status: "ok" };
     }
 }
