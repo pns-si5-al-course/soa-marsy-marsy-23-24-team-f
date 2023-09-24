@@ -5,4 +5,4 @@ RUN yarn
 COPY . /app
 RUN yarn run nest build
 CMD ["yarn", "start"]
-EXPOSE 3000
+EXPOSE 3005

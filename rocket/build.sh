@@ -2,6 +2,6 @@
 
 echo "Building rocket-service image..."
 
-docker build --no-cache -t rocket-service -f Dockerfile.production .
+docker build --no-cache -t rocket-object-service -f Dockerfile.production .
 
 echo "Done building rocket-service"
