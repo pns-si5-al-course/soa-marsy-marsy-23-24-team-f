@@ -8,25 +8,36 @@ url = "http://localhost:3003/rocket/telemetrics"
 
 
 def getStage():
-    if fuel>200:
+    if stages[0]["fuel"] > 0 :
         return 2
-    elif fuel<=200 and fuel>100:
+    elif stages[0]["fuel"] <=0 and stages[0]["fuel"] > 0:
         return 1
-    elif fuel==0:
+    else:
         return 0
 
+def getStatus():
+    if altitude > 10:
+        return "In Flight"
+    else:
+        return "Grounded"
 
 altitude = 0
-fuel = 400
+# fuel = json.loads('{"Stage 1": 400, "Stage 2": 400}')
+stages = [{"id": 1, "fuel": 400}, {"id": 2, "fuel": 400}]
 
 while True:
     altitude += random.randint(0, 10)
-    fuel -= random.randint(0, 10)
+    stages[0]["fuel"] -= random.randint(0, 10)
+    if (stages[0]["fuel"] <= 0):
+        stages[0]["fuel"] = 0 
+        stages[1]["fuel"] -= random.randint(0, 10)
     
     payload = json.dumps({
-    "stages": getStage(),
-    "fuel": fuel,
+    "name": "Marsy_1",
+    "status": getStatus(),
+    "stages": stages,
     "altitude": altitude,
+    "payload": {"passengers": 1, "altitude": 2000, "weight": 100},
     "timestamp": datetime.datetime.now().isoformat()
     })
     headers = {
@@ -34,5 +45,7 @@ while True:
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
+    
+    print(payload)
     
     time.sleep(2)

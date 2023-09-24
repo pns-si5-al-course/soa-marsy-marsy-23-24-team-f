@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Building rocket-department image..."
+echo "Building telemetrie-department image..."
 
 docker build -t telemetrie -f Dockerfile.production . --no-cache
 
