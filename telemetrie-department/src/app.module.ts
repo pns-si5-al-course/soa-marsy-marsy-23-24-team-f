@@ -17,7 +17,10 @@ import { MongooseModule } from '@nestjs/mongoose';
     isGlobal: true,
   }),
   RocketModule, 
-  MongooseModule.forRoot('mongodb://localhost/telemetrie-DB'),
+  // MongooseModule.forRoot(process.env.MONGO_U),
+  MongooseModule.forRootAsync({
+    useClass: MongooseConfigService,
+  })
   ],
   controllers: [AppController],
   providers: [],
