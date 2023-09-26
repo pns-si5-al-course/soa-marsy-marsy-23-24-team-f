@@ -1,8 +1,12 @@
 import { Body, Controller, Get, HttpCode, Post, Headers, HttpException, HttpStatus } from "@nestjs/common";
 import { error } from "console";
 
+import { RocketService } from "../../rocket/rocket.service";
+
 @Controller("status")
 export class StatusController {
+
+  constructor(private readonly rocketService: RocketService) {}
 
   @Get()
   getStatus( @Headers('Authorization') auth: string) {
@@ -24,6 +28,9 @@ export class StatusController {
     if (auth == "missioncontrol-token"){
       if (body.status === "GO") {
         return { status: "ROCKET LAUNCHED" };
+        this.rocketService.launchRocket();
+
+        
       } else {
         return { status: "ROCKET LAUNCH ABORTED" };
       }

@@ -11,6 +11,11 @@ export class RocketController {
     
   }
 
+  @Get('isReady')
+  isReady() {
+    return this.rocketService.isReady();
+  }
+
   @Post('setpayload')
   setPayload(@Body() payload: any) {
     return this.rocketService.setPayload(payload);

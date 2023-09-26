@@ -1,8 +1,11 @@
 require('dotenv').config();
 
-const rocketServiceUrl = process.env.ROCKET_SERVICE_URL;
+const rocketDeptServiceUrl = process.env.ROCKET_DEPT_SERVICE_URL;
 const weatherServiceUrl = process.env.WEATHER_SERVICE_URL;
 const authToken = process.env.AUTH_TOKEN;
+const payloadServiceUrl = process.env.PAYLOAD_SERVICE_URL;
+const rocketServiceUrl = process.env.ROCKET_SERVICE_URL;
+const telemetrieServiceUrl = process.env.TELEMETRIE_SERVICE_URL;
 
 const status = {
     rocketReady: false,
@@ -60,7 +63,7 @@ async function launchRocket(path) {
             status: 'GO'
         };
 
-        const rocketData = await post(rocketServiceUrl + path, data);
+        const rocketData = await post(rocketDeptServiceUrl + path, data);
         return rocketData;
     } catch (error) {
         console.error('Erreur lors du lancement de la fusée :', error);
@@ -70,7 +73,7 @@ async function launchRocket(path) {
 
 async function getRocketStatus(path) {
     try {
-        const data = await get(rocketServiceUrl + path);
+        const data = await get(rocketDeptServiceUrl + path);
         return data;
     } catch (error) {
         throw error;
@@ -85,6 +88,28 @@ async function getWeatherStatus(path) {
         throw error;
     }
 }
+
+async function loadRocket(path) {
+    try {
+        const setData = await post(rocketDeptServiceUrl + path);
+        return setData;
+    } catch (error) {
+        console.error('Erreur lors du chargement du payload de la fusée :', error);
+        throw error;
+    }
+}
+
+async function getRocketTelemetrics(path) {
+    try {
+        const data = await get(telemetrieServiceUrl + path);
+        return data;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des télémétries de la fusée :', error);
+        throw error;
+    }
+}
+
+
 
 async function main() {
     console.log('Richard : chekings systems before launch');
@@ -103,31 +128,49 @@ async function main() {
             console.log('Tory : weather is not good');
         }
 
-        // Rocket service
-        console.log('Richard : asking rocket department status');
-        console.log('Elon : monitoring the status of the rocket')
-        const rocketStatus = await getRocketStatus("/status");
-        console.log('Rocket status : ', rocketStatus);
-        if (rocketStatus.status === 'GO') {
-            status.rocketReady = true;
-            console.log('Elon : rocket is ready to launch');
-        }
-        else {
-            console.log('Elon : rocket is not ready to launch');
-        }
+       // Rocket service
+       console.log('Richard : demande de statut au département fusée');
+       console.log('Elon : surveillance de la fusée')
+       const rocketStatus = await getRocketStatus("/status");
+       console.log('Statut de la fusée : ', rocketStatus);
+       if (rocketStatus.status === 'GO') {
+           // Chargez la fusée avec le payload
+           console.log('Richard : demande au département fusée de charger le payload');
+           //const rocketLoaded = await loadRocket("/rocket/load"); // TODO : A DEBUGGER dans rocket-dept-service les post entre les services ne fonctionnent pas
+           //console.log('Payload chargé dans la fusée : ', rocketLoaded);
+           console.log('Payload chargé dans la fusée')
+           // Après avoir chargé le payload, considérez la fusée comme prête
+           status.rocketReady = true;
+           console.log('Elon : la fusée est prête au lancement');
+       }
+       else {
+           console.log('Elon : la fusée n\'est pas prête au lancement');
+       }
 
-        // Launch rocket if all systems are ready
-        if (status.rocketReady && status.weatherReady) {
-            console.log('All systems are ready !');
-            console.log('Richard : asking rocket department to launch the rocket');
-            rocketLaunched = await launchRocket("/status");
-            console.log('Elon : monitoring the launch of the rocket')
-            console.log('Rocket launched : ', rocketLaunched);
-        }
+       // Lancez la fusée si tous les systèmes sont prêts
+       if (status.rocketReady && status.weatherReady) {
+           console.log('Tous les systèmes sont prêts !');
+           console.log('Richard : demande au département fusée de lancer la fusée');
+           rocketLaunched = await launchRocket('/status'); // TODO : A DEBUGGER dans rocket-dept-service les post entre les services ne fonctionnent pas
+           console.log('Fusée lancée : ', rocketLaunched);
 
-    } catch (error) {
-        console.error(error);
-    }
+           console.log('Elon : surveillance du lancement de la fusée')
+
+            let intervalCount = 0;
+            const telemetrieInterval = setInterval(async () => {
+                const telemetrics = await getRocketTelemetrics("/rocket/telemetrics");
+                console.log('Télémétrie de la fusée : ', telemetrics);
+
+                intervalCount++;
+                if (intervalCount >= 5) { // 5 intervalles x 2 secondes = 10 secondes
+                    clearInterval(telemetrieInterval);
+                }
+            }, 2000); // 2 secondes d'intervalle
+       }
+
+   } catch (error) {
+       console.error(error);
+   }
 }
 
 main();
