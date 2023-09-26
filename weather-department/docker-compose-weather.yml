@@ -2,8 +2,13 @@ version: "3"
 
 services:
   weather-service:
-      image: weather-status
-      restart: always
-      ports:
-        - "3002:3002"
+    image: weather-status
+    restart: always
+    ports:
+      - "3002:3002"
+    networks:
+      - rocket-network
       
+networks:
+  rocket-network:
+    external: true

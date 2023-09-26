@@ -1,14 +1,23 @@
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+
 require('dotenv').config();
 
 const telemetrieServiceUrl = process.env.TELEMETRIE_SERVICE_URL;
 const authToken = process.env.AUTH_TOKEN;
+
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3004);
+}
+bootstrap();
 
 const get = async(url) => {
   try {
       const response = await fetch(url, {
           method: 'GET',
           headers: {
-              'Content-Type': 'application/json',
               'Authorization': `${authToken}`
           },
       });
@@ -16,7 +25,6 @@ const get = async(url) => {
       if (!response.ok) {
           throw new Error(`Erreur de requête HTTP - Code d'état HTTP : ${response.status}`);
       }
-
       return response.json();
   } catch (error) {
       console.error(error.message);
@@ -26,16 +34,16 @@ const get = async(url) => {
 
 async function main() {
   console.log('Gwynne : asking for telemetrics updates');
-  do 
+  const timeout = setInterval(async () => {
     try {
-      const data = await get(telemetrieServiceUrl + '/rocket/telemetrics');
-      console.log(data);
-      await sleep(5000);
+      const res = await get(telemetrieServiceUrl + '/rocket/telemetrics')
+      .then(data => {
+        console.log('Gwynne : telemetrics updated');
+        console.log(data);
+      })
     } catch (error) {
         throw error;
-    }
-  while (true)
-      
+    }}, 2000);
 }
 
 main();
