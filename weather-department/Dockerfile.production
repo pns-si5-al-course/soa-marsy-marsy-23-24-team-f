@@ -5,6 +5,7 @@ COPY package.json tsconfig.json .env ./
 COPY --chown=node:node . .
 RUN yarn install --production --frozen-lockfile
 RUN yarn build
+USER node
 
 #PRODUCTION
 FROM alpine as production
