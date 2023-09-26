@@ -14,6 +14,8 @@ prepare "rocket-department"
 
 prepare "telemetrie-department"
 
+prepare "rocket" 
+
 prepare "payload-department"
 
 echo "--- Done Building ---"
