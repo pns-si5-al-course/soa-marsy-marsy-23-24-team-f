@@ -6,13 +6,18 @@ function prepare() {
     ./build.sh
     cd ..
 }
+
+echo "Creating network..."
+
+docker network create rocket-network
+
 echo "Compiling services..."
+
+prepare "telemetrie-department"
 
 prepare "weather-department"
 
 prepare "rocket-department"
-
-prepare "telemetrie-department"
 
 prepare "rocket" 
 

@@ -3,6 +3,7 @@ import { PayloadController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
 import configuration from 'config/configuration';
 import { StatusModule } from './status/status.module';
+import { RocketController } from './rocket/controller/rocket.controller';
 import { RocketModule } from './rocket/rocket.module';
 
 @Module({

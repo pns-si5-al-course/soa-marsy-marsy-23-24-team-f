@@ -23,6 +23,7 @@ export class Telemetrics {
 
     @Prop({ required: true })
     timestamp: string;
+
 }
 
 export const TelemetricsSchema = SchemaFactory.createForClass(Telemetrics);

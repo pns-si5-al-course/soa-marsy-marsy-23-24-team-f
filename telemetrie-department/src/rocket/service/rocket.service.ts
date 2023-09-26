@@ -1,8 +1,9 @@
 import { Model } from "mongoose";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Telemetrics } from "schema/telemetrics.schema";
-import { TelemetricsDto } from "dto/create-telemetrics.dto";
+import { Telemetrics } from "../../../schema/telemetrics.schema";
+import { TelemetricsDto } from "../../../dto/create-telemetrics.dto";
+
 
 @Injectable()
 export class RocketService {
