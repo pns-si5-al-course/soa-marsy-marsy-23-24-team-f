@@ -5,4 +5,5 @@ export class TelemetricsDto {
     readonly altitude: number;
     readonly payload: { passengers: number, altitude: number, weight: number};
     readonly timestamp: string;
+    readonly speed: number;
 }
