@@ -6,15 +6,6 @@ export class RocketController {
 
     @Get()
     getStatus( @Headers('Authorization') auth: string) {
-      if (auth == "missioncontrol-token"){
-        return { passengers: 0, altitude: 2000, weight: 100};
-      } else {
-        throw new HttpException({
-          status: HttpStatus.UNAUTHORIZED,
-          error: 'Unauthorized access',
-        }, HttpStatus.UNAUTHORIZED, {
-          cause: error
-        });
-      }
+      return { passengers: 0, altitude: 2000, weight: 100};
     }
 }
