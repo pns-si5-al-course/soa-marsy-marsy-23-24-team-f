@@ -32,16 +32,16 @@ export class RocketService {
 
   async launchRocket(): Promise<string> {
     try {
-      const rocketReadyResponse = await this.fetchWrapper('http://localhost:3005/rocket/isReady');
+      const rocketReadyResponse = await this.fetchWrapper('http://rocket-object-service:3005/rocket/isReady');
       
       let isRocketReady = await rocketReadyResponse.json();
-      isRocketReady = true;
+      //isRocketReady = true;
 
       if (!rocketReadyResponse.ok || isRocketReady !== true) {
         throw new Error('Rocket is not ready for launch');
       }
 
-      const launchResponse = await this.fetchWrapper('http://localhost:3005/rocket/takeoff', { method: 'POST' });
+      const launchResponse = await this.fetchWrapper('http://rocket-object-service:3005/rocket/takeoff', { method: 'POST' });
       
       if (launchResponse.ok) {
         return 'Rocket has been launched!';
@@ -57,7 +57,7 @@ export class RocketService {
 
   async loadRocket(): Promise<any> {
     try {
-      const response = await this.fetchWrapper('http://localhost:3004/rocket', {
+      const response = await this.fetchWrapper('http://payload-service:3004/rocket', {
         headers: {
           'Authorization': 'missioncontrol-token'
         }
@@ -65,7 +65,7 @@ export class RocketService {
       
       if (response.ok) {
         const payloadData = await response.json();
-        const setPayloadResponse = await this.fetchWrapper('http://localhost:3005/rocket/setpayload', {
+        const setPayloadResponse = await this.fetchWrapper('http://rocket-object-service:3005/rocket/setpayload', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

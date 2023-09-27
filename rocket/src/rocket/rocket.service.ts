@@ -8,23 +8,45 @@
     private rocket = {
       name: 'MarsY-1',
       status: 'On Ground',
-      fuelFirstStage: 100,
-      fuelSecondStage: 100,
+      stages: [
+        {
+          'id' : 1,
+          "fuel": 30,
+        },
+        {
+          'id' : 2,
+          "fuel": 300,
+        }
+      ],
       payload: null,
-      isReady: false,
+      timestamp: new Date().toISOString(),
     };
+
+    async fetchWrapper(url: string, options?: any): Promise<any> {
+      const { default: fetchFunction } = await import('node-fetch');
+      return fetchFunction(url, options);
+    }
     
     isReady(): boolean {
-      return this.rocket.isReady;
+      return this.rocket.payload !== null;
     }
 
     setPayload(payload: any): any {
       this.rocket.payload = payload;
-      this.rocket.isReady = true; // For simplicity, we assume that the rocket is ready to take off as soon as the payload is set. Change may be required here.
       return this.rocket;
     }
 
     takeOff(): any {
+      const data = JSON.stringify(this.rocket);
+
+      const sendTelemetrics = this.fetchWrapper('http://telemetrie-service:3003/rocket/telemetrics', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: data,
+      });
+
       this.rocket.status = 'In Flight';
       this.startFuelDepletion();
 
@@ -37,17 +59,29 @@
     private startFuelDepletion() {
       if (this.interval) {
         clearInterval(this.interval);
-      }
+      } 
     
       this.interval = setInterval(() => {
         // First stage fuel depletion
-        if (this.rocket.fuelFirstStage > 0) {
-          this.rocket.fuelFirstStage -= 5;
-          if (this.rocket.fuelFirstStage <= 0) {
+        if(this.rocket.stages[0].fuel > 0) {
+          this.rocket.stages[0].fuel -= 5;
+          if (this.rocket.stages[0].fuel <= 0) {
+            //send rocket json to telemetric service          
             this.rocket.status = 'First Stage Separated';
             this.startSecondStageFuelDepletion(); 
           }
         }
+
+        const data = JSON.stringify(this.rocket);
+
+        const sendTelemetrics = this.fetchWrapper('http://telemetrie-service:3003/rocket/telemetrics', { 
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: data,
+        });
+        
       }, 1000);
     }
     
@@ -56,8 +90,8 @@
     
       this.interval = setInterval(() => {
         // Second stage fuel depletion
-        if (this.rocket.fuelSecondStage > 0) {
-          this.rocket.fuelSecondStage -= 5;
+        if (this.rocket.stages[1].fuel > 0) {
+          this.rocket.stages[1].fuel -= 5;
         } else {
           this.rocket.status = 'Mission Completed';
           clearInterval(this.interval);  

@@ -136,8 +136,8 @@ async function main() {
        if (rocketStatus.status === 'GO') {
            // Chargez la fusée avec le payload
            console.log('Richard : demande au département fusée de charger le payload');
-           //const rocketLoaded = await loadRocket("/rocket/load"); // TODO : A DEBUGGER dans rocket-dept-service les post entre les services ne fonctionnent pas
-           //console.log('Payload chargé dans la fusée : ', rocketLoaded);
+           const rocketLoaded = await loadRocket("/rocket/load"); // TODO : A DEBUGGER dans rocket-dept-service les post entre les services ne fonctionnent pas
+           console.log('Payload chargé dans la fusée : ', rocketLoaded);
            console.log('Payload chargé dans la fusée')
            // Après avoir chargé le payload, considérez la fusée comme prête
            status.rocketReady = true;
