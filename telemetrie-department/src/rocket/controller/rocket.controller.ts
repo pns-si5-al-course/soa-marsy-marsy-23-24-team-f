@@ -14,6 +14,7 @@ export class RocketController {
     async postTelemetrics(@Body() body: TelemetricsDto) {
         const data = await this.rocketService.createTelemetrics(body)
         .then((result) => {
+            console.log("Telemetrics saved: \r");
             return result;
         }
         ).catch((error) => {

@@ -3,7 +3,7 @@ export class TelemetricsDto {
     readonly status: string;
     readonly stages: Array<{ id: number, fuel: number }>;
     readonly altitude: number;
-    readonly payload: { passengers: number, altitude: number, weight: number};
+    readonly payload: { passengers: number, altitude: number, speed:number, status:string, weight: number};
     readonly timestamp: string;
     readonly speed: number;
 }

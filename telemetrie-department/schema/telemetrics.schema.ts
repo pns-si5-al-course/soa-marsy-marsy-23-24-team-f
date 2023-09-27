@@ -19,7 +19,7 @@ export class Telemetrics {
     altitude: number;
 
     @Prop({ required: true, type: Object })
-    payload: { passengers: number, altitude: number, weight: number}
+    payload: { passengers: number, altitude: number, speed:number, status:string, weight: number}
 
     @Prop({ required: true })
     timestamp: string;

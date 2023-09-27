@@ -10,7 +10,8 @@ export class RocketController {
 
   @Post()
   @HttpCode(200)
-  postStatus(@Body() body: { status: string }, @Headers('Authorization') auth: string) {
+  postStatus(@Body() body: any, @Headers('Authorization') auth: string) {
+    console.log(body);
     if (auth == "missioncontrol-token"){
       if (body.status === "GO") {
         return this.rocketService.launchRocket();
@@ -43,7 +44,7 @@ export class RocketController {
   }
 
   @Post('/load')
-  @HttpCode(200)
+  @HttpCode(201)
   loadPayload() {
     return this.rocketService.loadRocket();
   }

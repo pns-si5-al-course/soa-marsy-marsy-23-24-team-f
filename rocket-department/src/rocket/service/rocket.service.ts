@@ -9,9 +9,9 @@ export class RocketService {
 
   async launchRocket(): Promise<any> {
     try {
-      const rocketReadyResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/isReady').toPromise()
+      const rocketReadyResponse = await this.httpService.get('http://rocket-object-service:3005/rocket/isReady').toPromise()
       .then(response => {
-        console.log(response.data);
+        console.log("Rocket responded it is ready for launch: \r");
         return response.data;
       });
       //isRocketReady = true;
@@ -20,13 +20,17 @@ export class RocketService {
         throw new Error('Rocket is not ready for launch');
       }
 
-      const launchResponse = await this.httpService.get('http://rocket-object-service:3005/rocket/takeoff').toPromise()
+      const launchResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/takeoff').toPromise()
       .then(response => {
-        console.log(response.data);
+        console.log("Rocket launched: \r");
         return response.data;
       })
+      .catch(error => {
+        console.error('Error sending launch order to rocket:', error.message);
+        throw error;
+      });
       
-      if (launchResponse.ok) {
+      if (launchResponse) {
         return { status: 'Rocket launched' };
       } else {
         return { status: "ROCKET LAUNCH ABORTED" };
@@ -41,27 +45,23 @@ export class RocketService {
   async loadRocket(): Promise<any> {
     try {
       const response = await this.httpService.get('http://payload-service:3004/rocket').toPromise()
-      .then(response => {
-        console.log(response.data);
-        return response.data;
+      .then(async response => {
+        console.log("------------------------");
+        if (response.status === 200) {
+          const payloadData = response.data;
+          const setPayloadResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/setpayload', JSON.stringify(payloadData)).toPromise()
+          .then(res => {
+            if (res.status === 201) {
+              console.log("Payload set in rocket: \r");
+            } else {
+              throw new Error('Failed to set payload in the rocket');
+            }
+          });
+        } else {
+          throw new Error('Failed to fetch rocket data');
+        }
       });
       
-      if (response.ok) {
-        const payloadData = await response.json();
-        const setPayloadResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/setpayload', JSON.stringify(payloadData)).toPromise()
-        .then(response => {
-          console.log(response.data);
-          return response.data;
-        });
-
-        if (setPayloadResponse.ok) {
-          return await setPayloadResponse.json();
-        } else {
-          throw new Error('Failed to set payload in the rocket');
-        }
-      } else {
-        throw new Error('Failed to fetch rocket data');
-      }
     } catch (error) {
       console.error('Error processing rocket payload:', error);
       throw new Error('Rocket payload processing failed');

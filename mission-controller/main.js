@@ -25,14 +25,14 @@ const post = async(url, data) => {
                 'Content-Type': 'application/json',
                 'Authorization': `${authToken}`
             },
-            body: JSON.stringify(data)
+            body: (data) ? JSON.stringify(data) : null
         });
 
         if (!response.ok) {
             throw new Error(`Erreur de requête HTTP - Code d'état HTTP : ${response.status}`);
         }
 
-        return response.json();
+        return response;
     } catch (error) {
         console.error(error.message);
         throw error;
@@ -49,7 +49,6 @@ const get = async(url) => {
                 'Authorization': `${authToken}`
             },
         });
-
         if (!response.ok) {
             throw new Error(`Erreur de requête HTTP - Code d'état HTTP : ${response.status}`);
         }
@@ -99,7 +98,11 @@ async function main() {
             // Chargez la fusée avec le payload
             console.log('Richard : demande au département fusée de charger le payload');
             console.log('-- POST rocket-service:3001/rocket/load --');
-            const rocketLoaded = await post(rocketDeptServiceUrl + "/rocket/load");
+            const rocketLoaded = await post(rocketDeptServiceUrl + "/rocket/load")
+                .then((r) => {
+                    console.log(r);
+                    console.log(chalk.gray('Payload poste au r dept : '));
+                });
             console.log(chalk.gray('Payload chargé dans la fusée : '));
             // Après avoir chargé le payload, considérez la fusée comme prête
             status.rocketReady = true;
@@ -118,14 +121,17 @@ async function main() {
             console.log('-- POST rocket-service:3001/rocket --');
             console.log(chalk.gray('IGNITION !'))
             await sleep(2000);
+            console.log(JSON.stringify(rocketStatus));
             const rocketLaunched = await post(rocketDeptServiceUrl + '/rocket', rocketStatus)
                 .then((response) => {
+                    console.log(chalk.gray('TAKEOFF : ', response));
                     return response;
                 })
                 .catch((error) => {
+                    console.error('Error During TAKEOFF')
                     console.error(error);
                 });
-            console.log(chalk.gray('TAKEOFF : ', rocketLaunched));
+
 
             sleep(1000);
             console.log('\nElon : surveillance du lancement de la fusée : ')
@@ -136,7 +142,16 @@ async function main() {
                         process.stdout.clearLine();
                         process.stdout.cursorTo(0);
                         console.log(response.stages)
+                        process.stdout.write(`Speed : ${response.speed} m/s`);
                         process.stdout.write(`Alt : ${response.altitude} feets`);
+                        return response;
+                    })
+
+                const payloadTelemetrics = await get(payloadServiceUrl + "rocket/payload/data")
+                    .then((response) => {
+                        process.stdout.clearLine();
+                        process.stdout.cursorTo(0);
+                        process.stdout.write(`Payload telemetrics : ${response.payload}`);
                         return response;
                     })
 
