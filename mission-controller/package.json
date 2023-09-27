@@ -1,5 +1,8 @@
 {
-  "dependencies": {
-    "dotenv": "^16.3.1"
-  }
+    "dependencies": {
+        "chalk": "^5.3.0",
+        "dotenv": "^16.3.1",
+        "thread-sleep": "^2.2.0"
+    },
+    "type": "module"
 }
