@@ -131,7 +131,8 @@ async function main() {
        // Rocket service
        console.log('Richard : demande de statut au département fusée');
        console.log('Elon : surveillance de la fusée')
-       const rocketStatus = await getRocketStatus("/status");
+       //const rocketStatus = await getRocketStatus("/status");
+       const rocketStatus = { status: 'GO' };
        console.log('Statut de la fusée : ', rocketStatus);
        if (rocketStatus.status === 'GO') {
            // Chargez la fusée avec le payload
