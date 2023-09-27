@@ -57,7 +57,10 @@
     async function getTelemetrics() {
       const telemetry = await fetch("http://localhost:3003/rocket/telemetrics").then((response) => {
         return response.json();
-      });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
       return telemetry;
     }
 

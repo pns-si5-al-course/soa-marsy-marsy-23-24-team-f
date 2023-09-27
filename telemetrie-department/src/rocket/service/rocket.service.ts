@@ -19,6 +19,16 @@ export class RocketService {
     }
 
     async getLastTelemetrics(): Promise<Telemetrics> {
-        return this.telemetricsModel.findOne().sort({$natural:-1}).limit(1);
+        // get the size of the collection
+        const data = await this.telemetricsModel.countDocuments()
+        .then((count) => {
+            if (count === 0) {
+                return Promise.reject('No documents found');
+            }
+            else {
+                return this.telemetricsModel.findOne().sort({$natural:-1}).limit(1);        
+            }
+        });
+        return data;
     }
 }

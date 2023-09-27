@@ -29,6 +29,9 @@ export class RocketController {
         .then((result) => {
             return result;
         })
+        .catch((error) => {
+            return {message: "No telemetrics found"}
+        });
         return data;
     }
 }
