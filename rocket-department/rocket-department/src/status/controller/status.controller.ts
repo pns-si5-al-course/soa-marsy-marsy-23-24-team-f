@@ -27,10 +27,7 @@ export class StatusController {
   postStatus(@Body() body: { status: string }, @Headers('Authorization') auth: string) {
     if (auth == "missioncontrol-token"){
       if (body.status === "GO") {
-        return { status: "ROCKET LAUNCHED" };
-        this.rocketService.launchRocket();
-
-        
+        return this.rocketService.launchRocket();
       } else {
         return { status: "ROCKET LAUNCH ABORTED" };
       }

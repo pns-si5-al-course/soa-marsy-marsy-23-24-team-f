@@ -36,10 +36,11 @@
       return this.rocket;
     }
 
-    takeOff(): any {
+    async takeOff(): Promise<any> {
       const data = JSON.stringify(this.rocket);
+      console.log(data);
 
-      const sendTelemetrics = this.fetchWrapper('http://telemetrie-service:3003/rocket/telemetrics', { 
+      const sendTelemetrics = await this.fetchWrapper('http://telemetrie-service:3003/rocket/telemetrics', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,21 +48,22 @@
         body: data,
       });
 
+      console.log(sendTelemetrics);
       this.rocket.status = 'In Flight';
       this.startFuelDepletion();
 
-      return this.rocket;
+      return this.rocket
       
     }
     private interval: NodeJS.Timeout;
 
 
-    private startFuelDepletion() {
+    private async startFuelDepletion(): Promise<void> {
       if (this.interval) {
         clearInterval(this.interval);
       } 
     
-      this.interval = setInterval(() => {
+      this.interval = setInterval(async () => {
         // First stage fuel depletion
         if(this.rocket.stages[0].fuel > 0) {
           this.rocket.stages[0].fuel -= 5;
@@ -74,21 +76,21 @@
 
         const data = JSON.stringify(this.rocket);
 
-        const sendTelemetrics = this.fetchWrapper('http://telemetrie-service:3003/rocket/telemetrics', { 
+        const sendTelemetrics = await this.fetchWrapper('http://telemetrie-service:3003/rocket/telemetrics', { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: data,
         });
-        
+
       }, 1000);
     }
     
-    private startSecondStageFuelDepletion() {
+    private async startSecondStageFuelDepletion(): Promise<void> {
       clearInterval(this.interval);  
     
-      this.interval = setInterval(() => {
+      this.interval = setInterval(async () => {
         // Second stage fuel depletion
         if (this.rocket.stages[1].fuel > 0) {
           this.rocket.stages[1].fuel -= 5;
@@ -96,6 +98,16 @@
           this.rocket.status = 'Mission Completed';
           clearInterval(this.interval);  
         }
+        const data = JSON.stringify(this.rocket);
+
+        const sendTelemetrics = await this.fetchWrapper('http://telemetrie-service:3003/rocket/telemetrics', { 
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: data,
+        });
+
       }, 1000);
     }  
 

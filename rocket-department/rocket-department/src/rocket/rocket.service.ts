@@ -30,7 +30,7 @@ export class RocketService {
     return fetchFunction(url, options);
   }
 
-  async launchRocket(): Promise<string> {
+  async launchRocket(): Promise<any> {
     try {
       const rocketReadyResponse = await this.fetchWrapper('http://rocket-object-service:3005/rocket/isReady');
       
@@ -44,9 +44,9 @@ export class RocketService {
       const launchResponse = await this.fetchWrapper('http://rocket-object-service:3005/rocket/takeoff', { method: 'POST' });
       
       if (launchResponse.ok) {
-        return 'Rocket has been launched!';
+        return { status: 'Rocket launched' };
       } else {
-        throw new Error('Failed to launch rocket');
+        return { status: "ROCKET LAUNCH ABORTED" };
       }
 
     } catch (error) {
