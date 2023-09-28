@@ -31,4 +31,8 @@ export class RocketService {
         });
         return data;
     }
+
+    async clearTelemetrics(): Promise<any> {
+        return this.telemetricsModel.deleteMany({}).exec();
+    }
 }

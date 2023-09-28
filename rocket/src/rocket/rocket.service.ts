@@ -4,21 +4,23 @@ import { Rocket } from '../entities/rocket.entity';
 
 
 const TARGET_ALTITUDE:number = 1_300_000;
+const ROCKET_INIT = new Rocket('MarsY-1', 'On Ground', [
+  {'id': 1,"fuel": 3000,},
+  {'id': 2, "fuel": 3000,}
+], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString(), 0);
 @Injectable()
 export class RocketService {
   constructor(private httpService: HttpService) {}
    
-  private rocket = new Rocket('MarsY-1', 'On Ground', [
-    {'id': 1,"fuel": 3000,},
-    {'id': 2, "fuel": 3000,}
-  ], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString(), 0);
+  private rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
+  private interval: NodeJS.Timeout;
+  private stop: boolean = false;
 
   async sendTelemetryData(url: string, data?: any): Promise<void> {
     // fetch post request to telemetrie service
-    await this.httpService.post('http://telemetrie-service:3003/rocket/telemetrics', this.rocket).toPromise()
-      .then(response => {
-        console.log("Speed updated: \r");
-        console.log("Rocket speed changed to: " + this.rocket.speed);
+    await this.httpService.post(url, data).toPromise()
+      .then(_ => {
+        return Promise.resolve("Telemetrics adn payload posted: \r");
       })
       .catch(error => {
         console.error('Error sending telemetrics in fuel depletion:', error.message);
@@ -35,7 +37,7 @@ export class RocketService {
     return this.rocket;
   }
 
-  async takeOff(): Promise<any> {
+  async takeOff(): Promise<Rocket> {
     //const data = JSON.stringify(this.rocket);
 
     const sendTelemetrics = await this.httpService.post('http://telemetrie-service:3003/rocket/telemetrics', this.rocket).toPromise()
@@ -54,48 +56,60 @@ export class RocketService {
     // this.startSpeedIncrease();
     // console.log("Rocket speed increase started");
 
-    return this.rocket;
+    return Promise.resolve(this.rocket);
   }
 
-  private interval: NodeJS.Timeout;
+  
 
   private async startFuelDepletion(): Promise<void> {
     if (this.interval) {
       clearInterval(this.interval);
     }
-
-    this.interval = setInterval(async () => {
-      if (this.rocket.stages[0].fuel > 0) {
-        this.rocket.stages[0].fuel -= 50;
-        if (this.rocket.stages[0].fuel <= 0) {
-          this.rocket.status = 'First Stage Separated';
-          this.startSecondStageFuelDepletion();
+      
+      this.interval = setInterval(async () => {
+        if (!this.stop){
+        if (this.rocket.stages[0].fuel > 0) {
+          this.rocket.stages[0].fuel -= 50;
+          if (this.rocket.stages[0].fuel <= 0) {
+            this.rocket.status = 'First Stage Separated';
+            this.startSecondStageFuelDepletion();
+          }
+  
+          this.rocket.speed += 50; // in m/s
+          this.rocket.altitude += 90; // in feet
+  
+          this.rocket.payload.altitude += 90;
+          this.rocket.payload.speed += 50;
+  
+  
+          if (this.rocket.altitude >= TARGET_ALTITUDE) {
+            // Stop fuel depletion and speed increase
+            clearInterval(this.interval);
+            // Deploy payload
+            this.rocket.status = 'Orbiting';
+            await this.httpService.post('http://payload-service:3004/rocket/payload/data', this.rocket.payload).toPromise()
+            
+            //
+          }
+        }} else{
+          this.rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
         }
+        console.log("Updating telemetrics");
+        //TODO: implement reduce acceleration in lower atmosphere
+  
+        await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
+        await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
+  
+      }, 1000);
 
-        this.rocket.speed += 50; // in m/s
-        this.rocket.altitude += 90; // in feet
+    
+  }
 
-        this.rocket.payload.altitude += 90;
-        this.rocket.payload.speed += 50;
-
-
-        if (this.rocket.altitude >= TARGET_ALTITUDE) {
-          // Stop fuel depletion and speed increase
-          clearInterval(this.interval);
-          // Deploy payload
-          
-          await this.httpService.post('http://payload-service:3004/rocket/payload/data', this.rocket.payload).toPromise()
-          this.rocket.status = 'Orbiting';
-          //
-        }
-      }
-
-      //TODO: implement reduce acceleration in lower atmosphere
-
-      await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
-      await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
-
-    }, 1000);
+  async stopSimulation(): Promise<Rocket> {
+    console.log("Reinitializing rocket");
+    this.stop = true;
+    await this.httpService.post('http://telemetrie-service:3003/rocket/stop-simulation').toPromise()
+    return Promise.resolve(this.rocket);
   }
 
   private async startSecondStageFuelDepletion(): Promise<void> {

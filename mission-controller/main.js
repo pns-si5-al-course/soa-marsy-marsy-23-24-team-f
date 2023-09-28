@@ -1,5 +1,6 @@
 import {} from 'dotenv/config';
 import chalk from 'chalk';
+import asciichart from 'asciichart';
 
 
 const rocketDeptServiceUrl = process.env.ROCKET_DEPT_SERVICE_URL;
@@ -12,6 +13,14 @@ const telemetrieServiceUrl = process.env.TELEMETRIE_SERVICE_URL;
 const status = {
     rocketReady: false,
     weatherReady: false,
+}
+
+
+// Fonction pour afficher les données sous forme de graphique textuel
+function afficherGraphique(data, titre) {
+    console.log(chalk.yellow(titre));
+    console.log(asciichart.plot(data));
+    console.log(); // Ligne vide pour séparer les sections
 }
 
 function sleep(ms) {
@@ -121,7 +130,6 @@ async function main() {
             console.log('-- POST rocket-service:3001/rocket --');
             console.log(chalk.gray('IGNITION !'))
             await sleep(2000);
-            console.log(JSON.stringify(rocketStatus));
             const rocketLaunched = await post(rocketDeptServiceUrl + '/rocket', rocketStatus)
                 .then((response) => {
                     console.log(chalk.gray('TAKEOFF : ', response));
@@ -137,33 +145,40 @@ async function main() {
             console.log('\nElon : surveillance du lancement de la fusée : ')
 
             const telemetrieInterval = setInterval(async() => {
+
+
                 const telemetrics = await get(telemetrieServiceUrl + "/rocket/telemetrics")
                     .then((response) => {
-                        process.stdout.clearLine();
-                        process.stdout.cursorTo(0);
-                        console.log(response.stages)
-                        process.stdout.write(`Speed : ${response.speed} m/s`);
-                        process.stdout.write(`Alt : ${response.altitude} feets`);
-                        return response;
-                    })
+                        const data = [response.speed];
+                        const titre = 'Rocket Telemetrics - Altitude Speed';
 
-                const payloadTelemetrics = await get(payloadServiceUrl + "rocket/payload/data")
-                    .then((response) => {
-                        process.stdout.clearLine();
-                        process.stdout.cursorTo(0);
-                        process.stdout.write(`Payload telemetrics : ${response.payload}`);
+                        afficherGraphique(data, titre);
                         return response;
-                    })
+                    });
+
+                // const payloadTelemetrics = await get(payloadServiceUrl + "/rocket/payload/data")
+                //     .then((response) => {
+                //         const données = [response.altitude, response.speed];
+                //         const titre = 'Payload Telemetrics';
+
+                //         afficherGraphique(données, titre);
+                //         return response;
+                //     });
 
             }, 2000); // 2 secondes d'intervalle
-            setTimeout(() => {
+            setTimeout(async() => {
                 clearInterval(telemetrieInterval);
+                console.log('Richard : mission terminée');
+                console.log('Stop simulation');
+                await post("http://localhost:3001" + "/stop-simulation", {});
             }, 10000); // 10 secondes
         }
 
     } catch (error) {
         console.error(error);
     }
+
+
 }
 
 main();

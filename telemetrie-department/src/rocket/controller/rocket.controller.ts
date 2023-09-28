@@ -14,7 +14,7 @@ export class RocketController {
     async postTelemetrics(@Body() body: TelemetricsDto) {
         const data = await this.rocketService.createTelemetrics(body)
         .then((result) => {
-            console.log("Telemetrics saved: \r");
+            console.log(result);
             return result;
         }
         ).catch((error) => {
@@ -33,6 +33,20 @@ export class RocketController {
         .catch((error) => {
             return {message: "No telemetrics found"}
         });
+        return data;
+    }
+
+    @Post("stop-simulation")
+    @HttpCode(201)
+    async stopSimulation() {
+        const data = await this.rocketService.clearTelemetrics()
+        .then((result) => {
+            console.log(result);
+            return result;
+        }
+        ).catch((error) => {
+            throw new HttpException(error, HttpStatus.BAD_REQUEST);
+        })
         return data;
     }
 }
