@@ -2,6 +2,7 @@ import { Body, Controller, Get, HttpCode, Post, Headers, HttpException, HttpStat
 import { error } from "console";
 import { PayloadTelemetricsDto } from "../../../dto/create-payload-telemetrics.dto";
 import { RocketService } from "../service/rocket.service";
+import { TelemetricsDto } from "../../../../telemetrie-department/dto/create-telemetrics.dto";
 @Controller("rocket")
 export class RocketController {
     constructor(private readonly rocketService: RocketService) {}
@@ -21,6 +22,7 @@ export class RocketController {
     @Get("payload/data")
     @HttpCode(200)
     async getPayloadData() {
+        this.rocketService.askForTelemetricsData();
         const data = await this.rocketService.getLastPayloadTelemetrics()
         .then((result) => {
             return result;

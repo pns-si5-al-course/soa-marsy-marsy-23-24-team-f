@@ -4,7 +4,7 @@ ENV NODE_ENV production
 WORKDIR /app
 COPY package.json yarn.lock ./
 COPY --chown=node:node . .
-RUN yarn install --frozen-lockfile
+RUN yarn install
 RUN yarn build
 USER node
 

@@ -39,7 +39,9 @@ export class RocketService {
 
   async takeOff(): Promise<Rocket> {
     //const data = JSON.stringify(this.rocket);
-
+    this.rocket.payload.altitude = 0;
+    this.rocket.payload.speed = 0;
+    await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
     const sendTelemetrics = await this.httpService.post('http://telemetrie-service:3003/rocket/telemetrics', this.rocket).toPromise()
     .then(response => {
       console.log("Telemetrie data sent: \r");

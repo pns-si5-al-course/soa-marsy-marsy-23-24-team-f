@@ -156,14 +156,14 @@ async function main() {
                         return response;
                     });
 
-                // const payloadTelemetrics = await get(payloadServiceUrl + "/rocket/payload/data")
-                //     .then((response) => {
-                //         const données = [response.altitude, response.speed];
-                //         const titre = 'Payload Telemetrics';
-
-                //         afficherGraphique(données, titre);
-                //         return response;
-                //     });
+                 const payloadTelemetrics = await get(payloadServiceUrl + "/rocket/payload/data")
+                     .then((response) => {
+                         const données = [response.altitude, response.speed];
+                         const titre = 'Payload Telemetrics';
+                         
+                         afficherGraphique(données, titre);
+                         return response;
+                     });
 
             }, 2000); // 2 secondes d'intervalle
             setTimeout(async() => {
