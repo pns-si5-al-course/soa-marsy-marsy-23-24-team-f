@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { CreateRocketDto } from '../dto/create-rocket.dto';
-import { UpdateRocketDto } from '../dto/update-rocket.dto';
-
+import { Interval, SchedulerRegistry } from '@nestjs/schedule';
 @Injectable()
 export class RocketService {
-  constructor(private httpService: HttpService, private interval: NodeJS.Timeout) {}
+
+  constructor(
+    private httpService: HttpService,
+    private schedulerRegistry: SchedulerRegistry
+  ) {}
 
   async launchRocket(): Promise<any> {
     try {
@@ -69,42 +71,45 @@ export class RocketService {
     }
   }
 
+  @Interval('rocketDataCheck', 1000)
   async watchRocketData(): Promise<void> {
 
-    this.interval = setInterval(async () => {
-      
-      let rocketData : any;
-
-      try {
-        rocketData = await this.askTelemetrieForRocketData();
-        console.log("Rocket data: " + rocketData);
-      } catch (error) {
-        console.error('Error in watchRocketData when fetching data:', error.message);
-        return;
-      }
-
-      if (rocketData.status === 'First Stage Seperation Failed') {
-        console.log("Send failure to mission commander: \r");
-
-        /* TODO : This route
-        this.httpService.post('http://mission-commander-service:3002/rocket/failure').toPromise()
-        .catch(error => {
-          console.error('Error sending failure to mission commander:', error.message);
-        });
-        */
-
-        //Doing this until the route is implemented
-        rocketData.status = 'Destroyed';
-      }
     
-      //else if (rocketData.status === 'Destroyed') {
-      if (rocketData.status === 'Destroyed') {
-        clearInterval(this.interval);
-      }
-      else if (rocketData.message === 'Mission Completed') {
-        clearInterval(this.interval);
-      }
-    },1000);
+      
+    let rocketData : any;
+
+    try {
+      rocketData = await this.askTelemetrieForRocketData();
+      console.log("Rocket data: " + rocketData);
+    } catch (error) {
+      console.error('Error in watchRocketData when fetching data:', error.message);
+      return;
+    }
+
+    if (rocketData.status === 'First Stage Seperation Failed') {
+      console.log("Send failure to mission commander: \r");
+
+      //post the rocket.status to mission commander
+      this.httpService.post('http://mission-commander-service:3002/rocket/failure', { status: rocketData.status }).toPromise()
+      .catch(error => {
+        console.error('Error sending failure to mission commander:', error.message);
+      });
+      
+
+      //Doing this until the route is implemented
+      rocketData.status = 'Destroyed';
+    }
+  
+    //else if (rocketData.status === 'Destroyed') {
+    if (rocketData.status === 'Destroyed') {
+      const interval = this.schedulerRegistry.getInterval('rocketDataCheck');
+      clearInterval(interval);
+    }
+    else if (rocketData.message === 'Mission Completed') {
+      const interval = this.schedulerRegistry.getInterval('rocketDataCheck');
+      clearInterval(interval);
+    }
+    
 
   }
 
