@@ -5,7 +5,7 @@ import { UpdateRocketDto } from '../dto/update-rocket.dto';
 
 @Injectable()
 export class RocketService {
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService, private interval: NodeJS.Timeout) {}
 
   async launchRocket(): Promise<any> {
     try {
@@ -31,6 +31,7 @@ export class RocketService {
       });
       
       if (launchResponse) {
+        this.watchRocketData();
         return { status: 'Rocket launched' };
       } else {
         return { status: "ROCKET LAUNCH ABORTED" };
@@ -66,5 +67,54 @@ export class RocketService {
       console.error('Error processing rocket payload:', error);
       throw new Error('Rocket payload processing failed');
     }
+  }
+
+  async watchRocketData(): Promise<void> {
+
+    this.interval = setInterval(async () => {
+      
+      let rocketData : any;
+
+      try {
+        rocketData = await this.askTelemetrieForRocketData();
+        console.log("Rocket data: " + rocketData);
+      } catch (error) {
+        console.error('Error in watchRocketData when fetching data:', error.message);
+        return;
+      }
+
+      if (rocketData.status === 'First Stage Seperation Failed') {
+        console.log("Send failure to mission commander: \r");
+
+        /* TODO : This route
+        this.httpService.post('http://mission-commander-service:3002/rocket/failure').toPromise()
+        .catch(error => {
+          console.error('Error sending failure to mission commander:', error.message);
+        });
+        */
+
+        //Doing this until the route is implemented
+        rocketData.status = 'Destroyed';
+      }
+    
+      //else if (rocketData.status === 'Destroyed') {
+      if (rocketData.status === 'Destroyed') {
+        clearInterval(this.interval);
+      }
+      else if (rocketData.message === 'Mission Completed') {
+        clearInterval(this.interval);
+      }
+    },1000);
+
+  }
+
+  async askTelemetrieForRocketData(): Promise<any> {
+      try {
+        const response = await this.httpService.get('http://telemetrie-service:3003/rocket/telemetrics').toPromise();
+        console.log("Rocket status fetched: \r");
+        return response.data;
+      } catch (error) {
+        console.error('Error fetching rocket status:', error.message);
+      }
   }
 }
