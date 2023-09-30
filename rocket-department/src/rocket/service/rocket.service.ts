@@ -33,7 +33,7 @@ export class RocketService {
       });
       
       if (launchResponse) {
-        this.watchRocketData();
+        this.startWatchingRocketData();
         return { status: 'Rocket launched' };
       } else {
         return { status: "ROCKET LAUNCH ABORTED" };
@@ -71,16 +71,24 @@ export class RocketService {
     }
   }
 
-  @Interval('rocketDataCheck', 1000)
+  startWatchingRocketData(): void {
+    const callback = this.watchRocketData.bind(this);
+    const interval = setInterval(callback, 1000);
+    this.schedulerRegistry.addInterval('rocketDataCheck', interval);
+  }
+
+  stopWatchingRocketData(): void {
+    const interval = this.schedulerRegistry.getInterval('rocketDataCheck');
+    clearInterval(interval);
+  }
+
   async watchRocketData(): Promise<void> {
 
-    
-      
     let rocketData : any;
 
     try {
       rocketData = await this.askTelemetrieForRocketData();
-      console.log("Rocket data: " + rocketData);
+      console.log("Rocket data: " + JSON.stringify(rocketData));
     } catch (error) {
       console.error('Error in watchRocketData when fetching data:', error.message);
       return;
@@ -102,12 +110,10 @@ export class RocketService {
   
     //else if (rocketData.status === 'Destroyed') {
     if (rocketData.status === 'Destroyed') {
-      const interval = this.schedulerRegistry.getInterval('rocketDataCheck');
-      clearInterval(interval);
+      this.stopWatchingRocketData();
     }
     else if (rocketData.message === 'Mission Completed') {
-      const interval = this.schedulerRegistry.getInterval('rocketDataCheck');
-      clearInterval(interval);
+      this.stopWatchingRocketData();
     }
     
 
