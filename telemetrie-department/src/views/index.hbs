@@ -5,55 +5,105 @@
     <title>App</title>
     <style>
       .dashboard-ctn {
-        width: auto;
-        max-height: 270px;
+        width: 100vw;
+        position: relative;
+        max-height: 225px;
         overflow: scroll;
         display: flex;
         flex-direction: column;
         scroll-behavior: smooth;
+        align-items: center;
+        justify-content: center;
+        top: 20px;
       }
-      .dashboard {
-        background-color: #f5f5f5;
+
+      .line{
+        display: flex;
+        max-width: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+      .dashboard,
+      .dashboard-payload {
+        background-color: rgb(204, 204, 204);
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 20px;
-        width: auto;
-        max-height: 150px;
+        width: 40%;
+        max-height: 180px;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        /*backdrop-filter: blur(10px);*/
       }
 
-      .dashboard p {
+      .dashboard p,
+      .dashboard-payload p {
         margin: 10px 0;
         font-size: 16px;
         color: #333;
       }
 
-      .dashboard p:nth-child(odd) {
+      .dashboard div,
+      .dashboard-payload div {
+        width: 1000px;
+        font-size: 20px;
+        color: lightcoral;
+      }
+
+      .dashboard p:nth-child(odd),
+      .dashboard-payload p:nth-child(odd) {
         font-weight: bold;
       }
 
-      .dashboard p:first-child {
+      .dashboard p:first-child,
+      .dashboard-payload p:first-child {
         font-size: 20px;
         margin-top: 0;
       }
 
       #myChart {
-        width: 70%;
-        max-width: 700px;
-        max-height: 400px;
+        max-width: 60%;
+        min-width: 60%;
+        max-height: 450px;
         margin: 0 auto;
         margin-top: 20px;
       }
+
+      #speedometer {
+          max-width: 40%;
+          min-width: 40%;
+          height: 50px;
+          margin: 0 auto;
+        }
+
+      #app {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100vw;
+        max-height: 50vh;
+        justify-content: center;
+      }
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     {{ message }}
-    <canvas id="myChart"></canvas>
+    <button onclick="stop()">Stop</button>
+    <div id="app">
+      <canvas id="myChart"></canvas>
+      <canvas id="speedometer"></canvas>
+    </div>
+    
     <div class="dashboard-ctn"></div>
   </body>
 
   <script>
+    
+    function stop() {
+      clearInterval(int);
+    }
+
     async function getTelemetrics() {
       const telemetry = await fetch("http://localhost:3003/rocket/telemetrics").then((response) => {
         return response.json();
@@ -64,81 +114,45 @@
       return telemetry;
     }
 
-    const message = document.querySelector(".dashboard-ctn");
-    const ctx = document.getElementById("myChart").getContext("2d");
+    const dash = document.querySelector(".dashboard-ctn");
 
+    const dashboardCtn = document.querySelector(".dashboard-ctn");
+    const ctx = document.getElementById("myChart").getContext("2d");
+    
+    const canvas = document.getElementById("speedometer");
+    const ctx_2 = document.getElementById("speedometer").getContext("2d");
+    
+    
     const data = {
       altitude: 0,
       name: "",
       status: "",
       stages: [{}, {}],
       payload: {},
+      speed: 0,
       timestamp: "",
     };
 
-    const int = setInterval(() => {
-      const telemetry = getTelemetrics();
-      telemetry.then((datas) => {
-        console.log("update");
-
-        data.altitude = datas.altitude;
-        data.name = datas.name;
-        data.status = datas.status;
-        data.payload = datas.payload;
-        data.stages = datas.stages;
-        data.timestamp = datas.timestamp;
-
-        // Mise à jour des données du graphique
-        myChart.data.labels.push(data.timestamp); // Ajoutez un timestamp comme label
-        myChart.data.datasets[0].data.push(data.altitude); // Ajoutez l'altitude
-        myChart.data.datasets[1].data.push(data.stages[0].fuel); // Ajoutez le carburant du stade 1
-        myChart.data.datasets[2].data.push(data.stages[1].fuel); // Ajoutez le carburant du stade 2
-        myChart.update();
-
-        message.innerHTML +=
-          "<div class='dashboard'>" +
-          "<p>Altitude : " + data.altitude + " Feets</p>" +
-          "<p>Name : " + data.name + "</p>" +
-          "<p>Status : " + data.status + "</p>" +
-          "<p>Stages 1 :" + data.stages[0].fuel + "</p>" +
-          "<p>Stages 2 :" + data.stages[1].fuel + "</p>" +
-          "<p>Passengers : " + data.payload.passengers + "</p>" +
-          "<p>Weight : " + data.payload.weight + "</p>" +
-          "<p>Timestamps : " + data.timestamp + "</p>" +
-          "</div>";
-      });
-    }, 300);
-
-    setInterval(() => {
-      const dashboardCtn = document.querySelector(".dashboard-ctn");
-      scrollToTop(dashboardCtn);
-    }, 1500);
 
     function scrollToTop(ctn) {
       ctn.scrollTo(0, ctn.scrollHeight);
     }
 
     const myChart = new Chart(ctx, {
-      type: "line", // Utilisez le type de graphique "line" pour un graphique à lignes multiples
+      type: "line",
       data: {
         labels: [], // Les labels seront ajoutés dynamiquement
         datasets: [
           {
             label: "Altitude",
-            data: [], // Les données d'altitude seront ajoutées dynamiquement
+            data: [], // Les données seront ajoutées dynamiquement
             borderColor: "rgba(255, 99, 132, 1)",
             borderWidth: 1,
           },
           {
-            label: "Fuel - Stage 1",
-            data: [], // Les données de carburant du stade 1 seront ajoutées dynamiquement
+            label: "Fuel Current stage",
+            data: [], 
             borderColor: "rgba(54, 162, 235, 1)",
-            borderWidth: 1,
-          },
-          {
-            label: "Fuel - Stage 2",
-            data: [], // Les données de carburant du stade 2 seront ajoutées dynamiquement
-            borderColor: "rgba(0, 99, 132, 1)",
             borderWidth: 1,
           },
         ],
@@ -151,5 +165,109 @@
         },
       },
     });
+  
+    // Configurez la jauge de vitesse avec des données
+    const data_speed = {
+      labels: ["Vitesse (m/s)"],
+      datasets: [
+        {
+          label: "Speed m/s",
+          data: [0],
+          backgroundColor: ["#73BA9B"], // Couleur des barres
+          borderWidth: 1,
+        },
+      ],
+    };
+
+    // options de la jauge de vitesse
+    const options = {
+      responsive: false,
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          beginAtZero: true, 
+          max: 6000, 
+        },
+        y: {
+          display: false,
+        },
+      },
+    };
+    // Créez la jauge de vitesse
+    const speedometer = new Chart(ctx_2, {
+      type: "bar",
+      data: data_speed,
+      options: options,
+    });
+
+    function updateSpeed(value) {
+      // Assurez-vous que la valeur est dans la plage de la jauge
+      if (value >= 0 && value <= 10000) {
+        speedometer.data.datasets[0].data[0] = value;
+        speedometer.update();
+      }
+    }
+
+
+      const int = setInterval(() => {
+      const telemetry = getTelemetrics();
+      telemetry.then((datas) => {
+        console.log("update");
+        console.log(datas);
+
+        data.altitude = datas.altitude;
+        data.name = datas.name;
+        data.status = datas.status;
+        data.payload = datas.payload;
+        data.stages = datas.stages;
+        data.speed = datas.speed;
+        data.timestamp = datas.timestamp;
+
+        const fuel_1 = data.stages[0].fuel;
+        const fuel_2 = data.stages[1].fuel;
+
+        const fuel = fuel_1 > 0 ? fuel_1 : fuel_2;
+
+        // Mise à jour des données du graphique
+        myChart.data.labels.push(data.timestamp);
+        myChart.data.datasets[0].data.push(data.altitude);
+        myChart.data.datasets[1].data.push(fuel);
+        myChart.update();
+
+        // Mise à jour de la jauge de vitesse
+        updateSpeed(data.speed);
+
+
+        dash.innerHTML +=
+          "<div class='line'>"+
+
+          "<div class='dashboard'>" +
+          "<div>Rocket</div>" +
+          "<p>Altitude : " + data.altitude + " Feets</p>" +
+          "<p>Name : " + data.name + "</p>" +
+          "<p>Status : " + data.status + "</p>" +
+          "<p>Speed : " + data.speed + " m/s</p>" +
+          "<p>Current stage fuel :" + fuel + " tones</p>" +      
+          "<p>Timestamps : " + data.timestamp + "</p>" +
+          "</div>" +
+
+          "<div class='dashboard-payload'>" +
+          "<div>Payload</div>" +
+          "<p>Altitude : " + data.payload.altitude + " Feets</p>" +
+          "<p>Passengers : " + data.payload.passengers + "</p>" +
+          "<p>Status : " + data.payload.status + "</p>" +
+          "<p>Speed : " + data.payload.speed + " m/s</p>" +
+          "<p>Weight : " + data.payload.weight + "</p>" +
+          "</div>" +
+
+          "</div>"
+           ;
+
+          scrollToTop(dashboardCtn);
+      });
+    }, 1000);
+
+  
   </script>
 </html>

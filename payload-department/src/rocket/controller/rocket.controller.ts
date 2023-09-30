@@ -2,7 +2,6 @@ import { Body, Controller, Get, HttpCode, Post, Headers, HttpException, HttpStat
 import { error } from "console";
 import { PayloadTelemetricsDto } from "../../../dto/create-payload-telemetrics.dto";
 import { RocketService } from "../service/rocket.service";
-import { TelemetricsDto } from "../../../../telemetrie-department/dto/create-telemetrics.dto";
 @Controller("rocket")
 export class RocketController {
     constructor(private readonly rocketService: RocketService) {}

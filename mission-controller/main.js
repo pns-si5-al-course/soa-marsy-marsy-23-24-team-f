@@ -77,23 +77,26 @@ async function main() {
     try {
 
         // Weather service
-        console.log('----------------------------------')
+
+        console.log('\n----------------------------------')
         console.log('--- FIRST CHECK BEFORE LAUNCH ---');
         console.log('----------------------------------\n')
         console.log('Richard : asking weather status to weather dept');
         await sleep(500);
         console.log('-- GET weather-service:3002/status --');
         console.log('Tory : cheking the status of the weather')
+        await sleep(1000);
         const weatherStatus = await get(weatherServiceUrl + "/status");
         console.log('Weather status : ', weatherStatus);
+        await sleep(1000);
         if (weatherStatus.status === 'GO') {
             status.weatherReady = true;
             console.log(chalk.green('Tory : weather is good'));
         } else {
             console.log(chalk.red('Tory : weather is not good'));
         }
-
-        console.log('-------------------------------------')
+        await sleep(2000);
+        console.log('\n-------------------------------------')
         console.log('--- SECOND CHECK BEFORE LAUNCH ---');
         console.log('-------------------------------------\n')
         console.log('-- GET payload-service:3001/rocket/status --');
@@ -103,6 +106,7 @@ async function main() {
         console.log('Elon : surveillance de la fusée')
         const rocketStatus = await get(rocketDeptServiceUrl + "/rocket/status");
         console.log('Statut de la fusée : ', rocketStatus);
+        await sleep(1000);
         if (rocketStatus.status === 'GO') {
             // Chargez la fusée avec le payload
             console.log('Richard : demande au département fusée de charger le payload');
@@ -119,10 +123,10 @@ async function main() {
         } else {
             console.log(chalk.red('Elon : la fusée n\'est pas prête au lancement'));
         }
-        console.log('-------------------------')
+        console.log('\n-------------------------')
         console.log('----- LAUNCH SEQUENCE ---');
         console.log('-------------------------\n')
-        await sleep(500);
+        await sleep(2000);
         // Lancez la fusée si tous les systèmes sont prêts
         if (status.rocketReady && status.weatherReady) {
             console.log(chalk.green('Tous les systèmes sont prêts !'));
@@ -141,7 +145,7 @@ async function main() {
                 });
 
 
-            sleep(1000);
+            await sleep(2000);
             console.log('\nElon : surveillance du lancement de la fusée : ')
 
             const telemetrieInterval = setInterval(async() => {
@@ -156,14 +160,14 @@ async function main() {
                         return response;
                     });
 
-                 const payloadTelemetrics = await get(payloadServiceUrl + "/rocket/payload/data")
-                     .then((response) => {
-                         const données = [response.altitude, response.speed];
-                         const titre = 'Payload Telemetrics';
-                         
-                         afficherGraphique(données, titre);
-                         return response;
-                     });
+                //  const payloadTelemetrics = await get(payloadServiceUrl + "/rocket/payload/data")
+                //      .then((response) => {
+                //          const données = [response.altitude, response.speed];
+                //          const titre = 'Payload Telemetrics';
+
+                //          afficherGraphique(données, titre);
+                //          return response;
+                //      });
 
             }, 2000); // 2 secondes d'intervalle
             setTimeout(async() => {

@@ -1,0 +1,11 @@
+node_modules/
+docker-compose-telemetrie.yml
+Dockerfile.production
+dist/
+.gitignore
+README.md
+generatePostTest.py
+build.sh
+.eslintrc.js
+.prettierrc
+.env

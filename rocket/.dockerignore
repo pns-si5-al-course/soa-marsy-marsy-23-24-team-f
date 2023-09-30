@@ -1,0 +1,10 @@
+node_modules/
+docker-compose-rocket-object.yml
+Dockerfile.production
+Dockerfile.development
+dist/
+.gitignore
+README.md
+build.sh
+.eslintrc.js
+.prettierrc

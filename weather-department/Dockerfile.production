@@ -3,8 +3,7 @@ ENV NODE_ENV production
 WORKDIR /app
 COPY package.json tsconfig.json .env ./
 COPY --chown=node:node . .
-RUN yarn install --production --frozen-lockfile
-RUN yarn build
+RUN yarn install --production --frozen-lockfile && yarn build
 USER node
 
 #PRODUCTION
@@ -16,14 +15,3 @@ COPY --chown=node:node --from=builder app/.env app/.env
 WORKDIR /app
 CMD ["node", "dist/src/main.js"]
 EXPOSE 3001
-
-
-# FROM node:18-alpine
-# ENV NODE_ENV production
-# WORKDIR /app
-# COPY package.json tsconfig.json .env ./
-# COPY --chown=node:node . .
-# RUN yarn install --production --frozen-lockfile
-# RUN yarn build
-# CMD ["node", "dist/src/main.js"]
-# EXPOSE 3001

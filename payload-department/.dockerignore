@@ -1,0 +1,11 @@
+node_modules/
+docker-compose-payload.yml
+Dockerfile.production
+Dockerfile.development
+dist/
+.gitignore
+README.md
+build.sh
+.eslintrc.js
+.prettierrc
+.env

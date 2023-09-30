@@ -26,7 +26,7 @@ test.describe('Are all services UP', () => {
     const page = await context.newPage();
 
     // Accédez à l'URL de votre API
-    await page.goto('http://localhost:3001/rocket');
+    await page.goto('http://localhost:3001/');
     // get the text content of the body element
     const bodyText = await page.textContent('body');
 

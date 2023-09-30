@@ -29,7 +29,7 @@ stages = [{"id": 1, "fuel": 400}, {"id": 2, "fuel": 400}]
 speed = 0.0
 
 while True:
-    speed += log(altitude)
+    speed += 10
     altitude += random.randint(0, 10)
     stages[0]["fuel"] -= random.randint(0, 10)
     if (stages[0]["fuel"] <= 0):
@@ -41,7 +41,7 @@ while True:
     "status": getStatus(),
     "stages": stages,
     "altitude": altitude,
-    "payload": {"passengers": 1, "altitude": 2000, "weight": 100},
+    "payload": {"passengers": 1, "altitude": 2000, "weight": 100, "speed": speed, "status": "In Flight"},
     "speed": speed,
     "timestamp": datetime.datetime.now().isoformat()
     })
