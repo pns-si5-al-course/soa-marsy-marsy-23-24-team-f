@@ -3,9 +3,9 @@ import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class RocketService {
-    constructor(private readonly httpService: HttpService) {}
-
-    private rocketStatus: string = "unknown";
+    constructor(private readonly httpService: HttpService, private rocketStatus : string) {
+        this.rocketStatus = "unknown";
+    }
 
     async destroyRocket(): Promise<void> {
         try {
