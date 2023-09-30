@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { RocketController } from './controller/rocket.controller';
 import { RocketService } from './service/rocket.service';
-import { HttpModule } from '@nestjs/axios';
+import { HttpService } from '@nestjs/axios';
 
 @Module({
-  imports: [HttpModule],
+  imports: [HttpService],
   controllers: [RocketController],
   providers: [RocketService]
 })
