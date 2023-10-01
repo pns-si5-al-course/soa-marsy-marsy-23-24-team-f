@@ -17,7 +17,7 @@ Made with NestJS and Nodejs
 * First scenario will run for 120 seconds untill orbiting
 * Second scenario will run for 60 seconds untill failure
 
-* User friendly view of telemetrics at http://lcoalhost:3003/
+* User friendly view of telemetrics at http://localhost:3003/
 
 # US Covered
 
