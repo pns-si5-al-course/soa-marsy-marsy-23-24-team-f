@@ -12,10 +12,8 @@ test.describe('Are all services UP', () => {
     await page.goto('http://localhost:3003/isAlive');
     // get the text content of the body element
     const bodyText = await page.textContent('body');
-
     // Assert
     expect(bodyText).toContain(JSON.stringify({ status:"ok"}));
-
     await browser.close();
   });
 
@@ -76,6 +74,22 @@ test.describe('Are all services UP', () => {
 
     // Accédez à l'URL de votre API
     await page.goto('http://localhost:3004/payload');
+    // get the text content of the body element
+    const bodyText = await page.textContent('body');
+
+    // Assert
+    expect(bodyText).toContain(JSON.stringify({ status:"ok"}));
+
+    await browser.close();
+  });
+
+  test('is mission-commander-service UP', async () => {
+    const browser = await chromium.launch();
+    const context = await browser.newContext();
+    const page = await context.newPage();
+
+    // Accédez à l'URL de votre API
+    await page.goto('http://localhost:3006/isALive');
     // get the text content of the body element
     const bodyText = await page.textContent('body');
 

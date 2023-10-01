@@ -21,7 +21,6 @@ export class RocketController {
     @Get("payload/data")
     @HttpCode(200)
     async getPayloadData() {
-        this.rocketService.askForTelemetricsData();
         const data = await this.rocketService.getLastPayloadTelemetrics()
         .then((result) => {
             return result;

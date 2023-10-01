@@ -64,6 +64,7 @@ export class RocketService {
           throw new Error('Failed to fetch rocket data');
         }
       });
+      await this.httpService.post('http://telemetrie-service:3003/rocket/start-simulation').toPromise()
       
     } catch (error) {
       console.error('Error processing rocket payload:', error);

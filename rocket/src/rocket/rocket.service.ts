@@ -117,7 +117,6 @@ export class RocketService {
   async stopSimulation(): Promise<Rocket> {
     console.log("Reinitializing rocket");
     this.stop = true;
-    await this.httpService.post('http://telemetrie-service:3003/rocket/stop-simulation').toPromise()
     return Promise.resolve(this.rocket);
   }
 

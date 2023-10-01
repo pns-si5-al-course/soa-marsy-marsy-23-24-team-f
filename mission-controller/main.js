@@ -149,12 +149,13 @@ async function main() {
                         process.stdout.write(`Alt : ${response.altitude} feets`);
                         return response;
                     })
-
-                const payloadTelemetrics = await get(payloadServiceUrl + "rocket/payload/data")
+                sleep(500);
+                const payloadTelemetrics = await get(payloadServiceUrl + "/rocket/payload/data")
                     .then((response) => {
                         process.stdout.clearLine();
                         process.stdout.cursorTo(0);
-                        process.stdout.write(`Payload telemetrics : ${response.payload}`);
+                        process.stdout.write(`Payload altitude : ${response.altitude} feets`);
+                        process.stdout.write(`Payload speed : ${response.speed} feets`);
                         return response;
                     })
 

@@ -13,7 +13,7 @@ import { ScheduleModule } from '@nestjs/schedule';
       isGlobal: true,
     }),
     RocketModule,
-    HttpModule
+    HttpModule,
     ScheduleModule.forRoot(),
   ],
   controllers: [AppController],

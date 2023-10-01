@@ -9,6 +9,14 @@ import { TelemetricsDto } from "../../../dto/create-telemetrics.dto";
 @Controller("rocket")
 export class RocketController {
     constructor(private readonly rocketService: RocketService) {}
+
+    @Post("start-simulation")
+    @HttpCode(201)
+    async startSimulation(): Promise<any> {
+        this.rocketService.startSimulation();
+        return { message: "Simulation started" };
+    }
+
     @Post("telemetrics")
     @HttpCode(201)
     async postTelemetrics(@Body() body: TelemetricsDto) {
@@ -39,6 +47,7 @@ export class RocketController {
     @Post("stop-simulation")
     @HttpCode(201)
     async stopSimulation() {
+        this.rocketService.stopSimulation();
         const data = await this.rocketService.clearTelemetrics()
         .then((result) => {
             console.log(result);

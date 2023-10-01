@@ -12,21 +12,6 @@ export class RocketService {
 
     constructor(private httpService: HttpService, @InjectModel(PayloadTelemetrics.name) private payloadTelemetricsModel: Model<PayloadTelemetrics>) {}
 
-    async askForTelemetricsData(): Promise<any> {
-        console.log('Gwynne : asking for telemetrics updates');
-        const timeout = setInterval(async () => {
-          try {
-            const res = await this.httpService.get(telemetrieServiceUrl + '/rocket/telemetrics').toPromise()
-            .then(data => {
-              console.log('Gwynne : telemetrics updated');
-              console.log(data);
-            })
-          } catch (error) {
-              throw error;
-          }
-        }, 2000);
-    }
-
     async createPayloadTelemetrics(payloadTelemetrics: PayloadTelemetricsDto): Promise<any> {
       const newPayloadTelemetrics = new this.payloadTelemetricsModel(payloadTelemetrics);
       return newPayloadTelemetrics.save();

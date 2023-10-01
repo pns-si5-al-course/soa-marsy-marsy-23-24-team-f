@@ -1,4 +1,4 @@
-name: Testing rocket department
+name: Are departments Alive
 
 on:
   pull_request:
@@ -10,5 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Running tests for rocket status controller
+      - name: Build services and run
+        run: ./prepare.sh
+      - name: Check is departments are alive after build
         run: npx playwright test
