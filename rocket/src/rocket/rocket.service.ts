@@ -16,6 +16,9 @@ export class RocketService {
   private interval: NodeJS.Timeout;
   private stop: boolean = false;
 
+  private separationFailure: boolean = false;
+
+
   async sendTelemetryData(url: string, data?: any): Promise<void> {
     // fetch post request to telemetrie service
     await this.httpService.post(url, data).toPromise()
@@ -73,8 +76,12 @@ export class RocketService {
         if (this.rocket.stages[0].fuel > 0) {
           this.rocket.stages[0].fuel -= 50;
           if (this.rocket.stages[0].fuel <= 0) {
-            this.rocket.status = 'First Stage Separated';
-            this.startSecondStageFuelDepletion();
+            if (!this.separationFailure){
+              this.rocket.status = 'First Stage Separated';
+              this.startSecondStageFuelDepletion();}
+          else{
+            this.rocket.status = 'First Stage Seperation Failed';
+          }
           }
   
           this.rocket.speed += 50; // in m/s
@@ -130,6 +137,38 @@ export class RocketService {
 
     }, 1000);
   }
+
+
+  handleMaxQ(): Rocket {
+    console.log("Max Q condition detected, reducing speed.");
+    this.rocket.speed -= 100;
+    this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
+    return this.rocket;
+  }
+  
+async takeOffWithFailure(): Promise<any> {
+  this.separationFailure = true;
+  this.takeOff();
+}
+
+async destroyRocket(): Promise<void> {
+  if (this.interval) {
+    clearInterval(this.interval);
+  }
+  
+  this.rocket.status = 'Destroyed';
+  this.rocket.speed = 0;
+  this.rocket.altitude = 0;
+  this.rocket.payload.speed = 0;
+  this.rocket.payload.altitude = 0;
+
+  for (let stage of this.rocket.stages) {
+    stage.fuel = 0;
+  }
+
+  await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
+}
+
 
   getRocket() {
     return this.rocket;

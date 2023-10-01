@@ -1,7 +1,5 @@
-import {} from 'dotenv/config';
-import chalk from 'chalk';
-import asciichart from 'asciichart';
-
+import {} from "dotenv/config";
+import chalk from "chalk";
 
 const rocketDeptServiceUrl = process.env.ROCKET_DEPT_SERVICE_URL;
 const weatherServiceUrl = process.env.WEATHER_SERVICE_URL;
@@ -15,30 +13,24 @@ const status = {
     weatherReady: false,
 }
 
-
-// Fonction pour afficher les données sous forme de graphique textuel
-function afficherGraphique(data, titre) {
-    console.log(chalk.yellow(titre));
-    console.log(asciichart.plot(data));
-    console.log(); // Ligne vide pour séparer les sections
-}
-
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 const post = async(url, data) => {
     try {
         const response = await fetch(url, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${authToken}`
+                "Content-Type": "application/json",
+                Authorization: `${authToken}`,
             },
-            body: (data) ? JSON.stringify(data) : null
+            body: data ? JSON.stringify(data) : null,
         });
 
         if (!response.ok) {
-            throw new Error(`Erreur de requête HTTP - Code d'état HTTP : ${response.status}`);
+            throw new Error(
+                `Erreur de requête HTTP - Code d'état HTTP : ${response.status}`
+            );
         }
 
         return response;
@@ -48,18 +40,19 @@ const post = async(url, data) => {
     }
 };
 
-
 const get = async(url) => {
     try {
         const response = await fetch(url, {
-            method: 'GET',
+            method: "GET",
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${authToken}`
+                "Content-Type": "application/json",
+                Authorization: `${authToken}`,
             },
         });
         if (!response.ok) {
-            throw new Error(`Erreur de requête HTTP - Code d'état HTTP : ${response.status}`);
+            throw new Error(
+                `Erreur de requête HTTP - Code d'état HTTP : ${response.status}`
+            );
         }
 
         return response.json();
@@ -67,17 +60,13 @@ const get = async(url) => {
         console.error(error.message);
         throw error;
     }
-}
-
-
-
+};
 
 async function main() {
     console.log('Richard : chekings systems before launch');
     try {
 
         // Weather service
-
         console.log('\n----------------------------------')
         console.log('--- FIRST CHECK BEFORE LAUNCH ---');
         console.log('----------------------------------\n')
@@ -95,8 +84,8 @@ async function main() {
         } else {
             console.log(chalk.red('Tory : weather is not good'));
         }
-        await sleep(2000);
-        console.log('\n-------------------------------------')
+
+        console.log('-------------------------------------')
         console.log('--- SECOND CHECK BEFORE LAUNCH ---');
         console.log('-------------------------------------\n')
         console.log('-- GET payload-service:3001/rocket/status --');
@@ -111,6 +100,7 @@ async function main() {
             // Chargez la fusée avec le payload
             console.log('Richard : demande au département fusée de charger le payload');
             console.log('-- POST rocket-service:3001/rocket/load --');
+
             const rocketLoaded = await post(rocketDeptServiceUrl + "/rocket/load")
                 .then((r) => {
                     console.log(r);
@@ -134,6 +124,7 @@ async function main() {
             console.log('-- POST rocket-service:3001/rocket --');
             console.log(chalk.gray('IGNITION !'))
             await sleep(2000);
+            console.log(JSON.stringify(rocketStatus));
             const rocketLaunched = await post(rocketDeptServiceUrl + '/rocket', rocketStatus)
                 .then((response) => {
                     console.log(chalk.gray('TAKEOFF : ', response));
@@ -149,25 +140,23 @@ async function main() {
             console.log('\nElon : surveillance du lancement de la fusée : ')
 
             const telemetrieInterval = setInterval(async() => {
-
-
                 const telemetrics = await get(telemetrieServiceUrl + "/rocket/telemetrics")
                     .then((response) => {
-                        const data = [response.speed];
-                        const titre = 'Rocket Telemetrics - Altitude Speed';
-
-                        afficherGraphique(data, titre);
+                        process.stdout.clearLine();
+                        process.stdout.cursorTo(0);
+                        console.log(response.stages)
+                        process.stdout.write(`Speed : ${response.speed} m/s`);
+                        process.stdout.write(`Alt : ${response.altitude} feets`);
                         return response;
-                    });
+                    })
 
-                //  const payloadTelemetrics = await get(payloadServiceUrl + "/rocket/payload/data")
-                //      .then((response) => {
-                //          const données = [response.altitude, response.speed];
-                //          const titre = 'Payload Telemetrics';
-
-                //          afficherGraphique(données, titre);
-                //          return response;
-                //      });
+                const payloadTelemetrics = await get(payloadServiceUrl + "rocket/payload/data")
+                    .then((response) => {
+                        process.stdout.clearLine();
+                        process.stdout.cursorTo(0);
+                        process.stdout.write(`Payload telemetrics : ${response.payload}`);
+                        return response;
+                    })
 
             }, 2000); // 2 secondes d'intervalle
             setTimeout(async() => {
@@ -181,8 +170,6 @@ async function main() {
     } catch (error) {
         console.error(error);
     }
-
-
 }
 
 main();

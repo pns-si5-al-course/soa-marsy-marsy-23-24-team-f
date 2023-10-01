@@ -13,6 +13,8 @@ docker network create rocket-network
 
 echo "Compiling services..."
 
+prepare "mission-commander-department"
+
 prepare "telemetrie-department"
 
 prepare "weather-department"

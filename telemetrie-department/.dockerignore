@@ -8,4 +8,6 @@ generatePostTest.py
 build.sh
 .eslintrc.js
 .prettierrc
-.env
+.envnode_modules
+npm-debug.log
+*.log
