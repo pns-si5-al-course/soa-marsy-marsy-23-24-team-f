@@ -1,5 +1,10 @@
 # soa-marsy-marsy-23-24-team-f
 
+
+Made with NestJS and Nodejs
+
+**NodeJs** must be present on host for ./run.sh
+
 # HOW TO RUN
 
 . to build
@@ -44,6 +49,18 @@ the payload, full in fuel.
 (satellite/probe) in space on the right orbit or trajectory, so that the customer’s 
 desires have been successfully fulfilled by the mission. 
 
+8- As Richard (Mission Commander), I want to be able to issue an order for the 
+destruction of the flight hardware in case of a severe anomaly, so that the rocket 
+can’t follow an uncontrolled trajectory and to prevent potential damage on the 
+ground.
+
 11- As Gwynne (Chief Payload Department), I want to receive, store and consult the
 telemetry data of the payload, so that Mars Y can certify that the orbital parameters 
 desired by the customer are ensured.
+
+
+# Team Effort
+Hadil: 100
+Florianne: 100
+Nicolas: 100
+Chahan: 100
