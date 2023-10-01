@@ -18,6 +18,7 @@ export class RocketController {
     async recordRocketFailure(@Body() data: { status: string }): Promise<any> {
         console.log("Received rocket failure status:", data.status);
         await this.rocketService.recordRocketFailure(data.status);
+        this.destroyRocket();
         return { message: "Rocket failure status recorded successfully." };
     }
 
