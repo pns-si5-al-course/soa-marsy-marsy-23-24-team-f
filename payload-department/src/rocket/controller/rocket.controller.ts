@@ -9,12 +9,13 @@ export class RocketController {
     @Get()
     @HttpCode(200)
     getStatus() {
-      return { passengers: 0, altitude: 2000, weight: 100};
+      return { passengers: 0, altitude: 0, weight: 100, speed:0, status: "Grounded"};
     }
 
     @Post("payload/data")
     @HttpCode(201)
     async postPayloadData(@Body() body: PayloadTelemetricsDto) {
+        console.log(body)
         return this.rocketService.createPayloadTelemetrics(body);
     }
 

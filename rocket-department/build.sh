@@ -6,6 +6,6 @@ NC='\033[0m'
 
 echo "Building rocket-department image..."
 
-docker build -t rocket-status -f Dockerfile.production .
+docker build -t rocket-status -f Dockerfile.production . --no-cache
 
 echo -e "Done building ${GREEN}rocket-department${NC}"

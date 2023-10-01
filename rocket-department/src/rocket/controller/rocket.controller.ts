@@ -15,7 +15,11 @@ export class RocketController {
     if (auth == "missioncontrol-token"){
       if (body.status === "GO") {
         return this.rocketService.launchRocket();
-      } else {
+      }
+      else if(body.status === "Fail") {
+        return this.rocketService.launchRocketWithFailure();
+      }
+      else {
         return { status: "ROCKET LAUNCH ABORTED" };
       }
     } else {

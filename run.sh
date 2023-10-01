@@ -13,7 +13,8 @@ cd mission-controller
 
 yarn
 
-node main.js
+node success.scenario.js
+node failure.scenario.js
 
 cd ..
 

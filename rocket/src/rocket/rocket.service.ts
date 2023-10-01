@@ -3,7 +3,7 @@ import { HttpService } from '@nestjs/axios';
 import { Rocket } from '../entities/rocket.entity';
 
 
-const TARGET_ALTITUDE:number = 1_300_000;
+const TARGET_ALTITUDE:number = 130_000;
 const ROCKET_INIT = new Rocket('MarsY-1', 'On Ground', [
   {'id': 1,"fuel": 3000,},
   {'id': 2, "fuel": 3000,}
@@ -44,17 +44,16 @@ export class RocketService {
     //const data = JSON.stringify(this.rocket);
     this.rocket.payload.altitude = 0;
     this.rocket.payload.speed = 0;
-    await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
-    const sendTelemetrics = await this.httpService.post('http://telemetrie-service:3003/rocket/telemetrics', this.rocket).toPromise()
-    .then(response => {
-      console.log("Telemetrie data sent: \r");
-    })
-    .catch(error => {
-      console.error('Error sending telemetrics in takeoff:', error.message);
+    try {
+      await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
+      await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket)
+    } catch (error) {
+      console.error(error);
       throw error;
-    });
+    }
 
     this.rocket.status = 'In Flight';
+    this.rocket.payload.status = 'In Flight';
     console.log("Rocket status changed to: " + this.rocket.status);
     this.startFuelDepletion();
     console.log("Rocket fuel depletion started");
@@ -79,27 +78,17 @@ export class RocketService {
             if (!this.separationFailure){
               this.rocket.status = 'First Stage Separated';
               this.startSecondStageFuelDepletion();}
-          else{
-            this.rocket.status = 'First Stage Seperation Failed';
+            else{
+              this.rocket.status = 'First Stage Seperation Failed';
+            }
           }
-          }
   
-          this.rocket.speed += 50; // in m/s
-          this.rocket.altitude += 90; // in feet
+          this.rocket.speed += 3000; // in m/s , it's enournmus i know
+          this.rocket.altitude += 1096; // in feet
   
-          this.rocket.payload.altitude += 90;
-          this.rocket.payload.speed += 50;
+          this.rocket.payload.altitude += 1096;
+          this.rocket.payload.speed += 3000;
   
-  
-          if (this.rocket.altitude >= TARGET_ALTITUDE) {
-            // Stop fuel depletion and speed increase
-            clearInterval(this.interval);
-            // Deploy payload
-            this.rocket.status = 'Orbiting';
-            await this.httpService.post('http://payload-service:3004/rocket/payload/data', this.rocket.payload).toPromise()
-            
-            //
-          }
         }} else{
           this.rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
         }
@@ -125,10 +114,23 @@ export class RocketService {
 
     this.interval = setInterval(async () => {
       if (this.rocket.stages[1].fuel > 0) {
-        this.rocket.stages[1].fuel -= 5;
-        this.rocket.altitude += 100;
+        this.rocket.stages[1].fuel -= 40;
+        this.rocket.speed += 3000; // in m/s , it's enournmus i know
+        this.rocket.altitude += 1096; // in feet
+  
+        this.rocket.payload.altitude += 1096;
+        this.rocket.payload.speed += 3000;
+
+        if (this.rocket.altitude >= TARGET_ALTITUDE) {
+          // Stop fuel depletion and speed increase
+          clearInterval(this.interval);
+          // Deploy payload
+          this.rocket.status = 'Orbiting';
+          this.rocket.payload.status = 'Deployed';
+          //
+        }
+
       } else {
-        this.rocket.status = 'Mission Completed';
         clearInterval(this.interval);
       }
 

@@ -14,6 +14,11 @@ Made with NestJS and Nodejs
 ./run.sh
 
 
+* First scenario will run for 120 seconds untill orbiting
+* Second scenario will run for 60 seconds untill failure
+
+* User friendly view of telemetrics at http://lcoalhost:3003/
+
 # US Covered
 
 1-  As Tory (Launch Weather Officer), I need to check the weather status, so that I can 
