@@ -66,6 +66,6 @@ desired by the customer are ensured.
 
 # Team Effort
 Hadil: 100
-Florianne: 100
+Floriane: 100
 Nicolas: 100
 Chahan: 100
