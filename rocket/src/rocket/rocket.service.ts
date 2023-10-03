@@ -41,9 +41,7 @@ export class RocketService {
   }
 
   async takeOff(): Promise<Rocket> {
-    //const data = JSON.stringify(this.rocket);
-    this.rocket.payload.altitude = 0;
-    this.rocket.payload.speed = 0;
+    this.rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
     try {
       await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
       await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket)
@@ -73,7 +71,9 @@ export class RocketService {
     }
       
       this.interval = setInterval(async () => {
-        if (!this.stop){
+        if (this.stop){
+          clearInterval(this.interval);
+        }
         if (this.rocket.stages[0].fuel > 100) {
           this.rocket.stages[0].fuel -= 50;
           if (this.rocket.stages[0].fuel <= 100) {
@@ -95,8 +95,6 @@ export class RocketService {
           this.rocket.payload.altitude += 1096;
           this.rocket.payload.speed += 3000;
   
-        }} else{
-          this.rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
         }
         console.log("Updating telemetrics");
         //TODO: implement reduce acceleration in lower atmosphere
@@ -143,6 +141,9 @@ export class RocketService {
     clearInterval(this.interval);
 
     this.interval = setInterval(async () => {
+      if(this.stop){
+        clearInterval(this.interval);
+      }
       if (this.rocket.stages[1].fuel > 0) {
         this.rocket.stages[1].fuel -= 40;
         this.rocket.speed += 3000; // in m/s , it's enournmus i know
