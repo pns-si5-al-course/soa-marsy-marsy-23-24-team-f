@@ -86,15 +86,30 @@ export class RocketService {
             }
           }
   
-          this.rocket.speed += 3000; // in m/s , it's enournmus i know
-          this.rocket.altitude += 1096; // in feet
+          this.rocket.speed += (this.rocket.speed<7700)? 500: 0; // in m/s
+          this.rocket.payload.speed += (this.rocket.payload.speed<7700)? 500: 0;;
 
-          this.rocket.stages[0].altitude += 1096;
-          this.rocket.stages[1].altitude += 1096;
-  
+          this.rocket.altitude += 1096; // in feet
           this.rocket.payload.altitude += 1096;
-          this.rocket.payload.speed += 3000;
-  
+
+          switch (this.rocket.stages[0].status) {
+            case 'In Flight':
+              this.rocket.stages[0].altitude += 1096;
+              break;
+            case 'Max Q':
+              //TODO: implement reduce acceleration in lower atmosphere
+              break;
+            case 'Separated':
+              this.rocket.stages[0].altitude += 0;
+              break;
+            case 'Landing':
+              this.rocket.stages[0].altitude += 0;
+              break;
+            default:
+              break;
+          }
+          
+          this.rocket.stages[1].altitude += 1096;
         }
         console.log("Updating telemetrics");
         //TODO: implement reduce acceleration in lower atmosphere
@@ -117,10 +132,11 @@ export class RocketService {
     // we let the rocket fall down to 500m
     // then we start the landing procedure
     const safeLanding = setInterval(async () => {
-      if (this.rocket.stages[0].altitude <= 500) {
+      if (this.rocket.stages[0].altitude <= 500 && this.rocket.stages[0].altitude > 0) {
+        // reactivating the engine
         this.rocket.stages[0].fuel -= 20;
         this.rocket.stages[0].altitude -= 100;
-        this.rocket.speed -= 2000;
+        this.rocket.speed -= 1500;
         this.rocket.stages[0].status = 'Landing';
       } else if (this.rocket.stages[0].altitude <= 0) {
         this.rocket.stages[0].altitude = 0;
@@ -128,10 +144,10 @@ export class RocketService {
         this.rocket.stages[0].status = 'Landed';
         clearInterval(safeLanding);
       } else {
-        this.rocket.stages[0].altitude -= 500;
+        this.rocket.stages[0].altitude -= 1500;
+        this.rocket.stages[0].speed -= (this.rocket.stages[0].speed > 12000) ? 0 : 1000;
         this.rocket.stages[0].status = 'Separated'
       }
-      console.log(this.rocket.stages[0])
     }, 1000);
   }
 
@@ -146,17 +162,15 @@ export class RocketService {
       }
       if (this.rocket.stages[1].fuel > 0) {
         this.rocket.stages[1].fuel -= 40;
-        this.rocket.speed += 3000; // in m/s , it's enournmus i know
-        this.rocket.altitude += 1096; // in feet
 
+        this.rocket.speed += (this.rocket.speed<7700)? 500: 0; // in m/s
+        this.rocket.payload.speed += (this.rocket.payload.speed<7700)? 500: 0;;
+
+        this.rocket.altitude += 1096; // in feet
+        this.rocket.payload.altitude += 1096;
         this.rocket.stages[1].altitude += 1096;
   
-        this.rocket.payload.altitude += 1096;
-        this.rocket.payload.speed += 3000;
-
         if (this.rocket.altitude >= TARGET_ALTITUDE) {
-          
-          
           // Deploy payload
           this.rocket.status = 'Orbiting';
           this.rocket.payload.status = 'Deployed';

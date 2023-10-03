@@ -84,6 +84,13 @@
           margin: 0 auto;
         }
 
+      #booster {
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 100px;
+        margin: 0 auto;
+      }
+
       #app {
         display: flex;
         flex-direction: row;
@@ -177,6 +184,15 @@
             beginAtZero: true,
           },
         },
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Rocket telemetrics'
+          }
+        }
       },
     });
   
@@ -224,56 +240,64 @@
       const fuel = stage_1.fuel;
       const altitude = stage_1.altitude;
       const status = stage_1.status;
+      console.log(fuel, altitude, status);
+
       booster_chart.data.labels.push(status);
       booster_chart.data.datasets[0].data.push(altitude);
       booster_chart.data.datasets[1].data.push(fuel);
       booster_chart.update();
     }
 
-    const data_booster = {
-      labels: [],
-      datasets: [
-        {
-          label: "Booster altitude",
-          data: [0],
-          backgroundColor: ["#73BA9B"], // Couleur des barres
-          borderWidth: 1,
-        },
-        {
-          label: "Booster fuel",
-          data: [0],
-          backgroundColor: ["#1212F3"],
-          borderWidth: 1,
-        }
-      ],
-    };
-
-    const options_booster = {
-      responsive: false,
-      maintainAspectRatio: false,
-      indexAxis: 'y',
-      scales: {
-        x: {
-          beginAtZero: true, 
-          max: 3000, 
-        },
-        y: {
-          display: false,
-        },
-      },
-    };
 
     const booster_chart = new Chart(ctx_3, {
       type: "line",
-      data: data_booster,
-      options: options_booster,
+      data: {
+        labels: [], // Les labels seront ajoutés dynamiquement
+        datasets: [
+          {
+            label: "Altitude",
+            data: [], // Les données seront ajoutées dynamiquement
+            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderWidth: 1,
+          },
+          {
+            label: "Fuel Booster",
+            data: [], 
+            borderColor: "rgba(54, 162, 235, 1)",
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderWidth: 1,
+            stack: 'combined',
+            type:'bar',
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+          x: {
+            display: false,
+            beginAtZero: true,
+            stacked: true,
+          }
+        },
+        plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Booster (stage 1) telemetrics'
+      }
+      }
+      },
     });
 
     const int = setInterval(() => {
       const telemetry = getTelemetrics();
       telemetry.then((datas) => {
-        console.log("update");
-        console.log(datas);
 
         data.altitude = datas.altitude;
         data.name = datas.name;
@@ -282,6 +306,8 @@
         data.stages = datas.stages;
         data.speed = datas.speed;
         data.timestamp = datas.timestamp;
+
+        console.log(datas);
 
         const fuel_1 = data.stages[0].fuel;
         const fuel_2 = data.stages[1].fuel;
@@ -295,7 +321,6 @@
         myChart.update();
 
         // Mise à jour de la jauge de vitesse
-        console.log(data.speed)
         updateSpeed(data.speed);
 
         //mise a jour des donnees du booster
