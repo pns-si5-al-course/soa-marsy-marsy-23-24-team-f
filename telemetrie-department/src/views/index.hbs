@@ -60,6 +60,15 @@
         margin-top: 0;
       }
 
+      .secondary-charts {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        left:-1em;
+      }
+
       #myChart {
         max-width: 60%;
         min-width: 60%;
@@ -69,9 +78,9 @@
       }
 
       #speedometer {
-          max-width: 40%;
-          min-width: 40%;
-          height: 50px;
+          max-width: 80%;
+          min-width: 80%;
+          min-height: 100px;
           margin: 0 auto;
         }
 
@@ -92,8 +101,10 @@
     <button onclick="stop()">Stop</button>
     <div id="app">
       <canvas id="myChart"></canvas>
+      <div class="secondary-charts">
       <canvas id="speedometer"></canvas>
       <canvas id="booster"></canvas>
+      </div>
     </div>
     
     <div class="dashboard-ctn"></div>
@@ -174,7 +185,7 @@
       labels: ["Vitesse (m/s)"],
       datasets: [
         {
-          label: "Speed m/s",
+          label: "Rocket Speed m/s",
           data: [0],
           backgroundColor: ["#73BA9B"], // Couleur des barres
           borderWidth: 1,
@@ -190,7 +201,7 @@
       scales: {
         x: {
           beginAtZero: true, 
-          max: 6000, 
+          max: 10_000, 
         },
         y: {
           display: false,
@@ -205,14 +216,11 @@
     });
 
     function updateSpeed(value) {
-      if (value >= 0 && value <= 10000) {
-        speedometer.data.datasets[0].data[0] = value;
-        speedometer.update();
-      }
+      speedometer.data.datasets[0].data[0] = value;
+      speedometer.update();
     }
 
     function updateBooster(stage_1) {
-      console.log(stage_1);
       const fuel = stage_1.fuel;
       const altitude = stage_1.altitude;
       const status = stage_1.status;
@@ -234,7 +242,7 @@
         {
           label: "Booster fuel",
           data: [0],
-          backgroundColor: ["#43B934"],
+          backgroundColor: ["#1212F3"],
           borderWidth: 1,
         }
       ],
@@ -247,7 +255,7 @@
       scales: {
         x: {
           beginAtZero: true, 
-          max: 100, 
+          max: 3000, 
         },
         y: {
           display: false,
@@ -287,6 +295,7 @@
         myChart.update();
 
         // Mise à jour de la jauge de vitesse
+        console.log(data.speed)
         updateSpeed(data.speed);
 
         //mise a jour des donnees du booster
