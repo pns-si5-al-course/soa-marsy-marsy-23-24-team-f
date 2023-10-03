@@ -25,10 +25,11 @@ def getStatus():
 
 altitude = 0
 # fuel = json.loads('{"Stage 1": 400, "Stage 2": 400}')
-stages = [{"id": 1, "fuel": 400}, {"id": 2, "fuel": 400}]
+# stages = [{"id": 1, "fuel": 3000, "altitude": altitude, "status":"Grounded"}, {"id": 2, "fuel": 300, "altitude": altitude, "status":"Grounded"}]
 speed = 0.0
 
 while True:
+    stages = [{"id": 1, "fuel": 3000, "altitude": altitude, "status":"Grounded"}, {"id": 2, "fuel": 300, "altitude": altitude, "status":"Grounded"}]
     speed += 10
     altitude += random.randint(0, 10)
     stages[0]["fuel"] -= random.randint(0, 10)
@@ -41,7 +42,7 @@ while True:
     "status": getStatus(),
     "stages": stages,
     "altitude": altitude,
-    "payload": {"passengers": 1, "altitude": 2000, "weight": 100, "speed": speed, "status": "In Flight"},
+    "payload": {"passengers": 1, "altitude": altitude, "weight": 100, "speed": speed, "status": "In Flight"},
     "speed": speed,
     "timestamp": datetime.datetime.now().isoformat()
     })

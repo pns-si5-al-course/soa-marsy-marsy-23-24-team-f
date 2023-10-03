@@ -59,6 +59,15 @@ destruction of the flight hardware in case of a severe anomaly, so that the rock
 can’t follow an uncontrolled trajectory and to prevent potential damage on the 
 ground.
 
+9-  As Peter (Chief Executive Officer), I want the booster (first stage, that we previously 
+discarded after the separation (staging) of the rocket in 2 parts) of the rocket to 
+land, so that I can reuse it later and thus have a cheaper operating cost for each 
+launch in order to be competitive on the space launches market.
+
+10- As Jeff (Telemetry Officer), I want to receive, store and consult the telemetry data of 
+the first stage, so that I can ensure the operation of the booster from the launchpad 
+all the way until the booster lands.  
+
 11- As Gwynne (Chief Payload Department), I want to receive, store and consult the
 telemetry data of the payload, so that Mars Y can certify that the orbital parameters 
 desired by the customer are ensured.

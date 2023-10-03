@@ -7,6 +7,7 @@ const authToken = process.env.AUTH_TOKEN;
 const payloadServiceUrl = process.env.PAYLOAD_SERVICE_URL;
 const rocketServiceUrl = process.env.ROCKET_SERVICE_URL;
 const telemetrieServiceUrl = process.env.TELEMETRIE_SERVICE_URL;
+const missionCommanderUrl = process.env.MISSION_COMMANDER_SERVICE_URL;
 
 const status = {
     rocketReady: false,
@@ -165,7 +166,6 @@ async function main() {
 
                         if (response.status === 'First Stage Separated') {
                             console.log(chalk.green('---First Stage Separated Successfully---'));
-                            clearInterval(telemetrieInterval);
                         }
 
 
