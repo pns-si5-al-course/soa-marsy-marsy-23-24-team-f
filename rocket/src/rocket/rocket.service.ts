@@ -5,8 +5,8 @@ import { Rocket } from '../entities/rocket.entity';
 
 const TARGET_ALTITUDE:number = 130_000;
 const ROCKET_INIT = new Rocket('MarsY-1', 'On Ground', [
-  {'id': 1,"fuel": 3000,},
-  {'id': 2, "fuel": 3000,}
+  {'id': 1,"fuel": 3000, altitude: 0, status: "On Ground"},
+  {'id': 2, "fuel": 3000, altitude: 0, status: "On Ground"}
 ], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString(), 0);
 @Injectable()
 export class RocketService {
@@ -54,6 +54,8 @@ export class RocketService {
 
     this.rocket.status = 'In Flight';
     this.rocket.payload.status = 'In Flight';
+    this.rocket.stages[0].status = 'In Flight';
+    this.rocket.stages[1].status = 'In Flight';
     console.log("Rocket status changed to: " + this.rocket.status);
     this.startFuelDepletion();
     console.log("Rocket fuel depletion started");
@@ -72,11 +74,12 @@ export class RocketService {
       
       this.interval = setInterval(async () => {
         if (!this.stop){
-        if (this.rocket.stages[0].fuel > 0) {
+        if (this.rocket.stages[0].fuel > 100) {
           this.rocket.stages[0].fuel -= 50;
-          if (this.rocket.stages[0].fuel <= 0) {
+          if (this.rocket.stages[0].fuel <= 100) {
             if (!this.separationFailure){
               this.rocket.status = 'First Stage Separated';
+              this.rocket.stages[0].status = 'Separated';
               this.startSecondStageFuelDepletion();}
             else{
               this.rocket.status = 'First Stage Seperation Failed';
@@ -85,6 +88,9 @@ export class RocketService {
   
           this.rocket.speed += 3000; // in m/s , it's enournmus i know
           this.rocket.altitude += 1096; // in feet
+
+          this.rocket.stages[0].altitude += 1096;
+          this.rocket.stages[1].altitude += 1096;
   
           this.rocket.payload.altitude += 1096;
           this.rocket.payload.speed += 3000;
@@ -109,7 +115,31 @@ export class RocketService {
     return Promise.resolve(this.rocket);
   }
 
+  private async firstStageSafeLanding(): Promise<void> {
+    // we let the rocket fall down to 500m
+    // then we start the landing procedure
+    const safeLanding = setInterval(async () => {
+      if (this.rocket.stages[0].altitude <= 500) {
+        this.rocket.stages[0].fuel -= 20;
+        this.rocket.stages[0].altitude -= 100;
+        this.rocket.speed -= 2000;
+        this.rocket.stages[0].status = 'Landing';
+      } else if (this.rocket.stages[0].altitude <= 0) {
+        this.rocket.stages[0].altitude = 0;
+        this.rocket.speed = 0;
+        this.rocket.stages[0].status = 'Landed';
+        clearInterval(safeLanding);
+      } else {
+        this.rocket.stages[0].altitude -= 500;
+        this.rocket.stages[0].status = 'Separated'
+      }
+      console.log(this.rocket.stages[0])
+    }, 1000);
+  }
+
   private async startSecondStageFuelDepletion(): Promise<void> {
+    this.firstStageSafeLanding();
+
     clearInterval(this.interval);
 
     this.interval = setInterval(async () => {
@@ -117,16 +147,21 @@ export class RocketService {
         this.rocket.stages[1].fuel -= 40;
         this.rocket.speed += 3000; // in m/s , it's enournmus i know
         this.rocket.altitude += 1096; // in feet
+
+        this.rocket.stages[1].altitude += 1096;
   
         this.rocket.payload.altitude += 1096;
         this.rocket.payload.speed += 3000;
 
         if (this.rocket.altitude >= TARGET_ALTITUDE) {
-          // Stop fuel depletion and speed increase
-          clearInterval(this.interval);
+          
+          
           // Deploy payload
           this.rocket.status = 'Orbiting';
           this.rocket.payload.status = 'Deployed';
+          
+          // Stop fuel depletion and speed increase
+          clearInterval(this.interval);
           //
         }
 
@@ -135,6 +170,7 @@ export class RocketService {
       }
 
       await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
+      await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
 
     }, 1000);
   }

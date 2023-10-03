@@ -93,6 +93,7 @@
     <div id="app">
       <canvas id="myChart"></canvas>
       <canvas id="speedometer"></canvas>
+      <canvas id="booster"></canvas>
     </div>
     
     <div class="dashboard-ctn"></div>
@@ -121,6 +122,9 @@
     
     const canvas = document.getElementById("speedometer");
     const ctx_2 = document.getElementById("speedometer").getContext("2d");
+
+    const booster = document.getElementById("booster");
+    const ctx_3 = document.getElementById("booster").getContext("2d");
     
     
     const data = {
@@ -132,7 +136,6 @@
       speed: 0,
       timestamp: "",
     };
-
 
     function scrollToTop(ctn) {
       ctn.scrollTo(0, ctn.scrollHeight);
@@ -202,15 +205,63 @@
     });
 
     function updateSpeed(value) {
-      // Assurez-vous que la valeur est dans la plage de la jauge
       if (value >= 0 && value <= 10000) {
         speedometer.data.datasets[0].data[0] = value;
         speedometer.update();
       }
     }
 
+    function updateBooster(stage_1) {
+      console.log(stage_1);
+      const fuel = stage_1.fuel;
+      const altitude = stage_1.altitude;
+      const status = stage_1.status;
+      booster_chart.data.labels.push(status);
+      booster_chart.data.datasets[0].data.push(altitude);
+      booster_chart.data.datasets[1].data.push(fuel);
+      booster_chart.update();
+    }
 
-      const int = setInterval(() => {
+    const data_booster = {
+      labels: [],
+      datasets: [
+        {
+          label: "Booster altitude",
+          data: [0],
+          backgroundColor: ["#73BA9B"], // Couleur des barres
+          borderWidth: 1,
+        },
+        {
+          label: "Booster fuel",
+          data: [0],
+          backgroundColor: ["#43B934"],
+          borderWidth: 1,
+        }
+      ],
+    };
+
+    const options_booster = {
+      responsive: false,
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          beginAtZero: true, 
+          max: 100, 
+        },
+        y: {
+          display: false,
+        },
+      },
+    };
+
+    const booster_chart = new Chart(ctx_3, {
+      type: "line",
+      data: data_booster,
+      options: options_booster,
+    });
+
+    const int = setInterval(() => {
       const telemetry = getTelemetrics();
       telemetry.then((datas) => {
         console.log("update");
@@ -237,6 +288,9 @@
 
         // Mise à jour de la jauge de vitesse
         updateSpeed(data.speed);
+
+        //mise a jour des donnees du booster
+        updateBooster(data.stages[0]);
 
 
         dash.innerHTML +=

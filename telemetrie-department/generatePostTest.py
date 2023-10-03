@@ -25,7 +25,7 @@ def getStatus():
 
 altitude = 0
 # fuel = json.loads('{"Stage 1": 400, "Stage 2": 400}')
-stages = [{"id": 1, "fuel": 400}, {"id": 2, "fuel": 400}]
+stages = [{"id": 1, "fuel": 400, "altitude": 0, "status":"Grounded"}, {"id": 2, "fuel": 400, "altitude": 0, "status":"Grounded"}]
 speed = 0.0
 
 while True:

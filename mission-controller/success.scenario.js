@@ -7,6 +7,7 @@ const authToken = process.env.AUTH_TOKEN;
 const payloadServiceUrl = process.env.PAYLOAD_SERVICE_URL;
 const rocketServiceUrl = process.env.ROCKET_SERVICE_URL;
 const telemetrieServiceUrl = process.env.TELEMETRIE_SERVICE_URL;
+const missionCommanderUrl = process.env.MISSION_COMMANDER_SERVICE_URL;
 
 const status = {
     rocketReady: false,
@@ -165,7 +166,6 @@ async function main() {
 
                         if (response.status === 'First Stage Separated') {
                             console.log(chalk.green('---First Stage Separated Successfully---'));
-                            clearInterval(telemetrieInterval);
                         }
 
 
@@ -194,6 +194,7 @@ async function main() {
                 console.log('Richard : mission terminée');
                 console.log('Stop simulation');
                 await post("http://localhost:3001" + "/stop-simulation", {});
+                await post(missionCommanderUrl + "/rocket/destroy", {});
             }, 120000); // 120 secondes -- durée de la simulation de la mise en orbite
         }
 
