@@ -194,7 +194,6 @@ async function main() {
                 console.log('Richard : mission terminée');
                 console.log('Stop simulation');
                 await post("http://localhost:3001" + "/stop-simulation", {});
-                await post(missionCommanderUrl + "/rocket/destroy", {});
             }, 120000); // 120 secondes -- durée de la simulation de la mise en orbite
         }
 
