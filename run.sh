@@ -9,7 +9,7 @@ else
 fi
 
 
-cd mission-controller
+cd scripts
 
 yarn
 
