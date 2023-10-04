@@ -14,14 +14,14 @@ to send the last telemetrics stored in db though kafka bus
 
 Services messaging through KAFKA
 
-![](https://geps.dev/progress/32?dangerColor=800000&warningColor=ff9900&successColor=006600)
 
-temetrie-service  -- in progress
-rocket-service -- not implemented
-rocket-object-service -- not implemented
-payload-service -- not implemented
-weather-service -- not implemented
-mission-commander-service -- not implemented
+
+- temetrie-service  -- in progress ![](https://geps.dev/progress/50?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- rocket-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- rocket-object-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- payload-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- weather-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- mission-commander-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
 
 
 Architecture must evolve to migrate to kafka, only external routes
