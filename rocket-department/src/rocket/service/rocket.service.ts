@@ -3,6 +3,7 @@ import { HttpService } from '@nestjs/axios';
 import { Interval, SchedulerRegistry } from '@nestjs/schedule';
 @Injectable()
 export class RocketService {
+  private isWatchingRocketData = false;
 
   constructor(
     private httpService: HttpService,
@@ -12,7 +13,7 @@ export class RocketService {
   async launchRocket(): Promise<any> {
     try {
       const rocketReadyResponse = await this.httpService.get('http://rocket-object-service:3005/rocket/isReady').toPromise()
-      .then(response => {
+      .then((response: { data: any; }) => {
         console.log("Rocket responded it is ready for launch: \r");
         return response.data;
       });
@@ -23,11 +24,11 @@ export class RocketService {
       }
 
       const launchResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/takeoff').toPromise()
-      .then(response => {
+      .then((response: { data: any; }) => {
         console.log("Rocket launched: \r");
         return response.data;
       })
-      .catch(error => {
+      .catch((error: { message: any; }) => {
         console.error('Error sending launch order to rocket:', error.message);
         throw error;
       });
@@ -48,7 +49,7 @@ export class RocketService {
   async launchRocketWithFailure(): Promise<any> {
     try {
       const rocketReadyResponse = await this.httpService.get('http://rocket-object-service:3005/rocket/isReady').toPromise()
-      .then(response => {
+      .then((response: { data: any; }) => {
         console.log("Rocket responded it is ready for launch: \r");
         return response.data;
       });
@@ -59,11 +60,11 @@ export class RocketService {
       }
 
       const launchResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/takeoffwithfailure').toPromise()
-      .then(response => {
+      .then((response: { data: any; }) => {
         console.log("Rocket launched: \r");
         return response.data;
       })
-      .catch(error => {
+      .catch((error: { message: any; }) => {
         console.error('Error sending launch order to rocket:', error.message);
         throw error;
       });
@@ -84,13 +85,13 @@ export class RocketService {
   async loadRocket(): Promise<any> {
     try {
       const response = await this.httpService.get('http://payload-service:3004/rocket').toPromise()
-      .then(async response => {
+      .then(async (response: { status: number; data: any; }) => {
         console.log("------------------------");
         if (response.status === 200) {
           console.log(response.data);
           const payloadData = response.data;
           const setPayloadResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/setpayload', payloadData).toPromise()
-          .then(res => {
+          .then((res: { status: number; }) => {
             if (res.status === 201) {
               console.log("Payload set in rocket: \r");
             } else {
@@ -110,14 +111,21 @@ export class RocketService {
   }
 
   startWatchingRocketData(): void {
-    const callback = this.watchRocketData.bind(this);
-    const interval = setInterval(callback, 1000);
-    this.schedulerRegistry.addInterval('rocketDataCheck', interval);
+    if (!this.isWatchingRocketData) {
+      const callback = this.watchRocketData.bind(this);
+      const interval = setInterval(callback, 1000);
+      this.schedulerRegistry.addInterval('rocketDataCheck', interval);
+      this.isWatchingRocketData = true;
+    }
   }
 
   stopWatchingRocketData(): void {
-    const interval = this.schedulerRegistry.getInterval('rocketDataCheck');
-    clearInterval(interval);
+    if (this.isWatchingRocketData) {
+      const interval = this.schedulerRegistry.getInterval('rocketDataCheck');
+      clearInterval(interval);
+      this.schedulerRegistry.deleteInterval('rocketDataCheck');
+      this.isWatchingRocketData = false;
+    }
   }
 
   async watchRocketData(): Promise<void> {
@@ -136,8 +144,11 @@ export class RocketService {
       console.log("Send failure to mission commander: \r");
 
       //post the rocket.status to mission commander
-      this.httpService.post('http://mission-commander-service:3002/rocket/failure', { status: rocketData.status }).toPromise()
-      .catch(error => {
+      this.httpService.post('http://mission-commander-service:3006/rocket/failure', { status: rocketData.status }).toPromise()
+      .then(() => {
+        console.log("Failure sent to mission commander: \r");
+      })
+      .catch((error: { message: any; }) => {
         console.error('Error sending failure to mission commander:', error.message);
       });
       
@@ -165,5 +176,9 @@ export class RocketService {
       } catch (error) {
         console.error('Error fetching rocket status:', error.message);
       }
+  }
+
+  onModuleDestroy() {
+    this.stopWatchingRocketData();
   }
 }
