@@ -1,7 +1,7 @@
 #!/bin/bash
 source ./utils.sh
 
-docker-compose -p soa-marsy --file mission-commander-department/docker-compose-mission-commander.yml \
+docker compose -p soa-marsy --file mission-commander-department/docker-compose-mission-commander.yml \
                 --file telemetrie-department/docker-compose-telemetrie.yml \
                 --file rocket-department/docker-compose-rocket.yml \
                --file weather-department/docker-compose-weather.yml \
