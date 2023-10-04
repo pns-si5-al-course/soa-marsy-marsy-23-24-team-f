@@ -44,7 +44,7 @@ if [ "$line_count" -eq 0 ]; then
     ./prepare.sh
 fi
 
-docker-compose --file mission-commander-department/docker-compose-mission-commander.yml \
+docker-compose -p soa-marsy --file mission-commander-department/docker-compose-mission-commander.yml \
                 --file telemetrie-department/docker-compose-telemetrie.yml \
                 --file rocket-department/docker-compose-rocket.yml \
                --file weather-department/docker-compose-weather.yml \
