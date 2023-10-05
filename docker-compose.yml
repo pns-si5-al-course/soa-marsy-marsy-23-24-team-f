@@ -65,6 +65,9 @@ services:
 
   rocket-service:
     image: rocket-status
+    build:
+        context: rocket-department/
+        dockerfile: Dockerfile.production
     restart: always
     ports:
       - "3001:3001"
@@ -73,6 +76,9 @@ services:
 
   payload-service:
       image: payload-status
+      build:
+        context: payload-department/
+        dockerfile: Dockerfile.production
       restart: always
       depends_on:
         - mongo_db_payload_telemetrics
@@ -91,6 +97,9 @@ services:
 
   mission-commander-service:
       image: mission-commander
+      build:
+        context: mission-commander-department/
+        dockerfile: Dockerfile.production
       restart: always
       ports:
         - "3006:3006"
@@ -99,6 +108,9 @@ services:
       
   weather-service:
     image: weather-status
+    build:
+        context: weather-department/
+        dockerfile: Dockerfile.production
     restart: always
     ports:
       - "3002:3002"

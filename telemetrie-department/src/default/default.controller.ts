@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, HttpCode, HttpException, HttpStatus } from '@nestjs/common';
 import { DefaultService } from './default.service';
 
 @Controller()
@@ -27,6 +27,6 @@ export class DefaultController {
 
   @Get('/send/telemetrics')
   async sendTelemetrics() {
-    return await this.appService.sendTelemetrics();
+    return await this.appService.sendTelemetrics()
   }
 }

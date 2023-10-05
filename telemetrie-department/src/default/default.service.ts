@@ -31,7 +31,12 @@ export class DefaultService {
   }
 
   async sendTelemetrics() {
-    const telemetrics = await this.rocketService.getLastTelemetrics();
+    const telemetrics = await this.rocketService.getLastTelemetrics()
+    .catch((error) => {
+      console.log(error);
+      return error
+    })
+    console.log(telemetrics)
     const payload = this.createPayload(telemetrics);
     const value = await this.kafkaService.sendMessage('rocket.topic', payload);
     console.log('kafka status ', value);
