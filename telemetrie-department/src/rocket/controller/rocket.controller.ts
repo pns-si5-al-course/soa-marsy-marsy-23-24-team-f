@@ -6,6 +6,9 @@ import { error } from "console";
 import { RocketService } from "../service/rocket.service";
 import { TelemetricsDto } from "../../../dto/create-telemetrics.dto";
 
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
+
+@ApiTags('Rocket')
 @Controller("rocket")
 export class RocketController {
     constructor(private readonly rocketService: RocketService) {}
@@ -46,6 +49,18 @@ export class RocketController {
 
     @Post("stop-simulation")
     @HttpCode(201)
+    @ApiResponse({
+        status: 201,
+        description: 'Arret de la mise a jour des telemetries',
+        content: {
+          'application/json': {
+            example: {
+                acknowledged : true, 
+                deletedCount : 1 
+            },
+          },
+        },
+      })
     async stopSimulation() {
         this.rocketService.stopSimulation();
         const data = await this.rocketService.clearTelemetrics()
