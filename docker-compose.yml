@@ -117,3 +117,13 @@ services:
     networks:
       - rocket-network
 
+  rocket-object-service:
+    image: rocket-object-service
+    build:
+        context: rocket/
+        dockerfile: Dockerfile.production
+    restart: always
+    ports:
+      - "3005:3005"
+    networks:
+      - rocket-network

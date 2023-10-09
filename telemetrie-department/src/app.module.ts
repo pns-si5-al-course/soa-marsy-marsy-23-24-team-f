@@ -12,7 +12,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { KafkaModule } from './kafka/kafka.module';
 import { ConsumerModule } from './consumer/consumer.module';
-import { DefaultModule } from './default/default.module';
+import { PublisherModule } from './publisher/publisher.module';
+import { SseModule } from './sse/sse.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { DefaultModule } from './default/default.module';
   }),
   RocketModule, 
   ConsumerModule,
-  DefaultModule,
+  PublisherModule,
+  SseModule,
   // MongooseModule.forRoot(process.env.MONGO_U),
   MongooseModule.forRootAsync({
     useClass: MongooseConfigService,

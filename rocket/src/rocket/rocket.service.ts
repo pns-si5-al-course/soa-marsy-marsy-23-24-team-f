@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { Rocket } from '../entities/rocket.entity';
+import { Rocket} from '../entities/rocket.entity';
+import { PublisherService } from '../publisher/publisher.service';
 
 
 const TARGET_ALTITUDE:number = 130_000;
@@ -10,7 +11,7 @@ const ROCKET_INIT = new Rocket('MarsY-1', 'On Ground', [
 ], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString(), 0);
 @Injectable()
 export class RocketService {
-  constructor(private httpService: HttpService) {}
+  constructor(private publisherService : PublisherService) {}
    
   private rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
   private interval: NodeJS.Timeout;
@@ -18,17 +19,13 @@ export class RocketService {
 
   private separationFailure: boolean = false;
 
+  async sendTelemetryData(topic:string, data?: any): Promise<void> {
+    this.publisherService.sendTelemetrics(topic, data);
+  }
 
-  async sendTelemetryData(url: string, data?: any): Promise<void> {
-    // fetch post request to telemetrie service
-    await this.httpService.post(url, data).toPromise()
-      .then(_ => {
-        return Promise.resolve("Telemetrics adn payload posted: \r");
-      })
-      .catch(error => {
-        console.error('Error sending telemetrics in fuel depletion:', error.message);
-        throw error;
-      });
+  async pushData(){
+    await this.sendTelemetryData('payload.telemetrics.topic', this.rocket.payload);
+    await this.sendTelemetryData('rocket.telemetrics.topic', this.rocket)
   }
 
   isReady(): boolean {
@@ -43,8 +40,7 @@ export class RocketService {
   async takeOff(): Promise<Rocket> {
     this.rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
     try {
-      await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
-      await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket)
+      await this.pushData();
     } catch (error) {
       console.error(error);
       throw error;
@@ -57,8 +53,6 @@ export class RocketService {
     console.log("Rocket status changed to: " + this.rocket.status);
     this.startFuelDepletion();
     console.log("Rocket fuel depletion started");
-    // this.startSpeedIncrease();
-    // console.log("Rocket speed increase started");
 
     return Promise.resolve(this.rocket);
   }
@@ -114,8 +108,7 @@ export class RocketService {
         console.log("Updating telemetrics");
         //TODO: implement reduce acceleration in lower atmosphere
   
-        await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
-        await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
+        await this.pushData();
   
       }, 1000);
 
@@ -184,17 +177,16 @@ export class RocketService {
         clearInterval(this.interval);
       }
 
-      await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
-      await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
+      await this.pushData();
 
     }, 1000);
   }
 
 
-  handleMaxQ(): Rocket {
+  async handleMaxQ(): Promise<Rocket> {
     console.log("Max Q condition detected, reducing speed.");
     this.rocket.speed -= 100;
-    this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
+    await this.pushData();
     return this.rocket;
   }
   
@@ -209,6 +201,7 @@ async destroyRocket(): Promise<void> {
   }
   
   this.rocket.status = 'Destroyed';
+  this.rocket.payload.status = 'Destroyed';
   this.rocket.speed = 0;
   this.rocket.altitude = 0;
   this.rocket.payload.speed = 0;
@@ -218,7 +211,7 @@ async destroyRocket(): Promise<void> {
     stage.fuel = 0;
   }
 
-  await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
+  await this.pushData();
 }
 
 

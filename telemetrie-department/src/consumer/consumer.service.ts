@@ -4,17 +4,22 @@ import {
   SubscribeToFixedGroup,
 } from '../kafka/kafka.decorator';
 import { KafkaPayload } from '../kafka/kafka.message';
-import { ROCKET_FIXED_TOPIC } from '../constant';
+import { ROCKET_FIXED_TOPIC, ROCKET_TELEMETRICS_TOPIC, PAYLOAD_TELEMETRICS_TOPIC } from '../constant';
+import { SseService } from '../sse/sse.service';
 
 @Injectable()
 export class ConsumerService {
+  constructor(private readonly sseService: SseService) {}
+
   /**
    * When group id is unique for every container.
    * @param payload
    */
-  @SubscribeTo('rocket.topic')
-  helloSubscriber(payload: KafkaPayload) {
+  @SubscribeTo(ROCKET_TELEMETRICS_TOPIC)
+  rocketTelemetricsSubscriber(payload: KafkaPayload) {
     console.log('[KAKFA-CONSUMER] Print message after receiving', payload);
+    // Émettre l'événement SSE avec les données de payload
+    this.sseService.sendEvent(payload);
   }
 
   /**

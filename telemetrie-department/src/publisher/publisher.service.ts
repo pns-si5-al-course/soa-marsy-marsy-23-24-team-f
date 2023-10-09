@@ -8,7 +8,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Telemetrics } from '../../schema/telemetrics.schema';
 
 @Injectable()
-export class DefaultService {
+export class PublisherService {
   constructor(
     private readonly kafkaService: KafkaService,
     private readonly rocketService: RocketService,
@@ -36,9 +36,8 @@ export class DefaultService {
       console.log(error);
       return error
     })
-    console.log(telemetrics)
     const payload = this.createPayload(telemetrics);
-    const value = await this.kafkaService.sendMessage('rocket.topic', payload);
+    const value = await this.kafkaService.sendMessage('rocket.telemetrics.topic', payload);
     console.log('kafka status ', value);
     return telemetrics;
   }

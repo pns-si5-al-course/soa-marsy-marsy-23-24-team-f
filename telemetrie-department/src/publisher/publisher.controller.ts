@@ -1,13 +1,12 @@
 import { Controller, Get, Post, HttpCode, HttpException, HttpStatus } from '@nestjs/common';
-import { DefaultService } from './default.service';
+import { PublisherService } from './publisher.service';
 
 @Controller()
-export class DefaultController {
-  constructor(private readonly appService: DefaultService) {}
+export class PublisherController {
+  constructor(private readonly appService: PublisherService) {}
 
   @Get()
   getHello() {
-    return this.appService.getHello();
   }
 
   @Get('/send')

@@ -113,6 +113,9 @@ async function main() {
                 .then((r) => {
                     console.log(r);
                     console.log(chalk.gray('Payload poste au r dept : '));
+                })
+                .catch(err => {
+                    console.log(err)
                 });
             console.log(chalk.gray('Payload chargé dans la fusée : '));
             // Après avoir chargé le payload, considérez la fusée comme prête

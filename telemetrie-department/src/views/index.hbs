@@ -123,15 +123,7 @@
       clearInterval(int);
     }
 
-    async function getTelemetrics() {
-      const telemetry = await fetch("http://localhost:3003/rocket/telemetrics").then((response) => {
-        return response.json();
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      return telemetry;
-    }
+
 
     const dash = document.querySelector(".dashboard-ctn");
 
@@ -144,7 +136,9 @@
     const booster = document.getElementById("booster");
     const ctx_3 = document.getElementById("booster").getContext("2d");
     
-    
+    const eventSource = new EventSource('http://localhost:3003/sse/stream');
+
+  
     const data = {
       altitude: 0,
       name: "",
@@ -154,6 +148,11 @@
       speed: 0,
       timestamp: "",
     };
+
+    eventSource.addEventListener('message', (event) => {
+      const datas = JSON.parse(event.data);
+      console.log('Nouvelle donnée SSE reçue :', datas);
+    });
 
     function scrollToTop(ctn) {
       ctn.scrollTo(0, ctn.scrollHeight);
@@ -296,8 +295,8 @@
     });
 
     const int = setInterval(() => {
-      const telemetry = getTelemetrics();
-      telemetry.then((datas) => {
+      
+      /*telemetry.then((datas) => {
 
         data.altitude = datas.altitude;
         data.name = datas.name;
@@ -353,7 +352,7 @@
            ;
 
           scrollToTop(dashboardCtn);
-      });
+      });*/
     }, 1000);
 
   
