@@ -11,7 +11,7 @@ export class MyWebSocketGateway implements OnGatewayConnection, OnGatewayDisconn
   afterInit(server: Server) {
     DataStore.eventEmitter.on('dataAdded', (data: any) => {
       console.log('data added : ', data)
-      this.server.emit('telemetrics', data);
+      this.server.emit('payloads', data);
     });
   }
 
@@ -20,7 +20,7 @@ export class MyWebSocketGateway implements OnGatewayConnection, OnGatewayDisconn
     // Géré lorsque qu'un client se connecte
     console.log('Client connecté');
     // Utilisez this.server pour envoyer des messages au client
-    this.server.emit('telemetrics', 'Bienvenue sur le serveur WebSocket');
+    this.server.emit('payloads', 'Bienvenue sur le serveur WebSocket du service payload');
   }
 
   handleDisconnect(client: Socket) {

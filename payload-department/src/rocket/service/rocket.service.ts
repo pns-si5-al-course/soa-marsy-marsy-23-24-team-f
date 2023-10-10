@@ -4,6 +4,7 @@ import { HttpService } from '@nestjs/axios';
 import { InjectModel } from "@nestjs/mongoose";
 import { PayloadTelemetricsDto } from "../../../dto/create-payload-telemetrics.dto";
 import { PayloadTelemetrics } from "../../../schema/payloadTelemetrics.schema";
+import { DataStore } from "../../gateway/DataStore";
 
 const telemetrieServiceUrl = process.env.TELEMETRIE_SERVICE_URL;
 
@@ -11,6 +12,20 @@ const telemetrieServiceUrl = process.env.TELEMETRIE_SERVICE_URL;
 export class RocketService {
 
     constructor(private httpService: HttpService, @InjectModel(PayloadTelemetrics.name) private payloadTelemetricsModel: Model<PayloadTelemetrics>) {}
+
+    onModuleInit(): void {
+      DataStore.eventEmitter.on('dataAdded', (data) => {
+        // get the body of the message
+        const telemetricsDto: PayloadTelemetrics = JSON.parse(data).body;
+        console.log('data added : ', telemetricsDto)
+        this.createPayloadTelemetrics(telemetricsDto).then((result) => {
+          console.log('Telemetrics created and stored to payload db:', result);
+        }).catch((error) => {
+          console.error('Error creating telemetrics:', error);
+        });
+      });
+    }
+
 
     async createPayloadTelemetrics(payloadTelemetrics: PayloadTelemetricsDto): Promise<any> {
       const newPayloadTelemetrics = new this.payloadTelemetricsModel(payloadTelemetrics);

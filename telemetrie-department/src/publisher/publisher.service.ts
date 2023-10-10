@@ -20,7 +20,7 @@ export class PublisherService {
     };
   }
 
-  createPayload(data: any): KafkaPayload{
+  createPayload(topic: string, data: any): KafkaPayload{
     const payload: KafkaPayload = {
       messageId: '' + new Date().valueOf(),
       body: data,
@@ -36,38 +36,9 @@ export class PublisherService {
       console.log(error);
       return error
     })
-    const payload = this.createPayload(telemetrics);
+    const payload = this.createPayload('rocket.telemetrics.topic', telemetrics);
     const value = await this.kafkaService.sendMessage('rocket.telemetrics.topic', payload);
     console.log('kafka status ', value);
     return telemetrics;
-  }
-
-
-  async send() {
-    const message = {
-      value: 'Message send to Kakfa Topic',
-    };
-    const payload = this.createPayload(message);
-    const value = await this.kafkaService.sendMessage('rocket.topic', payload);
-    console.log('kafka status ', value);
-    return message;
-  }
-
-  async sendToFixedConsumer() {
-    const message = {
-      value: 'Message send to Kakfa Topic',
-    };
-    const payload: KafkaPayload = {
-      messageId: '' + new Date().valueOf(),
-      body: message,
-      messageType: 'Say.Hello',
-      topicName: ROCKET_FIXED_TOPIC, // topic name could be any name
-    };
-    const value = await this.kafkaService.sendMessage(
-      ROCKET_FIXED_TOPIC,
-      payload,
-    );
-    console.log('kafka status ', value);
-    return message;
   }
 }

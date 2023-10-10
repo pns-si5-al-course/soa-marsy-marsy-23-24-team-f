@@ -23,7 +23,7 @@ import { WebSocketModule } from './gateway/websocket.module';
   }),
   KafkaModule.register({
     clientId: 'rocket-consumer',
-    brokers: ['kafka:19092'],
+    brokers: [process.env.KAFKA_BROKER],
     groupId: 'rocket-group',
   }),
   WebSocketModule,

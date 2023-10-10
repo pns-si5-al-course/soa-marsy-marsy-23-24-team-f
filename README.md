@@ -16,10 +16,10 @@ Services messaging through KAFKA
 
 
 
-- temetrie-service  -- in progress ![](https://geps.dev/progress/50?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- temetrie-service  -- in progress ![](https://geps.dev/progress/80?dangerColor=800000&warningColor=ff9900&successColor=006600)
 - rocket-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
-- rocket-object-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
-- payload-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- rocket-object-service -- in progress ![](https://geps.dev/progress/60?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- payload-service -- in progress ![](https://geps.dev/progress/60?dangerColor=800000&warningColor=ff9900&successColor=006600)
 - weather-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
 - mission-commander-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
 

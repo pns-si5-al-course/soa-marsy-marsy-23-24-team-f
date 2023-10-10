@@ -26,5 +26,11 @@ async function bootstrap() {
   app.useWebSocketAdapter(new IoAdapter(app));
 
   await app.listen(configService.get('port'));
+
+  // Catch SIGINT and SIGTERM signals and gracefully shutdown the server
+  process.on('SIGINT', () => {
+    console.log('Stopping server...');
+    app.close();
+  });
 }
 bootstrap();

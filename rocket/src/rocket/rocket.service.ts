@@ -6,9 +6,9 @@ import { PublisherService } from '../publisher/publisher.service';
 
 const TARGET_ALTITUDE:number = 130_000;
 const ROCKET_INIT = new Rocket('MarsY-1', 'On Ground', [
-  {'id': 1,"fuel": 3000, altitude: 0, status: "On Ground"},
-  {'id': 2, "fuel": 3000, altitude: 0, status: "On Ground"}
-], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString(), 0);
+  {'id': 1,fuel: 3000, altitude: 0, status: "On Ground", speed: 0},
+  {'id': 2, fuel: 3000, altitude: 0, status: "On Ground", speed: 0}
+], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString());
 @Injectable()
 export class RocketService {
   constructor(private publisherService : PublisherService) {}
@@ -20,12 +20,13 @@ export class RocketService {
   private separationFailure: boolean = false;
 
   async sendTelemetryData(topic:string, data?: any): Promise<void> {
-    this.publisherService.sendTelemetrics(topic, data);
+    await this.publisherService.sendTelemetrics(topic, data);
   }
 
-  async pushData(){
-    await this.sendTelemetryData('payload.telemetrics.topic', this.rocket.payload);
-    await this.sendTelemetryData('rocket.telemetrics.topic', this.rocket)
+  pushData(){
+    console.log("Pushing data to kafka");
+    this.sendTelemetryData('payload.telemetrics.topic', this.rocket.payload);
+    this.sendTelemetryData('rocket.telemetrics.topic', this.rocket)
   }
 
   isReady(): boolean {
@@ -40,11 +41,13 @@ export class RocketService {
   async takeOff(): Promise<Rocket> {
     this.rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
     try {
-      await this.pushData();
+      this.pushData();
     } catch (error) {
       console.error(error);
       throw error;
     }
+
+    this.stop = false;
 
     this.rocket.status = 'In Flight';
     this.rocket.payload.status = 'In Flight';
@@ -80,7 +83,8 @@ export class RocketService {
             }
           }
   
-          this.rocket.speed += (this.rocket.speed<7700)? 500: 0; // in m/s
+          this.rocket.stages[1].speed += (this.rocket.stages[1].speed<7700)? 500: 0; // in m/s
+          this.rocket.stages[0].speed = this.rocket.stages[1].speed;
           this.rocket.payload.speed += (this.rocket.payload.speed<7700)? 500: 0;;
 
           this.rocket.altitude += 1096; // in feet
@@ -129,11 +133,11 @@ export class RocketService {
         // reactivating the engine
         this.rocket.stages[0].fuel -= 20;
         this.rocket.stages[0].altitude -= 100;
-        this.rocket.speed -= 1500;
+        this.rocket.stages[0].speed -= 1500;
         this.rocket.stages[0].status = 'Landing';
       } else if (this.rocket.stages[0].altitude <= 0) {
         this.rocket.stages[0].altitude = 0;
-        this.rocket.speed = 0;
+        this.rocket.stages[0].speed = 0;
         this.rocket.stages[0].status = 'Landed';
         clearInterval(safeLanding);
       } else {
@@ -156,7 +160,7 @@ export class RocketService {
       if (this.rocket.stages[1].fuel > 0) {
         this.rocket.stages[1].fuel -= 40;
 
-        this.rocket.speed += (this.rocket.speed<7700)? 500: 0; // in m/s
+        this.rocket.stages[1].speed += (this.rocket.stages[1].speed<7700)? 500: 0; // in m/s
         this.rocket.payload.speed += (this.rocket.payload.speed<7700)? 500: 0;;
 
         this.rocket.altitude += 1096; // in feet
@@ -177,7 +181,7 @@ export class RocketService {
         clearInterval(this.interval);
       }
 
-      await this.pushData();
+     this.pushData();
 
     }, 1000);
   }
@@ -185,7 +189,7 @@ export class RocketService {
 
   async handleMaxQ(): Promise<Rocket> {
     console.log("Max Q condition detected, reducing speed.");
-    this.rocket.speed -= 100;
+    this.rocket.stages[1].speed -= 100;
     await this.pushData();
     return this.rocket;
   }
@@ -202,7 +206,8 @@ async destroyRocket(): Promise<void> {
   
   this.rocket.status = 'Destroyed';
   this.rocket.payload.status = 'Destroyed';
-  this.rocket.speed = 0;
+  this.rocket.stages[0].speed = 0;
+  this.rocket.stages[1].speed = 0;
   this.rocket.altitude = 0;
   this.rocket.payload.speed = 0;
   this.rocket.payload.altitude = 0;

@@ -14,7 +14,9 @@ cd mission-controller
 yarn
 
 node success.scenario.js
-curl -X POST http://localhost:3001/stop-simulation
+
+sleep 5
+
 node failure.scenario.js
 
 cd ..

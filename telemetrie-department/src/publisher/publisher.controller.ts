@@ -9,21 +9,6 @@ export class PublisherController {
   getHello() {
   }
 
-  @Get('/send')
-  async send() {
-    return await this.appService.send();
-  }
-
-  @Get('/send/consumer')
-  async sendToConsumer() {
-    return await this.appService.send();
-  }
-
-  @Get('/send/fixed-consumer')
-  async sendToFixedConsumer() {
-    return await this.appService.sendToFixedConsumer();
-  }
-
   @Get('/send/telemetrics')
   async sendTelemetrics() {
     return await this.appService.sendTelemetrics()
