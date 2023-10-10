@@ -1,16 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { Rocket } from '../entities/rocket.entity';
+import { Rocket} from '../entities/rocket.entity';
+import { PublisherService } from '../publisher/publisher.service';
 
 
 const TARGET_ALTITUDE:number = 130_000;
 const ROCKET_INIT = new Rocket('MarsY-1', 'On Ground', [
-  {'id': 1,"fuel": 3000, altitude: 0, status: "On Ground"},
-  {'id': 2, "fuel": 3000, altitude: 0, status: "On Ground"}
-], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString(), 0);
+  {'id': 1,fuel: 3000, altitude: 0, status: "On Ground", speed: 0},
+  {'id': 2, fuel: 3000, altitude: 0, status: "On Ground", speed: 0}
+], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString());
 @Injectable()
 export class RocketService {
-  constructor(private httpService: HttpService) {}
+  constructor(private publisherService : PublisherService) {}
    
   private rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
   private interval: NodeJS.Timeout;
@@ -18,17 +19,14 @@ export class RocketService {
 
   private separationFailure: boolean = false;
 
+  async sendTelemetryData(topic:string, data?: any): Promise<void> {
+    await this.publisherService.sendTelemetrics(topic, data);
+  }
 
-  async sendTelemetryData(url: string, data?: any): Promise<void> {
-    // fetch post request to telemetrie service
-    await this.httpService.post(url, data).toPromise()
-      .then(_ => {
-        return Promise.resolve("Telemetrics adn payload posted: \r");
-      })
-      .catch(error => {
-        console.error('Error sending telemetrics in fuel depletion:', error.message);
-        throw error;
-      });
+  pushData(){
+    console.log("Pushing data to kafka");
+    this.sendTelemetryData('payload.telemetrics.topic', this.rocket.payload);
+    this.sendTelemetryData('rocket.telemetrics.topic', this.rocket)
   }
 
   isReady(): boolean {
@@ -43,12 +41,13 @@ export class RocketService {
   async takeOff(): Promise<Rocket> {
     this.rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
     try {
-      await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
-      await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket)
+      this.pushData();
     } catch (error) {
       console.error(error);
       throw error;
     }
+
+    this.stop = false;
 
     this.rocket.status = 'In Flight';
     this.rocket.payload.status = 'In Flight';
@@ -57,8 +56,6 @@ export class RocketService {
     console.log("Rocket status changed to: " + this.rocket.status);
     this.startFuelDepletion();
     console.log("Rocket fuel depletion started");
-    // this.startSpeedIncrease();
-    // console.log("Rocket speed increase started");
 
     return Promise.resolve(this.rocket);
   }
@@ -86,7 +83,8 @@ export class RocketService {
             }
           }
   
-          this.rocket.speed += (this.rocket.speed<7700)? 500: 0; // in m/s
+          this.rocket.stages[1].speed += (this.rocket.stages[1].speed<7700)? 500: 0; // in m/s
+          this.rocket.stages[0].speed = this.rocket.stages[1].speed;
           this.rocket.payload.speed += (this.rocket.payload.speed<7700)? 500: 0;;
 
           this.rocket.altitude += 1096; // in feet
@@ -114,8 +112,7 @@ export class RocketService {
         console.log("Updating telemetrics");
         //TODO: implement reduce acceleration in lower atmosphere
   
-        await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
-        await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
+        await this.pushData();
   
       }, 1000);
 
@@ -136,11 +133,11 @@ export class RocketService {
         // reactivating the engine
         this.rocket.stages[0].fuel -= 20;
         this.rocket.stages[0].altitude -= 100;
-        this.rocket.speed -= 1500;
+        this.rocket.stages[0].speed -= 1500;
         this.rocket.stages[0].status = 'Landing';
       } else if (this.rocket.stages[0].altitude <= 0) {
         this.rocket.stages[0].altitude = 0;
-        this.rocket.speed = 0;
+        this.rocket.stages[0].speed = 0;
         this.rocket.stages[0].status = 'Landed';
         clearInterval(safeLanding);
       } else {
@@ -163,7 +160,7 @@ export class RocketService {
       if (this.rocket.stages[1].fuel > 0) {
         this.rocket.stages[1].fuel -= 40;
 
-        this.rocket.speed += (this.rocket.speed<7700)? 500: 0; // in m/s
+        this.rocket.stages[1].speed += (this.rocket.stages[1].speed<7700)? 500: 0; // in m/s
         this.rocket.payload.speed += (this.rocket.payload.speed<7700)? 500: 0;;
 
         this.rocket.altitude += 1096; // in feet
@@ -184,17 +181,16 @@ export class RocketService {
         clearInterval(this.interval);
       }
 
-      await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
-      await this.sendTelemetryData('http://payload-service:3004/rocket/payload/data', this.rocket.payload);
+     this.pushData();
 
     }, 1000);
   }
 
 
-  handleMaxQ(): Rocket {
+  async handleMaxQ(): Promise<Rocket> {
     console.log("Max Q condition detected, reducing speed.");
-    this.rocket.speed -= 200;
-    this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
+    this.rocket.stages[1].speed -= 100;
+    await this.pushData();
     return this.rocket;
   }
   
@@ -209,7 +205,9 @@ async destroyRocket(): Promise<void> {
   }
   
   this.rocket.status = 'Destroyed';
-  this.rocket.speed = 0;
+  this.rocket.payload.status = 'Destroyed';
+  this.rocket.stages[0].speed = 0;
+  this.rocket.stages[1].speed = 0;
   this.rocket.altitude = 0;
   this.rocket.payload.speed = 0;
   this.rocket.payload.altitude = 0;
@@ -218,7 +216,7 @@ async destroyRocket(): Promise<void> {
     stage.fuel = 0;
   }
 
-  await this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
+  await this.pushData();
 }
 
 

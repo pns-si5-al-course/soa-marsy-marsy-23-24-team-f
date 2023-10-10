@@ -51,6 +51,10 @@ destroyRocket() {
 }
 
 
+@Post('kafka')
+sendTestKakfa(){
+  this.rocketService.pushData();
+}
 
 
 }

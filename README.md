@@ -1,6 +1,36 @@
 # soa-marsy-marsy-23-24-team-f
 
 
+## --- MIGRATION IN PROGRESS ---
+
+FOR TEST PURPOSE KAFKA IS NOW CONFIGURED WITH
+TELEMETRY-SERVICE BOTH AS PRODUCER AND CONSUMER 
+OF THE SAME BROKER kafka:19092 AND THE SAME TOPIC
+rocket.topic
+
+ONCE SERVICES ARE UP, curl -x GET http://localhost:3003/send/telemetrics
+to send the last telemetrics stored in db though kafka bus
+
+
+Services messaging through KAFKA
+
+
+
+- temetrie-service  -- in progress ![](https://geps.dev/progress/80?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- rocket-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- rocket-object-service -- in progress ![](https://geps.dev/progress/60?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- payload-service -- in progress ![](https://geps.dev/progress/60?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- weather-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- mission-commander-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+
+
+Architecture must evolve to migrate to kafka, only external routes
+will remain and conversation beetween services will be done through kafka topics
+
+
+
+
+
 Made with NestJS and Nodejs
 
 **NodeJs** must be present on host for ./run.sh

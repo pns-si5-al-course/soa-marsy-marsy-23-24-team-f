@@ -11,7 +11,7 @@ import { RocketService } from "./service/rocket.service";
     imports: [MongooseModule.forFeature([{name: Telemetrics.name, schema: TelemetricsSchema}])],
     controllers: [RocketController],
     providers: [RocketService],
-    exports: []
+    exports: [RocketService]
 })
 
 export class RocketModule {};

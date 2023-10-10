@@ -14,6 +14,20 @@ const status = {
     weatherReady: false,
 }
 
+
+// function to Catch Ctrl+C
+process.on('SIGINT', async() => {
+    try {
+        console.log(chalk.red('Simulation stopped by user'));
+        await post("http://localhost:3001" + "/stop-simulation", {});
+        process.exit();
+    } catch (error) {
+        console.error(error);
+    }
+    process.exit();
+});
+
+
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -113,6 +127,9 @@ async function main() {
                 .then((r) => {
                     console.log(r);
                     console.log(chalk.gray('Payload poste au r dept : '));
+                })
+                .catch(err => {
+                    console.log(err)
                 });
             console.log(chalk.gray('Payload chargé dans la fusée : '));
             // Après avoir chargé le payload, considérez la fusée comme prête

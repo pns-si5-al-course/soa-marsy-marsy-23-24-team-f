@@ -10,14 +10,26 @@ import { MongooseConfigService } from 'shared/services/mongodb-configuration.ser
 import { RocketModule } from './rocket/rocket.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
+import { KafkaModule } from './kafka/kafka.module';
+import { ConsumerModule } from './consumer/consumer.module';
+import { PublisherModule } from './publisher/publisher.module';
+import { WebSocketModule } from './gateway/websocket.module';
+
 @Module({
   imports: [
   ConfigModule.forRoot({
     load: [configuration, mongodbConfig],
     isGlobal: true,
   }),
+  KafkaModule.register({
+    clientId: 'rocket-consumer',
+    brokers: [process.env.KAFKA_BROKER],
+    groupId: 'rocket-group',
+  }),
+  WebSocketModule,
   RocketModule, 
-  // MongooseModule.forRoot(process.env.MONGO_U),
+  ConsumerModule,
+  PublisherModule,
   MongooseModule.forRootAsync({
     useClass: MongooseConfigService,
   })
