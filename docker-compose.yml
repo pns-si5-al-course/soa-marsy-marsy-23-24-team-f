@@ -49,6 +49,7 @@ services:
       restart: always
       depends_on:
         - mongo_db_telemetrics
+        - kafka
       ports:
         - "3003:3003"
       networks:
@@ -69,6 +70,8 @@ services:
         context: rocket-department/
         dockerfile: Dockerfile.production
     restart: always
+    depends_on:
+      - kafka
     ports:
       - "3001:3001"
     networks:
@@ -82,6 +85,7 @@ services:
       restart: always
       depends_on:
         - mongo_db_payload_telemetrics
+        - kafka
       ports:
         - "3004:3004"
       networks:
@@ -101,6 +105,8 @@ services:
         context: mission-commander-department/
         dockerfile: Dockerfile.production
       restart: always
+      depends_on:
+        - kafka
       ports:
         - "3006:3006"
       networks:
@@ -112,6 +118,8 @@ services:
         context: weather-department/
         dockerfile: Dockerfile.production
     restart: always
+    depends_on:
+      - kafka
     ports:
       - "3002:3002"
     networks:
@@ -123,6 +131,8 @@ services:
         context: rocket/
         dockerfile: Dockerfile.production
     restart: always
+    depends_on:
+      - kafka
     ports:
       - "3005:3005"
     networks:

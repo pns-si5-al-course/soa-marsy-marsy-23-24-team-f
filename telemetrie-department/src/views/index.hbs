@@ -136,7 +136,6 @@
     const booster = document.getElementById("booster");
     const ctx_3 = document.getElementById("booster").getContext("2d");
     
-    const eventSource = new EventSource('http://localhost:3003/sse/stream');
 
   
     const data = {
@@ -149,9 +148,10 @@
       timestamp: "",
     };
 
-    eventSource.addEventListener('message', (event) => {
-      const datas = JSON.parse(event.data);
-      console.log('Nouvelle donnée SSE reçue :', datas);
+    const socket = io.connect('ws://localhost:3003');
+
+    socket.on('telemetrics', (message) => {
+      console.log('Message reçu du serveur WebSocket :', message);
     });
 
     function scrollToTop(ctn) {

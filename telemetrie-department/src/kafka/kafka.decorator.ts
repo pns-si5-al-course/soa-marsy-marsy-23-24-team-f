@@ -10,6 +10,32 @@ export function SubscribeTo(topic) {
     return descriptor;
   };
 }
+
+
+// export function SubscribeTo(topic) {
+//   return function (target: any, propertyKey: string) {
+//     const originalMethod = target[propertyKey];
+//     SUBSCRIBER_FN_REF_MAP.set(topic, originalMethod);
+//     SUBSCRIBER_OBJ_REF_MAP.set(topic, target);
+
+//     // Définir une méthode getter pour la propriété
+//     Object.defineProperty(target, propertyKey, {
+//       get() {
+//         return function (...args: any[]) {
+//           return originalMethod.apply(this, args);
+//         };
+//       },
+//     });
+//   };
+// }
+
+
+
+
+
+
+
+
 export function SubscribeToFixedGroup(topic) {
   return (target, propertyKey, descriptor) => {
     const originalMethod = target[propertyKey];

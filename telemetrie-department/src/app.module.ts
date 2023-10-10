@@ -13,7 +13,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { KafkaModule } from './kafka/kafka.module';
 import { ConsumerModule } from './consumer/consumer.module';
 import { PublisherModule } from './publisher/publisher.module';
-import { SseModule } from './sse/sse.module';
+import { WebSocketModule } from './gateway/websocket.module';
 
 @Module({
   imports: [
@@ -26,11 +26,10 @@ import { SseModule } from './sse/sse.module';
     brokers: ['kafka:19092'],
     groupId: 'rocket-group',
   }),
+  WebSocketModule,
   RocketModule, 
   ConsumerModule,
   PublisherModule,
-  SseModule,
-  // MongooseModule.forRoot(process.env.MONGO_U),
   MongooseModule.forRootAsync({
     useClass: MongooseConfigService,
   })

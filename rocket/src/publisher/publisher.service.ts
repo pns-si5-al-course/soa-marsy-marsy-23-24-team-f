@@ -22,7 +22,7 @@ export class PublisherService {
       messageId: '' + new Date().valueOf(),
       body: data,
       messageType: 'Push.Telemetrics',
-      topicName: 'rocket.topic',
+      topicName: topic,
     };
     return payload;
   }

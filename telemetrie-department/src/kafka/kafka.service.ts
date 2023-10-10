@@ -33,6 +33,7 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
     await this.connect();
     SUBSCRIBER_FN_REF_MAP.forEach((functionRef, topic) => {
       // attach the function with kafka topic name
+      console.log('----------------', functionRef, '----------------');
       this.bindAllTopicToConsumer(functionRef, topic);
     });
 

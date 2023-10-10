@@ -1,9 +1,16 @@
 import { Module } from '@nestjs/common';
 import { ConsumerService } from './consumer.service';
-import { SseModule } from 'src/sse/sse.module';
+import { WebSocketModule } from '../gateway/websocket.module';
+import { ConsumerController } from './consumer.controller';
 
 @Module({
-  imports: [SseModule],
+  imports: [WebSocketModule],
   providers: [ConsumerService],
+  controllers: [ConsumerController],
+  exports: [ConsumerService],
 })
-export class ConsumerModule {}
+export class ConsumerModule {
+  constructor(){
+    console.log(WebSocketModule);
+  }
+}

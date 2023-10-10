@@ -6,6 +6,7 @@ import {
   SUBSCRIBER_OBJ_REF_MAP,
 } from './kafka.decorator';
 import { KafkaConfig, KafkaPayload } from './kafka.message';
+import { ROCKET_FIXED_TOPIC, ROCKET_TELEMETRICS_TOPIC, PAYLOAD_TELEMETRICS_TOPIC } from '../constant';
 
 @Injectable()
 export class KafkaService implements OnModuleInit, OnModuleDestroy {
@@ -14,12 +15,21 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
   private consumer: Consumer;
   private fixedConsumer: Consumer;
   private readonly consumerSuffix = '-' + Math.floor(Math.random() * 100000);
+  private admin: any;
 
   constructor(private kafkaConfig: KafkaConfig) {
     this.kafka = new Kafka({
       clientId: this.kafkaConfig.clientId,
       brokers: this.kafkaConfig.brokers,
     });
+
+    this.admin = this.kafka.admin();
+    this.createTopic([
+      ROCKET_TELEMETRICS_TOPIC,
+      ROCKET_FIXED_TOPIC,
+      PAYLOAD_TELEMETRICS_TOPIC,
+    ]);
+
     this.producer = this.kafka.producer();
     this.consumer = this.kafka.consumer({
       groupId: this.kafkaConfig.groupId + this.consumerSuffix,
@@ -27,6 +37,18 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
     this.fixedConsumer = this.kafka.consumer({
       groupId: this.kafkaConfig.groupId,
     });
+  }
+
+  async createTopic(topics: string[]) {
+    this.admin.connect();
+    await this.admin.createTopics({
+      topics: topics.map(topic => {
+        return {
+          topic,
+        };
+      }),
+    });
+    await this.admin.disconnect();
   }
 
   async onModuleInit(): Promise<void> {
