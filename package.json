@@ -3,6 +3,7 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@nestjs/axios": "^3.0.0",
     "hbs": "^4.2.0",
     "yarn": "^1.22.19"
   },

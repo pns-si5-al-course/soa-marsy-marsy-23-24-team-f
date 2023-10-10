@@ -193,7 +193,7 @@ export class RocketService {
 
   handleMaxQ(): Rocket {
     console.log("Max Q condition detected, reducing speed.");
-    this.rocket.speed -= 100;
+    this.rocket.speed -= 200;
     this.sendTelemetryData('http://telemetrie-service:3003/rocket/telemetrics', this.rocket);
     return this.rocket;
   }

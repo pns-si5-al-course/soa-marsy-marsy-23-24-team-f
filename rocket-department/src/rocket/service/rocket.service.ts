@@ -140,6 +140,20 @@ export class RocketService {
       return;
     }
 
+    if (rocketData.altitude >= 2000) {
+      console.log("Rocket has reached maxQ !");
+      try {
+        const maxQResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/MaxQ').toPromise();
+        if (maxQResponse.status === 200) {
+          console.log("MaxQ data sent successfully");
+        } else {
+          console.log("Failed to send maxQ data");
+        }
+      } catch (error) {
+        console.error('Error sending maxQ data:', error.message);
+      }
+    }
+
     if (rocketData.status === 'First Stage Seperation Failed') {
       console.log("Send failure to mission commander: \r");
 
