@@ -13,5 +13,10 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(3004);
+
+  process.on('SIGINT', () => {
+    console.log('Stopping server...');
+    app.close();
+  });
 }
 bootstrap();

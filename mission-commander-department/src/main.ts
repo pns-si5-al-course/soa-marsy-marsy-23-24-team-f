@@ -15,5 +15,11 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(configService.get('port'));
+
+  // catch SIGINT signal and gracefully shutdown
+  process.on('SIGINT', () => {
+    console.info('Closing app..');
+    app.close();
+  });
 }
 bootstrap();
