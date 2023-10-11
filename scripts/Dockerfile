@@ -5,5 +5,5 @@ COPY package.json ./
 RUN yarn
 COPY . /app
 RUN mv .env.docker .env
-CMD ["./start.sh"]
+CMD ["tail", "-f", "/dev/null"]
 EXPOSE 3000

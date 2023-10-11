@@ -137,3 +137,15 @@ services:
       - "3005:3005"
     networks:
       - rocket-network
+  
+  scripts-service:
+      image: scripts
+      build:
+        context: scripts/
+        dockerfile: Dockerfile
+      depends_on:
+        - telemetrie-service
+      ports:
+        - "3000:3000"
+      networks:
+        - rocket-network
