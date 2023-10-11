@@ -27,7 +27,7 @@ export class RocketController {
   @HttpCode(201)
   takeOff() {
     console.log("Received takeoff permission: \r");
-    return this.rocketService.takeOff();
+    return this.rocketService.launch();
   }
 
   @Post('MaxQ')
@@ -48,12 +48,6 @@ takeOffWithFailure() {
 destroyRocket() {
   console.log("Received destroy command: \r");
   return this.rocketService.destroyRocket();
-}
-
-
-@Post('kafka')
-sendTestKakfa(){
-  this.rocketService.pushData();
 }
 
 

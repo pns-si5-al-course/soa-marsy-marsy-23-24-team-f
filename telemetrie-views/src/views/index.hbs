@@ -121,14 +121,24 @@
       timestamp: "",
     };
 
-    const socket = io.connect('ws://localhost:3003');
+    const socket = io.connect('ws://localhost:3007');
 
-    socket.on('telemetrics', (message) => {
+    socket.on('rocketTelemetrics', (message) => {
+      try{
+        data = JSON.parse(message).body;
+        updateRocketCharts(data);
+      }catch(e){
+        // nothing
+        console.log(e);
+      }
+    });
+
+    socket.on('payloadTelemetrics', (message) => {
       try{
         
         data = JSON.parse(message).body;
         console.log(data);
-        updateCharts(data);
+        // TODO: implement payload charts on this dashboard or create a new one as Gwynne view
       }catch(e){
         // nothing
         console.log(e);
@@ -334,11 +344,10 @@
 
 
 
-    function updateCharts(data){
+    function updateRocketCharts(data){
       const fuel_1 = data.stages[0].fuel;
       const fuel_2 = data.stages[1].fuel;
 
-      const fuel = (fuel_1 > 0) ? fuel_1 : fuel_2;
 
       // Mise à jour des données du graphique
       myChart.data.labels.push(data.timestamp);

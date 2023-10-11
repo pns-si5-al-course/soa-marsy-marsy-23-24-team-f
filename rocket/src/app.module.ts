@@ -6,14 +6,20 @@ import { AppService } from './app.service';
 import { RocketService } from './rocket/rocket.service';
 import { KafkaModule } from './kafka/kafka.module';
 import { PublisherModule } from './publisher/publisher.module';
+import { ConfigModule } from '@nestjs/config';
+import configuration from 'shared/config/configuration';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      load: [configuration],
+      isGlobal: true,
+    }),
     RocketModule, 
     HttpModule,
     KafkaModule.register({
       clientId: 'rocket-publisher',
-      brokers: ['kafka:19092'],
+      brokers: [process.env.KAFKA_BROKER],
       groupId: 'rocket-group',
     }),
   PublisherModule],

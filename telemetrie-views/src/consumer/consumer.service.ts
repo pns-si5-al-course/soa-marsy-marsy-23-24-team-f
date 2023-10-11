@@ -15,11 +15,6 @@ export class ConsumerService {
   constructor() {
     this.rocketTelemetricsSubscriber = this.rocketTelemetricsSubscriber.bind(this);
   }
-
-  getDatas() {
-    return DataStore.getDatas();
-  }
-
   /**
    * When group id is unique for every container.
    * @param payload
@@ -27,12 +22,17 @@ export class ConsumerService {
   @SubscribeTo(ROCKET_TELEMETRICS_TOPIC)
   @Bind()
   rocketTelemetricsSubscriber (payload: KafkaPayload) {
-    // SubscribeTo decorator will bind before class initialization
-    // so 'this' will be empty thats why we need DataStore static class
     console.log('[KAKFA-CONSUMER] Print message after receiving', payload);
-    if (DataStore) {DataStore.addData(payload);}
+    if (DataStore) {DataStore.addRocketData(payload);}
   }
 
+
+  @SubscribeTo(PAYLOAD_TELEMETRICS_TOPIC)
+  @Bind()
+  payloadTelemetricsSubscriber (payload: KafkaPayload) {
+    console.log('[KAKFA-CONSUMER] Print message after receiving', payload);
+    if (DataStore) {DataStore.addPayloadData(payload);}
+  }
   
   /**
    * When application or container scale up &
@@ -46,14 +46,4 @@ export class ConsumerService {
       payload,
     );
   }
-
-  /**
-   * When group id is unique for every container.
-   * @param payload
-   */
-  // @SubscribeTo(PAYLOAD_TELEMETRICS_TOPIC)
-  // helloSubscriber2(payload: KafkaPayload) {
-  //   console.log('[KAKFA-CONSUMER] Print message after receiving', payload);
-  //   console.log(this.homemadeFunction(payload));
-  // }
 }

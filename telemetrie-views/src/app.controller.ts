@@ -5,6 +5,11 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 @Controller()
 export class AppController {
 
+  @Get()
+  @Render('index')
+  root() {
+    return { message: '' };
+  }
 
   @Get('isAlive')
   @ApiResponse({

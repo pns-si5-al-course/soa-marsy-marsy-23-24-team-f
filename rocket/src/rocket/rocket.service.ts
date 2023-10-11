@@ -1,32 +1,39 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Rocket} from '../entities/rocket.entity';
 import { PublisherService } from '../publisher/publisher.service';
+import { ConfigService } from '@nestjs/config';
+
 
 
 const TARGET_ALTITUDE:number = 130_000;
+const MAX_SPEED:number = 7700;
+const ACCELERATION = 10; // m/s^2 (hypothétique)
 const ROCKET_INIT = new Rocket('MarsY-1', 'On Ground', [
   {'id': 1,fuel: 3000, altitude: 0, status: "On Ground", speed: 0},
   {'id': 2, fuel: 3000, altitude: 0, status: "On Ground", speed: 0}
 ], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString());
 @Injectable()
 export class RocketService {
-  constructor(private publisherService : PublisherService) {}
+  constructor(private publisherService : PublisherService, private configService: ConfigService ) {}
    
   private rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
   private interval: NodeJS.Timeout;
   private stop: boolean = false;
 
+
+
   private separationFailure: boolean = false;
+
 
   async sendTelemetryData(topic:string, data?: any): Promise<void> {
     await this.publisherService.sendTelemetrics(topic, data);
   }
 
-  pushData(){
+  pushData(rocket: Rocket){
     console.log("Pushing data to kafka");
-    this.sendTelemetryData('payload.telemetrics.topic', this.rocket.payload);
-    this.sendTelemetryData('rocket.telemetrics.topic', this.rocket)
+    this.sendTelemetryData('payload.telemetrics.topic', rocket.payload);
+    this.sendTelemetryData('rocket.telemetrics.topic', rocket)
   }
 
   isReady(): boolean {
@@ -34,14 +41,82 @@ export class RocketService {
   }
 
   setPayload(payload: any): Rocket {
+    this.rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
     this.rocket.payload = payload;
     return this.rocket;
   }
 
+
+  async launch(): Promise<Rocket> {
+    let time = 0; // en secondes
+    let deltaTime = 1; // intervalle de temps pour chaque itération
+    let currentStageId = 0;
+
+    this.rocket.status = 'In Flight';
+    this.rocket.payload.status = 'In Flight';
+    this.rocket.stages[0].status = 'In Flight';
+    this.rocket.stages[1].status = 'In Flight';
+
+    this.pushData(this.rocket);
+
+    this.interval = setInterval(async () => {
+      // Consommer du carburant de l'étage actuel
+
+      if (this.rocket.payload.altitude > TARGET_ALTITUDE || this.rocket.payload.speed > MAX_SPEED) {
+        clearInterval(this.interval);
+      }
+      let currentStage = this.rocket.stages[currentStageId];
+      if (currentStage.fuel > 0) {
+        const fuelConsumed = Math.min(currentStage.fuel, ACCELERATION * deltaTime);
+        currentStage.fuel -= fuelConsumed;
+
+        // Augmenter la vitesse et l'altitude
+        const deltaSpeed = (ACCELERATION * deltaTime) * (fuelConsumed / ACCELERATION);
+        this.rocket.payload.speed += deltaSpeed;
+        this.rocket.payload.altitude += this.rocket.payload.speed * deltaTime + 0.5 * deltaSpeed * deltaTime * deltaTime;
+
+        currentStage.altitude = this.rocket.payload.altitude;
+        this.rocket.altitude = this.rocket.payload.altitude;
+        this.rocket.speed = this.rocket.payload.speed;
+        currentStage.speed = this.rocket.payload.speed;
+
+        if (currentStageId == 0){
+          this.rocket.stages[1].speed = this.rocket.payload.speed; 
+        }
+        
+
+        // Mettre à jour le statut de l'étage
+        if (currentStage.fuel <= 0) {
+          currentStage.status = 'Separated';
+          this.rocket.status = 'First Stage Separated';
+          currentStageId++;
+          this.startSecondStageFuelDepletion();
+        }
+      } else {
+        // Si nous n'avons plus de carburant, arrêter d'accélérer
+        this.rocket.payload.altitude += this.rocket.payload.speed * deltaTime;
+        this.rocket.altitude = this.rocket.payload.altitude;
+        currentStage.altitude = this.rocket.payload.altitude;
+      }
+
+      // Limiter la vitesse à la vitesse maximale
+      if (this.rocket.payload.speed > MAX_SPEED) {
+        this.rocket.payload.speed = MAX_SPEED;
+        this.rocket.speed = MAX_SPEED;
+      }
+
+      time += deltaTime;
+
+      this.pushData(this.rocket);
+    }, this.configService.get('interval'));
+
+    this.rocket.payload.status = this.rocket.payload.altitude >= TARGET_ALTITUDE ? 'Orbiting' : 'Suborbital';
+    return this.rocket;
+  }
+
   async takeOff(): Promise<Rocket> {
-    this.rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
     try {
-      this.pushData();
+      this.pushData(this.rocket);
     } catch (error) {
       console.error(error);
       throw error;
@@ -56,6 +131,8 @@ export class RocketService {
     console.log("Rocket status changed to: " + this.rocket.status);
     this.startFuelDepletion();
     console.log("Rocket fuel depletion started");
+
+    this.pushData(this.rocket)
 
     return Promise.resolve(this.rocket);
   }
@@ -109,12 +186,8 @@ export class RocketService {
           
           this.rocket.stages[1].altitude += 1096;
         }
-        console.log("Updating telemetrics");
-        //TODO: implement reduce acceleration in lower atmosphere
-  
-        await this.pushData();
-  
-      }, 1000);
+        this.pushData(this.rocket)
+      }, this.configService.get('interval'));
 
     
   }
@@ -145,7 +218,8 @@ export class RocketService {
         this.rocket.stages[0].speed -= (this.rocket.stages[0].speed > 12000) ? 0 : 1000;
         this.rocket.stages[0].status = 'Separated'
       }
-    }, 1000);
+      this.pushData(this.rocket)
+    }, this.configService.get('interval'));
   }
 
   private async startSecondStageFuelDepletion(): Promise<void> {
@@ -180,17 +254,15 @@ export class RocketService {
       } else {
         clearInterval(this.interval);
       }
-
-     this.pushData();
-
-    }, 1000);
+      this.pushData(this.rocket)
+    }, this.configService.get('interval'));
   }
 
 
   async handleMaxQ(): Promise<Rocket> {
     console.log("Max Q condition detected, reducing speed.");
     this.rocket.stages[1].speed -= 100;
-    await this.pushData();
+    this.pushData(this.rocket)
     return this.rocket;
   }
   
@@ -216,7 +288,7 @@ async destroyRocket(): Promise<void> {
     stage.fuel = 0;
   }
 
-  await this.pushData();
+  this.pushData(this.rocket)
 }
 
 

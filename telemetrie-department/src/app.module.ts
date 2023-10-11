@@ -12,7 +12,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { KafkaModule } from './kafka/kafka.module';
 import { ConsumerModule } from './consumer/consumer.module';
-import { WebSocketModule } from './gateway/websocket.module';
 
 @Module({
   imports: [
@@ -25,7 +24,6 @@ import { WebSocketModule } from './gateway/websocket.module';
     brokers: [process.env.KAFKA_BROKER],
     groupId: 'rocket-group',
   }),
-  WebSocketModule,
   RocketModule, 
   ConsumerModule,
   MongooseModule.forRootAsync({
