@@ -1,1 +1,1 @@
-docker exec -it soa-marsy-scripts-service-1 ./start.sh
+docker exec soa-marsy-scripts-service-1 sh ./start.sh
