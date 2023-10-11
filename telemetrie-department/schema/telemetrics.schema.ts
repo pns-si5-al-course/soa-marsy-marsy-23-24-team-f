@@ -13,7 +13,7 @@ export class Telemetrics {
     status: string;
 
     @Prop({ required: true, type: Array })
-    stages: Array<{ id: number, fuel: number, altitude: number, status: string }>;
+    stages: Array<{ id: number, fuel: number, altitude: number, status: string, speed: number }>;
 
     @Prop({ required: true })
     altitude: number;
@@ -23,9 +23,6 @@ export class Telemetrics {
 
     @Prop({ required: true })
     timestamp: string;
-
-    @Prop({ required: true })
-    speed: number;
 
 }
 

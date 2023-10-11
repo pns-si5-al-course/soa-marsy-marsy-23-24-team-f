@@ -1,0 +1,29 @@
+
+<div class="mermaid">
+
+flowchart TD
+    A[Rocket] -..->|PUB Rocket Telemetrics| rocket.telemetrics.topic
+    A -..-> |PUB Payload Telemetrics| payload.telemetrics.topic
+
+    subgraph "`**KAFKA**`"
+    rocket.telemetrics.topic
+    payload.telemetrics.topic
+    end
+
+    rocket.telemetrics.topic -..-> |SUB rocket.telemetrics.topic| G
+    payload.telemetrics.topic -..-> |SUB payload.telemetrics.topic| H
+    G[Telemetrie Dept] --> L[(Mongo\n telemetrics)]
+    H[Payload Dept]  --> M[(Mongo\n payload)]
+    G --> |Emit event| C([Web dashboard])
+    H --> |Emit event| C
+
+
+    I[Mission commander] --> |POST /rocket\n POST /rocket/load| J
+
+    J[Rocket Dept] --> |POST /rocket.load\n POST /rocket/takeoff\n POST /rocket/destroy\n POST /rocket/maxQ| A
+    J[Rocket Dept] --> I
+
+    I --> |GET /status| K[Weather Dept]
+
+
+</div>

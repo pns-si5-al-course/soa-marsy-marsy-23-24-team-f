@@ -1,0 +1,28 @@
+#1 [internal] load build definition from Dockerfile.production
+#1 transferring dockerfile: 41B
+#1 transferring dockerfile: 586B done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 transferring context: 73B 0.0s done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 0.0s
+
+#4 [dependencies 1/4] FROM docker.io/library/node:18-alpine
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.99kB done
+#5 DONE 0.0s
+
+#6 [dependencies 2/4] WORKDIR /app
+#6 CACHED
+
+#7 [builder 3/6] COPY package.json tsconfig.json .env ./
+#7 CACHED
+
+#8 [builder 4/6] COPY . .
+#8 CANCELED
+ERROR: failed to solve: Canceled: context canceled

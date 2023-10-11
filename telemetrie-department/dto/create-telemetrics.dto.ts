@@ -19,6 +19,7 @@ export class TelemetricsDto {
         fuel: { type: 'number', description: 'Fuel level' },
         altitude: { type: 'number', description: 'Altitude' },
         status: { type: 'string', description: 'Status' },
+        speed: { type: 'number', description: 'Speed' },
       },
     ],
   })
@@ -28,6 +29,7 @@ export class TelemetricsDto {
     fuel: number;
     altitude: number;
     status: string;
+    speed: number;
   }>;
 
   @ApiProperty()
@@ -56,8 +58,4 @@ export class TelemetricsDto {
   @ApiProperty()
   @IsString()
   readonly timestamp: string;
-
-  @ApiProperty()
-  @IsNumber()
-  readonly speed: number;
 }

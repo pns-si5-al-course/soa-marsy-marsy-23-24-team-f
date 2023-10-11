@@ -1,0 +1,1 @@
+docker build -t scripts -f Dockerfile .

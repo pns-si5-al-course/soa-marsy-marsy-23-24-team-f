@@ -1,0 +1,1 @@
+docker build -t payload-status -f Dockerfile.production .

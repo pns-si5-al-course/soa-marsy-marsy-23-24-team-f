@@ -1,0 +1,1 @@
+docker build -t rocket-status -f Dockerfile.production .

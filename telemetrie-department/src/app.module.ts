@@ -12,7 +12,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { KafkaModule } from './kafka/kafka.module';
 import { ConsumerModule } from './consumer/consumer.module';
-import { PublisherModule } from './publisher/publisher.module';
 import { WebSocketModule } from './gateway/websocket.module';
 
 @Module({
@@ -29,7 +28,6 @@ import { WebSocketModule } from './gateway/websocket.module';
   WebSocketModule,
   RocketModule, 
   ConsumerModule,
-  PublisherModule,
   MongooseModule.forRootAsync({
     useClass: MongooseConfigService,
   })

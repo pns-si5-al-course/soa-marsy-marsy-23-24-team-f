@@ -24,6 +24,7 @@ process.on('SIGINT', async() => {
     } catch (error) {
         console.error(error);
     }
+    console.log(chalk.yellow('Graceful shutdown'))
     process.exit();
 });
 

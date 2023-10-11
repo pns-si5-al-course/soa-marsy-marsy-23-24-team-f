@@ -1,5 +1,6 @@
 version: '3'
 
+
 networks:
   rocket-network:
     name: rocket-network
@@ -12,13 +13,18 @@ networks:
 services:
   zookeeper:
     image: wurstmeister/zookeeper:latest
+    platform: linux/amd64
     ports:
       - 2181:2181
     volumes:
       - ./_data/zookeeper/data:/data
     networks:
       - rocket-network
-
+    healthcheck:
+      test: nc -z localhost 2181 || exit -1
+      interval: 30s
+      timeout: 10s
+      retries: 10
   kafka:
     image: wurstmeister/kafka:2.12-2.5.0
     hostname: kafka
@@ -40,21 +46,28 @@ services:
       - zookeeper
     networks:
       - rocket-network
+    healthcheck:
+      test: nc -z localhost 9092 || exit -1
+      interval: 30s
+      timeout: 10s
+      retries: 10
   
   telemetrie-service:
-      image: telemetrie
-      build:
-        context: telemetrie-department/
-        dockerfile: Dockerfile.production
+      image: telemetrie-department
       restart: always
       depends_on:
-        - mongo_db_telemetrics
-        - kafka
+        kafka:
+          condition: service_healthy
       ports:
         - "3003:3003"
       networks:
         - nestjs-telemetrics-mongo
         - rocket-network
+      healthcheck:
+        test: ["CMD", "wget", "-q", "--spider", "http://telemetrie-service:3003/"]
+        interval: 10s
+        timeout: 10s
+        retries: 5
 
   mongo_db_telemetrics:
     image: "mongo:5.0.0"
@@ -66,9 +79,6 @@ services:
 
   rocket-service:
     image: rocket-status
-    build:
-        context: rocket-department/
-        dockerfile: Dockerfile.production
     restart: always
     depends_on:
       - kafka
@@ -76,21 +86,29 @@ services:
       - "3001:3001"
     networks:
       - rocket-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://rocket-service:3001/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   payload-service:
       image: payload-status
-      build:
-        context: payload-department/
-        dockerfile: Dockerfile.production
       restart: always
       depends_on:
-        - mongo_db_payload_telemetrics
-        - kafka
+        kafka:
+          condition: service_healthy
       ports:
         - "3004:3004"
       networks:
         - rocket-network
         - nestjs-payload-telemetrics-mongo
+      healthcheck:
+        test: ["CMD", "curl", "-f", "http://payload-service:3004/payload"]
+        interval: 30s
+        timeout: 10s
+        retries: 3
+
   mongo_db_payload_telemetrics:
     image: "mongo:5.0.0"
     restart: always
@@ -101,22 +119,16 @@ services:
 
   mission-commander-service:
       image: mission-commander
-      build:
-        context: mission-commander-department/
-        dockerfile: Dockerfile.production
       restart: always
       depends_on:
         - kafka
       ports:
         - "3006:3006"
       networks:
-      - rocket-network
-      
+        - rocket-network
+
   weather-service:
     image: weather-status
-    build:
-        context: weather-department/
-        dockerfile: Dockerfile.production
     restart: always
     depends_on:
       - kafka
@@ -127,24 +139,28 @@ services:
 
   rocket-object-service:
     image: rocket-object-service
-    build:
-        context: rocket/
-        dockerfile: Dockerfile.production
     restart: always
     depends_on:
-      - kafka
+      telemetrie-service:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
     ports:
       - "3005:3005"
     networks:
       - rocket-network
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://rocket-object-service:3005/"]
+        interval: 30s
+        timeout: 10s
+        retries: 3
   
   scripts-service:
       image: scripts
-      build:
-        context: scripts/
-        dockerfile: Dockerfile
       depends_on:
+        - kafka
         - telemetrie-service
+      restart: always
       ports:
         - "3000:3000"
       networks:

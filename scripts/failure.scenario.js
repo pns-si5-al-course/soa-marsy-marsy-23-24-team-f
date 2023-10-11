@@ -13,6 +13,20 @@ const status = {
     weatherReady: false,
 }
 
+
+// function to Catch Ctrl+C
+process.on('SIGINT', async() => {
+    try {
+        console.log(chalk.red('Simulation stopped by user'));
+        await post("http://localhost:3001" + "/stop-simulation", {});
+        process.exit();
+    } catch (error) {
+        console.error(error);
+    }
+    console.log(chalk.yellow('Graceful shutdown'))
+    process.exit();
+});
+
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }

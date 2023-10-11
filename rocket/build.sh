@@ -1,0 +1,1 @@
+docker build -t rocket-object-service -f Dockerfile.production .

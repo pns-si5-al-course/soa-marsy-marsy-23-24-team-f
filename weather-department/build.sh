@@ -1,0 +1,1 @@
+docker build -t weather-status -f Dockerfile.production .
