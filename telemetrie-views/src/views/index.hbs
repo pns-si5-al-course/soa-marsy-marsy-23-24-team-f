@@ -96,6 +96,8 @@
   </body>
 
   <script>
+
+  // ------------------ VARIABLES FOR CHARTS ------------------
     const dash = document.querySelector(".dashboard-ctn");
 
     const dashboardCtn = document.querySelector(".dashboard-ctn");
@@ -110,7 +112,8 @@
     const fuel_gauge = document.getElementById("fuel");
     const ctx_4 = document.getElementById("fuel").getContext("2d");
 
-  
+    const MAX_SIZE = 400;
+
     let data = {
       altitude: 0,
       name: "",
@@ -121,6 +124,8 @@
       timestamp: "",
     };
 
+
+    // ------------------ SOCKET ------------------
     const socket = io.connect('ws://localhost:3007');
 
     socket.on('rocketTelemetrics', (message) => {
@@ -137,7 +142,6 @@
       try{
         
         data = JSON.parse(message).body;
-        console.log(data);
         // TODO: implement payload charts on this dashboard or create a new one as Gwynne view
       }catch(e){
         // nothing
@@ -145,41 +149,13 @@
       }
     });
 
+
+    // ------------------ FUNCTIONS ------------------
     function scrollToTop(ctn) {
       ctn.scrollTo(0, ctn.scrollHeight);
     }
 
-    const myChart = new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: [], // Les labels seront ajoutés dynamiquement
-        datasets: [
-          {
-            label: "Altitude",
-            data: [], // Les données seront ajoutées dynamiquement
-            borderColor: "rgba(255, 99, 132, 1)",
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: true,
-            text: 'Rocket telemetrics'
-          }
-        }
-      },
-    });
-  
+    // ------------------ CHARTS ------------------  
     // Configurez la jauge de vitesse avec des données
     const data_speed = {
       labels: ["Vitesse (m/s)"],
@@ -198,9 +174,6 @@
         }
       ],
     };
-
-
-
     // options de la jauge de vitesse
     const options = {
       responsive: false,
@@ -232,32 +205,38 @@
       options: options,
     });
 
-    function updateSpeed(speed_list) {
-      speedometer.data.datasets[0].data[0] = speed_list[0];
-      speedometer.data.datasets[1].data[0] = speed_list[1];
-      speedometer.update();
-    }
 
-    function updateBooster(stage_1) {
-      const altitude = stage_1.altitude;
-      const status = stage_1.status;
-      console.log(altitude, status);
-
-      booster_chart.data.labels.push(status);
-      booster_chart.data.datasets[0].data.push(altitude);
-      booster_chart.update();
-    }
-
-    function updateFuel(fuel_list){
-      const fuel_1 = fuel_list[0];
-      const fuel_2 = fuel_list[1];
-
-      fuel_chart.data.datasets[0].data.push(fuel_1);
-      fuel_chart.data.datasets[1].data.push(fuel_2);
-      fuel_chart.update();
-
-    }
-
+    const rocket_charts = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: [], // Les labels seront ajoutés dynamiquement
+        datasets: [
+          {
+            label: "Altitude",
+            data: [], // Les données seront ajoutées dynamiquement
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Rocket telemetrics'
+          }
+        }
+      },
+    });
+  
 
     const booster_chart = new Chart(ctx_3, {
       type: "line",
@@ -297,7 +276,7 @@
     });
 
 
-  const fuel_chart = new Chart(ctx_4, {
+    const fuel_chart = new Chart(ctx_4, {
       type: "line",
       data: {
         labels: [], // Les labels seront ajoutés dynamiquement
@@ -343,16 +322,54 @@
     });
 
 
+    // ------------------ UPDATE CHARTS ------------------
+
+    function updateSpeed(speed_list) {
+      speedometer.data.datasets[0].data[0] = speed_list[0];
+      speedometer.data.datasets[1].data[0] = speed_list[1];
+      speedometer.update();
+    }
+
+    function updateBooster(stage_1) {
+      const altitude = stage_1.altitude;
+      const status = stage_1.status;
+
+      if(booster_chart.data.datasets[0].data.length > MAX_SIZE){
+        booster_chart.data.labels.shift();
+        booster_chart.data.datasets[0].data.shift();
+      }
+
+      booster_chart.data.labels.push(status);
+      booster_chart.data.datasets[0].data.push(altitude);
+      booster_chart.update();
+    }
+
+    function updateFuel(fuel_list, timestamp){
+      fuel_chart.data.labels.push(timestamp);
+      fuel_chart.data.datasets[0].data.push(fuel_list[0]);
+      fuel_chart.data.datasets[1].data.push(fuel_list[1]);
+
+      if(fuel_chart.data.datasets[0].data.length > MAX_SIZE){
+        fuel_chart.data.labels.shift();
+        fuel_chart.data.datasets[0].data.shift();
+        fuel_chart.data.datasets[1].data.shift();
+      }
+
+      fuel_chart.update();
+    }
 
     function updateRocketCharts(data){
       const fuel_1 = data.stages[0].fuel;
       const fuel_2 = data.stages[1].fuel;
 
+      rocket_charts.data.labels.push(data.timestamp);
+      rocket_charts.data.datasets[0].data.push(data.payload.altitude);
+      rocket_charts.update();
 
-      // Mise à jour des données du graphique
-      myChart.data.labels.push(data.timestamp);
-      myChart.data.datasets[0].data.push(data.altitude);
-      myChart.update();
+      if(rocket_charts.data.datasets[0].data.length > MAX_SIZE){
+        rocket_charts.data.labels.shift();
+        rocket_charts.data.datasets[0].data.shift();
+      }
 
       // Mise à jour de la jauge de vitesse
       updateSpeed([data.stages[0].speed, data.stages[1].speed]);
@@ -361,7 +378,7 @@
       updateBooster(data.stages[0]);
 
       //mise a jour des donnees du fuel
-      updateFuel([fuel_1, fuel_2]);
+      updateFuel([fuel_1, fuel_2], data.timestamp);
     }
 
   </script>

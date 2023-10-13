@@ -31,25 +31,36 @@ export class RocketController {
   }
 
   @Post('MaxQ')
-@HttpCode(200)
-handleMaxQ() {
-  return this.rocketService.handleMaxQ();
+  @HttpCode(200)
+  handleMaxQ() {
+    return this.rocketService.handleMaxQ();
+  }
+
+  @Post('takeoffwithfailure')
+  @HttpCode(201)
+  takeOffWithFailure() {
+    console.log("Received takeoff permission (scenario2): \r");
+    return this.rocketService.takeOffWithFailure();
+  }
+
+  @Post('destroy')
+  @HttpCode(200)
+  destroyRocket() {
+    console.log("Received destroy command: \r");
+    return this.rocketService.destroyRocket();
+  }
+
+  @Post('sendTestRocket')
+  @HttpCode(200)
+  sendTestRocket() {
+    console.log("Received test rocket command: \r");
+    return this.rocketService.sendTestData();
+  }
+
+  @Post('stopTrasmission')
+  @HttpCode(200)
+  stopTrasmission() {
+    console.log("Received stop trasmission command: \r");
+    return this.rocketService.stopTransmitting();
+  }
 }
-
-@Post('takeoffwithfailure')
-@HttpCode(201)
-takeOffWithFailure() {
-  console.log("Received takeoff permission (scenario2): \r");
-  return this.rocketService.takeOffWithFailure();
-}
-
-@Post('destroy')
-@HttpCode(200)
-destroyRocket() {
-  console.log("Received destroy command: \r");
-  return this.rocketService.destroyRocket();
-}
-
-
-}
-

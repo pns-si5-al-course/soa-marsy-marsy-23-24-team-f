@@ -67,7 +67,7 @@ services:
         test: ["CMD", "wget", "-q", "--spider", "http://telemetrie-service:3003/isAlive"]
         interval: 10s
         timeout: 10s
-        retries: 8
+        retries: 10
 
   mongo_db_telemetrics:
     image: "mongo:5.0.0"
@@ -166,7 +166,7 @@ services:
         kafka:
           condition: service_healthy
       healthcheck:
-        test: ["CMD", "wget", "-q", "--spider", "http://view-servicenh:3007/"]
+        test: ["CMD", "wget", "-q", "--spider", "http://view-service:3007/"]
         interval: 10s
         timeout: 10s
         retries: 5

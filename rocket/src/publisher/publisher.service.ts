@@ -28,10 +28,10 @@ export class PublisherService {
   }
 
   async sendTelemetrics(topic: string, telemetrics: Rocket) {
-    console.log("[ROCKET-OBJECT] : ", telemetrics)
+    // console.log("[ROCKET-OBJECT] : ", telemetrics)
     const payload = this.createPayload(topic, telemetrics);
     const value = await this.kafkaService.sendMessage(topic, payload);
-    console.log('kafka status ', value);
+    // console.log('kafka status ', value);
     return telemetrics;
   }
 

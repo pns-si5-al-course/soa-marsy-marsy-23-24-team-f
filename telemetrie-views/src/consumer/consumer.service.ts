@@ -22,7 +22,6 @@ export class ConsumerService {
   @SubscribeTo(ROCKET_TELEMETRICS_TOPIC)
   @Bind()
   rocketTelemetricsSubscriber (payload: KafkaPayload) {
-    console.log('[KAKFA-CONSUMER] Print message after receiving', payload);
     if (DataStore) {DataStore.addRocketData(payload);}
   }
 
@@ -30,7 +29,7 @@ export class ConsumerService {
   @SubscribeTo(PAYLOAD_TELEMETRICS_TOPIC)
   @Bind()
   payloadTelemetricsSubscriber (payload: KafkaPayload) {
-    console.log('[KAKFA-CONSUMER] Print message after receiving', payload);
+    // console.log('[KAKFA-CONSUMER] Print message after receiving', payload);
     if (DataStore) {DataStore.addPayloadData(payload);}
   }
   
