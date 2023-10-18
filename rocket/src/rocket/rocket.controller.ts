@@ -27,7 +27,7 @@ export class RocketController {
   @HttpCode(201)
   takeOff() {
     console.log("Received takeoff permission: \r");
-    return this.rocketService.launch();
+    return this.rocketService.initiateLaunchSequence();
   }
 
   @Post('MaxQ')

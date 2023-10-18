@@ -1,7 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, Headers, HttpStatus, HttpException } from '@nestjs/common';
 import { RocketService } from '../service/rocket.service';
-import { CreateRocketDto } from '../dto/create-rocket.dto';
-import { UpdateRocketDto } from '../dto/update-rocket.dto';
 import { error } from 'console';
 
 @Controller('rocket')
@@ -10,7 +8,7 @@ export class RocketController {
 
   @Post()
   @HttpCode(200)
-  postStatus(@Body() body: any, @Headers('Authorization') auth: string) {
+  postStatus(@Body() body: any, @Headers('Authorization') auth: string): Promise<any> {
     console.log(body);
     if (auth == "missioncontrol-token"){
       if (body.status === "GO") {
@@ -20,7 +18,7 @@ export class RocketController {
         return this.rocketService.launchRocketWithFailure();
       }
       else {
-        return { status: "ROCKET LAUNCH ABORTED" };
+        return new Promise((resolve, reject) => {resolve("Rocket launch aborted")});
       }
     } else {
       throw new HttpException({

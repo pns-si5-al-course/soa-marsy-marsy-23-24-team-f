@@ -14,6 +14,31 @@ const status = {
     weatherReady: false,
 }
 
+import { io } from 'socket.io-client';
+import {} from "dotenv/config";
+import chalk from "chalk";
+
+// ------------------ SOCKET ------------------
+const socket = io.connect('ws://mission-commander-service:3006');
+
+socket.on('connect', () => {
+    console.log('Connected to socket.io');
+})
+
+socket.on('disconnect', () => {
+    console.log('Disconnected from socket.io');
+});
+
+socket.on('logs', (data) => {
+    console.log("receiving logs")
+    console.log(chalk.green(data));
+    if (data.includes('Liftoff')) {
+        startTelemetricsListening();
+    }
+})
+
+// ------------------ ----- ------------------
+
 
 // function to Catch Ctrl+C
 process.on('SIGINT', async() => {
@@ -148,71 +173,19 @@ async function main() {
             console.log(chalk.green('Tous les systèmes sont prêts !'));
             console.log('Richard : demande au rocket dept de lancer la fusée');
             console.log('-- POST rocket-service:3001/rocket --');
-            console.log(chalk.red('Ignition sequence start...'))
-            console.log(chalk.red('5...'));
-            await sleep(1000);
-            console.log(chalk.red('4...'));
-            await sleep(1000);
-            console.log(chalk.red('3...'));
-            await sleep(1000);
-            console.log(chalk.red('2...'));
-            await sleep(1000);
-            console.log(chalk.red('1...'));
-            await sleep(1000);
-            console.log(chalk.red('Liftoff !'));
-            await sleep(2000);
-            console.log(JSON.stringify(rocketStatus));
             const rocketLaunched = await post(rocketDeptServiceUrl + '/rocket', rocketStatus)
-                .then((response) => {
-                    console.log(chalk.red('LIFTOFF : ', response));
-                    return response;
-                })
                 .catch((error) => {
                     console.error('Error During TAKEOFF')
                     console.error(error);
                 });
+            console.log(chalk.red('Ignition sequence start...'));
 
+            await sleep(2000);
+            console.log(JSON.stringify(rocketStatus));
 
             await sleep(2000);
             console.log('\nElon : surveillance du lancement de la fusée : ')
 
-            const telemetrieInterval = setInterval(async() => {
-                const telemetrics = await get(telemetrieServiceUrl + "/rocket/telemetrics")
-                    .then((response) => {
-                        console.log(chalk.yellow("Rocket telemetrics : \r"));
-                        console.log(response);
-
-                        if (response.status === 'First Stage Separated') {
-                            console.log(chalk.green('---First Stage Separated Successfully---'));
-                        }
-
-
-                        return response;
-                    })
-                sleep(500);
-                const payloadTelemetrics = await get(payloadServiceUrl + "/rocket/payload/data")
-                    .then((response) => {
-                        console.log(chalk.yellow("Payload telemetrics : \r"));
-                        console.log(response);
-                        return response;
-                    })
-
-            }, 2000); // 2 secondes d'intervalle
-            setTimeout(async() => {
-                clearInterval(telemetrieInterval);
-                // Asking payload department if payload is deployed
-                await sleep(2000);
-                console.log('Gwynne : demande au payload dept si le payload est déployé correctement');
-                console.log('-- GET payload-service:3004/rocket/payload/data --');
-                const deployed = await get(payloadServiceUrl + "/rocket/payload/data");
-                await sleep(1000);
-                console.log(chalk.gray('Payload status : ', chalk.green(deployed.status)));
-                await sleep(2000);
-
-                console.log('Richard : mission terminée');
-                console.log('Stop simulation');
-                await post(rocketDeptServiceUrl + "/stop-simulation", {});
-            }, 120000); // 120 secondes -- durée de la simulation de la mise en orbite
         }
 
     } catch (error) {
@@ -221,3 +194,44 @@ async function main() {
 }
 
 main();
+
+
+function startTelemetricsListening() {
+    const telemetrieInterval = setInterval(async() => {
+        const telemetrics = await get(telemetrieServiceUrl + "/rocket/telemetrics")
+            .then((response) => {
+                console.log(chalk.yellow("Rocket telemetrics : \r"));
+                console.log(response);
+
+                if (response.status === 'First Stage Separated') {
+                    console.log(chalk.green('---First Stage Separated Successfully---'));
+                }
+
+
+                return response;
+            })
+        sleep(500);
+        const payloadTelemetrics = await get(payloadServiceUrl + "/rocket/payload/data")
+            .then((response) => {
+                console.log(chalk.yellow("Payload telemetrics : \r"));
+                console.log(response);
+                return response;
+            })
+
+    }, 2000); // 2 secondes d'intervalle
+    setTimeout(async() => {
+        clearInterval(telemetrieInterval);
+        // Asking payload department if payload is deployed
+        await sleep(2000);
+        console.log('Gwynne : demande au payload dept si le payload est déployé correctement');
+        console.log('-- GET payload-service:3004/rocket/payload/data --');
+        const deployed = await get(payloadServiceUrl + "/rocket/payload/data");
+        await sleep(1000);
+        console.log(chalk.gray('Payload status : ', chalk.green(deployed.status)));
+        await sleep(2000);
+
+        console.log('Richard : mission terminée');
+        console.log('Stop simulation');
+        await post(rocketDeptServiceUrl + "/stop-simulation", {});
+    }, 120000); // 120 secondes -- durée de la simulation de la mise en orbite
+}

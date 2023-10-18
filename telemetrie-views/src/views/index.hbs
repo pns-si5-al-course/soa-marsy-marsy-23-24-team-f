@@ -362,7 +362,7 @@
       const fuel_1 = data.stages[0].fuel;
       const fuel_2 = data.stages[1].fuel;
 
-      rocket_charts.data.labels.push(data.timestamp);
+      rocket_charts.data.labels.push(data.status);
       rocket_charts.data.datasets[0].data.push(data.payload.altitude);
       rocket_charts.update();
 
