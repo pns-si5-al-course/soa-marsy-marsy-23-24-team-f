@@ -1,5 +1,6 @@
 import {} from "dotenv/config";
 import chalk from "chalk";
+import { io } from 'socket.io-client';
 
 const rocketDeptServiceUrl = process.env.ROCKET_DEPT_SERVICE_URL;
 const weatherServiceUrl = process.env.WEATHER_SERVICE_URL;
@@ -14,9 +15,7 @@ const status = {
     weatherReady: false,
 }
 
-import { io } from 'socket.io-client';
-import {} from "dotenv/config";
-import chalk from "chalk";
+
 
 // ------------------ SOCKET ------------------
 const socket = io.connect('ws://mission-commander-service:3006');
