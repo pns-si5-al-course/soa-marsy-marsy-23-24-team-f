@@ -11,6 +11,12 @@ export class RocketController {
     
   }
 
+  @Post('sendToMission')
+  @HttpCode(201)
+  sendToMission(@Body() data: any) {
+    return this.rocketService.sendToMission(data);
+  }
+
   @Get('isReady')
   @HttpCode(200)
   isReady() {

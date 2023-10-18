@@ -6,7 +6,7 @@ import {
   SUBSCRIBER_OBJ_REF_MAP,
 } from './kafka.decorator';
 import { KafkaConfig, KafkaPayload } from './kafka.message';
-import { ROCKET_FIXED_TOPIC, ROCKET_TELEMETRICS_TOPIC, PAYLOAD_TELEMETRICS_TOPIC } from '../constant';
+import { ROCKET_FIXED_TOPIC, ROCKET_TELEMETRICS_TOPIC, PAYLOAD_TELEMETRICS_TOPIC, LOGS_TOPIC } from '../constant';
 
 @Injectable()
 export class KafkaService implements OnModuleInit, OnModuleDestroy {
@@ -28,6 +28,7 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
       ROCKET_TELEMETRICS_TOPIC,
       ROCKET_FIXED_TOPIC,
       PAYLOAD_TELEMETRICS_TOPIC,
+      LOGS_TOPIC,
     ]);
 
     this.producer = this.kafka.producer();

@@ -31,7 +31,7 @@ export class PublisherService {
     // console.log("[ROCKET-OBJECT] : ", telemetrics)
     const payload = this.createPayload(topic, telemetrics);
     const value = await this.kafkaService.sendMessage(topic, payload);
-    // console.log('kafka status ', value);
+    console.log('kafka status ', value);
     return telemetrics;
   }
 

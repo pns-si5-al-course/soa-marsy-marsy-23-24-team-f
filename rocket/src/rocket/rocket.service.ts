@@ -33,6 +33,10 @@ export class RocketService {
 
   constructor(private publisherService : PublisherService, private configService: ConfigService ) {
   }
+
+  async sendToMission(data: any): Promise<void> {
+    await this.publisherService.sendTelemetrics("logs.topic", this.rocket);
+  }
    
   async startTransmitting(): Promise<void> {
     this.sendInterval = setInterval(async () => {

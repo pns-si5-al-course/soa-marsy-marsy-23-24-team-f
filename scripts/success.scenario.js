@@ -30,8 +30,9 @@ socket.on('disconnect', () => {
 
 socket.on('logs', (data) => {
     console.log("receiving logs")
-    console.log(chalk.green(data));
-    if (data.includes('Liftoff')) {
+    const logs = JSON.parse(data).body;
+    console.log(chalk.green(logs));
+    if (logs.status === 'Liftoff') {
         startTelemetricsListening();
     }
 })
@@ -183,8 +184,6 @@ async function main() {
             console.log(JSON.stringify(rocketStatus));
 
             await sleep(2000);
-            console.log('\nElon : surveillance du lancement de la fusée : ')
-
         }
 
     } catch (error) {
@@ -196,6 +195,7 @@ main();
 
 
 function startTelemetricsListening() {
+    console.log('\nElon : surveillance du lancement de la fusée : ')
     const telemetrieInterval = setInterval(async() => {
         const telemetrics = await get(telemetrieServiceUrl + "/rocket/telemetrics")
             .then((response) => {
