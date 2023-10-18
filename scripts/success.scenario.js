@@ -1,10 +1,13 @@
-import {} from "dotenv/config";
 import chalk from "chalk";
 import { io } from 'socket.io-client';
+import {get, post, sleep, printFormatedTelemetrics } from "./utils.js";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const rocketDeptServiceUrl = process.env.ROCKET_DEPT_SERVICE_URL;
 const weatherServiceUrl = process.env.WEATHER_SERVICE_URL;
-const authToken = process.env.AUTH_TOKEN;
+
 const payloadServiceUrl = process.env.PAYLOAD_SERVICE_URL;
 const rocketServiceUrl = process.env.ROCKET_SERVICE_URL;
 const telemetrieServiceUrl = process.env.TELEMETRIE_SERVICE_URL;
@@ -16,9 +19,8 @@ const status = {
 }
 
 
-
 // ------------------ SOCKET ------------------
-const socket = io.connect('ws://mission-commander-service:3006');
+const socket = io.connect(process.env.WS_URL);
 
 socket.on('connect', () => {
     console.log('Connected to socket.io');
@@ -29,84 +31,22 @@ socket.on('disconnect', () => {
 });
 
 socket.on('logs', (data) => {
+    // This socket is directly connected to the mission commander service
+    // It receives all the logs from the mission, sent by the rocket
+    // RICHARD VIEW
+
     console.log("receiving logs")
     const logs = JSON.parse(data).body;
-    console.log(chalk.green(logs));
-    if (logs.status === 'Liftoff') {
-        startTelemetricsListening();
-    }
+    console.log(logs);
 })
 
 // ------------------ ----- ------------------
 
 
-// function to Catch Ctrl+C
-process.on('SIGINT', async() => {
-    try {
-        console.log(chalk.red('Simulation stopped by user'));
-        await post("http://localhost:3001" + "/stop-simulation", {});
-        process.exit();
-    } catch (error) {
-        console.error(error);
-    }
-    console.log(chalk.yellow('Graceful shutdown'))
-    process.exit();
-});
-
-
-function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
-const post = async(url, data) => {
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `${authToken}`,
-            },
-            body: data ? JSON.stringify(data) : null,
-        });
-
-        if (!response.ok) {
-            throw new Error(
-                `Erreur de requête HTTP - Code d'état HTTP : ${response.status}`
-            );
-        }
-
-        return response;
-    } catch (error) {
-        console.error(error.message);
-        throw error;
-    }
-};
-
-const get = async(url) => {
-    try {
-        const response = await fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `${authToken}`,
-            },
-        });
-        if (!response.ok) {
-            throw new Error(
-                `Erreur de requête HTTP - Code d'état HTTP : ${response.status}`
-            );
-        }
-
-        return response.json();
-    } catch (error) {
-        console.error(error.message);
-        throw error;
-    }
-};
-
 async function main() {
-    console.log(chalk.green('\n----------------------------------'));
-    console.log(chalk.green('SCENARIO 1: ORBITAL INSERTION'));
-    console.log(chalk.green('----------------------------------\n'));
+    console.log(chalk.green('\n-------------------------------------'));
+    console.log(chalk.green('--- SCENARIO 1: ORBITAL INSERTION ---'));
+    console.log(chalk.green('-------------------------------------\n'));
 
     await sleep(1000);
 
@@ -133,9 +73,9 @@ async function main() {
             console.log(chalk.red('Tory : weather is not good'));
         }
 
-        console.log('-------------------------------------')
+        console.log('\n-------------------------------------')
         console.log('--- SECOND CHECK BEFORE LAUNCH ---');
-        console.log('-------------------------------------\n')
+        console.log('-------------------------------------\n\n')
         console.log('-- GET payload-service:3001/rocket/status --');
         // Rocket service
         console.log('Richard : demande de statut au département fusée');
@@ -178,12 +118,8 @@ async function main() {
                     console.error('Error During TAKEOFF')
                     console.error(error);
                 });
-            console.log(chalk.red('Ignition sequence start...'));
-
             await sleep(2000);
-            console.log(JSON.stringify(rocketStatus));
 
-            await sleep(2000);
         }
 
     } catch (error) {

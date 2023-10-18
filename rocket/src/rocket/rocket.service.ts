@@ -9,19 +9,20 @@ const ROCKET_INIT = new Rocket('MarsY-1', 'On Ground', [
   {'id': 2, fuel: 3000, altitude: 0, status: "On Ground", speed: 0}
 ], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString());
 
-const launchSequence = [{"Rocket preparation":5}, 
-  {"Rocket on internal power":5}, 
-  {"Startup":60},  
-  {"Main engine start":3},
-  {"Liftoff":20},
-  {"MaxQ":5},
-  {"Main engine cut-off":3},
-  {"Stage separation":3},
-  {"Second engine start":3},
-  {"Fairing separation":3},
-  {"Second engine cut-off":3},
-  {"Payload deployed":3}
-]
+const launchSequence = {
+  "Rocket preparation":5, 
+  "Rocket on internal power":5, 
+  "Startup":60,  
+  "Main engine start":3,
+  "Liftoff":20,
+  "MaxQ":5,
+  "Main engine cut-off":3,
+  "Stage separation":3,
+  "Second engine start":3,
+  "Fairing separation":3,
+  "Second engine cut-off":3,
+  "Payload deployed":3
+}
 @Injectable()
 export class RocketService {
   private maxQ: boolean = false;
@@ -34,9 +35,6 @@ export class RocketService {
   constructor(private publisherService : PublisherService, private configService: ConfigService ) {
   }
 
-  async sendToMission(data: any): Promise<void> {
-    await this.publisherService.sendTelemetrics("logs.topic", this.rocket);
-  }
    
   async startTransmitting(): Promise<void> {
     this.sendInterval = setInterval(async () => {
@@ -62,12 +60,14 @@ export class RocketService {
   }
 
   isReady(): boolean {
+    this.updateAccordingToSequence('Rocket preparation');
     return this.rocket.payload !== null;
   }
 
   setPayload(payload: any): Rocket {
     this.rocket = JSON.parse(JSON.stringify(ROCKET_INIT));
     this.rocket.payload = payload;
+    this.updateAccordingToSequence('Rocket on internal power');
     this.startTransmitting();
     return this.rocket;
   }
@@ -113,17 +113,12 @@ export class RocketService {
     }
   }
 
-  async initiateLaunchSequence(): Promise<Rocket> {
-    this.changeAllRocketStatus('Preparing for launch');
-    let i = 0;
-    for(let step of launchSequence){
-      let key = Object.keys(step)[0];
-      let value = step[key];
-      console.log(key);
+  async updateAccordingToSequence(...steps: any): Promise<Rocket> {    
+    for(let key of steps){
+      let time_to_wait = launchSequence[key];
       switch (key) {
         case "Liftoff":
           this.changeAllRocketStatus(key);
-          this.launch();
           break;
         case "MaxQ":
           this.changeAllRocketStatus(key);
@@ -131,36 +126,50 @@ export class RocketService {
         case "Stage separation":
           this.changeAllRocketStatus(key);
           this.rocket.stages[0].status = "Separated";
+          this.firstStageSafeLanding();
           break;
         case "Payload deployed":
           this.changeAllRocketStatus(key);
           this.rocket.payload.status = "Deployed";
           break;
         default:
+          this.rocket.status = key;
           break;
       }
-
       await this.sendTelemetryData('logs.topic', this.rocket);
-      await new Promise(resolve => setTimeout(resolve, value * 1000));
+      await new Promise(resolve => setTimeout(resolve, time_to_wait * 1000));
     }
     return this.rocket;
   }
 
 
   async launch(): Promise<Rocket> {
+    // ------------------------------------
+    // -------Sending Startup log----------
+    // ------------------------------------
+    this.updateAccordingToSequence('Startup');
+
+    console.log("Rocket launched");
+
+
+    // ------------------------------------
+    // -------Data for rocket movement----------
+    // ------------------------------------
     let lastUpdateTime = Date.now();
     let currentStageId = 0;
-    const TARGET_ALTITUDE = 130000; // pieds
-    const MAX_SPEED = 8000; // m/s
+    const TARGET_ALTITUDE = 130_000; // pieds
+    const MAX_SPEED = 8_000; // m/s
     const TOTAL_TIME = 120; // secondes
     const UPDATE_INTERVAL = 80; // 80 ms
 
+    this.updateAccordingToSequence('Main engine start');
+
     const totalUpdates = (TOTAL_TIME * 1000) / UPDATE_INTERVAL;
     let altitudePerUpdate = TARGET_ALTITUDE / totalUpdates;
-    let updateCount = 0;
+    
+    console.log(altitudePerUpdate);
 
-    this.changeAllRocketStatus('In flight');
-    this.rocket.payload.status = 'In flight';
+    this.updateAccordingToSequence('Liftoff');
 
     this.interval = setInterval(async () => {
         const now = Date.now();
@@ -169,7 +178,7 @@ export class RocketService {
         let currentStage = this.rocket.stages[currentStageId];
 
         if(this.maxQ){
-          altitudePerUpdate = 1200;
+          altitudePerUpdate = 10;
         }
 
         // ------------------------------------
@@ -210,8 +219,8 @@ export class RocketService {
               if (this.separationFailure){
                 this.rocket.status = 'First Stage Seperation Failed';
               }else{
+                this.updateAccordingToSequence('Main engine cut-off', 'Stage separation', 'Second engine start');
                 currentStageId++;
-                this.firstStageSafeLanding();
               }
             } else {
                if(currentStage.fuel <= 0){
@@ -234,6 +243,7 @@ export class RocketService {
 
         if(this.rocket.payload.altitude >= TARGET_ALTITUDE){
           this.rocket.payload.altitude = TARGET_ALTITUDE;
+          this.rocket.altitude = TARGET_ALTITUDE;
           currentStage.altitude = TARGET_ALTITUDE;
           altitudePerUpdate = 0;
           this.rocket.payload.status = 'Deployed';
@@ -325,6 +335,7 @@ export class RocketService {
   handleMaxQ(): void {
     console.log("Max Q condition detected, reducing acceleration.");
     this.maxQ = true;
+    this.updateAccordingToSequence('MaxQ');
   }
   
   async takeOffWithFailure(): Promise<any> {

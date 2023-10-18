@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.0",
+    "dotenv": "^16.3.1",
     "hbs": "^4.2.0",
     "yarn": "^1.22.19"
   },

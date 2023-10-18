@@ -4,6 +4,7 @@ import { Interval, SchedulerRegistry } from '@nestjs/schedule';
 @Injectable()
 export class RocketService {
   private isWatchingRocketData = false;
+  private isMaxQ = false;
 
   constructor(
     private httpService: HttpService,
@@ -11,6 +12,7 @@ export class RocketService {
   ) {}
 
   async launchRocket(): Promise<any> {
+    console.log("TAKEOFF PERMISSION \r")
     try {
       const rocketReadyResponse = await this.httpService.get('http://rocket-object-service:3005/rocket/isReady').toPromise()
       .then((response: { data: any; }) => {
@@ -83,6 +85,7 @@ export class RocketService {
   }
 
   async loadRocket(): Promise<any> {
+    this.isMaxQ = false;
     try {
       const response = await this.httpService.get('http://payload-service:3004/rocket').toPromise()
       .then(async (response: { status: number; data: any; }) => {
@@ -140,7 +143,7 @@ export class RocketService {
       return;
     }
 
-    if (rocketData.altitude >= 2000) {
+    if (rocketData.altitude >= 40_000 && !this.isMaxQ) {
       console.log("Rocket has reached maxQ !");
       try {
         const maxQResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/MaxQ').toPromise();
@@ -152,6 +155,7 @@ export class RocketService {
       } catch (error) {
         console.error('Error sending maxQ data:', error.message);
       }
+      this.isMaxQ = true;
     }
 
     if (rocketData.status === 'First Stage Seperation Failed') {

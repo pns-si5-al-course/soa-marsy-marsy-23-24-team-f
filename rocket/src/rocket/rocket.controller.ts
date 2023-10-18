@@ -11,12 +11,6 @@ export class RocketController {
     
   }
 
-  @Post('sendToMission')
-  @HttpCode(201)
-  sendToMission(@Body() data: any) {
-    return this.rocketService.sendToMission(data);
-  }
-
   @Get('isReady')
   @HttpCode(200)
   isReady() {
@@ -33,7 +27,7 @@ export class RocketController {
   @HttpCode(201)
   takeOff() {
     console.log("Received takeoff permission: \r");
-    return this.rocketService.initiateLaunchSequence();
+    return this.rocketService.launch();
   }
 
   @Post('MaxQ')

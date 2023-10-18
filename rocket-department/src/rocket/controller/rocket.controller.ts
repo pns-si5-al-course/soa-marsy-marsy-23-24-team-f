@@ -9,7 +9,7 @@ export class RocketController {
   @Post()
   @HttpCode(200)
   postStatus(@Body() body: any, @Headers('Authorization') auth: string): Promise<any> {
-    console.log(body);
+    console.log("Received status update: "+body.status)
     if (auth == "missioncontrol-token"){
       if (body.status === "GO") {
         return this.rocketService.launchRocket();
