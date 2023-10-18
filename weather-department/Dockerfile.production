@@ -1,7 +1,7 @@
 FROM node:18-alpine as builder
 ENV NODE_ENV production
 WORKDIR /app
-COPY package.json tsconfig.json .env ./
+COPY --chown=node package.json tsconfig.json .env ./
 COPY --chown=node:node . .
 RUN yarn install --production --frozen-lockfile && yarn build
 USER node

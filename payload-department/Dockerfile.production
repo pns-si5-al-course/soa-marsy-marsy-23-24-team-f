@@ -1,7 +1,7 @@
 FROM node:18-alpine as builder
 ENV NODE_ENV production
 WORKDIR /app
-COPY package.json tsconfig.json ./
+COPY --chown=node:node package.json tsconfig.json ./
 COPY --chown=node:node . .
 RUN yarn install --production && yarn build
 RUN mv .env.docker .env
