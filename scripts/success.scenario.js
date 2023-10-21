@@ -16,6 +16,7 @@ const missionCommanderUrl = process.env.MISSION_COMMANDER_SERVICE_URL;
 const status = {
     rocketReady: false,
     weatherReady: false,
+    stageSeparated: false,
 }
 
 
@@ -37,8 +38,21 @@ socket.on('logs', (data) => {
 
     console.log("receiving logs")
     const logs = JSON.parse(data).body;
-    console.log(logs);
+    // console.log(logs);
+    handleStatusChange(logs);
 })
+
+
+function handleStatusChange(logs) {
+    console.log(logs.stages)
+    if(logs.stages[0].status === 'separated') {
+        status.stageSeparated = true;
+        console.log(chalk.green('----------------------------------------'));
+        console.log(chalk.green('---First Stage Separated Successfully---'));
+        console.log(chalk.green('----------------------------------------'));
+    }
+}
+
 
 // ------------------ ----- ------------------
 

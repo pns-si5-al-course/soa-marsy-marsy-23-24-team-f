@@ -108,6 +108,7 @@ export class RocketService {
 
   changeAllRocketStatus(status: string): void {
     this.rocket.status = status;
+    this.rocket.payload.status = status;
     for (let stage of this.rocket.stages) {
       stage.status = status;
     }
@@ -129,7 +130,8 @@ export class RocketService {
           this.firstStageSafeLanding();
           break;
         case "Payload deployed":
-          this.changeAllRocketStatus(key);
+          this.rocket.status = key;
+          this.rocket.stages[1].status = key;
           this.rocket.payload.status = "Deployed";
           break;
         default:
@@ -178,7 +180,7 @@ export class RocketService {
         let currentStage = this.rocket.stages[currentStageId];
 
         if(this.maxQ){
-          altitudePerUpdate = 10;
+          altitudePerUpdate = 50;
         }
 
         // ------------------------------------
@@ -246,19 +248,10 @@ export class RocketService {
           this.rocket.altitude = TARGET_ALTITUDE;
           currentStage.altitude = TARGET_ALTITUDE;
           altitudePerUpdate = 0;
-          this.rocket.payload.status = 'Deployed';
-          currentStage.status = 'In Orbit';
-        }
+          this.updateAccordingToSequence('Second engine cut-off', 'Payload deployed');
+          clearInterval(this.interval);
 
-        // ------------------------------------
-        // stop flight when sequence is over
-        // ------------------------------------
-        // updateCount++;
-        // if (updateCount >= totalUpdates) {
-        //     clearInterval(this.interval);
-        //     this.rocket.payload.status = 'Deployed';
-        //     this.rocket.status = 'In Orbit';
-        //}
+        }
 
     }, UPDATE_INTERVAL);
     return this.rocket;
@@ -270,31 +263,7 @@ export class RocketService {
     this.stop = true;
     return Promise.resolve(this.rocket);
   }
-  
 
-  // private async firstStageSafeLanding(): Promise<void> {
-  //   // we let the rocket fall down to 500m
-  //   // then we start the landing procedure
-  //   const safeLanding = setInterval(async () => {
-  //     if (this.rocket.stages[0].altitude <= 500 && this.rocket.stages[0].altitude > 0) {
-  //       // reactivating the engine
-  //       this.rocket.stages[0].fuel -= 20;
-  //       this.rocket.stages[0].altitude -= 100;
-  //       this.rocket.stages[0].speed -= 1500;
-  //       this.rocket.stages[0].status = 'Landing';
-  //     } else if (this.rocket.stages[0].altitude <= 0) {
-  //       this.rocket.stages[0].altitude = 0;
-  //       this.rocket.stages[0].speed = 0;
-  //       this.rocket.stages[0].status = 'Landed';
-  //       clearInterval(safeLanding);
-  //     } else {
-  //       this.rocket.stages[0].altitude -= 1500;
-  //       this.rocket.stages[0].speed -= (this.rocket.stages[0].speed > 12000) ? 0 : 1000;
-  //       this.rocket.stages[0].status = 'Separated'
-  //     }
-      
-  //   }, this.configService.get('interval'));
-  // }
 
   private async firstStageSafeLanding(): Promise<void> {
     const UPDATE_INTERVAL = 80; // 80 ms
