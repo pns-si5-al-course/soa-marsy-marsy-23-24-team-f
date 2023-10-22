@@ -1,6 +1,7 @@
 const authToken = process.env.AUTH_TOKEN;
 import chalk from "chalk";
 import {} from "dotenv/config";
+import fs from "fs";
 
 export function printFormatedTelemetrics(telemetrics) {
     console.log(chalk.yellow("Rocket telemetrics : \r"));
@@ -35,6 +36,14 @@ process.on('SIGINT', async() => {
     console.log(chalk.yellow('Graceful shutdown'))
     process.exit();
 });
+
+export function createFileIfNotExist(path) {
+    fs.open(path, 'a', (err, fd) => {
+        if (err) {
+            console.error('Error while creating logs :', err);
+        }
+    });
+}
 
 
 export function sleep(ms) {

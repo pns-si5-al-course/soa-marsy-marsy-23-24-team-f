@@ -1,34 +1,28 @@
 # soa-marsy-marsy-23-24-team-f
 
 
-## --- MIGRATION IN PROGRESS ---
+## --- MIGRATION DONE ---
 
-FOR TEST PURPOSE KAFKA IS NOW CONFIGURED WITH
-TELEMETRY-SERVICE BOTH AS PRODUCER AND CONSUMER 
-OF THE SAME BROKER kafka:19092 AND THE SAME TOPIC
-rocket.topic
+Kafka topics available
 
-ONCE SERVICES ARE UP, curl -x GET http://localhost:3003/send/telemetrics
-to send the last telemetrics stored in db though kafka bus
+rocket.telemetrics.topic
+payload.telemetrics.topic
+logs.topic
 
 
 Services messaging through KAFKA
 
-
-
-- temetrie-service  -- in progress ![](https://geps.dev/progress/80?dangerColor=800000&warningColor=ff9900&successColor=006600)
-- rocket-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
-- rocket-object-service -- in progress ![](https://geps.dev/progress/60?dangerColor=800000&warningColor=ff9900&successColor=006600)
-- payload-service -- in progress ![](https://geps.dev/progress/60?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- temetrie-service  -- done ![](https://geps.dev/progress/100?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- rocket-service -- not iplemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- rocket-object-service -- done ![](https://geps.dev/progress/100?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- payload-service -- done ![](https://geps.dev/progress/100?dangerColor=800000&warningColor=ff9900&successColor=006600)
 - weather-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
-- mission-commander-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- mission-commander-service -- done ![](https://geps.dev/progress/100?dangerColor=800000&warningColor=ff9900&successColor=006600)
 
 
-Architecture must evolve to migrate to kafka, only external routes
-will remain and conversation beetween services will be done through kafka topics
+### Rocket object service is now event base for modification of rocket and status
 
-
-
+* Detailled logs can be found in scripts service container in logs/ folder
 
 
 Made with NestJS and Nodejs
@@ -44,8 +38,9 @@ Made with NestJS and Nodejs
 ./run.sh
 
 
-* First scenario will run for 120 seconds untill orbiting
-* Second scenario will run for 60 seconds untill failure
+* First scenario will run  untill orbiting
+* Second scenario will run untill failure during first stage separation and autodestruc
+* Third scenario is manual destrucs on fuel leak but needs some fixes
 
 * User friendly view of telemetrics at http://localhost:3007/
 
@@ -102,6 +97,30 @@ all the way until the booster lands.
 telemetry data of the payload, so that Mars Y can certify that the orbital parameters 
 desired by the customer are ensured.
 
+12- -- Simplified -- As Elon (Chief Rocket Department), I want the rocket to go through Max Q 
+harmlessly so that the total stress on the payload and the flight hardware stay in a 
+safe level. In order to do so, the rocket engines must throttle down to reduce the 
+load. Max Q is the atmospheric flight phase where the vehicle’s flight reaches 
+maximum dynamic pressure because of the air density and the speed of the rocket.
+-- No checks for air density or maximum dynamic pressure --
+
+
+
+13- As Richard (Mission Commander), I want the launch procedure to follow the 
+subsequent events to have a fine grain overview of the mission:
+
+14- As Richard (Mission Commander), I want the mission logs to be stored and 
+retrievable in order to comply with the Aerospace Authorities regulations, and for the 
+company’s own investigations.
+
+15- As Marie (Webcaster), I want to be aware of the launch procedure events in real 
+time so that I can tell on the web stream what is actually happening ![](https://geps.dev/progress/50?dangerColor=800000&warningColor=ff9900&successColor=006600)
+
+
+18- As Richard (Mission Commander), I want the mission to be aborted (flight hardware 
+destruction if in-flight, etc) whenever an anomaly with a critical severity is detected in order 
+to not endanger the surrounding area with and uncontrollable rocket without any human 
+intervention. ![](https://geps.dev/progress/50?dangerColor=800000&warningColor=ff9900&successColor=006600)
 
 # Team Effort
 Hadil: 100

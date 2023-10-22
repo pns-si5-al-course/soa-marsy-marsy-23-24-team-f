@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, HttpCode } from '@nestjs/common';
+import { Controller, Get, Post, Body, HttpCode, Param } from '@nestjs/common';
 import { RocketService } from './rocket.service';
 
 @Controller('rocket')
@@ -62,5 +62,25 @@ export class RocketController {
   stopTrasmission() {
     console.log("Received stop trasmission command: \r");
     return this.rocketService.stopTransmitting();
+  }
+
+  @Post('fuelLeak')
+  @HttpCode(200)
+  fuelLeak() {
+    console.log("Received fuel leak command: \r");
+    return this.rocketService.fuelLeak();
+  }
+
+  @Get('fuelConsumption/:stage_id')
+  @HttpCode(200)
+  fuelConsumption(@Param('stage_id') stage_id: number) {
+    return this.rocketService.getFuelConsumptionBySeconds(stage_id);
+  }
+
+
+  @Get('speed')
+  @HttpCode(200)
+  getSpeed() {
+    return this.rocketService.getMetterPerSecond();
   }
 }
