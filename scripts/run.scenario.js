@@ -95,7 +95,7 @@ async function handleStatusChange(logs) {
     }
     else if(logs.payload.status === 'Deployed' || logs.payload.status === 'Payload deployed') {
         console.log(chalk.green('----------------------------------------'));
-        console.log(chalk.green('---Payload Deployed Successfully---'));
+        console.log(chalk.green('------Payload Deployed Successfully-----'));
         console.log(chalk.green('----------------------------------------'));
         console.log('Richard : mission terminée');
         console.log('Stop simulation');
@@ -122,16 +122,17 @@ async function handleStatusChange(logs) {
             const fuel_2 = await get(rocketServiceUrl + "/rocket/fuelConsumption/1", {});
 
             if(parseInt(fuel_1) > 150 || parseInt(fuel_2) > 150) {
+                clearInterval(interval);
+                clearInterval(int_fuel);
                 console.log(chalk.red('FUEL LEAK DETECTED'));
                 console.log('Richard : ordre de destruction de la fusée');
                 console.log(chalk.red('--- CRITICAL FAILURE ---'));
-
                 await post(rocketDeptServiceUrl + "/stop-simulation", {});
                 await post(missionCommanderUrl + "/rocket/destroy", {});
                 console.log(chalk.red('Payload is destroyed'));
                 console.log(chalk.red('Rocket is destroyed'));
                 console.log(chalk.red('Mission is failed'));
-                clearInterval(interval);
+                
                 process.exit(0);
             }
         }, 1000)
@@ -148,14 +149,14 @@ async function main() {
         console.log(chalk.green('--- SCENARIO 1: ORBITAL INSERTION ---'));
         console.log(chalk.green('-------------------------------------\n'));
     } else if (scenario_id === '2') {
-        console.log(chalk.red('\n-------------------------------------'));
+        console.log(chalk.red('\n---------------------------------------------'));
         console.log(chalk.red('--- SCENARIO 2: FAILURE DURING SEPARATION ---'));
-        console.log(chalk.red('-------------------------------------\n'));
+        console.log(chalk.red('---------------------------------------------\n'));
     }
     else if (scenario_id === '3') {
-        console.log(chalk.red('\n-------------------------------------'));
+        console.log(chalk.red('\n------------------------------------------'));
         console.log(chalk.red('--- SCENARIO 3: MANUAL AUTODESTRUCTION ---'));
-        console.log(chalk.red('-------------------------------------\n'));
+        console.log(chalk.red('------------------------------------------\n'));
     }
     await sleep(1000);
 
@@ -182,9 +183,9 @@ async function main() {
             console.log(chalk.red('Tory : weather is not good'));
         }
 
-        console.log('\n-------------------------------------')
+        console.log('\n-----------------------------------')
         console.log('--- SECOND CHECK BEFORE LAUNCH ---');
-        console.log('-------------------------------------\n\n')
+        console.log('-----------------------------------\n\n')
         console.log('-- GET payload-service:3001/rocket/status --');
         // Rocket service
         console.log('Richard : demande de statut au département fusée');
@@ -240,7 +241,7 @@ async function main() {
         if (scenario_id === '3') {
             setTimeout(async ()=>{
                 await post(rocketServiceUrl + "/rocket/fuelLeak", {})
-            }, 20000)
+            }, 80000)
         }
 
         //spawn('gnome-terminal', ['--', 'bash', '-c', 'node logReader.js; read']);
