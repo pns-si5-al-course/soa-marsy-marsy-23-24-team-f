@@ -1,33 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Rocket} from '../entities/rocket.entity';
+import { RocketSimulation } from '../entities/rocket.simulation.entity';
+import { LaunchSequenceDurations, LaunchSequenceStatus } from '../entities/launch.sequence.entity';
 import { PublisherService } from '../publisher/publisher.service';
 import { ConfigService } from '@nestjs/config';
 import { clear } from 'console';
 import { EventEmitter } from 'events';
 
 
+
 const ROCKET_INIT = new Rocket('MarsY-1', 'On Ground', [
   {'id': 1,fuel: 3000, altitude: 0, status: "On Ground", speed: 0},
   {'id': 2, fuel: 3000, altitude: 0, status: "On Ground", speed: 0}
 ], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString());
-
-const launchSequence = {
-  "Rocket preparation":3, 
-  "Rocket on internal power":3, 
-  "Startup":60,  
-  "Main engine start":3,
-  "Liftoff":2,
-  "In flight":10,
-  "MaxQ":5,
-  "Main engine cut-off":3,
-  "Stage separation":3,
-  "Second engine start":3,
-  "Fairing separation":3,
-  "Second engine cut-off":3,
-  "Payload deployed":3,
-  "First Stage Separation Failed":3,
-  "Wrong orbit":3,
-}
 
 const landingSequence = {
   "Flip maneuver": 3,  
@@ -46,6 +31,7 @@ export class RocketService {
   private stop: boolean = false;
   private separationFailure: boolean = false;
   private eventEmitter: EventEmitter = new EventEmitter();
+  private rocketSim = new RocketSimulation(0, 0, 0);
 
   constructor(private publisherService : PublisherService, private configService: ConfigService ) {
   }
@@ -175,9 +161,15 @@ export class RocketService {
         case "Rocket on internal power":
         case "Startup":
         case "Main engine start":
-        case "Liftoff":
-        case "In flight":
         case "Main engine cut-off":
+          this.changeAllRocketStatus(key);
+          break;
+        case "Liftoff":  
+          this.rocketSim.setAcceleration(11.77);
+          this.changeAllRocketStatus(key);
+          break;
+        case "In flight":
+          this.rocketSim.setAcceleration(29.43);
           this.changeAllRocketStatus(key);
           break;
         case "Stage separation":
@@ -189,6 +181,7 @@ export class RocketService {
         case "MaxQ":
           this.rocket.status = key;
           this.rocket.stages[0].status = key;
+          this.rocketSim.setAcceleration(24.53);
           break;
         case "Second engine start":
         case "Fairing separation":
@@ -201,6 +194,7 @@ export class RocketService {
           this.rocket.status = key;
           this.rocket.stages[1].status = key;
           this.rocket.payload.status = "Deployed";
+          this.rocketSim.setAcceleration(0);
           break;
         case "First Stage Separation Failed":
           this.rocket.status = "CRITICAL FAILURE";
@@ -222,11 +216,13 @@ export class RocketService {
 
   async emitEvent(key: string, eName: string = 'step'): Promise<void> {
     this.eventEmitter.emit(eName, key);
-    await new Promise(resolve => setTimeout(resolve, launchSequence[key] * 1000));
+    await new Promise(resolve => setTimeout(resolve, LaunchSequenceDurations[LaunchSequenceStatus[key]] * 1000));
   }
 
 
   async launch(): Promise<Rocket> {
+    let rocket_t = 0;
+    let clearGround = false;
     // ------------------------------------
     // -------Sending Startup log----------
     // ------------------------------------
@@ -235,7 +231,6 @@ export class RocketService {
     // ------------------------------------
     // -------Data for rocket movement----------
     // ------------------------------------
-    let lastUpdateTime = Date.now();
     let currentStageId = 0;
     const TARGET_ALTITUDE = 130_000; // pieds
     const MAX_SPEED = 8_000; // m/s
@@ -250,31 +245,31 @@ export class RocketService {
   
     await this.emitEvent('Main engine start');
     await this.emitEvent('Liftoff');
-    this.emitEvent('In flight');
-
-  
+    
 
     this.interval = setInterval(async () => {
-        const now = Date.now();
-        lastUpdateTime = now;
-        console.log("Current stage: " + currentStageId)
         let currentStage = this.rocket.stages[currentStageId];
 
         if(this.maxQ){
           altitudePerUpdate = 80;
         }
 
+
+        if (this.rocket.altitude > 100 && !clearGround){
+          this.emitEvent('In flight');
+          clearGround = true;
+        }
         // ------------------------------------
         // Update altitude
         // ------------------------------------
-        this.rocket.altitude += altitudePerUpdate;
+        this.rocket.altitude = this.rocketSim.positionAt(rocket_t/1000);
         this.rocket.payload.altitude = this.rocket.altitude;
         currentStage.altitude = this.rocket.payload.altitude;
 
         // ------------------------------------
         // Update speed
         // ------------------------------------
-        this.rocket.payload.speed = altitudePerUpdate / (UPDATE_INTERVAL / 1000);
+        this.rocket.payload.speed = this.rocketSim.velocityAt(rocket_t/1000);
         currentStage.speed = this.rocket.payload.speed;
 
         // ------------------------------------
@@ -314,14 +309,6 @@ export class RocketService {
 
           }
 
-        // ------------------------------------
-        // Limit speed
-        // ------------------------------------
-        if (this.rocket.payload.speed > MAX_SPEED) {
-            this.rocket.payload.speed = MAX_SPEED;
-            currentStage.speed = MAX_SPEED;
-        }
-
         if(this.rocket.payload.altitude >= TARGET_ALTITUDE){
           this.rocket.payload.altitude = TARGET_ALTITUDE;
           this.rocket.altitude = TARGET_ALTITUDE;
@@ -332,7 +319,7 @@ export class RocketService {
           await this.emitEvent('Payload deployed');
           clearInterval(this.interval);
         }
-
+        rocket_t += UPDATE_INTERVAL;
     }, UPDATE_INTERVAL);
     return this.rocket;
 }
