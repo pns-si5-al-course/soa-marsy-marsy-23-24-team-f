@@ -3,8 +3,7 @@ FROM node:18-alpine as builder
 WORKDIR /app
 COPY --chown=node:node package.json tsconfig.json .env ./
 COPY --chown=node:node . .
-RUN yarn install
-RUN yarn build
+RUN yarn install && yarn build
 USER node
 
 # Installation dépendances prod

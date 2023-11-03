@@ -10,7 +10,7 @@ export class MyWebSocketGateway implements OnGatewayConnection, OnGatewayDisconn
 
   afterInit(server: Server) {
     DataStore.eventEmitter.on('logs', (data: any) => {
-      console.log('data added : ', data)
+      //console.log('data added : ', data)
       this.server.emit('logs', data);
     });
   }

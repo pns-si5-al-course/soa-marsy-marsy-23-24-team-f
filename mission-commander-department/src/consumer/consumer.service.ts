@@ -22,7 +22,7 @@ export class ConsumerService {
   @SubscribeTo(LOGS_TOPIC)
   @Bind()
   logsTelemetricsSubscriber (logs: any) {
-    console.log("logsTelemetricsSubscriber", logs)
+    //console.log("logsTelemetricsSubscriber", logs)
     if (DataStore) {DataStore.addRocketData(logs);}
   }
 

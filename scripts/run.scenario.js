@@ -106,7 +106,7 @@ async function handleStatusChange(logs) {
     if (scenario_id === '2' || scenario_id === '3') {
         if(log.status === 'First Stage Seperation Failed') {
             console.log(chalk.red('First Stage Seperation Failed'));
-            console.log('Richard : ordre de destruction de la fusée');
+            if (scenario_id === '3') {console.log('Richard : ordre de destruction de la fusée');}
             await post(rocketDeptServiceUrl + "/stop-simulation", {});
             await post(missionCommanderUrl + "/rocket/destroy", {});
             console.log(chalk.red('Rocket is going to explode'));
@@ -124,11 +124,11 @@ async function handleStatusChange(logs) {
             if(parseInt(fuel_1) > 150 || parseInt(fuel_2) > 150) {
                 clearInterval(interval);
                 clearInterval(int_fuel);
-                console.log(chalk.red('FUEL LEAK DETECTED'));
-                console.log('Richard : ordre de destruction de la fusée');
-                console.log(chalk.red('--- CRITICAL FAILURE ---'));
                 await post(rocketDeptServiceUrl + "/stop-simulation", {});
                 await post(missionCommanderUrl + "/rocket/destroy", {});
+                console.log(chalk.red('FUEL LEAK DETECTED'));
+                console.log(chalk.red('--- CRITICAL FAILURE ---'));
+                console.log(chalk.red('--- SELF DESTRUCT ---'));
                 console.log(chalk.red('Payload is destroyed'));
                 console.log(chalk.red('Rocket is destroyed'));
                 console.log(chalk.red('Mission is failed'));
@@ -145,18 +145,18 @@ async function handleStatusChange(logs) {
 
 async function main() {
     if (scenario_id === '1') {
-        console.log(chalk.green('\n-------------------------------------'));
-        console.log(chalk.green('--- SCENARIO 1: ORBITAL INSERTION ---'));
-        console.log(chalk.green('-------------------------------------\n'));
+        console.log(chalk.green.bgWhite('\n-------------------------------------'));
+        console.log(chalk.green.bgWhite('--- SCENARIO 1: ORBITAL INSERTION ---'));
+        console.log(chalk.green.bgWhite('-------------------------------------\n'));
     } else if (scenario_id === '2') {
-        console.log(chalk.red('\n---------------------------------------------'));
-        console.log(chalk.red('--- SCENARIO 2: FAILURE DURING SEPARATION ---'));
-        console.log(chalk.red('---------------------------------------------\n'));
+        console.log(chalk.red.bgWhite('\n---------------------------------------------'));
+        console.log(chalk.red.bgWhite('--- SCENARIO 2: FAILURE DURING SEPARATION ---'));
+        console.log(chalk.red.bgWhite('---------------------------------------------\n'));
     }
     else if (scenario_id === '3') {
-        console.log(chalk.red('\n------------------------------------------'));
-        console.log(chalk.red('--- SCENARIO 3: MANUAL AUTODESTRUCTION ---'));
-        console.log(chalk.red('------------------------------------------\n'));
+        console.log(chalk.red.bgWhite('\n--------------------------------------'));
+        console.log(chalk.red.bgWhite('--- SCENARIO 3: MANUAL DESTRUCTION ---'));
+        console.log(chalk.red.bgWhite('--------------------------------------\n'));
     }
     await sleep(1000);
 

@@ -83,7 +83,7 @@ export class RocketService {
       this.updateAccordingToSequence(key);
     })
     this.eventEmitter.on('landingStep', (key) => {
-      this.updateAccordingToSequence(key);
+      this.updateFirstStageAccordingToSequence(key);
     })
     return this.rocket.payload !== null;
   }
@@ -134,9 +134,7 @@ export class RocketService {
   changeAllRocketStatus(status: string): void {
     this.rocket.status = status;
     this.rocket.payload.status = status;
-    for (let stage of this.rocket.stages) {
-      stage.status = status;
-    }
+    this.rocket.stages[1].status = status;
   }
 
   updateFirstStageAccordingToSequence(key: string): void {
@@ -250,10 +248,6 @@ export class RocketService {
     this.interval = setInterval(async () => {
         let currentStage = this.rocket.stages[currentStageId];
 
-        if(this.maxQ){
-          altitudePerUpdate = 80;
-        }
-
 
         if (this.rocket.altitude > 100 && !clearGround){
           this.emitEvent('In flight');
@@ -335,26 +329,23 @@ export class RocketService {
 
 
   private async firstStageSafeLanding(): Promise<void> {
+    let booster_t = 0;
     const UPDATE_INTERVAL = 80; // 80 ms
+    const rocket_sim2 = new RocketSimulation(this.rocket.stages[0].altitude, Math.abs(this.rocket.stages[0].speed), -9.8);
+    
     await this.emitEvent('Flip maneuver', 'landingStep');
-    const safeLanding = setInterval(async () => {
-      let altitudePerUpdate = Math.abs(this.rocket.stages[0].speed) / 12.5; // Combien d'altitude perdre à chaque mise à jour
-      if(this.rocket.stages[0].speed>0 && this.rocket.stages[0].status != 'Landing'){
 
-        // wait for rocket inertie to be null
-        this.rocket.stages[0].speed -= 100;
-      } else {
-        if (this.rocket.stages[0].altitude <= 500 && this.rocket.stages[0].altitude > 0) {
-          
-          // réactivation du moteur
-          if(this.rocket.stages[0].status != 'Landed'){
+    const safeLanding = setInterval(async () => {
+        if(this.rocket.stages[0].speed > 0 && this.rocket.altitude > 30000) {
+            // Attendez que l'inertie de la fusée soit nulle
+            rocket_sim2.setAcceleration(-29.4); // -3g
+        } else if (this.rocket.stages[0].altitude <= 500 && this.rocket.stages[0].altitude > 0 && this.rocket.stages[0].status !== 'Landed') {
+            // réactivation du moteur
+            rocket_sim2.setAcceleration(-9.8); // considérant qu'il combat la gravité
             this.rocket.stages[0].fuel -= 20;
-            this.rocket.stages[0].speed += 400;
-            this.rocket.stages[0].altitude -= altitudePerUpdate / 5; // Ajuster pour une descente plus lente pendant l'atterrissages
-            this.updateFirstStageAccordingToSequence('Landing burn');
-          }
-          
+            await this.emitEvent('Landing burn', 'landingStep');
         } else if (this.rocket.stages[0].altitude <= 0) {
+            // Atterri
             this.rocket.stages[0].fuel = 0;
             this.rocket.stages[0].altitude = 0;
             this.rocket.stages[0].speed = 0;
@@ -363,11 +354,15 @@ export class RocketService {
             await this.emitEvent('Landing', 'landingStep');
             await this.emitEvent('Landed', 'landingStep');
         } else {
-            this.rocket.stages[0].altitude -= altitudePerUpdate;
-            this.rocket.stages[0].speed -= (Math.abs(this.rocket.stages[0].speed) > 2000) ? 0 : 50;
-            this.rocket.stages[0].status = 'In flight';
+            // chute libre
+            rocket_sim2.setAcceleration(9.8); // gravité
         }
-      }    
+
+        // Mise à jour de la vitesse et de la position de la fusée
+        this.rocket.stages[0].speed = rocket_sim2.velocityAt(booster_t/1000);
+        this.rocket.stages[0].altitude = rocket_sim2.positionAt(booster_t/1000);
+      
+        booster_t += UPDATE_INTERVAL;
     }, UPDATE_INTERVAL);
 }
 
