@@ -10,9 +10,15 @@ import { EventEmitter } from 'events';
 
 
 const ROCKET_INIT = new Rocket('MarsY-1', 'On Ground', [
-  {'id': 1,fuel: 3000, altitude: 0, status: "On Ground", speed: 0},
-  {'id': 2, fuel: 3000, altitude: 0, status: "On Ground", speed: 0}
-], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, new Date().toISOString());
+  {'id': 1,fuel: 3000, altitude: 0, status: "On Ground", speed: 0, v0: 0, a: 0},
+  {'id': 2, fuel: 3000, altitude: 0, status: "On Ground", speed: 0, v0: 0, a: 0}
+], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, 
+new Date().toISOString(),
+0,
+0,
+1000+1000,
+0
+);
 
 const landingSequence = {
   "Flip maneuver": 3,  
@@ -31,7 +37,7 @@ export class RocketService {
   private stop: boolean = false;
   private separationFailure: boolean = false;
   private eventEmitter: EventEmitter = new EventEmitter();
-  private rocketSim = new RocketSimulation(0, 0, 0);
+  private rocketSim = new RocketSimulation();
 
   constructor(private publisherService : PublisherService, private configService: ConfigService ) {
   }
@@ -95,40 +101,6 @@ export class RocketService {
     await this.emitEvent('Rocket preparation');
     await this.emitEvent('Rocket on internal power');
     return this.rocket;
-  }
-
-  async sendTestData(): Promise<void> {
-    const testRocket = new Rocket(
-      'MarsY-1',
-       'On Ground',
-      [
-        {
-          'id': 1,
-          fuel: Math.floor(Math.random() * 3000),
-          altitude: Math.floor(Math.random() * 100_000),
-          status: "On Ground", 
-          speed: Math.floor(Math.random() * 8_000)
-        },
-        {
-          'id': 2, 
-          fuel: Math.floor(Math.random() * 3000), 
-          altitude: Math.floor(Math.random() * 100_000), 
-          status: "On Ground", 
-          speed: Math.floor(Math.random() * 8_000)
-        }
-      ], 
-      0, 
-      {
-        passengers: 0, 
-        altitude: Math.floor(Math.random() * 100_000), 
-        status:"Grounded", 
-        speed: Math.floor(Math.random() * 8_000), 
-        weight: 1000
-      }, 
-      new Date().toISOString())
-
-
-    this.pushData(testRocket);
   }
 
   changeAllRocketStatus(status: string): void {
