@@ -4,7 +4,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 COPY --chown=node:node package.json yarn.lock .env ./
 COPY --chown=node:node . .
-RUN yarn install --producion && yarn build
+RUN yarn install && yarn build
 USER node
 
 # PRODUCTION
