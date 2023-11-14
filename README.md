@@ -13,7 +13,7 @@ logs.topic
 Services messaging through KAFKA
 
 - temetrie-service  -- done ![](https://geps.dev/progress/100?dangerColor=800000&warningColor=ff9900&successColor=006600)
-- rocket-service -- not iplemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
+- rocket-department-service -- No real needs
 - rocket-object-service -- done ![](https://geps.dev/progress/100?dangerColor=800000&warningColor=ff9900&successColor=006600)
 - payload-service -- done ![](https://geps.dev/progress/100?dangerColor=800000&warningColor=ff9900&successColor=006600)
 - weather-service -- not implemented ![](https://geps.dev/progress/0?dangerColor=800000&warningColor=ff9900&successColor=006600)
@@ -97,12 +97,12 @@ all the way until the booster lands.  ![](https://geps.dev/progress/100?dangerCo
 telemetry data of the payload, so that Mars Y can certify that the orbital parameters 
 desired by the customer are ensured.   ![](https://geps.dev/progress/100?dangerColor=800000&warningColor=ff9900&successColor=006600)
 
-12- -- Simplified -- As Elon (Chief Rocket Department), I want the rocket to go through Max Q 
+12- As Elon (Chief Rocket Department), I want the rocket to go through Max Q 
 harmlessly so that the total stress on the payload and the flight hardware stay in a 
 safe level. In order to do so, the rocket engines must throttle down to reduce the 
 load. Max Q is the atmospheric flight phase where the vehicle’s flight reaches 
 maximum dynamic pressure because of the air density and the speed of the rocket.
--- No checks for air density or maximum dynamic pressure -- ![](https://geps.dev/progress/80?dangerColor=800000&warningColor=ff9900&successColor=006600)
+-- No actual checks for air density or maximum dynamic pressure -- ![](https://geps.dev/progress/80?dangerColor=800000&warningColor=ff9900&successColor=006600)
 
 
 
