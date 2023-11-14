@@ -4,13 +4,13 @@ import { Interval, SchedulerRegistry } from '@nestjs/schedule';
 @Injectable()
 export class RocketService {
   private isWatchingRocketData = false;
-  private isMaxQ = false;
 
   constructor(
     private httpService: HttpService,
     private schedulerRegistry: SchedulerRegistry
   ) {}
 
+  // FIXME: NOT WORKING WITH STATELESS ROCKET
   async launchRocket(): Promise<any> {
     console.log("TAKEOFF PERMISSION \r")
     try {
@@ -48,6 +48,7 @@ export class RocketService {
     }
   }
 
+  // FIXME: NOT WORKING WITH STATELESS ROCKET
   async launchRocketWithFailure(): Promise<any> {
     try {
       const rocketReadyResponse = await this.httpService.get('http://rocket-object-service:3005/rocket/isReady').toPromise()
@@ -84,8 +85,14 @@ export class RocketService {
     }
   }
 
+  // OK
   async loadRocket(): Promise<any> {
-    this.isMaxQ = false;
+    const rocket = await this.httpService.get('http://rocket-object-service:3005/rocket/example').toPromise()
+          .then((response: { data: any; }) => {
+            console.log("Rocket example fetched: \r");
+            return response.data;
+          })
+          .catch((error: { message: any; }) => {})
     try {
       const response = await this.httpService.get('http://payload-service:3004/rocket').toPromise()
       .then(async (response: { status: number; data: any; }) => {
@@ -93,7 +100,8 @@ export class RocketService {
         if (response.status === 200) {
           console.log(response.data);
           const payloadData = response.data;
-          const setPayloadResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/setpayload', payloadData).toPromise()
+          rocket.payload= payloadData;
+          const setPayloadResponse = await this.httpService.post('http://rocket-object-service:3005/rocket/setpayload', rocket).toPromise()
           .then((res: { status: number; }) => {
             if (res.status === 201) {
               console.log("Payload set in rocket: \r");
@@ -105,7 +113,7 @@ export class RocketService {
           throw new Error('Failed to fetch rocket data');
         }
       });
-      await this.httpService.post('http://telemetrie-service:3003/rocket/start-simulation').toPromise()
+      //await this.httpService.post('http://telemetrie-service:3003/rocket/start-simulation').toPromise()
       
     } catch (error) {
       console.error('Error processing rocket payload:', error);
@@ -113,6 +121,7 @@ export class RocketService {
     }
   }
 
+  // FIXME: Statefull implemantation
   startWatchingRocketData(): void {
     if (!this.isWatchingRocketData) {
       const callback = this.watchRocketData.bind(this);
@@ -121,7 +130,8 @@ export class RocketService {
       this.isWatchingRocketData = true;
     }
   }
-
+  
+  // FIXME: Statefull implemantation
   stopWatchingRocketData(): void {
     if (this.isWatchingRocketData) {
       const interval = this.schedulerRegistry.getInterval('rocketDataCheck');
@@ -131,6 +141,7 @@ export class RocketService {
     }
   }
 
+  // FIXME: Statefull implemantation
   async watchRocketData(): Promise<void> {
 
     let rocketData : any;
@@ -186,6 +197,7 @@ export class RocketService {
 
   }
 
+  // OK
   async askTelemetrieForRocketData(): Promise<any> {
       try {
         const response = await this.httpService.get('http://telemetrie-service:3003/rocket/telemetrics').toPromise();

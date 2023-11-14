@@ -24,6 +24,21 @@ export class Telemetrics {
     @Prop({ required: true })
     timestamp: string;
 
+    @Prop({ required: true })
+    v0: number;
+
+    @Prop({ required: true })
+    a: number;
+
+    @Prop({ required: true })
+    m: number;
+
+    @Prop({ required: true })
+    angle: number;
+
+    @Prop({ required: true })
+    time: number;
+
 }
 
 export const TelemetricsSchema = SchemaFactory.createForClass(Telemetrics);
