@@ -5,21 +5,16 @@ import { RocketService } from '../service/rocket.service';
 export class RocketController {
     constructor(private readonly rocketService: RocketService) {}
     
-    //ask for rocket status so we can decide if we can destroy it using the destroy endpoint
-    @Get('status')
+    @Get('weatherDepartment/status')
     @HttpCode(200)
-    async getRocketStatus(): Promise<{ status: string }> {
-        return await this.rocketService.getCurrentRocketStatus();
+    async getWeatherStatus(): Promise<{ status: string }> {
+        return this.rocketService.getWeatherStatus();
     }
-
-    //record the rocket failure status
-    @HttpCode(201)
-    @Post('failure')
-    async recordRocketFailure(@Body() data: { status: string }): Promise<any> {
-        console.log("Received rocket failure status:", data.status);
-        await this.rocketService.recordRocketFailure(data.status);
-        this.destroyRocket();
-        return { message: "Rocket failure status recorded successfully." };
+    
+    @Get('rocketDepartment/status')
+    @HttpCode(200)
+    async getRocketDeptStatus(): Promise<{ status: string }> {
+        return this.rocketService.getRocketDeptStatus();
     }
 
     //destroy the rocket
