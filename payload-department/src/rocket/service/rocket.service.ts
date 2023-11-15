@@ -33,16 +33,15 @@ export class RocketService {
     };
 
     async getLastPayloadTelemetrics(): Promise<PayloadTelemetrics> {
-      // get the size of the collection
-      const data = await this.payloadTelemetricsModel.countDocuments()
-      .then((count) => {
-          if (count === 0) {
-              return Promise.reject('No documents found');
-          }
-          else {
-              return this.payloadTelemetricsModel.findOne().sort({$natural:-1}).limit(1);        
-          }
-      });
-      return data;
-  }
+      try {
+        const count = await this.payloadTelemetricsModel.countDocuments();
+        if (count === 0) {
+          throw new Error('No documents found');
+        }
+        return await this.payloadTelemetricsModel.findOne().sort({$natural:-1}).limit(1);
+      } catch (error) {
+        throw error;
+      }
+    }
+    
 }
