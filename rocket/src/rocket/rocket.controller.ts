@@ -3,15 +3,8 @@ import { Controller, Get, Post, Body, HttpCode, Param } from '@nestjs/common';
 import { RocketStatelessService } from './rocket.stateless.service';
 import { Rocket, RocketExample } from '../entities/rocket.entity';
 import { ApiBody, ApiTags, ApiProperty } from '@nestjs/swagger';
+import { StatusUpdateDto } from '../dto/StatusUpdate.dto';
 
-
-class StatusUpdateDto {
-  @ApiProperty()
-  rocket: Rocket;
-
-  @ApiProperty()
-  status: string;
-}
 
 @Controller('rocket')
 @ApiTags('Rocket')
