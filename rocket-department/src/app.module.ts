@@ -5,7 +5,6 @@ import { AppController } from './app.controller';
 import { RocketModule } from './rocket/rocket.module';
 import { AppService } from './app.service';
 import { HttpModule } from '@nestjs/axios';
-import { ScheduleModule } from '@nestjs/schedule';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -13,8 +12,7 @@ import { ScheduleModule } from '@nestjs/schedule';
       isGlobal: true,
     }),
     RocketModule,
-    HttpModule,
-    ScheduleModule.forRoot(),
+    HttpModule
   ],
   controllers: [AppController],
   providers: [AppService],
