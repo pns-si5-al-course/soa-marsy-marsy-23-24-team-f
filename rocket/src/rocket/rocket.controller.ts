@@ -16,7 +16,7 @@ export class RocketController {
   async receiveStatusUpdate(@Body() statusUptate: StatusUpdateDto) {
     console.log("Received status update: \r");
     console.log(statusUptate);
-    return this.rocketService.receiveStatusUpdate(statusUptate.rocket, statusUptate.status);
+    return this.rocketService.receiveStatusUpdate(statusUptate);
   }
 
   @Get('example')

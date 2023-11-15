@@ -15,16 +15,17 @@ export class RocketSimulation {
       rocket.stages[0].fuel -= 4;
 
     }
-
-    stageAt(stage: Stage, t: number) {
-      // use for first stage safe landing
-      stage.altitude = 0 + stage.v0 * t + 0.5 * stage.a * t * t;
-      stage.speed = this.stageVelocityAt(stage, t);
-    }
-  
+    
     velocityAt(rocket: Rocket, t: number) {
       return rocket.v0 + rocket.a * t;
     }
+
+    stageAt(stage: Stage, t: number) {
+      // use for first stage safe landing
+      stage.altitude = stage.s0 + stage.v0 * t + 0.5 * stage.a * t * t;
+      stage.speed = this.stageVelocityAt(stage, t);
+    }
+  
 
     stageVelocityAt(stage: Stage, t: number) {
       return stage.v0 + stage.a * t;
