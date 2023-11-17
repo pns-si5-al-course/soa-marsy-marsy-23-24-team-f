@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ReadyToLaunchDTO } from '../../dto/ReadyToLaunch.dto';
+import { RocketDTO } from '../../dto/Rocket.dto';
 
 
 @Injectable()
@@ -25,14 +26,41 @@ export class RocketService {
         }
     }
 
-    async launchRocket(readyToLaunch: ReadyToLaunchDTO): Promise<void> {
+    async launchRocket(readyToLaunch: ReadyToLaunchDTO): Promise<any> {
         try {
             if (readyToLaunch.weatherDepartmentStatus === "GO" && readyToLaunch.rocketDepartmentStatus === "GO"){
-                await this.httpService.post('http://rocket-department:3001/rocket/launch', readyToLaunch.rocket).toPromise();
+                return await this.httpService.post('http://rocket-department:3001/rocket/launch', readyToLaunch.rocket).toPromise();
             }
             console.log("Sent launch command.");
         } catch (error) {
             throw new Error("Failed to send launch command.");
+        }
+    }
+
+    async initiateStartupSequence(rocket: RocketDTO): Promise<void> {
+        try {
+            await this.httpService.post('http://rocket-department:3001/rocket/initiate-startup', rocket).toPromise();
+            console.log("Sent initiate startup command.");
+        } catch (error) {
+            throw new Error("Failed to send initiate startup command.");
+        }
+    }
+
+    async initiateMainEngineStart(rocket: RocketDTO): Promise<void> {
+        try {
+            await this.httpService.post('http://rocket-department:3001/rocket/initiate-main-engine-start', rocket).toPromise();
+            console.log("Sent initiate main engine start command.");
+        } catch (error) {
+            throw new Error("Failed to send initiate main engine start command.");
+        }
+    }
+
+    async initiateLiftoff(rocket: RocketDTO): Promise<void> {
+        try {
+            await this.httpService.post('http://rocket-department:3001/rocket/initiate-liftoff', rocket).toPromise();
+            console.log("Sent initiate liftoff command.");
+        } catch (error) {
+            throw new Error("Failed to send initiate liftoff command.");
         }
     }
 

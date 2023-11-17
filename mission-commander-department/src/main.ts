@@ -8,7 +8,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   const config = new DocumentBuilder()
-    .setTitle('Rocket-Service routes description')
+    .setTitle('Mission Commander routes description')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
