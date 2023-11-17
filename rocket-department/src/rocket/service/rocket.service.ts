@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { RocketDTO } from '../dto/rocket.dto';
 import { StatusUpdateDto } from '../dto/statusUpdate.dto';
-import { ApiService } from 'src/common/api/api.service';
+import { ApiService } from '../../common/api/api.service';
 import { PayloadDTO } from '../dto/payload.dto';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class RocketService {
   /**
    * @description initiateStartupSequence
    * @param rocket
-   * @returns RocketDTO
+   * @returns Promise<RocketDTO>
    * @memberof RocketService
   */
   async initiateStartupSequence(rocket: RocketDTO): Promise<RocketDTO> {
@@ -30,7 +30,7 @@ export class RocketService {
   /**
    * @description initiatePreLaunchSequence
    * @param rocket
-   * @returns RocketDTO
+   * @returns Promise<RocketDTO>
    * @memberof RocketService
   */
   async initiateMainEngineStart(rocket: RocketDTO): Promise<RocketDTO> {
@@ -44,7 +44,7 @@ export class RocketService {
   /**
    * @description initiateLiftoff
    * @param rocket
-   * @returns RocketDTO
+   * @returns Promise<RocketDTO>
    * @memberof RocketService
   */
   async initiateLiftoff(rocket: RocketDTO): Promise<RocketDTO> {
@@ -58,7 +58,7 @@ export class RocketService {
   /**
    * @description initiateLiftoff
    * @param rocket
-   * @returns RocketDTO
+   * @returns Promise<RocketDTO>
    * @memberof RocketService
   */
   private async updateRocketStatus(rocket: RocketDTO, status: string): Promise<RocketDTO> {
@@ -73,6 +73,12 @@ export class RocketService {
     }
   }
 
+  /**
+   * @description loadRocket
+   * @param rocket
+   * @returns Promise<RocketDTO>
+   * @memberof RocketService
+  */
   async loadRocket(rocket: RocketDTO): Promise<RocketDTO> {
     try {
       const payload: PayloadDTO = await this.apiService.get<PayloadDTO>('http://payload-service:3004/rocket');
@@ -85,10 +91,15 @@ export class RocketService {
     }
   }
   
+  /**
+   * @description askTelemetrieForRocketData
+   * @returns Promise<any>
+   * @memberof RocketService
+   */
   async askTelemetrieForRocketData(): Promise<any> {
       try {
-        const response = await this.httpService.get('http://telemetrie-service:3003/rocket/telemetrics').toPromise();
-        console.log("Rocket status fetched: \r");
+        const response : any = await this.apiService.get('http://telemetrie-service:3003/rocket/telemetrics');
+        console.log("Telemetrie response: ", response.data);
         return response.data;
       } catch (error) {
         console.error('Error fetching rocket status:', error.message);
