@@ -4,6 +4,7 @@ import { RocketStatelessService } from './rocket.stateless.service';
 import { Rocket, RocketExample } from '../entities/rocket.entity';
 import { ApiBody, ApiTags, ApiProperty } from '@nestjs/swagger';
 import { StatusUpdateDto } from '../dto/StatusUpdate.dto';
+import { StageStatusUpdateDto } from '../dto/StageStatusUpdate.sto';
 
 
 @Controller('rocket')
@@ -15,6 +16,12 @@ export class RocketController {
   @HttpCode(200)
   async receiveStatusUpdate(@Body() statusUptate: StatusUpdateDto) {
     return this.rocketService.receiveStatusUpdate(statusUptate);
+  }
+
+  @Post('stage/status')
+  @HttpCode(200)
+  async receiveStageStatusUpdate(@Body() stageStatusUpdate: StageStatusUpdateDto) {
+    return this.rocketService.receiveStageStatusUpdate(stageStatusUpdate);
   }
 
   @Get('example')

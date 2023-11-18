@@ -42,6 +42,12 @@ const FlightStatus = {
     maxQ: false,
     isFairingSeparated: false,
     secondEngineCutOff: false,
+    
+}
+
+const StageFLightStatus = {
+    firstStageLanding: false,
+    entryBurn: false,
 }
 
 const status_update = {
@@ -49,8 +55,14 @@ const status_update = {
     status: ''
 }
 
+const stage_status_update = {
+    stage: null,
+    status: ''
+}
+
 
 let interval= null;
+let interval_stage = null;
 let rocket_1 = null;
 
 // ------------------ SOCKET ------------------
@@ -82,8 +94,45 @@ socket.on('logs', (data) => {
     if(logs.payload){
         handleAltitudeChange(logs);
         handleStatusChange(logs);
+    } else {
+        console.log(chalk.yellow('-------------------------'));
+        console.log(chalk.yellow('---First stage Logs------'));
+        console.log(chalk.yellow('-------------------------'));
+        console.log(logs);
+        handleStageStatusChange(logs);
+        handleStageAltitudeChange(logs);
     }
 })
+
+
+async function handleStageStatusChange(logs) {
+    // for first stage
+    if(StageFLightStatus.firstStageLanding === false){
+        stage_status_update.stage = logs;
+        stage_status_update.stage.status = 'Separated';
+        stage_status_update.status = 'Flip maneuver';
+        startStageUpdatinStatus();
+        FlightStatus.firstStageLanding = true;
+    }
+
+}
+
+async function handleStageAltitudeChange(logs) {
+    // for first stage
+    if (logs.altitude >= 20_000 && StageFLightStatus.entryBurn === false) {
+        stage_status_update.stage = logs;
+        stage_status_update.status = 'Entry burn';
+        StageFLightStatus.entryBurn = true;
+    } else if (logs.altitude >= 500 && logs.altitude < 3000){
+        stage_status_update.stage = logs;
+        stage_status_update.status = 'Guidance';
+    } else if (logs.altitude >= 50 && logs.altitude < 3000){
+        stage_status_update.stage = logs;
+        stage_status_update.status = 'Landing burn';
+    }
+
+}
+
 
 async function handleAltitudeChange(logs) {
     
@@ -331,8 +380,23 @@ async function startUpdatinStatus() {
         status_update.rocket.time += READ_INT/1000;   
         const rocket_in_flight = await post(rocketServiceUrl + '/rocket/status', status_update);
         status_update.rocket = rocket_in_flight;
+        console.log(chalk.yellow('----------------------- Rocket Logs --------------------'));
         console.log(status_update.rocket.stages);
         console.log(status_update.status);
+        console.log(chalk.yellow('--------------------------------------------------------'));
+        //readLastLine('logs/payload.log');
+        
+    }, READ_INT);
+}
+
+async function startStageUpdatinStatus() {
+    interval_stage = setInterval(async ()=>{
+        stage_status_update.stage.time += READ_INT/1000;   
+        const rocket_in_flight = await post(rocketServiceUrl + '/rocket/stage/status', status_update);
+        stage_status_update.stage = rocket_in_flight;
+        console.log(chalk.purple('------------ Stage 1 logs ---------------------'));
+        console.log(stage_status_update.stage);
+        console.log(chalk.purple('-----------------------------------------------'));
         //readLastLine('logs/payload.log');
         
     }, READ_INT);

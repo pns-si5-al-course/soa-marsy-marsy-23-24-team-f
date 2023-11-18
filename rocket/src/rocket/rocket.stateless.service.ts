@@ -180,6 +180,7 @@ export class RocketStatelessService {
                 break;
             case "Entry burn":
                 stage.a = -9.81;
+                break;
             case "Guidance":
                 break;
             case "Landing burn":
@@ -189,7 +190,10 @@ export class RocketStatelessService {
                 if(stage.speed > 40) {
                     throw new Error("Speed is too high for landing legs deployment");
                 }
-                break;
+                stage.status = status;
+                this.rocketSim.stageAt(stage, stage.time);
+                await this.publisherService.sendTelemetrics('rocket.telemetrics.topic', stage);
+                await this.publisherService.sendTelemetrics('logs.topic', stage);
             case "Landing":
                 if (stage.status !== "Landing legs deployed") {
                     throw new Error("Landing legs are not deployed");
