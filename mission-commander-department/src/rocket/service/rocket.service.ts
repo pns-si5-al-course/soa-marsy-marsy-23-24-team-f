@@ -10,7 +10,7 @@ export class RocketService {
 
     async getWeatherStatus(): Promise<{ status: string }> {
         try {
-            const response = await this.httpService.get('http://weather-department:3001/weather/status').toPromise();
+            const response = await this.httpService.get('http://weather-service:3002/status').toPromise();
             return response.data;
         } catch (error) {
             throw new Error("Failed to get weather status.");
@@ -19,7 +19,7 @@ export class RocketService {
 
     async getRocketDeptStatus(): Promise<{ status: string }> {
         try {
-            const response = await this.httpService.get('http://rocket-service:3001/rocket/status').toPromise();
+            const response = await this.httpService.get('http://rocket-service:3001/').toPromise();
             return response.data;
         } catch (error) {
             throw new Error("Failed to get rocket department status.");

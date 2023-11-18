@@ -5,16 +5,7 @@ import { error } from "console";
 export class StatusController {
 
   @Get()
-  getStatus( @Headers('Authorization') auth: string) {
-    if (auth == "missioncontrol-token"){
-      return { status: "GO" };
-    } else {
-      throw new HttpException({
-        status: HttpStatus.UNAUTHORIZED,
-        error: 'Unauthorized access',
-      }, HttpStatus.UNAUTHORIZED, {
-        cause: error
-      });
-    }
+  getStatus() {
+    return { status: "GO" };
   }
 }

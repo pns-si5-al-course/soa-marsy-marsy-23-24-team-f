@@ -211,6 +211,7 @@ async function main() {
             // Après avoir chargé le payload, considérez la fusée comme prête
             status.rocketReady = true;
             console.log(chalk.green('Elon : la fusée est prête au lancement'));
+            console.log(rocketLoaded);
             rocket_1 = rocketLoaded;
         } else {
             console.log(chalk.red('Elon : la fusée n\'est pas prête au lancement'));
