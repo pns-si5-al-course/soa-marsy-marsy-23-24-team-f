@@ -2226,3 +2226,315 @@
 2023-11-18T22:33:35.010Z - {"id":1,"fuel":2100,"altitude":124547.76,"status":"In flight","speed":2707.56,"v0":0,"s0":0,"a":29.43,"time":92}
 2023-11-18T22:33:35.968Z - {"id":1,"fuel":2070,"altitude":127270.03499999999,"status":"In flight","speed":2736.99,"v0":0,"s0":0,"a":29.43,"time":93}
 2023-11-18T22:33:36.998Z - {"id":1,"fuel":2040,"altitude":130021.74,"status":"In flight","speed":2766.42,"v0":0,"s0":0,"a":29.43,"time":94}
+2023-11-18T22:49:50.674Z - {"id":0,"fuel":2920,"altitude":0,"status":"Rocket on internal power","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-18T22:49:50.751Z - {"id":0,"fuel":2880,"altitude":0,"status":"Startup","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-18T22:49:50.990Z - {"id":0,"fuel":2960,"altitude":0,"status":"Rocket preparation","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-18T22:49:53.430Z - {"id":0,"fuel":2800,"altitude":0,"status":"Main engine start","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-18T22:49:54.036Z - {"id":0,"fuel":2800,"altitude":0,"status":"Main engine start","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-18T22:49:54.093Z - {"id":0,"fuel":2760,"altitude":0,"status":"Liftoff","speed":0,"v0":0,"s0":0,"a":11.77,"time":0}
+2023-11-18T22:49:55.070Z - {"id":0,"fuel":2720,"altitude":14.715,"status":"In flight","speed":29.43,"v0":0,"s0":0,"a":29.43,"time":1}
+2023-11-18T22:49:56.079Z - {"id":0,"fuel":2680,"altitude":58.86,"status":"In flight","speed":58.86,"v0":0,"s0":0,"a":29.43,"time":2}
+2023-11-18T22:49:57.042Z - {"id":0,"fuel":2640,"altitude":132.435,"status":"In flight","speed":88.28999999999999,"v0":0,"s0":0,"a":29.43,"time":3}
+2023-11-18T22:49:58.100Z - {"id":0,"fuel":2600,"altitude":235.44,"status":"In flight","speed":117.72,"v0":0,"s0":0,"a":29.43,"time":4}
+2023-11-18T22:49:59.127Z - {"id":0,"fuel":2560,"altitude":367.875,"status":"In flight","speed":147.15,"v0":0,"s0":0,"a":29.43,"time":5}
+2023-11-18T22:50:00.127Z - {"id":0,"fuel":2520,"altitude":529.74,"status":"In flight","speed":176.57999999999998,"v0":0,"s0":0,"a":29.43,"time":6}
+2023-11-18T22:50:01.170Z - {"id":0,"fuel":2480,"altitude":721.035,"status":"In flight","speed":206.01,"v0":0,"s0":0,"a":29.43,"time":7}
+2023-11-18T22:50:02.085Z - {"id":0,"fuel":2440,"altitude":941.76,"status":"In flight","speed":235.44,"v0":0,"s0":0,"a":29.43,"time":8}
+2023-11-18T22:50:03.097Z - {"id":0,"fuel":2400,"altitude":1191.915,"status":"In flight","speed":264.87,"v0":0,"s0":0,"a":29.43,"time":9}
+2023-11-18T22:50:04.104Z - {"id":0,"fuel":2360,"altitude":1471.5,"status":"In flight","speed":294.3,"v0":0,"s0":0,"a":29.43,"time":10}
+2023-11-18T22:50:05.129Z - {"id":0,"fuel":2320,"altitude":1780.515,"status":"In flight","speed":323.73,"v0":0,"s0":0,"a":29.43,"time":11}
+2023-11-18T22:50:06.191Z - {"id":0,"fuel":2280,"altitude":2118.96,"status":"In flight","speed":353.15999999999997,"v0":0,"s0":0,"a":29.43,"time":12}
+2023-11-18T22:50:07.117Z - {"id":0,"fuel":2240,"altitude":2486.835,"status":"In flight","speed":382.59,"v0":0,"s0":0,"a":29.43,"time":13}
+2023-11-18T22:50:08.117Z - {"id":0,"fuel":2200,"altitude":2884.14,"status":"In flight","speed":412.02,"v0":0,"s0":0,"a":29.43,"time":14}
+2023-11-18T22:50:09.098Z - {"id":0,"fuel":2160,"altitude":3310.875,"status":"In flight","speed":441.45,"v0":0,"s0":0,"a":29.43,"time":15}
+2023-11-18T22:50:10.167Z - {"id":0,"fuel":2120,"altitude":3767.04,"status":"In flight","speed":470.88,"v0":0,"s0":0,"a":29.43,"time":16}
+2023-11-18T22:50:11.070Z - {"id":0,"fuel":2080,"altitude":4252.635,"status":"In flight","speed":500.31,"v0":0,"s0":0,"a":29.43,"time":17}
+2023-11-18T22:50:12.175Z - {"id":0,"fuel":2040,"altitude":4767.66,"status":"In flight","speed":529.74,"v0":0,"s0":0,"a":29.43,"time":18}
+2023-11-18T22:50:13.049Z - {"id":0,"fuel":2000,"altitude":5312.115,"status":"In flight","speed":559.17,"v0":0,"s0":0,"a":29.43,"time":19}
+2023-11-18T22:50:14.179Z - {"id":0,"fuel":1960,"altitude":5886,"status":"In flight","speed":588.6,"v0":0,"s0":0,"a":29.43,"time":20}
+2023-11-18T22:50:15.150Z - {"id":0,"fuel":1920,"altitude":6489.315,"status":"In flight","speed":618.03,"v0":0,"s0":0,"a":29.43,"time":21}
+2023-11-18T22:50:16.215Z - {"id":0,"fuel":1880,"altitude":7122.06,"status":"In flight","speed":647.46,"v0":0,"s0":0,"a":29.43,"time":22}
+2023-11-18T22:50:17.110Z - {"id":0,"fuel":1840,"altitude":7784.235,"status":"In flight","speed":676.89,"v0":0,"s0":0,"a":29.43,"time":23}
+2023-11-18T22:50:18.056Z - {"id":0,"fuel":1800,"altitude":8475.84,"status":"In flight","speed":706.3199999999999,"v0":0,"s0":0,"a":29.43,"time":24}
+2023-11-18T22:50:19.171Z - {"id":0,"fuel":1760,"altitude":9196.875,"status":"In flight","speed":735.75,"v0":0,"s0":0,"a":29.43,"time":25}
+2023-11-18T22:50:20.095Z - {"id":0,"fuel":1720,"altitude":9947.34,"status":"In flight","speed":765.18,"v0":0,"s0":0,"a":29.43,"time":26}
+2023-11-18T22:50:21.139Z - {"id":0,"fuel":1680,"altitude":10727.235,"status":"In flight","speed":794.61,"v0":0,"s0":0,"a":29.43,"time":27}
+2023-11-18T22:50:22.219Z - {"id":0,"fuel":1640,"altitude":11536.56,"status":"In flight","speed":824.04,"v0":0,"s0":0,"a":29.43,"time":28}
+2023-11-18T22:50:23.162Z - {"id":0,"fuel":1600,"altitude":12375.315,"status":"In flight","speed":853.47,"v0":0,"s0":0,"a":29.43,"time":29}
+2023-11-18T22:50:24.104Z - {"id":0,"fuel":1560,"altitude":13243.5,"status":"In flight","speed":882.9,"v0":0,"s0":0,"a":29.43,"time":30}
+2023-11-18T22:50:25.079Z - {"id":0,"fuel":1520,"altitude":14141.115,"status":"In flight","speed":912.33,"v0":0,"s0":0,"a":29.43,"time":31}
+2023-11-18T22:50:26.059Z - {"id":0,"fuel":1480,"altitude":15068.16,"status":"In flight","speed":941.76,"v0":0,"s0":0,"a":29.43,"time":32}
+2023-11-18T22:50:27.117Z - {"id":0,"fuel":1440,"altitude":16024.634999999998,"status":"In flight","speed":971.1899999999999,"v0":0,"s0":0,"a":29.43,"time":33}
+2023-11-18T22:50:28.094Z - {"id":0,"fuel":1400,"altitude":17010.54,"status":"In flight","speed":1000.62,"v0":0,"s0":0,"a":29.43,"time":34}
+2023-11-18T22:50:29.035Z - {"id":0,"fuel":1360,"altitude":18025.875,"status":"In flight","speed":1030.05,"v0":0,"s0":0,"a":29.43,"time":35}
+2023-11-18T22:50:30.148Z - {"id":0,"fuel":1320,"altitude":19070.64,"status":"In flight","speed":1059.48,"v0":0,"s0":0,"a":29.43,"time":36}
+2023-11-18T22:50:31.032Z - {"id":0,"fuel":1280,"altitude":20144.835000000003,"status":"In flight","speed":1088.91,"v0":0,"s0":0,"a":29.43,"time":37}
+2023-11-18T22:50:32.081Z - {"id":0,"fuel":1240,"altitude":21248.46,"status":"In flight","speed":1118.34,"v0":0,"s0":0,"a":29.43,"time":38}
+2023-11-18T22:50:33.059Z - {"id":0,"fuel":1200,"altitude":22381.515,"status":"In flight","speed":1147.77,"v0":0,"s0":0,"a":29.43,"time":39}
+2023-11-18T22:50:34.071Z - {"id":0,"fuel":1160,"altitude":23544,"status":"In flight","speed":1177.2,"v0":0,"s0":0,"a":29.43,"time":40}
+2023-11-18T22:50:35.238Z - {"id":0,"fuel":1120,"altitude":24735.914999999997,"status":"In flight","speed":1206.6299999999999,"v0":0,"s0":0,"a":29.43,"time":41}
+2023-11-18T22:50:36.110Z - {"id":0,"fuel":1080,"altitude":25957.26,"status":"In flight","speed":1236.06,"v0":0,"s0":0,"a":29.43,"time":42}
+2023-11-18T22:50:37.147Z - {"id":0,"fuel":1040,"altitude":27208.035,"status":"In flight","speed":1265.49,"v0":0,"s0":0,"a":29.43,"time":43}
+2023-11-18T22:50:38.187Z - {"id":0,"fuel":1000,"altitude":28488.24,"status":"In flight","speed":1294.92,"v0":0,"s0":0,"a":29.43,"time":44}
+2023-11-18T22:50:39.082Z - {"id":0,"fuel":960,"altitude":29797.874999999996,"status":"In flight","speed":1324.35,"v0":0,"s0":0,"a":29.43,"time":45}
+2023-11-18T22:50:40.121Z - {"id":0,"fuel":920,"altitude":31136.94,"status":"In flight","speed":1353.78,"v0":0,"s0":0,"a":29.43,"time":46}
+2023-11-18T22:50:41.090Z - {"id":0,"fuel":880,"altitude":32505.435,"status":"In flight","speed":1383.21,"v0":0,"s0":0,"a":29.43,"time":47}
+2023-11-18T22:50:42.033Z - {"id":0,"fuel":840,"altitude":33903.36,"status":"In flight","speed":1412.6399999999999,"v0":0,"s0":0,"a":29.43,"time":48}
+2023-11-18T22:50:43.205Z - {"id":0,"fuel":800,"altitude":35330.715,"status":"In flight","speed":1442.07,"v0":0,"s0":0,"a":29.43,"time":49}
+2023-11-18T22:50:44.113Z - {"id":0,"fuel":760,"altitude":36787.5,"status":"In flight","speed":1471.5,"v0":0,"s0":0,"a":29.43,"time":50}
+2023-11-18T22:50:45.136Z - {"id":0,"fuel":720,"altitude":38273.715000000004,"status":"In flight","speed":1500.93,"v0":0,"s0":0,"a":29.43,"time":51}
+2023-11-18T22:50:45.865Z - {"id":0,"fuel":680,"altitude":39789.36,"status":"In flight","speed":1530.36,"v0":0,"s0":0,"a":29.43,"time":52}
+2023-11-18T22:50:46.149Z - {"id":0,"fuel":680,"altitude":39789.36,"status":"In flight","speed":1530.36,"v0":0,"s0":0,"a":29.43,"time":52}
+2023-11-18T22:50:47.211Z - {"id":0,"fuel":640,"altitude":41334.435,"status":"In flight","speed":1559.79,"v0":0,"s0":0,"a":29.43,"time":53}
+2023-11-18T22:50:48.218Z - {"id":0,"fuel":600,"altitude":42908.94,"status":"In flight","speed":1589.22,"v0":0,"s0":0,"a":29.43,"time":54}
+2023-11-18T22:50:49.105Z - {"id":0,"fuel":560,"altitude":44512.875,"status":"In flight","speed":1618.65,"v0":0,"s0":0,"a":29.43,"time":55}
+2023-11-18T22:50:50.158Z - {"id":0,"fuel":520,"altitude":46146.24,"status":"In flight","speed":1648.08,"v0":0,"s0":0,"a":29.43,"time":56}
+2023-11-18T22:50:51.028Z - {"id":0,"fuel":480,"altitude":47809.034999999996,"status":"In flight","speed":1677.51,"v0":0,"s0":0,"a":29.43,"time":57}
+2023-11-18T22:50:52.143Z - {"id":0,"fuel":440,"altitude":49501.26,"status":"In flight","speed":1706.94,"v0":0,"s0":0,"a":29.43,"time":58}
+2023-11-18T22:50:53.180Z - {"id":0,"fuel":400,"altitude":51222.91499999999,"status":"In flight","speed":1736.37,"v0":0,"s0":0,"a":29.43,"time":59}
+2023-11-18T22:50:54.089Z - {"id":0,"fuel":360,"altitude":52974,"status":"In flight","speed":1765.8,"v0":0,"s0":0,"a":29.43,"time":60}
+2023-11-18T22:50:55.173Z - {"id":0,"fuel":320,"altitude":54754.515,"status":"In flight","speed":1795.23,"v0":0,"s0":0,"a":29.43,"time":61}
+2023-11-18T22:50:56.117Z - {"id":0,"fuel":280,"altitude":56564.46,"status":"In flight","speed":1824.66,"v0":0,"s0":0,"a":29.43,"time":62}
+2023-11-18T22:50:57.068Z - {"id":0,"fuel":240,"altitude":58403.835,"status":"In flight","speed":1854.09,"v0":0,"s0":0,"a":29.43,"time":63}
+2023-11-18T22:50:58.014Z - {"id":0,"fuel":200,"altitude":0,"status":"Main engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":63}
+2023-11-18T22:50:58.134Z - {"id":0,"fuel":240,"altitude":60272.64,"status":"In flight","speed":1883.52,"v0":0,"s0":0,"a":29.43,"time":64}
+2023-11-18T22:50:59.011Z - {"id":1,"fuel":2970,"altitude":0,"status":"Stage separation","speed":0,"v0":0,"s0":0,"a":0,"time":63}
+2023-11-18T22:50:59.085Z - {"id":0,"fuel":200,"altitude":0,"status":"Main engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":64}
+2023-11-18T22:50:59.719Z - {"id":1,"fuel":2970,"altitude":0,"status":"Stage separation","speed":0,"v0":0,"s0":0,"a":0,"time":64}
+2023-11-18T22:51:00.706Z - {"id":1,"fuel":2940,"altitude":58403.835,"status":"Second engine start","speed":1854.09,"v0":0,"s0":0,"a":29.43,"time":63}
+2023-11-18T22:51:01.362Z - {"id":1,"fuel":2940,"altitude":60272.64,"status":"Second engine start","speed":1883.52,"v0":0,"s0":0,"a":29.43,"time":64}
+2023-11-18T22:51:01.675Z - {"id":1,"fuel":2910,"altitude":51819.625,"status":"MaxQ","speed":1594.45,"v0":0,"s0":0,"a":24.53,"time":65}
+2023-11-18T22:51:02.765Z - {"id":1,"fuel":2880,"altitude":64098.53999999999,"status":"In flight","speed":1942.3799999999999,"v0":0,"s0":0,"a":29.43,"time":66}
+2023-11-18T22:51:03.683Z - {"id":1,"fuel":2850,"altitude":66055.635,"status":"In flight","speed":1971.81,"v0":0,"s0":0,"a":29.43,"time":67}
+2023-11-18T22:51:04.342Z - {"id":1,"fuel":2820,"altitude":68042.16,"status":"In flight","speed":2001.24,"v0":0,"s0":0,"a":29.43,"time":68}
+2023-11-18T22:51:04.653Z - {"id":1,"fuel":2820,"altitude":68042.16,"status":"In flight","speed":2001.24,"v0":0,"s0":0,"a":29.43,"time":68}
+2023-11-18T22:51:05.670Z - {"id":1,"fuel":2790,"altitude":70058.115,"status":"In flight","speed":2030.67,"v0":0,"s0":0,"a":29.43,"time":69}
+2023-11-18T22:51:06.645Z - {"id":1,"fuel":2760,"altitude":72103.5,"status":"In flight","speed":2060.1,"v0":0,"s0":0,"a":29.43,"time":70}
+2023-11-18T22:51:07.586Z - {"id":1,"fuel":2730,"altitude":74178.315,"status":"In flight","speed":2089.53,"v0":0,"s0":0,"a":29.43,"time":71}
+2023-11-18T22:51:08.737Z - {"id":1,"fuel":2700,"altitude":76282.56,"status":"In flight","speed":2118.96,"v0":0,"s0":0,"a":29.43,"time":72}
+2023-11-18T22:51:09.741Z - {"id":1,"fuel":2670,"altitude":78416.235,"status":"In flight","speed":2148.39,"v0":0,"s0":0,"a":29.43,"time":73}
+2023-11-18T22:51:10.642Z - {"id":1,"fuel":2640,"altitude":80579.34000000001,"status":"In flight","speed":2177.82,"v0":0,"s0":0,"a":29.43,"time":74}
+2023-11-18T22:51:11.670Z - {"id":1,"fuel":2610,"altitude":82771.875,"status":"In flight","speed":2207.25,"v0":0,"s0":0,"a":29.43,"time":75}
+2023-11-18T22:51:12.629Z - {"id":1,"fuel":2580,"altitude":84993.84,"status":"In flight","speed":2236.68,"v0":0,"s0":0,"a":29.43,"time":76}
+2023-11-18T22:51:13.704Z - {"id":1,"fuel":2550,"altitude":87245.235,"status":"In flight","speed":2266.11,"v0":0,"s0":0,"a":29.43,"time":77}
+2023-11-18T22:51:14.727Z - {"id":1,"fuel":2520,"altitude":89526.06,"status":"In flight","speed":2295.54,"v0":0,"s0":0,"a":29.43,"time":78}
+2023-11-18T22:51:15.683Z - {"id":1,"fuel":2490,"altitude":91836.31499999999,"status":"In flight","speed":2324.97,"v0":0,"s0":0,"a":29.43,"time":79}
+2023-11-18T22:51:16.735Z - {"id":1,"fuel":2460,"altitude":94176,"status":"In flight","speed":2354.4,"v0":0,"s0":0,"a":29.43,"time":80}
+2023-11-18T22:51:17.652Z - {"id":1,"fuel":2430,"altitude":96545.11499999999,"status":"In flight","speed":2383.83,"v0":0,"s0":0,"a":29.43,"time":81}
+2023-11-18T22:51:18.659Z - {"id":1,"fuel":2400,"altitude":98943.65999999999,"status":"In flight","speed":2413.2599999999998,"v0":0,"s0":0,"a":29.43,"time":82}
+2023-11-18T22:51:19.662Z - {"id":1,"fuel":2370,"altitude":101371.63500000001,"status":"In flight","speed":2442.69,"v0":0,"s0":0,"a":29.43,"time":83}
+2023-11-18T22:51:20.694Z - {"id":1,"fuel":2340,"altitude":103829.04,"status":"In flight","speed":2472.12,"v0":0,"s0":0,"a":29.43,"time":84}
+2023-11-18T22:51:21.623Z - {"id":1,"fuel":2310,"altitude":106315.87500000001,"status":"In flight","speed":2501.55,"v0":0,"s0":0,"a":29.43,"time":85}
+2023-11-18T22:51:22.741Z - {"id":1,"fuel":2280,"altitude":108832.14,"status":"In flight","speed":2530.98,"v0":0,"s0":0,"a":29.43,"time":86}
+2023-11-18T22:51:23.688Z - {"id":1,"fuel":2250,"altitude":111377.83499999999,"status":"In flight","speed":2560.41,"v0":0,"s0":0,"a":29.43,"time":87}
+2023-11-18T22:51:24.605Z - {"id":1,"fuel":2220,"altitude":113952.96,"status":"In flight","speed":2589.84,"v0":0,"s0":0,"a":29.43,"time":88}
+2023-11-18T22:51:25.625Z - {"id":1,"fuel":2190,"altitude":116557.515,"status":"In flight","speed":2619.27,"v0":0,"s0":0,"a":29.43,"time":89}
+2023-11-18T22:51:26.605Z - {"id":1,"fuel":2160,"altitude":119191.49999999999,"status":"In flight","speed":2648.7,"v0":0,"s0":0,"a":29.43,"time":90}
+2023-11-18T22:51:27.590Z - {"id":1,"fuel":2130,"altitude":121854.91500000001,"status":"In flight","speed":2678.13,"v0":0,"s0":0,"a":29.43,"time":91}
+2023-11-18T22:51:28.644Z - {"id":1,"fuel":2100,"altitude":124547.76,"status":"In flight","speed":2707.56,"v0":0,"s0":0,"a":29.43,"time":92}
+2023-11-18T22:51:29.604Z - {"id":1,"fuel":2070,"altitude":127270.03499999999,"status":"In flight","speed":2736.99,"v0":0,"s0":0,"a":29.43,"time":93}
+2023-11-18T22:51:30.650Z - {"id":1,"fuel":2040,"altitude":130021.74,"status":"In flight","speed":2766.42,"v0":0,"s0":0,"a":29.43,"time":94}
+2023-11-18T22:51:31.703Z - {"id":1,"fuel":2010,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":95}
+2023-11-18T22:51:32.579Z - {"id":1,"fuel":1980,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":95}
+2023-11-18T22:51:32.736Z - {"id":1,"fuel":1950,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":96}
+2023-11-18T22:51:33.758Z - {"id":1,"fuel":1890,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":97}
+2023-11-18T22:51:34.315Z - {"id":1,"fuel":1920,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":96}
+2023-11-18T22:51:34.650Z - {"id":1,"fuel":1830,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":98}
+2023-11-18T22:51:34.787Z - {"id":1,"fuel":1860,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":97}
+2023-11-18T22:51:35.605Z - {"id":1,"fuel":1800,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":98}
+2023-11-18T22:51:35.692Z - {"id":1,"fuel":1770,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":99}
+2023-11-18T22:51:36.330Z - {"id":1,"fuel":1710,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":100}
+2023-11-18T22:51:36.625Z - {"id":1,"fuel":1740,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":99}
+2023-11-18T22:51:37.100Z - {"id":1,"fuel":1680,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":100}
+2023-11-18T22:51:37.715Z - {"id":1,"fuel":1650,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":101}
+2023-11-18T22:51:38.407Z - {"id":1,"fuel":1590,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":102}
+2023-11-18T22:51:39.264Z - {"id":1,"fuel":1620,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":101}
+2023-11-18T22:51:39.409Z - {"id":1,"fuel":1560,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":102}
+2023-11-18T22:51:39.732Z - {"id":1,"fuel":1530,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":103}
+2023-11-18T22:51:40.600Z - {"id":1,"fuel":1500,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":103}
+2023-11-18T22:51:40.767Z - {"id":1,"fuel":1470,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":104}
+2023-11-18T22:51:41.079Z - {"id":1,"fuel":1410,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":105}
+2023-11-18T22:51:41.365Z - {"id":1,"fuel":1410,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":105}
+2023-11-18T22:51:42.051Z - {"id":1,"fuel":1440,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":104}
+2023-11-18T22:51:42.668Z - {"id":1,"fuel":1350,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":106}
+2023-11-18T22:51:42.886Z - {"id":1,"fuel":1380,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":105}
+2023-11-18T22:51:43.635Z - {"id":1,"fuel":1320,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":106}
+2023-11-18T22:51:43.652Z - {"id":1,"fuel":1290,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":107}
+2023-11-18T22:51:44.526Z - {"id":1,"fuel":1260,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":107}
+2023-11-18T22:51:44.607Z - {"id":1,"fuel":1230,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":108}
+2023-11-18T22:51:45.595Z - {"id":1,"fuel":1200,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":108}
+2023-11-18T22:51:45.780Z - {"id":1,"fuel":1170,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":109}
+2023-11-18T22:51:46.605Z - {"id":1,"fuel":1110,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":110}
+2023-11-18T22:51:47.261Z - {"id":1,"fuel":1140,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":109}
+2023-11-18T22:51:47.555Z - {"id":1,"fuel":1080,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":110}
+2023-11-18T22:51:47.746Z - {"id":1,"fuel":1050,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":111}
+2023-11-18T22:51:48.672Z - {"id":1,"fuel":990,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":112}
+2023-11-18T22:51:48.712Z - {"id":1,"fuel":1020,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":111}
+2023-11-18T22:51:49.567Z - {"id":1,"fuel":960,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":112}
+2023-11-18T22:51:49.623Z - {"id":1,"fuel":930,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":113}
+2023-11-18T22:51:50.536Z - {"id":1,"fuel":900,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":113}
+2023-11-18T22:51:50.651Z - {"id":1,"fuel":870,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":114}
+2023-11-18T22:51:51.571Z - {"id":1,"fuel":840,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":114}
+2023-11-18T22:51:51.748Z - {"id":1,"fuel":810,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":115}
+2023-11-18T22:51:52.622Z - {"id":1,"fuel":750,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":116}
+2023-11-18T22:51:52.777Z - {"id":1,"fuel":780,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":115}
+2023-11-18T22:51:53.455Z - {"id":1,"fuel":720,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":116}
+2023-11-18T22:51:53.623Z - {"id":1,"fuel":690,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":117}
+2023-11-18T22:51:54.522Z - {"id":1,"fuel":660,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":117}
+2023-11-18T22:51:54.799Z - {"id":1,"fuel":630,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":118}
+2023-11-18T22:51:55.574Z - {"id":1,"fuel":570,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":119}
+2023-11-18T22:51:55.676Z - {"id":1,"fuel":600,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":118}
+2023-11-18T22:51:56.449Z - {"id":1,"fuel":540,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":119}
+2023-11-18T22:51:56.727Z - {"id":1,"fuel":510,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":120}
+2023-11-18T22:51:57.662Z - {"id":1,"fuel":450,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":121}
+2023-11-18T22:51:57.745Z - {"id":1,"fuel":480,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":120}
+2023-11-18T22:51:58.480Z - {"id":1,"fuel":420,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":121}
+2023-11-18T22:51:58.670Z - {"id":1,"fuel":390,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":122}
+2023-11-18T22:51:59.696Z - {"id":1,"fuel":360,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":122}
+2023-11-18T22:51:59.789Z - {"id":1,"fuel":330,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":123}
+2023-11-18T22:52:00.352Z - {"id":1,"fuel":270,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":124}
+2023-11-18T22:52:00.692Z - {"id":1,"fuel":300,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":123}
+2023-11-18T22:52:01.631Z - {"id":1,"fuel":210,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":125}
+2023-11-18T22:52:02.601Z - {"id":1,"fuel":240,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":124}
+2023-11-18T22:52:02.654Z - {"id":1,"fuel":180,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":125}
+2023-11-18T22:52:02.718Z - {"id":1,"fuel":150,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":126}
+2023-11-18T22:52:03.638Z - {"id":1,"fuel":120,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":126}
+2023-11-18T22:52:03.714Z - {"id":1,"fuel":90,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":127}
+2023-11-18T22:52:04.544Z - {"id":1,"fuel":60,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":127}
+2023-11-18T22:52:04.711Z - {"id":1,"fuel":30,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":128}
+2023-11-18T22:52:05.520Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":128}
+2023-11-18T22:52:05.608Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":129}
+2023-11-18T22:52:06.674Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":129}
+2023-11-18T22:52:06.773Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":130}
+2023-11-18T22:52:07.650Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":130}
+2023-11-18T22:52:07.690Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":131}
+2023-11-18T22:52:08.579Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":131}
+2023-11-18T22:52:08.632Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":132}
+2023-11-18T22:52:09.531Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":132}
+2023-11-18T22:52:09.723Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":133}
+2023-11-18T22:52:10.713Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":133}
+2023-11-18T22:52:10.762Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":134}
+2023-11-18T22:52:11.716Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":134}
+2023-11-18T22:52:11.740Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":135}
+2023-11-18T22:52:12.705Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":135}
+2023-11-18T22:52:12.737Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":136}
+2023-11-18T22:52:13.535Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":136}
+2023-11-18T22:52:13.723Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":137}
+2023-11-18T22:52:14.394Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":137}
+2023-11-18T22:52:14.796Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":138}
+2023-11-18T22:52:15.678Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":139}
+2023-11-18T22:52:15.786Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":138}
+2023-11-18T22:52:16.575Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":139}
+2023-11-18T22:52:16.651Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":140}
+2023-11-18T22:52:17.685Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":140}
+2023-11-18T22:52:17.712Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":141}
+2023-11-18T22:52:18.683Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":141}
+2023-11-18T22:52:18.747Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":142}
+2023-11-18T22:52:19.704Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":142}
+2023-11-18T22:52:19.738Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":143}
+2023-11-18T22:52:20.657Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":143}
+2023-11-18T22:52:20.694Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":144}
+2023-11-18T22:52:21.552Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":144}
+2023-11-18T22:52:21.699Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":145}
+2023-11-18T22:52:22.623Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":145}
+2023-11-18T22:52:22.702Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":146}
+2023-11-18T22:52:23.628Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":146}
+2023-11-18T22:52:23.790Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":147}
+2023-11-18T22:52:24.760Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":148}
+2023-11-18T22:52:24.795Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":147}
+2023-11-18T22:52:25.566Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":148}
+2023-11-18T22:52:25.762Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":149}
+2023-11-18T22:52:26.673Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":149}
+2023-11-18T22:52:26.693Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":150}
+2023-11-18T22:52:27.607Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":151}
+2023-11-18T22:52:27.623Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":150}
+2023-11-18T22:52:28.528Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":151}
+2023-11-18T22:52:28.699Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":152}
+2023-11-18T22:52:29.704Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":153}
+2023-11-18T22:52:29.745Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":152}
+2023-11-18T22:52:30.679Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":153}
+2023-11-18T22:52:30.695Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":154}
+2023-11-18T22:52:31.673Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":155}
+2023-11-18T22:52:32.291Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":155}
+2023-11-18T22:52:32.386Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":154}
+2023-11-18T22:52:32.634Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":156}
+2023-11-18T22:52:33.574Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":156}
+2023-11-18T22:52:33.685Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":157}
+2023-11-18T22:52:34.585Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":158}
+2023-11-18T22:52:35.179Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":157}
+2023-11-18T22:52:35.291Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":158}
+2023-11-18T22:52:35.747Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":159}
+2023-11-18T22:52:36.653Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":159}
+2023-11-18T22:52:36.659Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":160}
+2023-11-18T22:52:37.529Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":160}
+2023-11-18T22:52:37.700Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":161}
+2023-11-18T22:52:38.744Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":161}
+2023-11-18T22:52:38.792Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":162}
+2023-11-18T22:52:39.710Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":163}
+2023-11-18T22:52:39.755Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":162}
+2023-11-18T22:52:40.717Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":163}
+2023-11-18T22:52:40.734Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":164}
+2023-11-18T22:52:41.679Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":165}
+2023-11-18T22:52:41.743Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":164}
+2023-11-18T22:52:42.604Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":165}
+2023-11-18T22:52:42.632Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":166}
+2023-11-18T22:52:43.558Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":166}
+2023-11-18T22:52:43.699Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":167}
+2023-11-18T22:52:44.641Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":167}
+2023-11-18T22:52:44.657Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":168}
+2023-11-18T22:52:45.501Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":168}
+2023-11-18T22:52:45.668Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":169}
+2023-11-18T22:52:46.576Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":169}
+2023-11-18T22:52:46.734Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":170}
+2023-11-18T22:52:47.694Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":170}
+2023-11-18T22:52:47.740Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":171}
+2023-11-18T22:52:48.723Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":171}
+2023-11-18T22:52:48.750Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":172}
+2023-11-18T22:52:49.693Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":172}
+2023-11-18T22:52:49.806Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":173}
+2023-11-18T22:52:50.614Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":173}
+2023-11-18T22:52:50.720Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":174}
+2023-11-18T22:52:51.514Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":174}
+2023-11-18T22:52:51.638Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":175}
+2023-11-18T22:52:52.610Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":175}
+2023-11-18T22:52:52.701Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":176}
+2023-11-18T22:52:53.640Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":176}
+2023-11-18T22:52:53.782Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":177}
+2023-11-18T22:52:54.669Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":178}
+2023-11-18T22:52:54.747Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":177}
+2023-11-18T22:52:55.560Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":178}
+2023-11-18T22:52:55.767Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":179}
+2023-11-18T22:52:56.680Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":179}
+2023-11-18T22:52:56.703Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":180}
+2023-11-18T22:52:57.637Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":180}
+2023-11-18T22:52:57.733Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":181}
+2023-11-18T22:52:58.654Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":181}
+2023-11-18T22:52:58.737Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":182}
+2023-11-18T22:52:59.615Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":182}
+2023-11-18T22:52:59.787Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":183}
+2023-11-18T22:53:00.641Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":183}
+2023-11-18T22:53:00.790Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":184}
+2023-11-18T22:53:01.649Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":185}
+2023-11-18T22:53:01.728Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":184}
+2023-11-18T22:53:02.578Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":185}
+2023-11-18T22:53:02.749Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":186}
+2023-11-18T22:53:03.684Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":186}
+2023-11-18T22:53:03.777Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":187}
+2023-11-18T22:53:04.637Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":187}
+2023-11-18T22:53:04.689Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":188}
+2023-11-18T22:53:05.601Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":188}
+2023-11-18T22:53:05.762Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":189}
+2023-11-18T22:53:06.627Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":190}
+2023-11-18T22:53:06.756Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":189}
+2023-11-18T22:53:07.696Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":190}
+2023-11-18T22:53:07.754Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":191}
+2023-11-18T22:53:08.669Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":191}
+2023-11-18T22:53:08.752Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":192}
+2023-11-18T22:53:09.616Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":192}
+2023-11-18T22:53:09.649Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":193}
+2023-11-18T22:53:10.583Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":193}
+2023-11-18T22:53:10.786Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":194}
+2023-11-18T22:53:11.661Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":194}
+2023-11-18T22:53:11.696Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":195}
+2023-11-18T22:53:12.664Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":195}
+2023-11-18T22:53:12.780Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":196}

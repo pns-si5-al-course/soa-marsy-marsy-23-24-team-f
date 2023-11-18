@@ -2226,3 +2226,315 @@
 2023-11-18T22:33:35.009Z - {"passengers":0,"altitude":124547.76,"weight":100,"speed":2707.56,"status":"In flight"}
 2023-11-18T22:33:35.968Z - {"passengers":0,"altitude":127270.03499999999,"weight":100,"speed":2736.99,"status":"In flight"}
 2023-11-18T22:33:36.997Z - {"passengers":0,"altitude":130021.74,"weight":100,"speed":2766.42,"status":"In flight"}
+2023-11-18T22:49:50.673Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T22:49:50.751Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}
+2023-11-18T22:49:50.990Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T22:49:53.430Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:49:54.036Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:49:54.093Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Liftoff"}
+2023-11-18T22:49:55.070Z - {"passengers":0,"altitude":14.715,"weight":100,"speed":29.43,"status":"In flight"}
+2023-11-18T22:49:56.078Z - {"passengers":0,"altitude":58.86,"weight":100,"speed":58.86,"status":"In flight"}
+2023-11-18T22:49:57.042Z - {"passengers":0,"altitude":132.435,"weight":100,"speed":88.28999999999999,"status":"In flight"}
+2023-11-18T22:49:58.100Z - {"passengers":0,"altitude":235.44,"weight":100,"speed":117.72,"status":"In flight"}
+2023-11-18T22:49:59.127Z - {"passengers":0,"altitude":367.875,"weight":100,"speed":147.15,"status":"In flight"}
+2023-11-18T22:50:00.127Z - {"passengers":0,"altitude":529.74,"weight":100,"speed":176.57999999999998,"status":"In flight"}
+2023-11-18T22:50:01.170Z - {"passengers":0,"altitude":721.035,"weight":100,"speed":206.01,"status":"In flight"}
+2023-11-18T22:50:02.084Z - {"passengers":0,"altitude":941.76,"weight":100,"speed":235.44,"status":"In flight"}
+2023-11-18T22:50:03.097Z - {"passengers":0,"altitude":1191.915,"weight":100,"speed":264.87,"status":"In flight"}
+2023-11-18T22:50:04.104Z - {"passengers":0,"altitude":1471.5,"weight":100,"speed":294.3,"status":"In flight"}
+2023-11-18T22:50:05.129Z - {"passengers":0,"altitude":1780.515,"weight":100,"speed":323.73,"status":"In flight"}
+2023-11-18T22:50:06.191Z - {"passengers":0,"altitude":2118.96,"weight":100,"speed":353.15999999999997,"status":"In flight"}
+2023-11-18T22:50:07.117Z - {"passengers":0,"altitude":2486.835,"weight":100,"speed":382.59,"status":"In flight"}
+2023-11-18T22:50:08.116Z - {"passengers":0,"altitude":2884.14,"weight":100,"speed":412.02,"status":"In flight"}
+2023-11-18T22:50:09.097Z - {"passengers":0,"altitude":3310.875,"weight":100,"speed":441.45,"status":"In flight"}
+2023-11-18T22:50:10.167Z - {"passengers":0,"altitude":3767.04,"weight":100,"speed":470.88,"status":"In flight"}
+2023-11-18T22:50:11.070Z - {"passengers":0,"altitude":4252.635,"weight":100,"speed":500.31,"status":"In flight"}
+2023-11-18T22:50:12.175Z - {"passengers":0,"altitude":4767.66,"weight":100,"speed":529.74,"status":"In flight"}
+2023-11-18T22:50:13.049Z - {"passengers":0,"altitude":5312.115,"weight":100,"speed":559.17,"status":"In flight"}
+2023-11-18T22:50:14.178Z - {"passengers":0,"altitude":5886,"weight":100,"speed":588.6,"status":"In flight"}
+2023-11-18T22:50:15.149Z - {"passengers":0,"altitude":6489.315,"weight":100,"speed":618.03,"status":"In flight"}
+2023-11-18T22:50:16.215Z - {"passengers":0,"altitude":7122.06,"weight":100,"speed":647.46,"status":"In flight"}
+2023-11-18T22:50:17.110Z - {"passengers":0,"altitude":7784.235,"weight":100,"speed":676.89,"status":"In flight"}
+2023-11-18T22:50:18.056Z - {"passengers":0,"altitude":8475.84,"weight":100,"speed":706.3199999999999,"status":"In flight"}
+2023-11-18T22:50:19.170Z - {"passengers":0,"altitude":9196.875,"weight":100,"speed":735.75,"status":"In flight"}
+2023-11-18T22:50:20.095Z - {"passengers":0,"altitude":9947.34,"weight":100,"speed":765.18,"status":"In flight"}
+2023-11-18T22:50:21.138Z - {"passengers":0,"altitude":10727.235,"weight":100,"speed":794.61,"status":"In flight"}
+2023-11-18T22:50:22.219Z - {"passengers":0,"altitude":11536.56,"weight":100,"speed":824.04,"status":"In flight"}
+2023-11-18T22:50:23.162Z - {"passengers":0,"altitude":12375.315,"weight":100,"speed":853.47,"status":"In flight"}
+2023-11-18T22:50:24.104Z - {"passengers":0,"altitude":13243.5,"weight":100,"speed":882.9,"status":"In flight"}
+2023-11-18T22:50:25.079Z - {"passengers":0,"altitude":14141.115,"weight":100,"speed":912.33,"status":"In flight"}
+2023-11-18T22:50:26.059Z - {"passengers":0,"altitude":15068.16,"weight":100,"speed":941.76,"status":"In flight"}
+2023-11-18T22:50:27.117Z - {"passengers":0,"altitude":16024.634999999998,"weight":100,"speed":971.1899999999999,"status":"In flight"}
+2023-11-18T22:50:28.094Z - {"passengers":0,"altitude":17010.54,"weight":100,"speed":1000.62,"status":"In flight"}
+2023-11-18T22:50:29.035Z - {"passengers":0,"altitude":18025.875,"weight":100,"speed":1030.05,"status":"In flight"}
+2023-11-18T22:50:30.148Z - {"passengers":0,"altitude":19070.64,"weight":100,"speed":1059.48,"status":"In flight"}
+2023-11-18T22:50:31.031Z - {"passengers":0,"altitude":20144.835000000003,"weight":100,"speed":1088.91,"status":"In flight"}
+2023-11-18T22:50:32.081Z - {"passengers":0,"altitude":21248.46,"weight":100,"speed":1118.34,"status":"In flight"}
+2023-11-18T22:50:33.059Z - {"passengers":0,"altitude":22381.515,"weight":100,"speed":1147.77,"status":"In flight"}
+2023-11-18T22:50:34.071Z - {"passengers":0,"altitude":23544,"weight":100,"speed":1177.2,"status":"In flight"}
+2023-11-18T22:50:35.238Z - {"passengers":0,"altitude":24735.914999999997,"weight":100,"speed":1206.6299999999999,"status":"In flight"}
+2023-11-18T22:50:36.110Z - {"passengers":0,"altitude":25957.26,"weight":100,"speed":1236.06,"status":"In flight"}
+2023-11-18T22:50:37.147Z - {"passengers":0,"altitude":27208.035,"weight":100,"speed":1265.49,"status":"In flight"}
+2023-11-18T22:50:38.187Z - {"passengers":0,"altitude":28488.24,"weight":100,"speed":1294.92,"status":"In flight"}
+2023-11-18T22:50:39.081Z - {"passengers":0,"altitude":29797.874999999996,"weight":100,"speed":1324.35,"status":"In flight"}
+2023-11-18T22:50:40.121Z - {"passengers":0,"altitude":31136.94,"weight":100,"speed":1353.78,"status":"In flight"}
+2023-11-18T22:50:41.090Z - {"passengers":0,"altitude":32505.435,"weight":100,"speed":1383.21,"status":"In flight"}
+2023-11-18T22:50:42.033Z - {"passengers":0,"altitude":33903.36,"weight":100,"speed":1412.6399999999999,"status":"In flight"}
+2023-11-18T22:50:43.204Z - {"passengers":0,"altitude":35330.715,"weight":100,"speed":1442.07,"status":"In flight"}
+2023-11-18T22:50:44.113Z - {"passengers":0,"altitude":36787.5,"weight":100,"speed":1471.5,"status":"In flight"}
+2023-11-18T22:50:45.136Z - {"passengers":0,"altitude":38273.715000000004,"weight":100,"speed":1500.93,"status":"In flight"}
+2023-11-18T22:50:45.864Z - {"passengers":0,"altitude":39789.36,"weight":100,"speed":1530.36,"status":"In flight"}
+2023-11-18T22:50:46.149Z - {"passengers":0,"altitude":39789.36,"weight":100,"speed":1530.36,"status":"In flight"}
+2023-11-18T22:50:47.211Z - {"passengers":0,"altitude":41334.435,"weight":100,"speed":1559.79,"status":"In flight"}
+2023-11-18T22:50:48.217Z - {"passengers":0,"altitude":42908.94,"weight":100,"speed":1589.22,"status":"In flight"}
+2023-11-18T22:50:49.105Z - {"passengers":0,"altitude":44512.875,"weight":100,"speed":1618.65,"status":"In flight"}
+2023-11-18T22:50:50.158Z - {"passengers":0,"altitude":46146.24,"weight":100,"speed":1648.08,"status":"In flight"}
+2023-11-18T22:50:51.028Z - {"passengers":0,"altitude":47809.034999999996,"weight":100,"speed":1677.51,"status":"In flight"}
+2023-11-18T22:50:52.142Z - {"passengers":0,"altitude":49501.26,"weight":100,"speed":1706.94,"status":"In flight"}
+2023-11-18T22:50:53.180Z - {"passengers":0,"altitude":51222.91499999999,"weight":100,"speed":1736.37,"status":"In flight"}
+2023-11-18T22:50:54.089Z - {"passengers":0,"altitude":52974,"weight":100,"speed":1765.8,"status":"In flight"}
+2023-11-18T22:50:55.172Z - {"passengers":0,"altitude":54754.515,"weight":100,"speed":1795.23,"status":"In flight"}
+2023-11-18T22:50:56.117Z - {"passengers":0,"altitude":56564.46,"weight":100,"speed":1824.66,"status":"In flight"}
+2023-11-18T22:50:57.068Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"In flight"}
+2023-11-18T22:50:58.014Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T22:50:58.133Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"In flight"}
+2023-11-18T22:50:59.011Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T22:50:59.085Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T22:50:59.719Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T22:51:00.706Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"Second engine start"}
+2023-11-18T22:51:01.362Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"Second engine start"}
+2023-11-18T22:51:01.675Z - {"passengers":0,"altitude":51819.625,"weight":100,"speed":1594.45,"status":"MaxQ"}
+2023-11-18T22:51:02.765Z - {"passengers":0,"altitude":64098.53999999999,"weight":100,"speed":1942.3799999999999,"status":"In flight"}
+2023-11-18T22:51:03.682Z - {"passengers":0,"altitude":66055.635,"weight":100,"speed":1971.81,"status":"In flight"}
+2023-11-18T22:51:04.342Z - {"passengers":0,"altitude":68042.16,"weight":100,"speed":2001.24,"status":"In flight"}
+2023-11-18T22:51:04.653Z - {"passengers":0,"altitude":68042.16,"weight":100,"speed":2001.24,"status":"In flight"}
+2023-11-18T22:51:05.670Z - {"passengers":0,"altitude":70058.115,"weight":100,"speed":2030.67,"status":"In flight"}
+2023-11-18T22:51:06.645Z - {"passengers":0,"altitude":72103.5,"weight":100,"speed":2060.1,"status":"In flight"}
+2023-11-18T22:51:07.586Z - {"passengers":0,"altitude":74178.315,"weight":100,"speed":2089.53,"status":"In flight"}
+2023-11-18T22:51:08.736Z - {"passengers":0,"altitude":76282.56,"weight":100,"speed":2118.96,"status":"In flight"}
+2023-11-18T22:51:09.741Z - {"passengers":0,"altitude":78416.235,"weight":100,"speed":2148.39,"status":"In flight"}
+2023-11-18T22:51:10.642Z - {"passengers":0,"altitude":80579.34000000001,"weight":100,"speed":2177.82,"status":"In flight"}
+2023-11-18T22:51:11.670Z - {"passengers":0,"altitude":82771.875,"weight":100,"speed":2207.25,"status":"In flight"}
+2023-11-18T22:51:12.629Z - {"passengers":0,"altitude":84993.84,"weight":100,"speed":2236.68,"status":"In flight"}
+2023-11-18T22:51:13.704Z - {"passengers":0,"altitude":87245.235,"weight":100,"speed":2266.11,"status":"In flight"}
+2023-11-18T22:51:14.727Z - {"passengers":0,"altitude":89526.06,"weight":100,"speed":2295.54,"status":"In flight"}
+2023-11-18T22:51:15.683Z - {"passengers":0,"altitude":91836.31499999999,"weight":100,"speed":2324.97,"status":"In flight"}
+2023-11-18T22:51:16.735Z - {"passengers":0,"altitude":94176,"weight":100,"speed":2354.4,"status":"In flight"}
+2023-11-18T22:51:17.652Z - {"passengers":0,"altitude":96545.11499999999,"weight":100,"speed":2383.83,"status":"In flight"}
+2023-11-18T22:51:18.659Z - {"passengers":0,"altitude":98943.65999999999,"weight":100,"speed":2413.2599999999998,"status":"In flight"}
+2023-11-18T22:51:19.662Z - {"passengers":0,"altitude":101371.63500000001,"weight":100,"speed":2442.69,"status":"In flight"}
+2023-11-18T22:51:20.694Z - {"passengers":0,"altitude":103829.04,"weight":100,"speed":2472.12,"status":"In flight"}
+2023-11-18T22:51:21.623Z - {"passengers":0,"altitude":106315.87500000001,"weight":100,"speed":2501.55,"status":"In flight"}
+2023-11-18T22:51:22.741Z - {"passengers":0,"altitude":108832.14,"weight":100,"speed":2530.98,"status":"In flight"}
+2023-11-18T22:51:23.688Z - {"passengers":0,"altitude":111377.83499999999,"weight":100,"speed":2560.41,"status":"In flight"}
+2023-11-18T22:51:24.604Z - {"passengers":0,"altitude":113952.96,"weight":100,"speed":2589.84,"status":"In flight"}
+2023-11-18T22:51:25.625Z - {"passengers":0,"altitude":116557.515,"weight":100,"speed":2619.27,"status":"In flight"}
+2023-11-18T22:51:26.605Z - {"passengers":0,"altitude":119191.49999999999,"weight":100,"speed":2648.7,"status":"In flight"}
+2023-11-18T22:51:27.589Z - {"passengers":0,"altitude":121854.91500000001,"weight":100,"speed":2678.13,"status":"In flight"}
+2023-11-18T22:51:28.643Z - {"passengers":0,"altitude":124547.76,"weight":100,"speed":2707.56,"status":"In flight"}
+2023-11-18T22:51:29.603Z - {"passengers":0,"altitude":127270.03499999999,"weight":100,"speed":2736.99,"status":"In flight"}
+2023-11-18T22:51:30.650Z - {"passengers":0,"altitude":130021.74,"weight":100,"speed":2766.42,"status":"In flight"}
+2023-11-18T22:51:31.703Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:32.579Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:32.736Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:33.757Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:34.315Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:34.650Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:34.787Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:35.605Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:35.692Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:36.330Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:36.625Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:37.100Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:37.715Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:38.407Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:39.264Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:39.409Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:39.732Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:40.600Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:40.767Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:41.079Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:41.365Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:42.051Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:42.668Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:42.886Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:43.635Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:43.652Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:44.526Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:44.607Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:45.595Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:45.779Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:46.605Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:47.261Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:47.555Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:47.746Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:48.672Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:48.712Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:49.567Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:49.623Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:50.535Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:50.651Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:51.571Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:51.748Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:52.621Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:52.777Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:53.455Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:53.623Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:54.522Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:54.799Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:55.574Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:55.676Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:56.448Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:56.726Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:57.662Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:57.745Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:58.480Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:58.670Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:51:59.696Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:51:59.789Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:00.351Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:00.692Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:01.631Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:02.601Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:02.654Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:02.718Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:03.638Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:03.714Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:04.544Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:04.710Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:05.520Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:05.608Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:06.674Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:06.773Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:07.649Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:07.690Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:08.579Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:08.632Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:09.531Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:09.722Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:10.713Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:10.762Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:11.716Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:11.740Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:12.705Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:12.737Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:13.535Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:13.723Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:14.394Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:14.796Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:15.678Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:15.786Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:16.575Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:16.651Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:17.685Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:17.712Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:18.683Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:18.747Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:19.704Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:19.738Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:20.657Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:20.694Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:21.552Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:21.698Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:22.622Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:22.702Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:23.628Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:23.790Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:24.760Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:24.795Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:25.566Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:25.762Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:26.673Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:26.693Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:27.607Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:27.623Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:28.528Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:28.699Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:29.704Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:29.745Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:30.679Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:30.695Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:31.673Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:32.291Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:32.386Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:32.634Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:33.574Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:33.685Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:34.585Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:35.179Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:35.291Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:35.746Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:36.653Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:36.659Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:37.529Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:37.700Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:38.744Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:38.791Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:39.710Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:39.755Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:40.717Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:40.734Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:41.679Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:41.743Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:42.604Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:42.632Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:43.558Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:43.699Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:44.641Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:44.657Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:45.501Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:45.668Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:46.576Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:46.734Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:47.693Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:47.740Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:48.723Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:48.749Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:49.693Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:49.806Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:50.613Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:50.720Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:51.514Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:51.638Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:52.610Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:52.701Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:53.640Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:53.782Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:54.669Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:54.747Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:55.560Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:55.767Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:56.680Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:56.703Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:57.637Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:57.732Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:58.654Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:58.736Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:52:59.614Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:52:59.787Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:00.640Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:00.790Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:01.648Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:01.728Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:02.578Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:02.749Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:03.684Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:03.777Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:04.637Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:04.689Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:05.601Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:05.762Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:06.627Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:06.756Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:07.695Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:07.753Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:08.669Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:08.751Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:09.616Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:09.649Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:10.583Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:10.786Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:11.660Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:11.696Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
+2023-11-18T22:53:12.664Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Payload deployed"}
+2023-11-18T22:53:12.780Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}

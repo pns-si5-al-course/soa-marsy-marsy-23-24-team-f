@@ -41,6 +41,7 @@ const FlightStatus = {
     mainEngineStarted: false,
     maxQ: false,
     isFairingSeparated: false,
+    secondEngineCutOff: false,
 }
 
 const status_update = {
@@ -94,8 +95,9 @@ async function handleAltitudeChange(logs) {
         status_update.status = 'Fairing separation';
         FlightStatus.isFairingSeparated = true;
 
-    } else if (logs.payload.altitude >= 130_000){
+    } else if (logs.payload.altitude >= 130_000 && FlightStatus.secondEngineCutOff === false) {
         status_update.status = 'Second engine cut-off';
+        FlightStatus.secondEngineCutOff = true;
     }
 }
 
