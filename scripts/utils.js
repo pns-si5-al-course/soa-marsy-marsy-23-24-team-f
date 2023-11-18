@@ -54,8 +54,7 @@ export const post = async(url, data) => {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                Authorization: `${authToken}`,
+                "Content-Type": "application/json"
             },
             body: data ? JSON.stringify(data) : null,
         });
@@ -66,7 +65,7 @@ export const post = async(url, data) => {
             );
         }
 
-        return response;
+        return response.json();
     } catch (error) {
         console.error(error.message);
         throw error;

@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { spawn } from 'child_process';
 import { log } from "./logger.js";
 import { readLastLine, readSync } from "./logReader.js";
+import { stat } from "fs";
 
 dotenv.config();
 
@@ -33,13 +34,21 @@ const logs_paths = {
     telemetries: process.env.TELEMETRIES_LOGS,
 }
 
-const status = {
+const FlightStatus = {
     rocketReady: false,
     weatherReady: false,
     stageSeparated: false,
+    mainEngineStarted: false,
 }
 
+const status_update = {
+    rocket: null,
+    status: ''
+}
+
+
 let interval= null;
+let rocket_1 = null;
 
 // ------------------ SOCKET ------------------
 const socket = io.connect(process.env.WS_URL);
@@ -67,8 +76,24 @@ socket.on('logs', (data) => {
     // It receives all the logs from the mission, sent by the rocket
     // RICHARD VIEW
     const logs = JSON.parse(data).body;
-    handleStatusChange(logs);
+    if(logs.payload){
+        handleAltitudeChange(logs);
+        handleStatusChange(logs);
+    }
 })
+
+async function handleAltitudeChange(logs) {
+    
+    if(logs.payload.altitude >= 60_000 && logs.payload.altitude <  70_000) {
+        status_update.status = "MaxQ";
+    }
+    else if(logs.payload.altitude >= 90_000 && logs.payload.altitude < 130_00){
+        status_update.status = 'Fairing separation';
+
+    } else if (logs.payload.altitude >= 130_000){
+        status_update.status = 'Second engine cut-off';
+    }
+}
 
 
 
@@ -87,56 +112,89 @@ async function handleStatusChange(logs) {
 
     // full payload data
     log(JSON.stringify(logs), 'logs/telemetries.log');
-    if(logs.stages[0].status === 'Separated' && status.stageSeparated === false) {
-        status.stageSeparated = true;
+
+    // console.log(chalk.yellow('----------------------------------------'));
+    // //console.log(logs.stages[0]);
+    // console.log(chalk.yellow('----------------------------------------'));
+
+    if(logs.status === 'Main engine cut-off' && FlightStatus.mainEngineStarted === false) {
         console.log(chalk.green('----------------------------------------'));
-        console.log(chalk.green('---First Stage Separated Successfully---'));
+        console.log(chalk.green('---Main Engine Cut-Off Successfully-----'));
         console.log(chalk.green('----------------------------------------'));
-    }
-    else if(logs.payload.status === 'Deployed' || logs.payload.status === 'Payload deployed') {
-        console.log(chalk.green('----------------------------------------'));
-        console.log(chalk.green('------Payload Deployed Successfully-----'));
-        console.log(chalk.green('----------------------------------------'));
-        console.log('Richard : mission terminée');
-        console.log('Stop simulation');
-        await post(rocketDeptServiceUrl + "/stop-simulation", {});
         clearInterval(interval);
-        process.exit(0);
+        console.log('First stage separation');
+        FlightStatus.mainEngineStarted = true;
+        await sleep(2000);
+        status_update.rocket = logs;
+        status_update.status = 'Second engine start';
+        startUpdatinStatus();
+
+        await sleep(1000);
+        status_update.status = 'In flight';
     }
-    if (scenario_id === '2' || scenario_id === '3') {
-        if(log.status === 'First Stage Seperation Failed') {
-            console.log(chalk.red('First Stage Seperation Failed'));
-            if (scenario_id === '3') {console.log('Richard : ordre de destruction de la fusée');}
-            await post(rocketDeptServiceUrl + "/stop-simulation", {});
-            await post(missionCommanderUrl + "/rocket/destroy", {});
-            console.log(chalk.red('Rocket is going to explode'));
-            console.log(chalk.red('Payload is destroyed'));
-            console.log(chalk.red('Rocket is destroyed'));
-            console.log(chalk.red('Mission is failed'));
-            clearInterval(interval);
-            process.exit(0);
-        }
 
-        const int_fuel = setInterval(async () => {
-            const fuel_1 = await get(rocketServiceUrl + "/rocket/fuelConsumption/0", {});
-            const fuel_2 = await get(rocketServiceUrl + "/rocket/fuelConsumption/1", {});
+    if(logs.status === 'Stage separation') {
+        console.log(chalk.green('----------------------------------------'));
+        console.log(chalk.green('---First Stage Separation Successfully--'));
+        console.log(chalk.green('----------------------------------------'));
+    }
 
-            if(parseInt(fuel_1) > 150 || parseInt(fuel_2) > 150) {
-                clearInterval(interval);
-                clearInterval(int_fuel);
-                await post(rocketDeptServiceUrl + "/stop-simulation", {});
-                await post(missionCommanderUrl + "/rocket/destroy", {});
-                console.log(chalk.red('FUEL LEAK DETECTED'));
-                console.log(chalk.red('--- CRITICAL FAILURE ---'));
-                console.log(chalk.red('--- SELF DESTRUCT ---'));
-                console.log(chalk.red('Payload is destroyed'));
-                console.log(chalk.red('Rocket is destroyed'));
-                console.log(chalk.red('Mission is failed'));
+    if (logs.status === "Fairing separation") {
+        console.log(chalk.green('----------------------------------------'));
+        console.log(chalk.green('---Fairing Separation Successfully-----'));
+        console.log(chalk.green('----------------------------------------'));
+    }
+
+    // if(logs.stages[0].status === 'Separated' && status.stageSeparated === false) {
+    //     status.stageSeparated = true;
+    //     console.log(chalk.green('----------------------------------------'));
+    //     console.log(chalk.green('---First Stage Separated Successfully---'));
+    //     console.log(chalk.green('----------------------------------------'));
+    // }
+    // else if(logs.payload.status === 'Deployed' || logs.payload.status === 'Payload deployed') {
+    //     console.log(chalk.green('----------------------------------------'));
+    //     console.log(chalk.green('------Payload Deployed Successfully-----'));
+    //     console.log(chalk.green('----------------------------------------'));
+    //     console.log('Richard : mission terminée');
+    //     console.log('Stop simulation');
+    //     await post(rocketDeptServiceUrl + "/stop-simulation", {});
+    //     clearInterval(interval);
+    //     process.exit(0);
+    // }
+    // if (scenario_id === '2' || scenario_id === '3') {
+    //     if(log.status === 'First Stage Seperation Failed') {
+    //         console.log(chalk.red('First Stage Seperation Failed'));
+    //         if (scenario_id === '3') {console.log('Richard : ordre de destruction de la fusée');}
+    //         await post(rocketDeptServiceUrl + "/stop-simulation", {});
+    //         await post(missionCommanderUrl + "/rocket/destroy", {});
+    //         console.log(chalk.red('Rocket is going to explode'));
+    //         console.log(chalk.red('Payload is destroyed'));
+    //         console.log(chalk.red('Rocket is destroyed'));
+    //         console.log(chalk.red('Mission is failed'));
+    //         clearInterval(interval);
+    //         process.exit(0);
+    //     }
+
+    //     const int_fuel = setInterval(async () => {
+    //         const fuel_1 = await get(rocketServiceUrl + "/rocket/fuelConsumption/0", {});
+    //         const fuel_2 = await get(rocketServiceUrl + "/rocket/fuelConsumption/1", {});
+
+    //         if(parseInt(fuel_1) > 150 || parseInt(fuel_2) > 150) {
+    //             clearInterval(interval);
+    //             clearInterval(int_fuel);
+    //             await post(rocketDeptServiceUrl + "/stop-simulation", {});
+    //             await post(missionCommanderUrl + "/rocket/destroy", {});
+    //             console.log(chalk.red('FUEL LEAK DETECTED'));
+    //             console.log(chalk.red('--- CRITICAL FAILURE ---'));
+    //             console.log(chalk.red('--- SELF DESTRUCT ---'));
+    //             console.log(chalk.red('Payload is destroyed'));
+    //             console.log(chalk.red('Rocket is destroyed'));
+    //             console.log(chalk.red('Mission is failed'));
                 
-                process.exit(0);
-            }
-        }, 1000)
-    }
+    //             process.exit(0);
+    //         }
+    //     }, 1000)
+    // }
 }
 
 
@@ -144,8 +202,7 @@ async function handleStatusChange(logs) {
 
 
 async function main() {
-    let rocket_1 = await get(rocketServiceUrl + "/rocket/example")
-
+    rocket_1 = await get(rocketServiceUrl + "/rocket/example")
     if (scenario_id === '1') {
         console.log(chalk.green.bgWhite('\n-------------------------------------'));
         console.log(chalk.green.bgWhite('--- SCENARIO 1: ORBITAL INSERTION ---'));
@@ -179,7 +236,7 @@ async function main() {
         console.log('Weather status : ', weatherStatus);
         await sleep(1000);
         if (weatherStatus.status === 'GO') {
-            status.weatherReady = true;
+            FlightStatus.weatherReady = true;
             console.log(chalk.green('Tory : weather is good'));
         } else {
             console.log(chalk.red('Tory : weather is not good'));
@@ -199,17 +256,21 @@ async function main() {
         if (rocketStatus.status === 'ok') {
             // Chargez la fusée avec le payload
             console.log('Richard : demande au département fusée de charger le payload');
-            console.log('-- POST mission-commander:3006/rocket/initiate-startup --');
+            console.log('-- POST '+ missionCommanderUrl+'/rocket/initiate-startup --');
 
-            const rocketLoaded = await post(missionCommanderUrl + "/rocket/initiate-startup", {
+            const request = 
+            {
                 rocket: rocket_1,
                 weatherDepartmentStatus: weatherStatus.status,
-                rocketDepartmentStatus: rocketStatus.status
-            });
+                rocketDepartmentStatus: 'GO'
+            }
+
+            const rocketLoaded = await post(missionCommanderUrl + "/rocket/initiate-startup", request)
+            
             console.log(chalk.gray('Payload chargé dans la fusée'));
             await sleep(1000);
             // Après avoir chargé le payload, considérez la fusée comme prête
-            status.rocketReady = true;
+            FlightStatus.rocketReady = true;
             console.log(chalk.green('Elon : la fusée est prête au lancement'));
             console.log(rocketLoaded);
             rocket_1 = rocketLoaded;
@@ -221,7 +282,7 @@ async function main() {
         console.log(chalk.white.bgBlack('-------------------------\n'))
         await sleep(2000);
         // Lancez la fusée si tous les systèmes sont prêts
-        if (status.rocketReady && status.weatherReady) {
+        if (FlightStatus.rocketReady && FlightStatus.weatherReady) {
             console.log(chalk.green('Tous les systèmes sont prêts !'));
             console.log('Richard : demande au rocket dept de lancer la fusée');
             console.log('-- POST mission-commander:3006/rocket/initiate-main-engine-start --');
@@ -230,21 +291,17 @@ async function main() {
 
             const rocket_engine_started = await post(missionCommanderUrl + '/rocket/initiate-main-engine-start', rocket_1);
             rocket_1 = rocket_engine_started;
+            let timestamp = new Date();
+            timestamp.setSeconds(timestamp.getSeconds() + 60);
+            rocket_1.timestamp = timestamp;
 
             const rocket_liftoff = await post(missionCommanderUrl + '/rocket/initiate-liftoff', rocket_1);
             rocket_1 = rocket_liftoff;
 
-            const status_update = {
-                rocket: rocket_1,
-                status: 'In flight'
-            }   
-
-            const rocket_in_flight = await post(rocketServiceUrl + '/rocket/status', status_update);
-
-            interval = setInterval(()=>{
-                readLastLine('logs/payload.log');
+            status_update.rocket = rocket_1;
+            status_update.status = 'In flight';
             
-            }, READ_INT);
+            startUpdatinStatus();
             await sleep(2000);
         }
 
@@ -261,3 +318,17 @@ async function main() {
 }
 
 main();
+
+
+
+async function startUpdatinStatus() {
+    interval = setInterval(async ()=>{
+        status_update.rocket.time += READ_INT/1000;   
+        const rocket_in_flight = await post(rocketServiceUrl + '/rocket/status', status_update);
+        status_update.rocket = rocket_in_flight;
+        console.log(status_update.rocket.stages);
+        console.log(status_update.status);
+        //readLastLine('logs/payload.log');
+        
+    }, READ_INT);
+}
