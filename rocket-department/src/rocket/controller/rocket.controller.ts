@@ -30,9 +30,9 @@ export class RocketController {
   @ApiResponse({ status: 400, description: 'Main engine start failed' })
   @Post('initiate-main-engine-start')
   @HttpCode(200)
-  initiateMainEngineStart(@Body() rocket: RocketDTO): Promise<RocketDTO> {
+  async initiateMainEngineStart(@Body() rocket: RocketDTO): Promise<RocketDTO> {
     try {
-      return this.rocketService.initiateMainEngineStart(rocket);
+      return await this.rocketService.initiateMainEngineStart(rocket);
     } catch (error) {
       throw new HttpException('Main engine start failed', HttpStatus.BAD_REQUEST);
     }
@@ -44,9 +44,9 @@ export class RocketController {
   @ApiResponse({ status: 400, description: 'Liftoff failed' })
   @Post('initiate-liftoff')
   @HttpCode(200)
-  initiateLiftoff(@Body() rocket: RocketDTO): Promise<RocketDTO> {
+  async initiateLiftoff(@Body() rocket: RocketDTO): Promise<RocketDTO> {
     try {
-      return this.rocketService.initiateLiftoff(rocket);
+      return await this.rocketService.initiateLiftoff(rocket);
     } catch (error) {
       throw new HttpException('Liftoff failed', HttpStatus.BAD_REQUEST);
     }

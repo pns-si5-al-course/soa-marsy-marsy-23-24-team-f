@@ -23,7 +23,7 @@ export class RocketService {
     console.log("Sending startup command.");
     try {
       const nrocket = await this.updateRocketStatus(rocket, "Rocket on internal power");
-      return await this.updateRocketStatus(nrocket, "Startup");
+      return this.updateRocketStatus(nrocket, "Startup");
     } catch (error) {
       console.error('Error fetching rocket status in startup:', error.message);
         throw error;
@@ -39,7 +39,7 @@ export class RocketService {
   async initiateMainEngineStart(rocket: RocketDTO): Promise<RocketDTO> {
     console.log("Sending main engine start command.");
     try {
-        return await this.updateRocketStatus(rocket, "Main engine start");
+        return this.updateRocketStatus(rocket, "Main engine start");
     } catch (error) {
         throw error;
     }
@@ -53,7 +53,7 @@ export class RocketService {
   */
   async initiateLiftoff(rocket: RocketDTO): Promise<RocketDTO> {
     try {
-        return await this.updateRocketStatus(rocket, "Liftoff");
+        return this.updateRocketStatus(rocket, "Liftoff");
     } catch (error) {
         throw error;
     }
