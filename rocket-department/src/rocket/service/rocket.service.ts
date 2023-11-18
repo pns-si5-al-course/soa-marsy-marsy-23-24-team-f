@@ -39,7 +39,7 @@ export class RocketService {
   async initiateMainEngineStart(rocket: RocketDTO): Promise<RocketDTO> {
     console.log("Sending main engine start command.");
     try {
-        return this.updateRocketStatus(rocket, "Main engine start");
+        return await this.updateRocketStatus(rocket, "Main engine start");
     } catch (error) {
         throw error;
     }
@@ -53,7 +53,7 @@ export class RocketService {
   */
   async initiateLiftoff(rocket: RocketDTO): Promise<RocketDTO> {
     try {
-        return this.updateRocketStatus(rocket, "Liftoff");
+        return await this.updateRocketStatus(rocket, "Liftoff");
     } catch (error) {
         throw error;
     }
