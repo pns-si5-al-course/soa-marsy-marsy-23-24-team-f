@@ -78,7 +78,10 @@ export class RocketController {
   @Post('/load')
   @HttpCode(201)
   loadPayload(@Body() rocket: RocketDTO): Promise<RocketDTO> {
-    return this.rocketService.loadRocket(rocket);
+    try {
+      return this.rocketService.loadRocket(rocket);
+    } catch (error) {
+      throw new HttpException('Payload loading failed', HttpStatus.BAD_REQUEST);
+    }
   }
-
 }
