@@ -51,6 +51,7 @@ export class RocketStatelessService {
                 } else if (rocket.time !== 0) {
                     throw new Error("Rocket is already launched");
                 }
+                break;
             case "Liftoff":  
                 if(rocket.status !== "Main engine start") {
                     throw new Error("Main engine is not started");
