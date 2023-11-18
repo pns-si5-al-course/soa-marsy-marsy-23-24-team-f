@@ -77,9 +77,9 @@ export class RocketController {
   @ApiResponse({ status: 201, description: 'Payload loaded', type: RocketDTO })
   @Post('/load')
   @HttpCode(201)
-  loadPayload(@Body() rocket: RocketDTO): Promise<RocketDTO> {
+  async loadPayload(@Body() rocket: RocketDTO): Promise<RocketDTO> {
     try {
-      return this.rocketService.loadRocket(rocket);
+      return await this.rocketService.loadRocket(rocket);
     } catch (error) {
       throw new HttpException('Payload loading failed', HttpStatus.BAD_REQUEST);
     }

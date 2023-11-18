@@ -24,7 +24,8 @@ export class RocketStatelessService {
     async receiveStatusUpdate(satusUpdate: StatusUpdateDto): Promise<Rocket | Stage> {
         const status = satusUpdate.status;
         let rocket = satusUpdate.rocket;
-        console.log("Received status update : "+status);
+        console.log("Rocket object is receiving new status : "+status);
+        console.log(rocket);
         switch(status) {
             case "Rocket preparation":
                 if(rocket.time !== 0 || rocket.status !== "On Ground") {
@@ -61,9 +62,6 @@ export class RocketStatelessService {
                 rocket.a = 11.77;
                 break;
             case "In flight":
-                if(rocket.status !== "Liftoff") {
-                    throw new Error("Rocket is not launched");
-                }
                 rocket.a = 29.43;
                 break;
             case "MaxQ":

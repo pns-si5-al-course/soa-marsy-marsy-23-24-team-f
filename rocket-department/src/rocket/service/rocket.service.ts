@@ -90,9 +90,11 @@ export class RocketService {
       const payload: PayloadDTO = await this.apiService.get<PayloadDTO>('http://payload-service:3004/rocket');
       rocket.payload = payload;
       const response: any = await this.apiService.post('http://rocket-object-service:3005/rocket/setpayload', rocket);
+      console.log("Response after payload loaded: ", response);
+
       const nrocket = await this.updateRocketStatus(rocket, "Rocket preparation");
-      console.log(response.status);
-      return rocket;
+      console.log("Response after status update: ", nrocket);
+      return nrocket;
     } catch (error) {
       throw error;
     }

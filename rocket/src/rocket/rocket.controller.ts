@@ -14,8 +14,6 @@ export class RocketController {
   @Post('status')
   @HttpCode(200)
   async receiveStatusUpdate(@Body() statusUptate: StatusUpdateDto) {
-    console.log("Received status update: \r");
-    console.log(statusUptate);
     return this.rocketService.receiveStatusUpdate(statusUptate);
   }
 
