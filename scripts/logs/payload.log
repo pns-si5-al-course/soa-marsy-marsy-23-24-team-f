@@ -14725,3 +14725,6 @@
 2023-11-03T11:39:27.048Z - {"passengers":0,"altitude":130000,"weight":100,"speed":2525.6088,"status":"Second engine cut-off"}
 2023-11-03T11:39:27.247Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Second engine cut-off"}
 2023-11-03T11:39:27.448Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Deployed"}
+2023-11-18T16:54:14.630Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T16:54:15.305Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T16:54:15.938Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}

@@ -10326,3 +10326,6 @@
 2023-11-03T11:39:27.048Z - {"id":1,"fuel":252,"altitude":79282.135584,"status":"MaxQ","speed":-73.7063999999998}
 2023-11-03T11:39:27.247Z - {"id":1,"fuel":252,"altitude":141433.24521599998,"status":"MaxQ","speed":2080.7255999999998}
 2023-11-03T11:39:27.448Z - {"id":1,"fuel":252,"altitude":138281.86326399999,"status":"MaxQ","speed":2065.8296}
+2023-11-18T16:54:14.630Z - {"id":0,"fuel":2996,"altitude":0,"status":"Rocket preparation","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-18T16:54:15.306Z - {"id":0,"fuel":2992,"altitude":0,"status":"Rocket on internal power","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-18T16:54:15.939Z - {"id":0,"fuel":2988,"altitude":0,"status":"Startup","speed":0,"v0":0,"s0":0,"a":0,"time":0}

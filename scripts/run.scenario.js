@@ -144,6 +144,8 @@ async function handleStatusChange(logs) {
 
 
 async function main() {
+    let rocket_1 = await get(rocketServiceUrl + "/rocket/example")
+
     if (scenario_id === '1') {
         console.log(chalk.green.bgWhite('\n-------------------------------------'));
         console.log(chalk.green.bgWhite('--- SCENARIO 1: ORBITAL INSERTION ---'));
@@ -173,7 +175,7 @@ async function main() {
         console.log('-- GET weather-service:3002/status --');
         console.log('Tory : cheking the status of the weather')
         await sleep(1000);
-        const weatherStatus = await get(weatherServiceUrl + "/status");
+        const weatherStatus = await get(missionCommanderUrl + "/rocket/weatherDepartment/status");
         console.log('Weather status : ', weatherStatus);
         await sleep(1000);
         if (weatherStatus.status === 'GO') {
@@ -186,30 +188,30 @@ async function main() {
         console.log('\n-----------------------------------')
         console.log('--- SECOND CHECK BEFORE LAUNCH ---');
         console.log('-----------------------------------\n\n')
-        console.log('-- GET payload-service:3001/rocket/status --');
+        console.log('-- GET rocket-service:3001/ --');
         // Rocket service
         console.log('Richard : demande de statut au département fusée');
         await sleep(500);
         console.log('Elon : surveillance de la fusée')
-        const rocketStatus = await get(rocketDeptServiceUrl + "/rocket/status");
+        const rocketStatus = await get(missionCommanderUrl + "/rocket/rocketDepartment/status");
         console.log('Statut de la fusée : ', rocketStatus);
         await sleep(1000);
-        if (rocketStatus.status === 'GO') {
+        if (rocketStatus.status === 'ok') {
             // Chargez la fusée avec le payload
             console.log('Richard : demande au département fusée de charger le payload');
-            console.log('-- POST rocket-service:3001/rocket/load --');
+            console.log('-- POST mission-commander:3006/rocket/initiate-startup --');
 
-            const rocketLoaded = await post(rocketDeptServiceUrl + "/rocket/load")
-                .then((r) => {
-                    console.log(chalk.gray('Payload poste au r dept : '));
-                })
-                .catch(err => {
-                    console.log(err)
-                });
-            console.log(chalk.gray('Payload chargé dans la fusée : '));
+            const rocketLoaded = await post(missionCommanderUrl + "/rocket/initiate-startup", {
+                rocket: rocket_1,
+                weatherDepartmentStatus: weatherStatus.status,
+                rocketDepartmentStatus: rocketStatus.status
+            });
+            console.log(chalk.gray('Payload chargé dans la fusée'));
+            await sleep(1000);
             // Après avoir chargé le payload, considérez la fusée comme prête
             status.rocketReady = true;
             console.log(chalk.green('Elon : la fusée est prête au lancement'));
+            rocket_1 = rocketLoaded;
         } else {
             console.log(chalk.red('Elon : la fusée n\'est pas prête au lancement'));
         }
@@ -221,16 +223,23 @@ async function main() {
         if (status.rocketReady && status.weatherReady) {
             console.log(chalk.green('Tous les systèmes sont prêts !'));
             console.log('Richard : demande au rocket dept de lancer la fusée');
-            console.log('-- POST rocket-service:3001/rocket --');
+            console.log('-- POST mission-commander:3006/rocket/initiate-main-engine-start --');
             rocketStatus.status = (scenario_id==='1') ? 'GO' :'Fail';
-            const rocketLaunched = post(rocketDeptServiceUrl + '/rocket', rocketStatus)
-                .then((r) => {
-                    console.log(chalk.gray('Fusée lancée : '));
-                })
-                .catch((error) => {
-                    console.error('Error During TAKEOFF')
-                    console.error(error);
-                });
+
+
+            const rocket_engine_started = await post(missionCommanderUrl + '/rocket/initiate-main-engine-start', rocket_1);
+            rocket_1 = rocket_engine_started;
+
+            const rocket_liftoff = await post(missionCommanderUrl + '/rocket/initiate-liftoff', rocket_1);
+            rocket_1 = rocket_liftoff;
+
+            const status_update = {
+                rocket: rocket_1,
+                status: 'In flight'
+            }   
+
+            const rocket_in_flight = await post(rocketServiceUrl + '/rocket/status', status_update);
+
             interval = setInterval(()=>{
                 readLastLine('logs/payload.log');
             
