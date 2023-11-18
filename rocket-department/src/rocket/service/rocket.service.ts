@@ -20,9 +20,12 @@ export class RocketService {
    * @memberof RocketService
   */
   async initiateStartupSequence(rocket: RocketDTO): Promise<RocketDTO> {
+    console.log("Sending startup command.");
     try {
-      return await this.updateRocketStatus(rocket, "Startup");
+      const nrocket = await this.updateRocketStatus(rocket, "Rocket on internal power");
+      return await this.updateRocketStatus(nrocket, "Startup");
     } catch (error) {
+      console.error('Error fetching rocket status in startup:', error.message);
         throw error;
     }
   }
@@ -34,6 +37,7 @@ export class RocketService {
    * @memberof RocketService
   */
   async initiateMainEngineStart(rocket: RocketDTO): Promise<RocketDTO> {
+    console.log("Sending main engine start command.");
     try {
         return this.updateRocketStatus(rocket, "Main engine start");
     } catch (error) {
@@ -67,8 +71,10 @@ export class RocketService {
       status: status
     };
     try {
+        console.log("Sending status update : "+status);
         return this.apiService.post('http://rocket-object-service:3005/rocket/status', statusUpdate);
     } catch (error) {
+        console.error('Error fetching rocket status in update:', error.message);
         throw error;
     }
   }
@@ -84,6 +90,7 @@ export class RocketService {
       const payload: PayloadDTO = await this.apiService.get<PayloadDTO>('http://payload-service:3004/rocket');
       rocket.payload = payload;
       const response: any = await this.apiService.post('http://rocket-object-service:3005/rocket/setpayload', rocket);
+      const nrocket = await this.updateRocketStatus(rocket, "Rocket preparation");
       console.log(response.status);
       return rocket;
     } catch (error) {

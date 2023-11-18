@@ -16,6 +16,7 @@ export class RocketController {
   @Post('initiate-startup')
   @HttpCode(200)
   async initiateStartup(@Body() rocket: RocketDTO): Promise<RocketDTO> {
+    console.log("Receiving startup command.")
     try {
       return await this.rocketService.initiateStartupSequence(rocket);
     } catch (error) {

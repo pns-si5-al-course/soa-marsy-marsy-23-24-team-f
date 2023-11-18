@@ -19,7 +19,7 @@ export class RocketService {
 
     async getRocketDeptStatus(): Promise<{ status: string }> {
         try {
-            const response = await this.httpService.get('http://rocket-department:3001/rocket/status').toPromise();
+            const response = await this.httpService.get('http://rocket-service:3001/rocket/status').toPromise();
             return response.data;
         } catch (error) {
             throw new Error("Failed to get rocket department status.");
@@ -29,7 +29,7 @@ export class RocketService {
     async launchRocket(readyToLaunch: ReadyToLaunchDTO): Promise<any> {
         try {
             if (readyToLaunch.weatherDepartmentStatus === "GO" && readyToLaunch.rocketDepartmentStatus === "GO"){
-                return await this.httpService.post('http://rocket-department:3001/rocket/launch', readyToLaunch.rocket).toPromise();
+                return await this.httpService.post('http://rocket-service:3001/rocket/launch', readyToLaunch.rocket).toPromise();
             }
             console.log("Sent launch command.");
         } catch (error) {
@@ -37,18 +37,24 @@ export class RocketService {
         }
     }
 
-    async initiateStartupSequence(rocket: RocketDTO): Promise<void> {
+    async initiateStartupSequence(readyToLaunch: ReadyToLaunchDTO): Promise<any> {
+        if(readyToLaunch.weatherDepartmentStatus !== "GO" && readyToLaunch.rocketDepartmentStatus !== "GO"){
+            throw new Error("Weather or rocket department status is not GO.");
+        }
         try {
-            await this.httpService.post('http://rocket-department:3001/rocket/initiate-startup', rocket).toPromise();
+            const rocketRes = await this.httpService.post('http://rocket-service:3001/rocket/load', readyToLaunch.rocket).toPromise();
             console.log("Sent initiate startup command.");
+            console.log(rocketRes.data)
+            return await this.httpService.post('http://rocket-service:3001/rocket/initiate-startup', rocketRes.data).toPromise();
+            
         } catch (error) {
-            throw new Error("Failed to send initiate startup command.");
+            throw new Error("Failed to send initiate startup command. : "+error);
         }
     }
 
     async initiateMainEngineStart(rocket: RocketDTO): Promise<void> {
         try {
-            await this.httpService.post('http://rocket-department:3001/rocket/initiate-main-engine-start', rocket).toPromise();
+            await this.httpService.post('http://rocket-service:3001/rocket/initiate-main-engine-start', rocket).toPromise();
             console.log("Sent initiate main engine start command.");
         } catch (error) {
             throw new Error("Failed to send initiate main engine start command.");
@@ -57,7 +63,7 @@ export class RocketService {
 
     async initiateLiftoff(rocket: RocketDTO): Promise<void> {
         try {
-            await this.httpService.post('http://rocket-department:3001/rocket/initiate-liftoff', rocket).toPromise();
+            await this.httpService.post('http://rocket-service:3001/rocket/initiate-liftoff', rocket).toPromise();
             console.log("Sent initiate liftoff command.");
         } catch (error) {
             throw new Error("Failed to send initiate liftoff command.");

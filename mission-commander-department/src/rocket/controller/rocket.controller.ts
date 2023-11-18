@@ -21,11 +21,11 @@ export class RocketController {
 
     @Post('initiate-startup')
     @HttpCode(200)
-    async initiateStartup(@Body() rocket: RocketDTO): Promise<any> {
+    async initiateStartup(@Body() readyToLaunch: ReadyToLaunchDTO): Promise<any> {
         try {
-            return await this.rocketService.initiateStartupSequence(rocket);
+            return await this.rocketService.initiateStartupSequence(readyToLaunch);
         } catch (error) {
-            throw new InternalServerErrorException("Failed to initiate rocket startup.");
+            throw new InternalServerErrorException("Failed to initiate rocket startup : "+error);
         }
     }
 

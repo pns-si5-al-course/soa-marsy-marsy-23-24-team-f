@@ -24,6 +24,7 @@ export class RocketStatelessService {
     async receiveStatusUpdate(satusUpdate: StatusUpdateDto): Promise<Rocket | Stage> {
         const status = satusUpdate.status;
         let rocket = satusUpdate.rocket;
+        console.log("Received status update : "+status);
         switch(status) {
             case "Rocket preparation":
                 if(rocket.time !== 0 || rocket.status !== "On Ground") {
