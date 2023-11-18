@@ -50,6 +50,7 @@ export function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 export const post = async(url, data) => {
+    console.log("POST -- ", url, data, "\n--------")
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -73,6 +74,7 @@ export const post = async(url, data) => {
 };
 
 export const get = async(url) => {
+    console.log("GET -- ", url, "\n--------")
     try {
         const response = await fetch(url, {
             method: "GET",

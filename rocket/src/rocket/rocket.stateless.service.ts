@@ -62,9 +62,6 @@ export class RocketStatelessService {
                 rocket.a = 11.77;
                 break;
             case "MaxQ":
-                if(rocket.status !== "In flight") {
-                    throw new Error("Rocket is not flying");
-                }
                 rocket.a = 24.53;
                 break;
             case "In flight":
@@ -110,9 +107,6 @@ export class RocketStatelessService {
                 rocket = await this.updateAndPush(rocket, status);
                 await this.receiveStageStatusUpdate(stageUpdate);
             case "Second engine start":
-                if (rocket.status !== "Stage separation") {
-                    throw new Error("Stage is not separated");
-                }
                 status = "Second engine start";
                 rocket.a = 29.43;
                 break;
@@ -122,9 +116,6 @@ export class RocketStatelessService {
                 }
                 break;
             case "Second engine cut-off":
-                if (rocket.status !== "Fairing separation") {
-                    throw new Error("Fairing is not separated");
-                }
                 rocket.a = 0;
                 rocket = await this.updateAndPush(rocket, status);          
             case "Payload deployed":

@@ -39,6 +39,8 @@ const FlightStatus = {
     weatherReady: false,
     stageSeparated: false,
     mainEngineStarted: false,
+    maxQ: false,
+    isFairingSeparated: false,
 }
 
 const status_update = {
@@ -84,11 +86,13 @@ socket.on('logs', (data) => {
 
 async function handleAltitudeChange(logs) {
     
-    if(logs.payload.altitude >= 60_000 && logs.payload.altitude <  70_000) {
+    if(logs.payload.altitude >= 60_000 && logs.payload.altitude <  70_000 && FlightStatus.maxQ === false) {
         status_update.status = "MaxQ";
+        FlightStatus.maxQ = true;
     }
-    else if(logs.payload.altitude >= 90_000 && logs.payload.altitude < 130_00){
+    else if(logs.payload.altitude >= 90_000 && logs.payload.altitude < 95_00 && FlightStatus.isFairingSeparated === false) {
         status_update.status = 'Fairing separation';
+        FlightStatus.isFairingSeparated = true;
 
     } else if (logs.payload.altitude >= 130_000){
         status_update.status = 'Second engine cut-off';
@@ -126,7 +130,6 @@ async function handleStatusChange(logs) {
         FlightStatus.mainEngineStarted = true;
         await sleep(2000);
         status_update.rocket = logs;
-        status_update.status = 'Second engine start';
         startUpdatinStatus();
 
         await sleep(1000);

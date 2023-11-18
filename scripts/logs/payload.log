@@ -1553,3 +1553,676 @@
 2023-11-18T21:24:32.042Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
 2023-11-18T21:24:32.811Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"Second engine start"}
 2023-11-18T21:24:33.077Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T21:40:21.457Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T21:40:21.720Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}
+2023-11-18T21:40:21.807Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T21:40:24.681Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T21:40:24.714Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T21:40:24.778Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Liftoff"}
+2023-11-18T21:40:25.752Z - {"passengers":0,"altitude":14.715,"weight":100,"speed":29.43,"status":"In flight"}
+2023-11-18T21:40:26.753Z - {"passengers":0,"altitude":58.86,"weight":100,"speed":58.86,"status":"In flight"}
+2023-11-18T21:40:27.767Z - {"passengers":0,"altitude":132.435,"weight":100,"speed":88.28999999999999,"status":"In flight"}
+2023-11-18T21:40:28.785Z - {"passengers":0,"altitude":235.44,"weight":100,"speed":117.72,"status":"In flight"}
+2023-11-18T21:40:29.836Z - {"passengers":0,"altitude":367.875,"weight":100,"speed":147.15,"status":"In flight"}
+2023-11-18T21:40:30.839Z - {"passengers":0,"altitude":529.74,"weight":100,"speed":176.57999999999998,"status":"In flight"}
+2023-11-18T21:40:31.725Z - {"passengers":0,"altitude":721.035,"weight":100,"speed":206.01,"status":"In flight"}
+2023-11-18T21:40:32.864Z - {"passengers":0,"altitude":941.76,"weight":100,"speed":235.44,"status":"In flight"}
+2023-11-18T21:40:33.768Z - {"passengers":0,"altitude":1191.915,"weight":100,"speed":264.87,"status":"In flight"}
+2023-11-18T21:40:34.844Z - {"passengers":0,"altitude":1471.5,"weight":100,"speed":294.3,"status":"In flight"}
+2023-11-18T21:40:35.788Z - {"passengers":0,"altitude":1780.515,"weight":100,"speed":323.73,"status":"In flight"}
+2023-11-18T21:40:36.877Z - {"passengers":0,"altitude":2118.96,"weight":100,"speed":353.15999999999997,"status":"In flight"}
+2023-11-18T21:40:37.763Z - {"passengers":0,"altitude":2486.835,"weight":100,"speed":382.59,"status":"In flight"}
+2023-11-18T21:40:38.762Z - {"passengers":0,"altitude":2884.14,"weight":100,"speed":412.02,"status":"In flight"}
+2023-11-18T21:40:39.835Z - {"passengers":0,"altitude":3310.875,"weight":100,"speed":441.45,"status":"In flight"}
+2023-11-18T21:40:40.776Z - {"passengers":0,"altitude":3767.04,"weight":100,"speed":470.88,"status":"In flight"}
+2023-11-18T21:40:41.785Z - {"passengers":0,"altitude":4252.635,"weight":100,"speed":500.31,"status":"In flight"}
+2023-11-18T21:40:42.751Z - {"passengers":0,"altitude":4767.66,"weight":100,"speed":529.74,"status":"In flight"}
+2023-11-18T21:40:43.744Z - {"passengers":0,"altitude":5312.115,"weight":100,"speed":559.17,"status":"In flight"}
+2023-11-18T21:40:44.801Z - {"passengers":0,"altitude":5886,"weight":100,"speed":588.6,"status":"In flight"}
+2023-11-18T21:40:45.871Z - {"passengers":0,"altitude":6489.315,"weight":100,"speed":618.03,"status":"In flight"}
+2023-11-18T21:40:46.815Z - {"passengers":0,"altitude":7122.06,"weight":100,"speed":647.46,"status":"In flight"}
+2023-11-18T21:40:47.756Z - {"passengers":0,"altitude":7784.235,"weight":100,"speed":676.89,"status":"In flight"}
+2023-11-18T21:40:48.798Z - {"passengers":0,"altitude":8475.84,"weight":100,"speed":706.3199999999999,"status":"In flight"}
+2023-11-18T21:40:49.854Z - {"passengers":0,"altitude":9196.875,"weight":100,"speed":735.75,"status":"In flight"}
+2023-11-18T21:40:50.860Z - {"passengers":0,"altitude":9947.34,"weight":100,"speed":765.18,"status":"In flight"}
+2023-11-18T21:40:51.796Z - {"passengers":0,"altitude":10727.235,"weight":100,"speed":794.61,"status":"In flight"}
+2023-11-18T21:40:52.896Z - {"passengers":0,"altitude":11536.56,"weight":100,"speed":824.04,"status":"In flight"}
+2023-11-18T21:40:53.735Z - {"passengers":0,"altitude":12375.315,"weight":100,"speed":853.47,"status":"In flight"}
+2023-11-18T21:40:54.854Z - {"passengers":0,"altitude":13243.5,"weight":100,"speed":882.9,"status":"In flight"}
+2023-11-18T21:40:55.850Z - {"passengers":0,"altitude":14141.115,"weight":100,"speed":912.33,"status":"In flight"}
+2023-11-18T21:40:56.719Z - {"passengers":0,"altitude":15068.16,"weight":100,"speed":941.76,"status":"In flight"}
+2023-11-18T21:40:57.831Z - {"passengers":0,"altitude":16024.634999999998,"weight":100,"speed":971.1899999999999,"status":"In flight"}
+2023-11-18T21:40:58.855Z - {"passengers":0,"altitude":17010.54,"weight":100,"speed":1000.62,"status":"In flight"}
+2023-11-18T21:40:59.790Z - {"passengers":0,"altitude":18025.875,"weight":100,"speed":1030.05,"status":"In flight"}
+2023-11-18T21:41:00.780Z - {"passengers":0,"altitude":19070.64,"weight":100,"speed":1059.48,"status":"In flight"}
+2023-11-18T21:41:01.818Z - {"passengers":0,"altitude":20144.835000000003,"weight":100,"speed":1088.91,"status":"In flight"}
+2023-11-18T21:41:02.824Z - {"passengers":0,"altitude":21248.46,"weight":100,"speed":1118.34,"status":"In flight"}
+2023-11-18T21:41:03.790Z - {"passengers":0,"altitude":22381.515,"weight":100,"speed":1147.77,"status":"In flight"}
+2023-11-18T21:41:04.822Z - {"passengers":0,"altitude":23544,"weight":100,"speed":1177.2,"status":"In flight"}
+2023-11-18T21:41:05.852Z - {"passengers":0,"altitude":24735.914999999997,"weight":100,"speed":1206.6299999999999,"status":"In flight"}
+2023-11-18T21:41:06.872Z - {"passengers":0,"altitude":25957.26,"weight":100,"speed":1236.06,"status":"In flight"}
+2023-11-18T21:41:07.785Z - {"passengers":0,"altitude":27208.035,"weight":100,"speed":1265.49,"status":"In flight"}
+2023-11-18T21:41:08.787Z - {"passengers":0,"altitude":28488.24,"weight":100,"speed":1294.92,"status":"In flight"}
+2023-11-18T21:41:09.852Z - {"passengers":0,"altitude":29797.874999999996,"weight":100,"speed":1324.35,"status":"In flight"}
+2023-11-18T21:41:10.834Z - {"passengers":0,"altitude":31136.94,"weight":100,"speed":1353.78,"status":"In flight"}
+2023-11-18T21:41:11.811Z - {"passengers":0,"altitude":32505.435,"weight":100,"speed":1383.21,"status":"In flight"}
+2023-11-18T21:41:12.758Z - {"passengers":0,"altitude":33903.36,"weight":100,"speed":1412.6399999999999,"status":"In flight"}
+2023-11-18T21:41:13.788Z - {"passengers":0,"altitude":35330.715,"weight":100,"speed":1442.07,"status":"In flight"}
+2023-11-18T21:41:14.802Z - {"passengers":0,"altitude":36787.5,"weight":100,"speed":1471.5,"status":"In flight"}
+2023-11-18T21:41:15.830Z - {"passengers":0,"altitude":38273.715000000004,"weight":100,"speed":1500.93,"status":"In flight"}
+2023-11-18T21:41:16.769Z - {"passengers":0,"altitude":39789.36,"weight":100,"speed":1530.36,"status":"In flight"}
+2023-11-18T21:41:17.744Z - {"passengers":0,"altitude":41334.435,"weight":100,"speed":1559.79,"status":"In flight"}
+2023-11-18T21:41:18.817Z - {"passengers":0,"altitude":42908.94,"weight":100,"speed":1589.22,"status":"In flight"}
+2023-11-18T21:41:19.829Z - {"passengers":0,"altitude":44512.875,"weight":100,"speed":1618.65,"status":"In flight"}
+2023-11-18T21:41:20.890Z - {"passengers":0,"altitude":46146.24,"weight":100,"speed":1648.08,"status":"In flight"}
+2023-11-18T21:41:21.886Z - {"passengers":0,"altitude":47809.034999999996,"weight":100,"speed":1677.51,"status":"In flight"}
+2023-11-18T21:41:22.732Z - {"passengers":0,"altitude":49501.26,"weight":100,"speed":1706.94,"status":"In flight"}
+2023-11-18T21:41:23.813Z - {"passengers":0,"altitude":51222.91499999999,"weight":100,"speed":1736.37,"status":"In flight"}
+2023-11-18T21:41:24.879Z - {"passengers":0,"altitude":52974,"weight":100,"speed":1765.8,"status":"In flight"}
+2023-11-18T21:41:25.806Z - {"passengers":0,"altitude":54754.515,"weight":100,"speed":1795.23,"status":"In flight"}
+2023-11-18T21:41:26.803Z - {"passengers":0,"altitude":56564.46,"weight":100,"speed":1824.66,"status":"In flight"}
+2023-11-18T21:41:27.748Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"In flight"}
+2023-11-18T21:41:28.724Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T21:41:28.841Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"In flight"}
+2023-11-18T21:41:29.622Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T21:41:29.805Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T21:41:30.660Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T21:41:31.191Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"Second engine start"}
+2023-11-18T21:50:11.364Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}
+2023-11-18T21:50:11.391Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T21:50:11.491Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T21:50:14.195Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T21:50:14.444Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T21:50:14.522Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Liftoff"}
+2023-11-18T21:50:15.503Z - {"passengers":0,"altitude":14.715,"weight":100,"speed":29.43,"status":"In flight"}
+2023-11-18T21:50:16.617Z - {"passengers":0,"altitude":58.86,"weight":100,"speed":58.86,"status":"In flight"}
+2023-11-18T21:50:17.418Z - {"passengers":0,"altitude":132.435,"weight":100,"speed":88.28999999999999,"status":"In flight"}
+2023-11-18T21:50:18.524Z - {"passengers":0,"altitude":235.44,"weight":100,"speed":117.72,"status":"In flight"}
+2023-11-18T21:50:19.561Z - {"passengers":0,"altitude":367.875,"weight":100,"speed":147.15,"status":"In flight"}
+2023-11-18T21:50:20.511Z - {"passengers":0,"altitude":529.74,"weight":100,"speed":176.57999999999998,"status":"In flight"}
+2023-11-18T21:50:21.569Z - {"passengers":0,"altitude":721.035,"weight":100,"speed":206.01,"status":"In flight"}
+2023-11-18T21:50:22.593Z - {"passengers":0,"altitude":941.76,"weight":100,"speed":235.44,"status":"In flight"}
+2023-11-18T21:50:23.622Z - {"passengers":0,"altitude":1191.915,"weight":100,"speed":264.87,"status":"In flight"}
+2023-11-18T21:50:24.601Z - {"passengers":0,"altitude":1471.5,"weight":100,"speed":294.3,"status":"In flight"}
+2023-11-18T21:50:25.568Z - {"passengers":0,"altitude":1780.515,"weight":100,"speed":323.73,"status":"In flight"}
+2023-11-18T21:50:26.524Z - {"passengers":0,"altitude":2118.96,"weight":100,"speed":353.15999999999997,"status":"In flight"}
+2023-11-18T21:50:27.603Z - {"passengers":0,"altitude":2486.835,"weight":100,"speed":382.59,"status":"In flight"}
+2023-11-18T21:50:28.537Z - {"passengers":0,"altitude":2884.14,"weight":100,"speed":412.02,"status":"In flight"}
+2023-11-18T21:50:29.505Z - {"passengers":0,"altitude":3310.875,"weight":100,"speed":441.45,"status":"In flight"}
+2023-11-18T21:50:30.490Z - {"passengers":0,"altitude":3767.04,"weight":100,"speed":470.88,"status":"In flight"}
+2023-11-18T21:50:31.428Z - {"passengers":0,"altitude":4252.635,"weight":100,"speed":500.31,"status":"In flight"}
+2023-11-18T21:50:32.477Z - {"passengers":0,"altitude":4767.66,"weight":100,"speed":529.74,"status":"In flight"}
+2023-11-18T21:50:33.496Z - {"passengers":0,"altitude":5312.115,"weight":100,"speed":559.17,"status":"In flight"}
+2023-11-18T21:50:34.497Z - {"passengers":0,"altitude":5886,"weight":100,"speed":588.6,"status":"In flight"}
+2023-11-18T21:50:35.574Z - {"passengers":0,"altitude":6489.315,"weight":100,"speed":618.03,"status":"In flight"}
+2023-11-18T21:50:36.510Z - {"passengers":0,"altitude":7122.06,"weight":100,"speed":647.46,"status":"In flight"}
+2023-11-18T21:50:37.507Z - {"passengers":0,"altitude":7784.235,"weight":100,"speed":676.89,"status":"In flight"}
+2023-11-18T21:50:38.497Z - {"passengers":0,"altitude":8475.84,"weight":100,"speed":706.3199999999999,"status":"In flight"}
+2023-11-18T21:50:39.445Z - {"passengers":0,"altitude":9196.875,"weight":100,"speed":735.75,"status":"In flight"}
+2023-11-18T21:50:40.566Z - {"passengers":0,"altitude":9947.34,"weight":100,"speed":765.18,"status":"In flight"}
+2023-11-18T21:50:41.537Z - {"passengers":0,"altitude":10727.235,"weight":100,"speed":794.61,"status":"In flight"}
+2023-11-18T21:50:42.530Z - {"passengers":0,"altitude":11536.56,"weight":100,"speed":824.04,"status":"In flight"}
+2023-11-18T21:50:43.540Z - {"passengers":0,"altitude":12375.315,"weight":100,"speed":853.47,"status":"In flight"}
+2023-11-18T21:50:44.244Z - {"passengers":0,"altitude":13243.5,"weight":100,"speed":882.9,"status":"In flight"}
+2023-11-18T21:50:44.591Z - {"passengers":0,"altitude":13243.5,"weight":100,"speed":882.9,"status":"In flight"}
+2023-11-18T21:50:45.505Z - {"passengers":0,"altitude":14141.115,"weight":100,"speed":912.33,"status":"In flight"}
+2023-11-18T21:50:46.525Z - {"passengers":0,"altitude":15068.16,"weight":100,"speed":941.76,"status":"In flight"}
+2023-11-18T21:50:47.564Z - {"passengers":0,"altitude":16024.634999999998,"weight":100,"speed":971.1899999999999,"status":"In flight"}
+2023-11-18T21:50:48.583Z - {"passengers":0,"altitude":17010.54,"weight":100,"speed":1000.62,"status":"In flight"}
+2023-11-18T21:50:49.632Z - {"passengers":0,"altitude":18025.875,"weight":100,"speed":1030.05,"status":"In flight"}
+2023-11-18T21:50:50.524Z - {"passengers":0,"altitude":19070.64,"weight":100,"speed":1059.48,"status":"In flight"}
+2023-11-18T21:50:51.481Z - {"passengers":0,"altitude":20144.835000000003,"weight":100,"speed":1088.91,"status":"In flight"}
+2023-11-18T21:50:52.530Z - {"passengers":0,"altitude":21248.46,"weight":100,"speed":1118.34,"status":"In flight"}
+2023-11-18T21:50:53.580Z - {"passengers":0,"altitude":22381.515,"weight":100,"speed":1147.77,"status":"In flight"}
+2023-11-18T21:50:54.601Z - {"passengers":0,"altitude":23544,"weight":100,"speed":1177.2,"status":"In flight"}
+2023-11-18T21:50:55.557Z - {"passengers":0,"altitude":24735.914999999997,"weight":100,"speed":1206.6299999999999,"status":"In flight"}
+2023-11-18T21:50:56.475Z - {"passengers":0,"altitude":25957.26,"weight":100,"speed":1236.06,"status":"In flight"}
+2023-11-18T21:50:57.511Z - {"passengers":0,"altitude":27208.035,"weight":100,"speed":1265.49,"status":"In flight"}
+2023-11-18T21:50:58.538Z - {"passengers":0,"altitude":28488.24,"weight":100,"speed":1294.92,"status":"In flight"}
+2023-11-18T21:50:59.514Z - {"passengers":0,"altitude":29797.874999999996,"weight":100,"speed":1324.35,"status":"In flight"}
+2023-11-18T21:51:00.575Z - {"passengers":0,"altitude":31136.94,"weight":100,"speed":1353.78,"status":"In flight"}
+2023-11-18T21:51:01.523Z - {"passengers":0,"altitude":32505.435,"weight":100,"speed":1383.21,"status":"In flight"}
+2023-11-18T21:51:02.550Z - {"passengers":0,"altitude":33903.36,"weight":100,"speed":1412.6399999999999,"status":"In flight"}
+2023-11-18T21:51:03.593Z - {"passengers":0,"altitude":35330.715,"weight":100,"speed":1442.07,"status":"In flight"}
+2023-11-18T21:51:04.480Z - {"passengers":0,"altitude":36787.5,"weight":100,"speed":1471.5,"status":"In flight"}
+2023-11-18T21:51:05.592Z - {"passengers":0,"altitude":38273.715000000004,"weight":100,"speed":1500.93,"status":"In flight"}
+2023-11-18T21:51:06.577Z - {"passengers":0,"altitude":39789.36,"weight":100,"speed":1530.36,"status":"In flight"}
+2023-11-18T21:51:07.545Z - {"passengers":0,"altitude":41334.435,"weight":100,"speed":1559.79,"status":"In flight"}
+2023-11-18T21:51:08.516Z - {"passengers":0,"altitude":42908.94,"weight":100,"speed":1589.22,"status":"In flight"}
+2023-11-18T21:51:09.484Z - {"passengers":0,"altitude":44512.875,"weight":100,"speed":1618.65,"status":"In flight"}
+2023-11-18T21:51:10.574Z - {"passengers":0,"altitude":46146.24,"weight":100,"speed":1648.08,"status":"In flight"}
+2023-11-18T21:51:11.526Z - {"passengers":0,"altitude":47809.034999999996,"weight":100,"speed":1677.51,"status":"In flight"}
+2023-11-18T21:51:12.560Z - {"passengers":0,"altitude":49501.26,"weight":100,"speed":1706.94,"status":"In flight"}
+2023-11-18T21:51:13.623Z - {"passengers":0,"altitude":51222.91499999999,"weight":100,"speed":1736.37,"status":"In flight"}
+2023-11-18T21:51:14.645Z - {"passengers":0,"altitude":52974,"weight":100,"speed":1765.8,"status":"In flight"}
+2023-11-18T21:51:15.532Z - {"passengers":0,"altitude":54754.515,"weight":100,"speed":1795.23,"status":"In flight"}
+2023-11-18T21:51:16.480Z - {"passengers":0,"altitude":56564.46,"weight":100,"speed":1824.66,"status":"In flight"}
+2023-11-18T21:51:17.542Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"In flight"}
+2023-11-18T21:51:18.437Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T21:51:18.577Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"In flight"}
+2023-11-18T21:51:19.198Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T21:51:19.401Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T21:51:20.277Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T21:51:20.893Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"Second engine start"}
+2023-11-18T21:52:53.198Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T21:52:53.494Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T21:52:53.884Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}
+2023-11-18T21:52:56.175Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T21:52:56.477Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T21:52:56.507Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Liftoff"}
+2023-11-18T21:52:57.248Z - {"passengers":0,"altitude":14.715,"weight":100,"speed":29.43,"status":"In flight"}
+2023-11-18T21:52:57.540Z - {"passengers":0,"altitude":14.715,"weight":100,"speed":29.43,"status":"In flight"}
+2023-11-18T21:52:58.505Z - {"passengers":0,"altitude":58.86,"weight":100,"speed":58.86,"status":"In flight"}
+2023-11-18T21:52:59.521Z - {"passengers":0,"altitude":132.435,"weight":100,"speed":88.28999999999999,"status":"In flight"}
+2023-11-18T21:53:00.469Z - {"passengers":0,"altitude":235.44,"weight":100,"speed":117.72,"status":"In flight"}
+2023-11-18T21:53:01.529Z - {"passengers":0,"altitude":367.875,"weight":100,"speed":147.15,"status":"In flight"}
+2023-11-18T21:53:02.539Z - {"passengers":0,"altitude":529.74,"weight":100,"speed":176.57999999999998,"status":"In flight"}
+2023-11-18T21:53:03.562Z - {"passengers":0,"altitude":721.035,"weight":100,"speed":206.01,"status":"In flight"}
+2023-11-18T21:53:04.454Z - {"passengers":0,"altitude":941.76,"weight":100,"speed":235.44,"status":"In flight"}
+2023-11-18T21:53:05.533Z - {"passengers":0,"altitude":1191.915,"weight":100,"speed":264.87,"status":"In flight"}
+2023-11-18T21:53:06.537Z - {"passengers":0,"altitude":1471.5,"weight":100,"speed":294.3,"status":"In flight"}
+2023-11-18T21:53:07.596Z - {"passengers":0,"altitude":1780.515,"weight":100,"speed":323.73,"status":"In flight"}
+2023-11-18T21:53:08.460Z - {"passengers":0,"altitude":2118.96,"weight":100,"speed":353.15999999999997,"status":"In flight"}
+2023-11-18T21:53:09.586Z - {"passengers":0,"altitude":2486.835,"weight":100,"speed":382.59,"status":"In flight"}
+2023-11-18T21:53:10.437Z - {"passengers":0,"altitude":2884.14,"weight":100,"speed":412.02,"status":"In flight"}
+2023-11-18T21:53:11.415Z - {"passengers":0,"altitude":3310.875,"weight":100,"speed":441.45,"status":"In flight"}
+2023-11-18T21:53:12.510Z - {"passengers":0,"altitude":3767.04,"weight":100,"speed":470.88,"status":"In flight"}
+2023-11-18T21:53:13.486Z - {"passengers":0,"altitude":4252.635,"weight":100,"speed":500.31,"status":"In flight"}
+2023-11-18T21:53:14.512Z - {"passengers":0,"altitude":4767.66,"weight":100,"speed":529.74,"status":"In flight"}
+2023-11-18T21:53:15.458Z - {"passengers":0,"altitude":5312.115,"weight":100,"speed":559.17,"status":"In flight"}
+2023-11-18T21:53:16.482Z - {"passengers":0,"altitude":5886,"weight":100,"speed":588.6,"status":"In flight"}
+2023-11-18T21:53:17.526Z - {"passengers":0,"altitude":6489.315,"weight":100,"speed":618.03,"status":"In flight"}
+2023-11-18T21:53:18.519Z - {"passengers":0,"altitude":7122.06,"weight":100,"speed":647.46,"status":"In flight"}
+2023-11-18T21:53:19.485Z - {"passengers":0,"altitude":7784.235,"weight":100,"speed":676.89,"status":"In flight"}
+2023-11-18T21:53:20.608Z - {"passengers":0,"altitude":8475.84,"weight":100,"speed":706.3199999999999,"status":"In flight"}
+2023-11-18T21:53:21.489Z - {"passengers":0,"altitude":9196.875,"weight":100,"speed":735.75,"status":"In flight"}
+2023-11-18T21:53:22.624Z - {"passengers":0,"altitude":9947.34,"weight":100,"speed":765.18,"status":"In flight"}
+2023-11-18T21:53:23.526Z - {"passengers":0,"altitude":10727.235,"weight":100,"speed":794.61,"status":"In flight"}
+2023-11-18T21:53:24.449Z - {"passengers":0,"altitude":11536.56,"weight":100,"speed":824.04,"status":"In flight"}
+2023-11-18T21:53:25.584Z - {"passengers":0,"altitude":12375.315,"weight":100,"speed":853.47,"status":"In flight"}
+2023-11-18T21:53:26.444Z - {"passengers":0,"altitude":13243.5,"weight":100,"speed":882.9,"status":"In flight"}
+2023-11-18T21:53:27.441Z - {"passengers":0,"altitude":14141.115,"weight":100,"speed":912.33,"status":"In flight"}
+2023-11-18T21:53:28.520Z - {"passengers":0,"altitude":15068.16,"weight":100,"speed":941.76,"status":"In flight"}
+2023-11-18T21:53:29.518Z - {"passengers":0,"altitude":16024.634999999998,"weight":100,"speed":971.1899999999999,"status":"In flight"}
+2023-11-18T21:53:30.563Z - {"passengers":0,"altitude":17010.54,"weight":100,"speed":1000.62,"status":"In flight"}
+2023-11-18T21:53:31.481Z - {"passengers":0,"altitude":18025.875,"weight":100,"speed":1030.05,"status":"In flight"}
+2023-11-18T21:53:32.459Z - {"passengers":0,"altitude":19070.64,"weight":100,"speed":1059.48,"status":"In flight"}
+2023-11-18T21:53:33.485Z - {"passengers":0,"altitude":20144.835000000003,"weight":100,"speed":1088.91,"status":"In flight"}
+2023-11-18T21:53:34.560Z - {"passengers":0,"altitude":21248.46,"weight":100,"speed":1118.34,"status":"In flight"}
+2023-11-18T21:53:35.579Z - {"passengers":0,"altitude":22381.515,"weight":100,"speed":1147.77,"status":"In flight"}
+2023-11-18T21:53:36.471Z - {"passengers":0,"altitude":23544,"weight":100,"speed":1177.2,"status":"In flight"}
+2023-11-18T21:53:37.504Z - {"passengers":0,"altitude":24735.914999999997,"weight":100,"speed":1206.6299999999999,"status":"In flight"}
+2023-11-18T21:53:38.462Z - {"passengers":0,"altitude":25957.26,"weight":100,"speed":1236.06,"status":"In flight"}
+2023-11-18T21:53:39.538Z - {"passengers":0,"altitude":27208.035,"weight":100,"speed":1265.49,"status":"In flight"}
+2023-11-18T21:53:40.487Z - {"passengers":0,"altitude":28488.24,"weight":100,"speed":1294.92,"status":"In flight"}
+2023-11-18T21:53:41.557Z - {"passengers":0,"altitude":29797.874999999996,"weight":100,"speed":1324.35,"status":"In flight"}
+2023-11-18T21:53:42.541Z - {"passengers":0,"altitude":31136.94,"weight":100,"speed":1353.78,"status":"In flight"}
+2023-11-18T21:53:43.456Z - {"passengers":0,"altitude":32505.435,"weight":100,"speed":1383.21,"status":"In flight"}
+2023-11-18T21:53:44.547Z - {"passengers":0,"altitude":33903.36,"weight":100,"speed":1412.6399999999999,"status":"In flight"}
+2023-11-18T21:53:45.432Z - {"passengers":0,"altitude":35330.715,"weight":100,"speed":1442.07,"status":"In flight"}
+2023-11-18T21:53:46.501Z - {"passengers":0,"altitude":36787.5,"weight":100,"speed":1471.5,"status":"In flight"}
+2023-11-18T21:53:47.581Z - {"passengers":0,"altitude":38273.715000000004,"weight":100,"speed":1500.93,"status":"In flight"}
+2023-11-18T21:53:48.432Z - {"passengers":0,"altitude":39789.36,"weight":100,"speed":1530.36,"status":"In flight"}
+2023-11-18T21:53:49.552Z - {"passengers":0,"altitude":41334.435,"weight":100,"speed":1559.79,"status":"In flight"}
+2023-11-18T21:53:50.524Z - {"passengers":0,"altitude":42908.94,"weight":100,"speed":1589.22,"status":"In flight"}
+2023-11-18T21:53:51.530Z - {"passengers":0,"altitude":44512.875,"weight":100,"speed":1618.65,"status":"In flight"}
+2023-11-18T21:53:52.528Z - {"passengers":0,"altitude":46146.24,"weight":100,"speed":1648.08,"status":"In flight"}
+2023-11-18T21:53:53.507Z - {"passengers":0,"altitude":47809.034999999996,"weight":100,"speed":1677.51,"status":"In flight"}
+2023-11-18T21:53:54.483Z - {"passengers":0,"altitude":49501.26,"weight":100,"speed":1706.94,"status":"In flight"}
+2023-11-18T21:53:55.457Z - {"passengers":0,"altitude":51222.91499999999,"weight":100,"speed":1736.37,"status":"In flight"}
+2023-11-18T21:53:56.487Z - {"passengers":0,"altitude":52974,"weight":100,"speed":1765.8,"status":"In flight"}
+2023-11-18T21:53:57.563Z - {"passengers":0,"altitude":54754.515,"weight":100,"speed":1795.23,"status":"In flight"}
+2023-11-18T21:53:58.587Z - {"passengers":0,"altitude":56564.46,"weight":100,"speed":1824.66,"status":"In flight"}
+2023-11-18T21:53:59.596Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"In flight"}
+2023-11-18T21:54:00.508Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T21:54:00.555Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"In flight"}
+2023-11-18T21:54:01.544Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T21:54:02.307Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T21:54:02.870Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"Second engine start"}
+2023-11-18T21:54:03.328Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T21:54:31.090Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}
+2023-11-18T21:54:31.299Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T21:54:31.848Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T21:54:34.032Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T21:54:34.265Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Liftoff"}
+2023-11-18T21:54:34.399Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T21:54:35.516Z - {"passengers":0,"altitude":14.715,"weight":100,"speed":29.43,"status":"In flight"}
+2023-11-18T21:54:36.347Z - {"passengers":0,"altitude":58.86,"weight":100,"speed":58.86,"status":"In flight"}
+2023-11-18T21:54:37.393Z - {"passengers":0,"altitude":132.435,"weight":100,"speed":88.28999999999999,"status":"In flight"}
+2023-11-18T21:54:38.339Z - {"passengers":0,"altitude":235.44,"weight":100,"speed":117.72,"status":"In flight"}
+2023-11-18T21:54:39.337Z - {"passengers":0,"altitude":367.875,"weight":100,"speed":147.15,"status":"In flight"}
+2023-11-18T21:54:40.438Z - {"passengers":0,"altitude":529.74,"weight":100,"speed":176.57999999999998,"status":"In flight"}
+2023-11-18T21:54:41.315Z - {"passengers":0,"altitude":721.035,"weight":100,"speed":206.01,"status":"In flight"}
+2023-11-18T21:54:42.503Z - {"passengers":0,"altitude":941.76,"weight":100,"speed":235.44,"status":"In flight"}
+2023-11-18T21:54:43.410Z - {"passengers":0,"altitude":1191.915,"weight":100,"speed":264.87,"status":"In flight"}
+2023-11-18T21:54:44.428Z - {"passengers":0,"altitude":1471.5,"weight":100,"speed":294.3,"status":"In flight"}
+2023-11-18T21:54:45.478Z - {"passengers":0,"altitude":1780.515,"weight":100,"speed":323.73,"status":"In flight"}
+2023-11-18T21:54:46.426Z - {"passengers":0,"altitude":2118.96,"weight":100,"speed":353.15999999999997,"status":"In flight"}
+2023-11-18T21:54:47.311Z - {"passengers":0,"altitude":2486.835,"weight":100,"speed":382.59,"status":"In flight"}
+2023-11-18T21:54:48.433Z - {"passengers":0,"altitude":2884.14,"weight":100,"speed":412.02,"status":"In flight"}
+2023-11-18T21:54:49.452Z - {"passengers":0,"altitude":3310.875,"weight":100,"speed":441.45,"status":"In flight"}
+2023-11-18T21:54:50.431Z - {"passengers":0,"altitude":3767.04,"weight":100,"speed":470.88,"status":"In flight"}
+2023-11-18T21:54:51.419Z - {"passengers":0,"altitude":4252.635,"weight":100,"speed":500.31,"status":"In flight"}
+2023-11-18T21:54:52.451Z - {"passengers":0,"altitude":4767.66,"weight":100,"speed":529.74,"status":"In flight"}
+2023-11-18T21:54:53.422Z - {"passengers":0,"altitude":5312.115,"weight":100,"speed":559.17,"status":"In flight"}
+2023-11-18T21:54:54.389Z - {"passengers":0,"altitude":5886,"weight":100,"speed":588.6,"status":"In flight"}
+2023-11-18T21:54:55.526Z - {"passengers":0,"altitude":6489.315,"weight":100,"speed":618.03,"status":"In flight"}
+2023-11-18T21:54:56.411Z - {"passengers":0,"altitude":7122.06,"weight":100,"speed":647.46,"status":"In flight"}
+2023-11-18T21:54:57.527Z - {"passengers":0,"altitude":7784.235,"weight":100,"speed":676.89,"status":"In flight"}
+2023-11-18T21:54:58.402Z - {"passengers":0,"altitude":8475.84,"weight":100,"speed":706.3199999999999,"status":"In flight"}
+2023-11-18T21:54:59.459Z - {"passengers":0,"altitude":9196.875,"weight":100,"speed":735.75,"status":"In flight"}
+2023-11-18T21:55:00.454Z - {"passengers":0,"altitude":9947.34,"weight":100,"speed":765.18,"status":"In flight"}
+2023-11-18T21:55:01.420Z - {"passengers":0,"altitude":10727.235,"weight":100,"speed":794.61,"status":"In flight"}
+2023-11-18T21:55:02.550Z - {"passengers":0,"altitude":11536.56,"weight":100,"speed":824.04,"status":"In flight"}
+2023-11-18T21:55:03.354Z - {"passengers":0,"altitude":12375.315,"weight":100,"speed":853.47,"status":"In flight"}
+2023-11-18T21:55:04.470Z - {"passengers":0,"altitude":13243.5,"weight":100,"speed":882.9,"status":"In flight"}
+2023-11-18T21:55:05.435Z - {"passengers":0,"altitude":14141.115,"weight":100,"speed":912.33,"status":"In flight"}
+2023-11-18T21:55:06.351Z - {"passengers":0,"altitude":15068.16,"weight":100,"speed":941.76,"status":"In flight"}
+2023-11-18T21:55:07.386Z - {"passengers":0,"altitude":16024.634999999998,"weight":100,"speed":971.1899999999999,"status":"In flight"}
+2023-11-18T21:55:08.476Z - {"passengers":0,"altitude":17010.54,"weight":100,"speed":1000.62,"status":"In flight"}
+2023-11-18T21:55:09.457Z - {"passengers":0,"altitude":18025.875,"weight":100,"speed":1030.05,"status":"In flight"}
+2023-11-18T21:55:10.397Z - {"passengers":0,"altitude":19070.64,"weight":100,"speed":1059.48,"status":"In flight"}
+2023-11-18T21:55:11.368Z - {"passengers":0,"altitude":20144.835000000003,"weight":100,"speed":1088.91,"status":"In flight"}
+2023-11-18T21:55:12.449Z - {"passengers":0,"altitude":21248.46,"weight":100,"speed":1118.34,"status":"In flight"}
+2023-11-18T21:55:13.461Z - {"passengers":0,"altitude":22381.515,"weight":100,"speed":1147.77,"status":"In flight"}
+2023-11-18T21:55:14.434Z - {"passengers":0,"altitude":23544,"weight":100,"speed":1177.2,"status":"In flight"}
+2023-11-18T21:55:15.424Z - {"passengers":0,"altitude":24735.914999999997,"weight":100,"speed":1206.6299999999999,"status":"In flight"}
+2023-11-18T21:55:16.414Z - {"passengers":0,"altitude":25957.26,"weight":100,"speed":1236.06,"status":"In flight"}
+2023-11-18T21:55:17.402Z - {"passengers":0,"altitude":27208.035,"weight":100,"speed":1265.49,"status":"In flight"}
+2023-11-18T21:55:18.389Z - {"passengers":0,"altitude":28488.24,"weight":100,"speed":1294.92,"status":"In flight"}
+2023-11-18T21:55:19.486Z - {"passengers":0,"altitude":29797.874999999996,"weight":100,"speed":1324.35,"status":"In flight"}
+2023-11-18T21:55:20.406Z - {"passengers":0,"altitude":31136.94,"weight":100,"speed":1353.78,"status":"In flight"}
+2023-11-18T21:55:21.397Z - {"passengers":0,"altitude":32505.435,"weight":100,"speed":1383.21,"status":"In flight"}
+2023-11-18T21:55:22.534Z - {"passengers":0,"altitude":33903.36,"weight":100,"speed":1412.6399999999999,"status":"In flight"}
+2023-11-18T21:55:23.545Z - {"passengers":0,"altitude":35330.715,"weight":100,"speed":1442.07,"status":"In flight"}
+2023-11-18T21:55:24.462Z - {"passengers":0,"altitude":36787.5,"weight":100,"speed":1471.5,"status":"In flight"}
+2023-11-18T21:55:25.458Z - {"passengers":0,"altitude":38273.715000000004,"weight":100,"speed":1500.93,"status":"In flight"}
+2023-11-18T21:55:26.411Z - {"passengers":0,"altitude":39789.36,"weight":100,"speed":1530.36,"status":"In flight"}
+2023-11-18T21:55:27.382Z - {"passengers":0,"altitude":41334.435,"weight":100,"speed":1559.79,"status":"In flight"}
+2023-11-18T21:55:28.405Z - {"passengers":0,"altitude":42908.94,"weight":100,"speed":1589.22,"status":"In flight"}
+2023-11-18T21:55:29.520Z - {"passengers":0,"altitude":44512.875,"weight":100,"speed":1618.65,"status":"In flight"}
+2023-11-18T21:55:30.447Z - {"passengers":0,"altitude":46146.24,"weight":100,"speed":1648.08,"status":"In flight"}
+2023-11-18T21:55:31.501Z - {"passengers":0,"altitude":47809.034999999996,"weight":100,"speed":1677.51,"status":"In flight"}
+2023-11-18T21:55:32.513Z - {"passengers":0,"altitude":49501.26,"weight":100,"speed":1706.94,"status":"In flight"}
+2023-11-18T21:55:33.420Z - {"passengers":0,"altitude":51222.91499999999,"weight":100,"speed":1736.37,"status":"In flight"}
+2023-11-18T21:55:34.501Z - {"passengers":0,"altitude":52974,"weight":100,"speed":1765.8,"status":"In flight"}
+2023-11-18T21:55:35.156Z - {"passengers":0,"altitude":54754.515,"weight":100,"speed":1795.23,"status":"In flight"}
+2023-11-18T21:55:35.448Z - {"passengers":0,"altitude":54754.515,"weight":100,"speed":1795.23,"status":"In flight"}
+2023-11-18T21:55:36.373Z - {"passengers":0,"altitude":56564.46,"weight":100,"speed":1824.66,"status":"In flight"}
+2023-11-18T21:55:37.352Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"In flight"}
+2023-11-18T21:55:38.269Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T21:55:38.426Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"In flight"}
+2023-11-18T21:55:39.229Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T21:55:39.321Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T21:55:40.338Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T21:55:40.782Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"Second engine start"}
+2023-11-18T22:00:53.622Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T22:00:53.653Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T22:00:53.665Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}
+2023-11-18T22:00:56.289Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:00:56.634Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:00:56.691Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Liftoff"}
+2023-11-18T22:00:57.767Z - {"passengers":0,"altitude":14.715,"weight":100,"speed":29.43,"status":"In flight"}
+2023-11-18T22:00:58.712Z - {"passengers":0,"altitude":58.86,"weight":100,"speed":58.86,"status":"In flight"}
+2023-11-18T22:00:59.672Z - {"passengers":0,"altitude":132.435,"weight":100,"speed":88.28999999999999,"status":"In flight"}
+2023-11-18T22:01:00.605Z - {"passengers":0,"altitude":235.44,"weight":100,"speed":117.72,"status":"In flight"}
+2023-11-18T22:01:01.659Z - {"passengers":0,"altitude":367.875,"weight":100,"speed":147.15,"status":"In flight"}
+2023-11-18T22:01:02.676Z - {"passengers":0,"altitude":529.74,"weight":100,"speed":176.57999999999998,"status":"In flight"}
+2023-11-18T22:01:03.704Z - {"passengers":0,"altitude":721.035,"weight":100,"speed":206.01,"status":"In flight"}
+2023-11-18T22:01:04.649Z - {"passengers":0,"altitude":941.76,"weight":100,"speed":235.44,"status":"In flight"}
+2023-11-18T22:01:05.742Z - {"passengers":0,"altitude":1191.915,"weight":100,"speed":264.87,"status":"In flight"}
+2023-11-18T22:01:06.694Z - {"passengers":0,"altitude":1471.5,"weight":100,"speed":294.3,"status":"In flight"}
+2023-11-18T22:01:07.710Z - {"passengers":0,"altitude":1780.515,"weight":100,"speed":323.73,"status":"In flight"}
+2023-11-18T22:01:08.655Z - {"passengers":0,"altitude":2118.96,"weight":100,"speed":353.15999999999997,"status":"In flight"}
+2023-11-18T22:01:09.582Z - {"passengers":0,"altitude":2486.835,"weight":100,"speed":382.59,"status":"In flight"}
+2023-11-18T22:01:10.767Z - {"passengers":0,"altitude":2884.14,"weight":100,"speed":412.02,"status":"In flight"}
+2023-11-18T22:01:11.619Z - {"passengers":0,"altitude":3310.875,"weight":100,"speed":441.45,"status":"In flight"}
+2023-11-18T22:01:12.725Z - {"passengers":0,"altitude":3767.04,"weight":100,"speed":470.88,"status":"In flight"}
+2023-11-18T22:01:13.662Z - {"passengers":0,"altitude":4252.635,"weight":100,"speed":500.31,"status":"In flight"}
+2023-11-18T22:01:14.687Z - {"passengers":0,"altitude":4767.66,"weight":100,"speed":529.74,"status":"In flight"}
+2023-11-18T22:01:15.658Z - {"passengers":0,"altitude":5312.115,"weight":100,"speed":559.17,"status":"In flight"}
+2023-11-18T22:01:16.683Z - {"passengers":0,"altitude":5886,"weight":100,"speed":588.6,"status":"In flight"}
+2023-11-18T22:01:17.704Z - {"passengers":0,"altitude":6489.315,"weight":100,"speed":618.03,"status":"In flight"}
+2023-11-18T22:01:18.638Z - {"passengers":0,"altitude":7122.06,"weight":100,"speed":647.46,"status":"In flight"}
+2023-11-18T22:01:19.719Z - {"passengers":0,"altitude":7784.235,"weight":100,"speed":676.89,"status":"In flight"}
+2023-11-18T22:01:20.634Z - {"passengers":0,"altitude":8475.84,"weight":100,"speed":706.3199999999999,"status":"In flight"}
+2023-11-18T22:01:21.678Z - {"passengers":0,"altitude":9196.875,"weight":100,"speed":735.75,"status":"In flight"}
+2023-11-18T22:01:22.620Z - {"passengers":0,"altitude":9947.34,"weight":100,"speed":765.18,"status":"In flight"}
+2023-11-18T22:01:23.800Z - {"passengers":0,"altitude":10727.235,"weight":100,"speed":794.61,"status":"In flight"}
+2023-11-18T22:01:24.744Z - {"passengers":0,"altitude":11536.56,"weight":100,"speed":824.04,"status":"In flight"}
+2023-11-18T22:01:25.676Z - {"passengers":0,"altitude":12375.315,"weight":100,"speed":853.47,"status":"In flight"}
+2023-11-18T22:01:26.608Z - {"passengers":0,"altitude":13243.5,"weight":100,"speed":882.9,"status":"In flight"}
+2023-11-18T22:01:27.659Z - {"passengers":0,"altitude":14141.115,"weight":100,"speed":912.33,"status":"In flight"}
+2023-11-18T22:01:28.746Z - {"passengers":0,"altitude":15068.16,"weight":100,"speed":941.76,"status":"In flight"}
+2023-11-18T22:01:29.696Z - {"passengers":0,"altitude":16024.634999999998,"weight":100,"speed":971.1899999999999,"status":"In flight"}
+2023-11-18T22:01:30.680Z - {"passengers":0,"altitude":17010.54,"weight":100,"speed":1000.62,"status":"In flight"}
+2023-11-18T22:01:31.678Z - {"passengers":0,"altitude":18025.875,"weight":100,"speed":1030.05,"status":"In flight"}
+2023-11-18T22:01:32.700Z - {"passengers":0,"altitude":19070.64,"weight":100,"speed":1059.48,"status":"In flight"}
+2023-11-18T22:01:33.700Z - {"passengers":0,"altitude":20144.835000000003,"weight":100,"speed":1088.91,"status":"In flight"}
+2023-11-18T22:01:34.615Z - {"passengers":0,"altitude":21248.46,"weight":100,"speed":1118.34,"status":"In flight"}
+2023-11-18T22:01:35.661Z - {"passengers":0,"altitude":22381.515,"weight":100,"speed":1147.77,"status":"In flight"}
+2023-11-18T22:01:36.757Z - {"passengers":0,"altitude":23544,"weight":100,"speed":1177.2,"status":"In flight"}
+2023-11-18T22:01:37.724Z - {"passengers":0,"altitude":24735.914999999997,"weight":100,"speed":1206.6299999999999,"status":"In flight"}
+2023-11-18T22:01:38.666Z - {"passengers":0,"altitude":25957.26,"weight":100,"speed":1236.06,"status":"In flight"}
+2023-11-18T22:01:39.696Z - {"passengers":0,"altitude":27208.035,"weight":100,"speed":1265.49,"status":"In flight"}
+2023-11-18T22:01:40.629Z - {"passengers":0,"altitude":28488.24,"weight":100,"speed":1294.92,"status":"In flight"}
+2023-11-18T22:01:41.739Z - {"passengers":0,"altitude":29797.874999999996,"weight":100,"speed":1324.35,"status":"In flight"}
+2023-11-18T22:01:42.640Z - {"passengers":0,"altitude":31136.94,"weight":100,"speed":1353.78,"status":"In flight"}
+2023-11-18T22:01:43.775Z - {"passengers":0,"altitude":32505.435,"weight":100,"speed":1383.21,"status":"In flight"}
+2023-11-18T22:01:44.610Z - {"passengers":0,"altitude":33903.36,"weight":100,"speed":1412.6399999999999,"status":"In flight"}
+2023-11-18T22:01:45.701Z - {"passengers":0,"altitude":35330.715,"weight":100,"speed":1442.07,"status":"In flight"}
+2023-11-18T22:01:46.624Z - {"passengers":0,"altitude":36787.5,"weight":100,"speed":1471.5,"status":"In flight"}
+2023-11-18T22:01:47.711Z - {"passengers":0,"altitude":38273.715000000004,"weight":100,"speed":1500.93,"status":"In flight"}
+2023-11-18T22:01:48.702Z - {"passengers":0,"altitude":39789.36,"weight":100,"speed":1530.36,"status":"In flight"}
+2023-11-18T22:01:49.668Z - {"passengers":0,"altitude":41334.435,"weight":100,"speed":1559.79,"status":"In flight"}
+2023-11-18T22:01:50.693Z - {"passengers":0,"altitude":42908.94,"weight":100,"speed":1589.22,"status":"In flight"}
+2023-11-18T22:01:51.711Z - {"passengers":0,"altitude":44512.875,"weight":100,"speed":1618.65,"status":"In flight"}
+2023-11-18T22:01:52.627Z - {"passengers":0,"altitude":46146.24,"weight":100,"speed":1648.08,"status":"In flight"}
+2023-11-18T22:01:53.753Z - {"passengers":0,"altitude":47809.034999999996,"weight":100,"speed":1677.51,"status":"In flight"}
+2023-11-18T22:01:54.669Z - {"passengers":0,"altitude":49501.26,"weight":100,"speed":1706.94,"status":"In flight"}
+2023-11-18T22:01:55.733Z - {"passengers":0,"altitude":51222.91499999999,"weight":100,"speed":1736.37,"status":"In flight"}
+2023-11-18T22:01:56.789Z - {"passengers":0,"altitude":52974,"weight":100,"speed":1765.8,"status":"In flight"}
+2023-11-18T22:01:57.781Z - {"passengers":0,"altitude":54754.515,"weight":100,"speed":1795.23,"status":"In flight"}
+2023-11-18T22:01:58.709Z - {"passengers":0,"altitude":56564.46,"weight":100,"speed":1824.66,"status":"In flight"}
+2023-11-18T22:01:59.726Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"In flight"}
+2023-11-18T22:02:00.657Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T22:02:00.752Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"In flight"}
+2023-11-18T22:02:01.591Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T22:02:01.677Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T22:02:02.576Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T22:02:03.120Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"Second engine start"}
+2023-11-18T22:04:11.081Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T22:04:11.376Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}
+2023-11-18T22:04:11.407Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T22:04:14.086Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:04:14.431Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:04:14.524Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Liftoff"}
+2023-11-18T22:04:15.404Z - {"passengers":0,"altitude":14.715,"weight":100,"speed":29.43,"status":"In flight"}
+2023-11-18T22:04:16.517Z - {"passengers":0,"altitude":58.86,"weight":100,"speed":58.86,"status":"In flight"}
+2023-11-18T22:04:17.405Z - {"passengers":0,"altitude":132.435,"weight":100,"speed":88.28999999999999,"status":"In flight"}
+2023-11-18T22:04:18.525Z - {"passengers":0,"altitude":235.44,"weight":100,"speed":117.72,"status":"In flight"}
+2023-11-18T22:04:19.524Z - {"passengers":0,"altitude":367.875,"weight":100,"speed":147.15,"status":"In flight"}
+2023-11-18T22:04:20.410Z - {"passengers":0,"altitude":529.74,"weight":100,"speed":176.57999999999998,"status":"In flight"}
+2023-11-18T22:04:21.410Z - {"passengers":0,"altitude":721.035,"weight":100,"speed":206.01,"status":"In flight"}
+2023-11-18T22:04:22.463Z - {"passengers":0,"altitude":941.76,"weight":100,"speed":235.44,"status":"In flight"}
+2023-11-18T22:04:23.494Z - {"passengers":0,"altitude":1191.915,"weight":100,"speed":264.87,"status":"In flight"}
+2023-11-18T22:04:24.474Z - {"passengers":0,"altitude":1471.5,"weight":100,"speed":294.3,"status":"In flight"}
+2023-11-18T22:04:25.432Z - {"passengers":0,"altitude":1780.515,"weight":100,"speed":323.73,"status":"In flight"}
+2023-11-18T22:04:26.480Z - {"passengers":0,"altitude":2118.96,"weight":100,"speed":353.15999999999997,"status":"In flight"}
+2023-11-18T22:04:27.533Z - {"passengers":0,"altitude":2486.835,"weight":100,"speed":382.59,"status":"In flight"}
+2023-11-18T22:04:28.444Z - {"passengers":0,"altitude":2884.14,"weight":100,"speed":412.02,"status":"In flight"}
+2023-11-18T22:04:29.520Z - {"passengers":0,"altitude":3310.875,"weight":100,"speed":441.45,"status":"In flight"}
+2023-11-18T22:04:30.576Z - {"passengers":0,"altitude":3767.04,"weight":100,"speed":470.88,"status":"In flight"}
+2023-11-18T22:04:31.488Z - {"passengers":0,"altitude":4252.635,"weight":100,"speed":500.31,"status":"In flight"}
+2023-11-18T22:04:32.480Z - {"passengers":0,"altitude":4767.66,"weight":100,"speed":529.74,"status":"In flight"}
+2023-11-18T22:04:33.445Z - {"passengers":0,"altitude":5312.115,"weight":100,"speed":559.17,"status":"In flight"}
+2023-11-18T22:04:34.496Z - {"passengers":0,"altitude":5886,"weight":100,"speed":588.6,"status":"In flight"}
+2023-11-18T22:04:35.480Z - {"passengers":0,"altitude":6489.315,"weight":100,"speed":618.03,"status":"In flight"}
+2023-11-18T22:04:36.471Z - {"passengers":0,"altitude":7122.06,"weight":100,"speed":647.46,"status":"In flight"}
+2023-11-18T22:04:37.394Z - {"passengers":0,"altitude":7784.235,"weight":100,"speed":676.89,"status":"In flight"}
+2023-11-18T22:04:38.379Z - {"passengers":0,"altitude":8475.84,"weight":100,"speed":706.3199999999999,"status":"In flight"}
+2023-11-18T22:04:39.442Z - {"passengers":0,"altitude":9196.875,"weight":100,"speed":735.75,"status":"In flight"}
+2023-11-18T22:04:40.538Z - {"passengers":0,"altitude":9947.34,"weight":100,"speed":765.18,"status":"In flight"}
+2023-11-18T22:04:41.427Z - {"passengers":0,"altitude":10727.235,"weight":100,"speed":794.61,"status":"In flight"}
+2023-11-18T22:04:42.531Z - {"passengers":0,"altitude":11536.56,"weight":100,"speed":824.04,"status":"In flight"}
+2023-11-18T22:04:43.582Z - {"passengers":0,"altitude":12375.315,"weight":100,"speed":853.47,"status":"In flight"}
+2023-11-18T22:04:44.482Z - {"passengers":0,"altitude":13243.5,"weight":100,"speed":882.9,"status":"In flight"}
+2023-11-18T22:04:45.510Z - {"passengers":0,"altitude":14141.115,"weight":100,"speed":912.33,"status":"In flight"}
+2023-11-18T22:04:46.452Z - {"passengers":0,"altitude":15068.16,"weight":100,"speed":941.76,"status":"In flight"}
+2023-11-18T22:04:47.423Z - {"passengers":0,"altitude":16024.634999999998,"weight":100,"speed":971.1899999999999,"status":"In flight"}
+2023-11-18T22:04:48.235Z - {"passengers":0,"altitude":17010.54,"weight":100,"speed":1000.62,"status":"In flight"}
+2023-11-18T22:04:48.552Z - {"passengers":0,"altitude":17010.54,"weight":100,"speed":1000.62,"status":"In flight"}
+2023-11-18T22:04:49.512Z - {"passengers":0,"altitude":18025.875,"weight":100,"speed":1030.05,"status":"In flight"}
+2023-11-18T22:04:50.466Z - {"passengers":0,"altitude":19070.64,"weight":100,"speed":1059.48,"status":"In flight"}
+2023-11-18T22:04:51.518Z - {"passengers":0,"altitude":20144.835000000003,"weight":100,"speed":1088.91,"status":"In flight"}
+2023-11-18T22:04:52.541Z - {"passengers":0,"altitude":21248.46,"weight":100,"speed":1118.34,"status":"In flight"}
+2023-11-18T22:04:53.482Z - {"passengers":0,"altitude":22381.515,"weight":100,"speed":1147.77,"status":"In flight"}
+2023-11-18T22:04:54.511Z - {"passengers":0,"altitude":23544,"weight":100,"speed":1177.2,"status":"In flight"}
+2023-11-18T22:04:55.414Z - {"passengers":0,"altitude":24735.914999999997,"weight":100,"speed":1206.6299999999999,"status":"In flight"}
+2023-11-18T22:04:56.526Z - {"passengers":0,"altitude":25957.26,"weight":100,"speed":1236.06,"status":"In flight"}
+2023-11-18T22:04:57.456Z - {"passengers":0,"altitude":27208.035,"weight":100,"speed":1265.49,"status":"In flight"}
+2023-11-18T22:04:58.543Z - {"passengers":0,"altitude":28488.24,"weight":100,"speed":1294.92,"status":"In flight"}
+2023-11-18T22:04:59.436Z - {"passengers":0,"altitude":29797.874999999996,"weight":100,"speed":1324.35,"status":"In flight"}
+2023-11-18T22:05:00.534Z - {"passengers":0,"altitude":31136.94,"weight":100,"speed":1353.78,"status":"In flight"}
+2023-11-18T22:05:01.408Z - {"passengers":0,"altitude":32505.435,"weight":100,"speed":1383.21,"status":"In flight"}
+2023-11-18T22:05:02.466Z - {"passengers":0,"altitude":33903.36,"weight":100,"speed":1412.6399999999999,"status":"In flight"}
+2023-11-18T22:05:03.576Z - {"passengers":0,"altitude":35330.715,"weight":100,"speed":1442.07,"status":"In flight"}
+2023-11-18T22:05:04.389Z - {"passengers":0,"altitude":36787.5,"weight":100,"speed":1471.5,"status":"In flight"}
+2023-11-18T22:05:05.539Z - {"passengers":0,"altitude":38273.715000000004,"weight":100,"speed":1500.93,"status":"In flight"}
+2023-11-18T22:05:06.523Z - {"passengers":0,"altitude":39789.36,"weight":100,"speed":1530.36,"status":"In flight"}
+2023-11-18T22:05:07.548Z - {"passengers":0,"altitude":41334.435,"weight":100,"speed":1559.79,"status":"In flight"}
+2023-11-18T22:05:08.531Z - {"passengers":0,"altitude":42908.94,"weight":100,"speed":1589.22,"status":"In flight"}
+2023-11-18T22:05:09.556Z - {"passengers":0,"altitude":44512.875,"weight":100,"speed":1618.65,"status":"In flight"}
+2023-11-18T22:05:10.553Z - {"passengers":0,"altitude":46146.24,"weight":100,"speed":1648.08,"status":"In flight"}
+2023-11-18T22:05:11.608Z - {"passengers":0,"altitude":47809.034999999996,"weight":100,"speed":1677.51,"status":"In flight"}
+2023-11-18T22:05:12.506Z - {"passengers":0,"altitude":49501.26,"weight":100,"speed":1706.94,"status":"In flight"}
+2023-11-18T22:05:13.497Z - {"passengers":0,"altitude":51222.91499999999,"weight":100,"speed":1736.37,"status":"In flight"}
+2023-11-18T22:05:14.491Z - {"passengers":0,"altitude":52974,"weight":100,"speed":1765.8,"status":"In flight"}
+2023-11-18T22:05:15.568Z - {"passengers":0,"altitude":54754.515,"weight":100,"speed":1795.23,"status":"In flight"}
+2023-11-18T22:05:16.500Z - {"passengers":0,"altitude":56564.46,"weight":100,"speed":1824.66,"status":"In flight"}
+2023-11-18T22:05:17.598Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"In flight"}
+2023-11-18T22:05:18.446Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"In flight"}
+2023-11-18T22:05:18.457Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T22:05:19.062Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T22:05:19.434Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T22:05:20.368Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T22:05:20.665Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"Second engine start"}
+2023-11-18T22:08:48.019Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}
+2023-11-18T22:08:48.274Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T22:08:48.520Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T22:08:50.770Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:08:51.085Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:08:51.977Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Liftoff"}
+2023-11-18T22:08:52.425Z - {"passengers":0,"altitude":14.715,"weight":100,"speed":29.43,"status":"In flight"}
+2023-11-18T22:08:53.363Z - {"passengers":0,"altitude":58.86,"weight":100,"speed":58.86,"status":"In flight"}
+2023-11-18T22:08:54.431Z - {"passengers":0,"altitude":132.435,"weight":100,"speed":88.28999999999999,"status":"In flight"}
+2023-11-18T22:08:55.336Z - {"passengers":0,"altitude":235.44,"weight":100,"speed":117.72,"status":"In flight"}
+2023-11-18T22:08:56.427Z - {"passengers":0,"altitude":367.875,"weight":100,"speed":147.15,"status":"In flight"}
+2023-11-18T22:08:57.406Z - {"passengers":0,"altitude":529.74,"weight":100,"speed":176.57999999999998,"status":"In flight"}
+2023-11-18T22:08:58.372Z - {"passengers":0,"altitude":721.035,"weight":100,"speed":206.01,"status":"In flight"}
+2023-11-18T22:08:59.348Z - {"passengers":0,"altitude":941.76,"weight":100,"speed":235.44,"status":"In flight"}
+2023-11-18T22:09:00.425Z - {"passengers":0,"altitude":1191.915,"weight":100,"speed":264.87,"status":"In flight"}
+2023-11-18T22:09:01.431Z - {"passengers":0,"altitude":1471.5,"weight":100,"speed":294.3,"status":"In flight"}
+2023-11-18T22:09:02.434Z - {"passengers":0,"altitude":1780.515,"weight":100,"speed":323.73,"status":"In flight"}
+2023-11-18T22:09:03.403Z - {"passengers":0,"altitude":2118.96,"weight":100,"speed":353.15999999999997,"status":"In flight"}
+2023-11-18T22:09:04.353Z - {"passengers":0,"altitude":2486.835,"weight":100,"speed":382.59,"status":"In flight"}
+2023-11-18T22:09:05.336Z - {"passengers":0,"altitude":2884.14,"weight":100,"speed":412.02,"status":"In flight"}
+2023-11-18T22:09:06.109Z - {"passengers":0,"altitude":3310.875,"weight":100,"speed":441.45,"status":"In flight"}
+2023-11-18T22:09:07.464Z - {"passengers":0,"altitude":3767.04,"weight":100,"speed":470.88,"status":"In flight"}
+2023-11-18T22:09:08.452Z - {"passengers":0,"altitude":4252.635,"weight":100,"speed":500.31,"status":"In flight"}
+2023-11-18T22:09:09.391Z - {"passengers":0,"altitude":4767.66,"weight":100,"speed":529.74,"status":"In flight"}
+2023-11-18T22:09:10.441Z - {"passengers":0,"altitude":5312.115,"weight":100,"speed":559.17,"status":"In flight"}
+2023-11-18T22:09:11.409Z - {"passengers":0,"altitude":5886,"weight":100,"speed":588.6,"status":"In flight"}
+2023-11-18T22:09:12.454Z - {"passengers":0,"altitude":6489.315,"weight":100,"speed":618.03,"status":"In flight"}
+2023-11-18T22:09:13.401Z - {"passengers":0,"altitude":7122.06,"weight":100,"speed":647.46,"status":"In flight"}
+2023-11-18T22:09:14.464Z - {"passengers":0,"altitude":7784.235,"weight":100,"speed":676.89,"status":"In flight"}
+2023-11-18T22:09:15.367Z - {"passengers":0,"altitude":8475.84,"weight":100,"speed":706.3199999999999,"status":"In flight"}
+2023-11-18T22:09:16.301Z - {"passengers":0,"altitude":9196.875,"weight":100,"speed":735.75,"status":"In flight"}
+2023-11-18T22:09:17.453Z - {"passengers":0,"altitude":9947.34,"weight":100,"speed":765.18,"status":"In flight"}
+2023-11-18T22:09:18.410Z - {"passengers":0,"altitude":10727.235,"weight":100,"speed":794.61,"status":"In flight"}
+2023-11-18T22:09:19.455Z - {"passengers":0,"altitude":11536.56,"weight":100,"speed":824.04,"status":"In flight"}
+2023-11-18T22:09:20.363Z - {"passengers":0,"altitude":12375.315,"weight":100,"speed":853.47,"status":"In flight"}
+2023-11-18T22:09:21.401Z - {"passengers":0,"altitude":13243.5,"weight":100,"speed":882.9,"status":"In flight"}
+2023-11-18T22:09:22.424Z - {"passengers":0,"altitude":14141.115,"weight":100,"speed":912.33,"status":"In flight"}
+2023-11-18T22:09:23.422Z - {"passengers":0,"altitude":15068.16,"weight":100,"speed":941.76,"status":"In flight"}
+2023-11-18T22:09:24.470Z - {"passengers":0,"altitude":16024.634999999998,"weight":100,"speed":971.1899999999999,"status":"In flight"}
+2023-11-18T22:09:25.422Z - {"passengers":0,"altitude":17010.54,"weight":100,"speed":1000.62,"status":"In flight"}
+2023-11-18T22:09:26.430Z - {"passengers":0,"altitude":18025.875,"weight":100,"speed":1030.05,"status":"In flight"}
+2023-11-18T22:09:27.469Z - {"passengers":0,"altitude":19070.64,"weight":100,"speed":1059.48,"status":"In flight"}
+2023-11-18T22:09:28.390Z - {"passengers":0,"altitude":20144.835000000003,"weight":100,"speed":1088.91,"status":"In flight"}
+2023-11-18T22:09:29.435Z - {"passengers":0,"altitude":21248.46,"weight":100,"speed":1118.34,"status":"In flight"}
+2023-11-18T22:09:30.476Z - {"passengers":0,"altitude":22381.515,"weight":100,"speed":1147.77,"status":"In flight"}
+2023-11-18T22:09:31.381Z - {"passengers":0,"altitude":23544,"weight":100,"speed":1177.2,"status":"In flight"}
+2023-11-18T22:09:32.477Z - {"passengers":0,"altitude":24735.914999999997,"weight":100,"speed":1206.6299999999999,"status":"In flight"}
+2023-11-18T22:09:33.398Z - {"passengers":0,"altitude":25957.26,"weight":100,"speed":1236.06,"status":"In flight"}
+2023-11-18T22:09:34.471Z - {"passengers":0,"altitude":27208.035,"weight":100,"speed":1265.49,"status":"In flight"}
+2023-11-18T22:09:35.407Z - {"passengers":0,"altitude":28488.24,"weight":100,"speed":1294.92,"status":"In flight"}
+2023-11-18T22:09:36.461Z - {"passengers":0,"altitude":29797.874999999996,"weight":100,"speed":1324.35,"status":"In flight"}
+2023-11-18T22:09:37.413Z - {"passengers":0,"altitude":31136.94,"weight":100,"speed":1353.78,"status":"In flight"}
+2023-11-18T22:09:38.367Z - {"passengers":0,"altitude":32505.435,"weight":100,"speed":1383.21,"status":"In flight"}
+2023-11-18T22:09:39.503Z - {"passengers":0,"altitude":33903.36,"weight":100,"speed":1412.6399999999999,"status":"In flight"}
+2023-11-18T22:09:40.405Z - {"passengers":0,"altitude":35330.715,"weight":100,"speed":1442.07,"status":"In flight"}
+2023-11-18T22:09:41.463Z - {"passengers":0,"altitude":36787.5,"weight":100,"speed":1471.5,"status":"In flight"}
+2023-11-18T22:09:42.344Z - {"passengers":0,"altitude":38273.715000000004,"weight":100,"speed":1500.93,"status":"In flight"}
+2023-11-18T22:09:43.437Z - {"passengers":0,"altitude":39789.36,"weight":100,"speed":1530.36,"status":"In flight"}
+2023-11-18T22:09:44.408Z - {"passengers":0,"altitude":41334.435,"weight":100,"speed":1559.79,"status":"In flight"}
+2023-11-18T22:09:45.466Z - {"passengers":0,"altitude":42908.94,"weight":100,"speed":1589.22,"status":"In flight"}
+2023-11-18T22:09:46.424Z - {"passengers":0,"altitude":44512.875,"weight":100,"speed":1618.65,"status":"In flight"}
+2023-11-18T22:09:47.493Z - {"passengers":0,"altitude":46146.24,"weight":100,"speed":1648.08,"status":"In flight"}
+2023-11-18T22:09:48.441Z - {"passengers":0,"altitude":47809.034999999996,"weight":100,"speed":1677.51,"status":"In flight"}
+2023-11-18T22:09:49.575Z - {"passengers":0,"altitude":49501.26,"weight":100,"speed":1706.94,"status":"In flight"}
+2023-11-18T22:09:50.384Z - {"passengers":0,"altitude":51222.91499999999,"weight":100,"speed":1736.37,"status":"In flight"}
+2023-11-18T22:09:51.412Z - {"passengers":0,"altitude":52974,"weight":100,"speed":1765.8,"status":"In flight"}
+2023-11-18T22:09:52.453Z - {"passengers":0,"altitude":54754.515,"weight":100,"speed":1795.23,"status":"In flight"}
+2023-11-18T22:09:53.459Z - {"passengers":0,"altitude":56564.46,"weight":100,"speed":1824.66,"status":"In flight"}
+2023-11-18T22:09:54.442Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"In flight"}
+2023-11-18T22:09:55.352Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T22:09:55.524Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"In flight"}
+2023-11-18T22:09:56.265Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T22:09:56.460Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T22:09:57.392Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T22:09:57.815Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"Second engine start"}
+2023-11-18T22:09:58.756Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"Second engine start"}
+2023-11-18T22:09:58.981Z - {"passengers":0,"altitude":51819.625,"weight":100,"speed":1594.45,"status":"MaxQ"}
+2023-11-18T22:09:59.940Z - {"passengers":0,"altitude":64098.53999999999,"weight":100,"speed":1942.3799999999999,"status":"In flight"}
+2023-11-18T22:10:00.926Z - {"passengers":0,"altitude":66055.635,"weight":100,"speed":1971.81,"status":"In flight"}
+2023-11-18T22:10:02.052Z - {"passengers":0,"altitude":68042.16,"weight":100,"speed":2001.24,"status":"In flight"}
+2023-11-18T22:10:03.045Z - {"passengers":0,"altitude":70058.115,"weight":100,"speed":2030.67,"status":"In flight"}
+2023-11-18T22:10:04.010Z - {"passengers":0,"altitude":72103.5,"weight":100,"speed":2060.1,"status":"In flight"}
+2023-11-18T22:10:05.012Z - {"passengers":0,"altitude":74178.315,"weight":100,"speed":2089.53,"status":"In flight"}
+2023-11-18T22:10:05.974Z - {"passengers":0,"altitude":76282.56,"weight":100,"speed":2118.96,"status":"In flight"}
+2023-11-18T22:10:06.913Z - {"passengers":0,"altitude":78416.235,"weight":100,"speed":2148.39,"status":"In flight"}
+2023-11-18T22:10:07.889Z - {"passengers":0,"altitude":80579.34000000001,"weight":100,"speed":2177.82,"status":"In flight"}
+2023-11-18T22:10:08.899Z - {"passengers":0,"altitude":82771.875,"weight":100,"speed":2207.25,"status":"In flight"}
+2023-11-18T22:10:09.964Z - {"passengers":0,"altitude":84993.84,"weight":100,"speed":2236.68,"status":"In flight"}
+2023-11-18T22:10:11.045Z - {"passengers":0,"altitude":87245.235,"weight":100,"speed":2266.11,"status":"In flight"}
+2023-11-18T22:10:12.041Z - {"passengers":0,"altitude":89526.06,"weight":100,"speed":2295.54,"status":"In flight"}
+2023-11-18T22:10:13.023Z - {"passengers":0,"altitude":91836.31499999999,"weight":100,"speed":2324.97,"status":"In flight"}
+2023-11-18T22:10:14.066Z - {"passengers":0,"altitude":94176,"weight":100,"speed":2354.4,"status":"In flight"}
+2023-11-18T22:10:15.059Z - {"passengers":0,"altitude":96545.11499999999,"weight":100,"speed":2383.83,"status":"In flight"}
+2023-11-18T22:10:15.980Z - {"passengers":0,"altitude":98943.65999999999,"weight":100,"speed":2413.2599999999998,"status":"In flight"}
+2023-11-18T22:10:17.022Z - {"passengers":0,"altitude":101371.63500000001,"weight":100,"speed":2442.69,"status":"In flight"}
+2023-11-18T22:10:18.020Z - {"passengers":0,"altitude":103829.04,"weight":100,"speed":2472.12,"status":"In flight"}
+2023-11-18T22:10:19.014Z - {"passengers":0,"altitude":106315.87500000001,"weight":100,"speed":2501.55,"status":"In flight"}
+2023-11-18T22:10:20.003Z - {"passengers":0,"altitude":108832.14,"weight":100,"speed":2530.98,"status":"In flight"}
+2023-11-18T22:10:21.086Z - {"passengers":0,"altitude":111377.83499999999,"weight":100,"speed":2560.41,"status":"In flight"}
+2023-11-18T22:10:22.047Z - {"passengers":0,"altitude":113952.96,"weight":100,"speed":2589.84,"status":"In flight"}
+2023-11-18T22:10:22.945Z - {"passengers":0,"altitude":116557.515,"weight":100,"speed":2619.27,"status":"In flight"}
+2023-11-18T22:10:24.043Z - {"passengers":0,"altitude":119191.49999999999,"weight":100,"speed":2648.7,"status":"In flight"}
+2023-11-18T22:10:24.985Z - {"passengers":0,"altitude":121854.91500000001,"weight":100,"speed":2678.13,"status":"In flight"}
+2023-11-18T22:10:26.016Z - {"passengers":0,"altitude":124547.76,"weight":100,"speed":2707.56,"status":"In flight"}
+2023-11-18T22:10:26.986Z - {"passengers":0,"altitude":127270.03499999999,"weight":100,"speed":2736.99,"status":"In flight"}
+2023-11-18T22:10:28.023Z - {"passengers":0,"altitude":130021.74,"weight":100,"speed":2766.42,"status":"In flight"}
+2023-11-18T22:12:56.905Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}
+2023-11-18T22:12:57.061Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T22:12:57.180Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T22:12:59.643Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:12:59.936Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Liftoff"}
+2023-11-18T22:13:00.264Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        2023-11-18T22:31:56.617Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket on internal power"}
+2023-11-18T22:31:56.876Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Startup"}
+2023-11-18T22:31:57.131Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Rocket preparation"}
+2023-11-18T22:31:59.714Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:32:00.292Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine start"}
+2023-11-18T22:32:00.300Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Liftoff"}
+2023-11-18T22:32:01.373Z - {"passengers":0,"altitude":14.715,"weight":100,"speed":29.43,"status":"In flight"}
+2023-11-18T22:32:02.418Z - {"passengers":0,"altitude":58.86,"weight":100,"speed":58.86,"status":"In flight"}
+2023-11-18T22:32:03.402Z - {"passengers":0,"altitude":132.435,"weight":100,"speed":88.28999999999999,"status":"In flight"}
+2023-11-18T22:32:04.316Z - {"passengers":0,"altitude":235.44,"weight":100,"speed":117.72,"status":"In flight"}
+2023-11-18T22:32:05.493Z - {"passengers":0,"altitude":367.875,"weight":100,"speed":147.15,"status":"In flight"}
+2023-11-18T22:32:06.397Z - {"passengers":0,"altitude":529.74,"weight":100,"speed":176.57999999999998,"status":"In flight"}
+2023-11-18T22:32:07.421Z - {"passengers":0,"altitude":721.035,"weight":100,"speed":206.01,"status":"In flight"}
+2023-11-18T22:32:08.369Z - {"passengers":0,"altitude":941.76,"weight":100,"speed":235.44,"status":"In flight"}
+2023-11-18T22:32:09.350Z - {"passengers":0,"altitude":1191.915,"weight":100,"speed":264.87,"status":"In flight"}
+2023-11-18T22:32:10.335Z - {"passengers":0,"altitude":1471.5,"weight":100,"speed":294.3,"status":"In flight"}
+2023-11-18T22:32:11.468Z - {"passengers":0,"altitude":1780.515,"weight":100,"speed":323.73,"status":"In flight"}
+2023-11-18T22:32:12.512Z - {"passengers":0,"altitude":2118.96,"weight":100,"speed":353.15999999999997,"status":"In flight"}
+2023-11-18T22:32:13.455Z - {"passengers":0,"altitude":2486.835,"weight":100,"speed":382.59,"status":"In flight"}
+2023-11-18T22:32:14.357Z - {"passengers":0,"altitude":2884.14,"weight":100,"speed":412.02,"status":"In flight"}
+2023-11-18T22:32:15.422Z - {"passengers":0,"altitude":3310.875,"weight":100,"speed":441.45,"status":"In flight"}
+2023-11-18T22:32:16.305Z - {"passengers":0,"altitude":3767.04,"weight":100,"speed":470.88,"status":"In flight"}
+2023-11-18T22:32:17.349Z - {"passengers":0,"altitude":4252.635,"weight":100,"speed":500.31,"status":"In flight"}
+2023-11-18T22:32:18.443Z - {"passengers":0,"altitude":4767.66,"weight":100,"speed":529.74,"status":"In flight"}
+2023-11-18T22:32:19.372Z - {"passengers":0,"altitude":5312.115,"weight":100,"speed":559.17,"status":"In flight"}
+2023-11-18T22:32:20.351Z - {"passengers":0,"altitude":5886,"weight":100,"speed":588.6,"status":"In flight"}
+2023-11-18T22:32:21.290Z - {"passengers":0,"altitude":6489.315,"weight":100,"speed":618.03,"status":"In flight"}
+2023-11-18T22:32:22.340Z - {"passengers":0,"altitude":7122.06,"weight":100,"speed":647.46,"status":"In flight"}
+2023-11-18T22:32:23.387Z - {"passengers":0,"altitude":7784.235,"weight":100,"speed":676.89,"status":"In flight"}
+2023-11-18T22:32:24.347Z - {"passengers":0,"altitude":8475.84,"weight":100,"speed":706.3199999999999,"status":"In flight"}
+2023-11-18T22:32:25.400Z - {"passengers":0,"altitude":9196.875,"weight":100,"speed":735.75,"status":"In flight"}
+2023-11-18T22:32:26.418Z - {"passengers":0,"altitude":9947.34,"weight":100,"speed":765.18,"status":"In flight"}
+2023-11-18T22:32:27.416Z - {"passengers":0,"altitude":10727.235,"weight":100,"speed":794.61,"status":"In flight"}
+2023-11-18T22:32:28.492Z - {"passengers":0,"altitude":11536.56,"weight":100,"speed":824.04,"status":"In flight"}
+2023-11-18T22:32:29.388Z - {"passengers":0,"altitude":12375.315,"weight":100,"speed":853.47,"status":"In flight"}
+2023-11-18T22:32:30.399Z - {"passengers":0,"altitude":13243.5,"weight":100,"speed":882.9,"status":"In flight"}
+2023-11-18T22:32:31.445Z - {"passengers":0,"altitude":14141.115,"weight":100,"speed":912.33,"status":"In flight"}
+2023-11-18T22:32:32.395Z - {"passengers":0,"altitude":15068.16,"weight":100,"speed":941.76,"status":"In flight"}
+2023-11-18T22:32:33.439Z - {"passengers":0,"altitude":16024.634999999998,"weight":100,"speed":971.1899999999999,"status":"In flight"}
+2023-11-18T22:32:34.361Z - {"passengers":0,"altitude":17010.54,"weight":100,"speed":1000.62,"status":"In flight"}
+2023-11-18T22:32:35.374Z - {"passengers":0,"altitude":18025.875,"weight":100,"speed":1030.05,"status":"In flight"}
+2023-11-18T22:32:36.439Z - {"passengers":0,"altitude":19070.64,"weight":100,"speed":1059.48,"status":"In flight"}
+2023-11-18T22:32:37.373Z - {"passengers":0,"altitude":20144.835000000003,"weight":100,"speed":1088.91,"status":"In flight"}
+2023-11-18T22:32:38.378Z - {"passengers":0,"altitude":21248.46,"weight":100,"speed":1118.34,"status":"In flight"}
+2023-11-18T22:32:39.404Z - {"passengers":0,"altitude":22381.515,"weight":100,"speed":1147.77,"status":"In flight"}
+2023-11-18T22:32:40.386Z - {"passengers":0,"altitude":23544,"weight":100,"speed":1177.2,"status":"In flight"}
+2023-11-18T22:32:41.059Z - {"passengers":0,"altitude":24735.914999999997,"weight":100,"speed":1206.6299999999999,"status":"In flight"}
+2023-11-18T22:32:41.353Z - {"passengers":0,"altitude":24735.914999999997,"weight":100,"speed":1206.6299999999999,"status":"In flight"}
+2023-11-18T22:32:42.388Z - {"passengers":0,"altitude":25957.26,"weight":100,"speed":1236.06,"status":"In flight"}
+2023-11-18T22:32:43.056Z - {"passengers":0,"altitude":27208.035,"weight":100,"speed":1265.49,"status":"In flight"}
+2023-11-18T22:32:44.396Z - {"passengers":0,"altitude":28488.24,"weight":100,"speed":1294.92,"status":"In flight"}
+2023-11-18T22:32:45.479Z - {"passengers":0,"altitude":29797.874999999996,"weight":100,"speed":1324.35,"status":"In flight"}
+2023-11-18T22:32:46.413Z - {"passengers":0,"altitude":31136.94,"weight":100,"speed":1353.78,"status":"In flight"}
+2023-11-18T22:32:47.397Z - {"passengers":0,"altitude":32505.435,"weight":100,"speed":1383.21,"status":"In flight"}
+2023-11-18T22:32:48.491Z - {"passengers":0,"altitude":33903.36,"weight":100,"speed":1412.6399999999999,"status":"In flight"}
+2023-11-18T22:32:49.495Z - {"passengers":0,"altitude":35330.715,"weight":100,"speed":1442.07,"status":"In flight"}
+2023-11-18T22:32:50.405Z - {"passengers":0,"altitude":36787.5,"weight":100,"speed":1471.5,"status":"In flight"}
+2023-11-18T22:32:51.423Z - {"passengers":0,"altitude":38273.715000000004,"weight":100,"speed":1500.93,"status":"In flight"}
+2023-11-18T22:32:52.444Z - {"passengers":0,"altitude":39789.36,"weight":100,"speed":1530.36,"status":"In flight"}
+2023-11-18T22:32:53.438Z - {"passengers":0,"altitude":41334.435,"weight":100,"speed":1559.79,"status":"In flight"}
+2023-11-18T22:32:54.306Z - {"passengers":0,"altitude":42908.94,"weight":100,"speed":1589.22,"status":"In flight"}
+2023-11-18T22:32:55.494Z - {"passengers":0,"altitude":44512.875,"weight":100,"speed":1618.65,"status":"In flight"}
+2023-11-18T22:32:56.463Z - {"passengers":0,"altitude":46146.24,"weight":100,"speed":1648.08,"status":"In flight"}
+2023-11-18T22:32:57.350Z - {"passengers":0,"altitude":47809.034999999996,"weight":100,"speed":1677.51,"status":"In flight"}
+2023-11-18T22:32:58.369Z - {"passengers":0,"altitude":49501.26,"weight":100,"speed":1706.94,"status":"In flight"}
+2023-11-18T22:32:59.432Z - {"passengers":0,"altitude":51222.91499999999,"weight":100,"speed":1736.37,"status":"In flight"}
+2023-11-18T22:33:00.410Z - {"passengers":0,"altitude":52974,"weight":100,"speed":1765.8,"status":"In flight"}
+2023-11-18T22:33:01.409Z - {"passengers":0,"altitude":54754.515,"weight":100,"speed":1795.23,"status":"In flight"}
+2023-11-18T22:33:02.426Z - {"passengers":0,"altitude":56564.46,"weight":100,"speed":1824.66,"status":"In flight"}
+2023-11-18T22:33:03.381Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"In flight"}
+2023-11-18T22:33:04.340Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T22:33:04.380Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"In flight"}
+2023-11-18T22:33:05.282Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T22:33:05.333Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Main engine cut-off"}
+2023-11-18T22:33:06.261Z - {"passengers":0,"altitude":0,"weight":100,"speed":0,"status":"Stage separation"}
+2023-11-18T22:33:06.290Z - {"passengers":0,"altitude":58403.835,"weight":100,"speed":1854.09,"status":"Second engine start"}
+2023-11-18T22:33:07.855Z - {"passengers":0,"altitude":60272.64,"weight":100,"speed":1883.52,"status":"Second engine start"}
+2023-11-18T22:33:08.015Z - {"passengers":0,"altitude":51819.625,"weight":100,"speed":1594.45,"status":"MaxQ"}
+2023-11-18T22:33:08.957Z - {"passengers":0,"altitude":64098.53999999999,"weight":100,"speed":1942.3799999999999,"status":"In flight"}
+2023-11-18T22:33:10.039Z - {"passengers":0,"altitude":66055.635,"weight":100,"speed":1971.81,"status":"In flight"}
+2023-11-18T22:33:11.053Z - {"passengers":0,"altitude":68042.16,"weight":100,"speed":2001.24,"status":"In flight"}
+2023-11-18T22:33:12.138Z - {"passengers":0,"altitude":70058.115,"weight":100,"speed":2030.67,"status":"In flight"}
+2023-11-18T22:33:13.023Z - {"passengers":0,"altitude":72103.5,"weight":100,"speed":2060.1,"status":"In flight"}
+2023-11-18T22:33:13.883Z - {"passengers":0,"altitude":74178.315,"weight":100,"speed":2089.53,"status":"In flight"}
+2023-11-18T22:33:15.038Z - {"passengers":0,"altitude":76282.56,"weight":100,"speed":2118.96,"status":"In flight"}
+2023-11-18T22:33:16.086Z - {"passengers":0,"altitude":78416.235,"weight":100,"speed":2148.39,"status":"In flight"}
+2023-11-18T22:33:17.017Z - {"passengers":0,"altitude":80579.34000000001,"weight":100,"speed":2177.82,"status":"In flight"}
+2023-11-18T22:33:18.075Z - {"passengers":0,"altitude":82771.875,"weight":100,"speed":2207.25,"status":"In flight"}
+2023-11-18T22:33:19.039Z - {"passengers":0,"altitude":84993.84,"weight":100,"speed":2236.68,"status":"In flight"}
+2023-11-18T22:33:19.897Z - {"passengers":0,"altitude":87245.235,"weight":100,"speed":2266.11,"status":"In flight"}
+2023-11-18T22:33:21.100Z - {"passengers":0,"altitude":89526.06,"weight":100,"speed":2295.54,"status":"In flight"}
+2023-11-18T22:33:21.982Z - {"passengers":0,"altitude":91836.31499999999,"weight":100,"speed":2324.97,"status":"In flight"}
+2023-11-18T22:33:23.063Z - {"passengers":0,"altitude":94176,"weight":100,"speed":2354.4,"status":"In flight"}
+2023-11-18T22:33:23.981Z - {"passengers":0,"altitude":96545.11499999999,"weight":100,"speed":2383.83,"status":"In flight"}
+2023-11-18T22:33:24.922Z - {"passengers":0,"altitude":98943.65999999999,"weight":100,"speed":2413.2599999999998,"status":"In flight"}
+2023-11-18T22:33:26.078Z - {"passengers":0,"altitude":101371.63500000001,"weight":100,"speed":2442.69,"status":"In flight"}
+2023-11-18T22:33:27.016Z - {"passengers":0,"altitude":103829.04,"weight":100,"speed":2472.12,"status":"In flight"}
+2023-11-18T22:33:28.009Z - {"passengers":0,"altitude":106315.87500000001,"weight":100,"speed":2501.55,"status":"In flight"}
+2023-11-18T22:33:29.050Z - {"passengers":0,"altitude":108832.14,"weight":100,"speed":2530.98,"status":"In flight"}
+2023-11-18T22:33:30.013Z - {"passengers":0,"altitude":111377.83499999999,"weight":100,"speed":2560.41,"status":"In flight"}
+2023-11-18T22:33:30.955Z - {"passengers":0,"altitude":113952.96,"weight":100,"speed":2589.84,"status":"In flight"}
+2023-11-18T22:33:32.000Z - {"passengers":0,"altitude":116557.515,"weight":100,"speed":2619.27,"status":"In flight"}
+2023-11-18T22:33:32.949Z - {"passengers":0,"altitude":119191.49999999999,"weight":100,"speed":2648.7,"status":"In flight"}
+2023-11-18T22:33:33.959Z - {"passengers":0,"altitude":121854.91500000001,"weight":100,"speed":2678.13,"status":"In flight"}
+2023-11-18T22:33:35.009Z - {"passengers":0,"altitude":124547.76,"weight":100,"speed":2707.56,"status":"In flight"}
+2023-11-18T22:33:35.968Z - {"passengers":0,"altitude":127270.03499999999,"weight":100,"speed":2736.99,"status":"In flight"}
+2023-11-18T22:33:36.997Z - {"passengers":0,"altitude":130021.74,"weight":100,"speed":2766.42,"status":"In flight"}
