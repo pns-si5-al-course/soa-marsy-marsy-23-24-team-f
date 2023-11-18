@@ -5,6 +5,10 @@ export class RocketSimulation {
 
     // Modify the rocket position at the instant t
     positionAt(rocket: Rocket, t: number) {
+      if (rocket.stages[0].fuel <= 0) {
+        rocket.stages[0].fuel = 0;
+        return 
+      }
       rocket.altitude = 0 + rocket.v0 * t + 0.5 * rocket.a * t * t;
       rocket.payload.altitude = rocket.altitude;
       rocket.payload.speed = this.velocityAt(rocket, t);
@@ -12,7 +16,12 @@ export class RocketSimulation {
         stage.altitude = rocket.altitude;
         stage.speed = rocket.payload.speed;
       });
-      rocket.stages[0].fuel -= 4;
+      
+      if (rocket.stages.length < 2) {
+        rocket.stages[0].fuel -= 30;
+      } else {
+        rocket.stages[0].fuel -= 40;
+      }
 
     }
     

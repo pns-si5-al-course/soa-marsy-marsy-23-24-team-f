@@ -114,7 +114,7 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
         topic: kafkaTopic,
         messages: [{ value: JSON.stringify(kafkaMessage) }],
       })
-      .catch(e => console.error(e.message, e));
+      .catch(e => console.log(""));
     await this.producer.disconnect();
     return metadata;
   }

@@ -22,10 +22,9 @@ export class RocketStatelessService {
     }
 
     async receiveStatusUpdate(satusUpdate: StatusUpdateDto): Promise<Rocket | Stage> {
-        const status = satusUpdate.status;
+        let status = satusUpdate.status;
         let rocket = satusUpdate.rocket;
         console.log("Rocket object is receiving new status : "+status);
-        console.log(rocket);
         switch(status) {
             case "Rocket preparation":
                 if(rocket.time !== 0 || rocket.status !== "On Ground") {
@@ -52,6 +51,7 @@ export class RocketStatelessService {
                 } else if (rocket.time !== 0) {
                     throw new Error("Rocket is already launched");
                 }
+                this.updateAndPush(rocket, status, true);
                 break;
             case "Liftoff":  
                 if(rocket.status !== "Main engine start") {
@@ -61,18 +61,35 @@ export class RocketStatelessService {
                 }
                 rocket.a = 11.77;
                 break;
-            case "In flight":
-                rocket.a = 29.43;
-                break;
             case "MaxQ":
                 if(rocket.status !== "In flight") {
                     throw new Error("Rocket is not flying");
                 }
                 rocket.a = 24.53;
                 break;
+            case "In flight":
+                if(rocket.stages[0].fuel > 300){
+                    rocket.a = 29.43;
+
+                    if (rocket.payload.altitude >= 130_000){
+                        // reached target altitude for payload
+                        rocket.a = 0;
+                        rocket = await this.updateAndPush(rocket, status);
+                    }
+                    break;
+                } else {
+                    if ( rocket.status.length > 1){
+                        rocket = await this.updateAndPush(rocket, status);
+                    } else{
+                        break;
+                    }
+                }
             case "Main engine cut-off":
                 rocket.a = 0;
-                break
+                status = "Main engine cut-off";
+                rocket = await this.updateAndPush(rocket, status);
+                console.log("Main engine cut-off required")
+                console.log(rocket)
             case "Stage separation":
                 if(rocket.status !== "Main engine cut-off") {
                     throw new Error("Main engine is still running");
@@ -87,14 +104,16 @@ export class RocketStatelessService {
                     stage: rocket.stages[0],
                     status: "Separated"
                 }
+                status = "Stage separation";
                 rocket.stages = rocket.stages.filter(s => s.id !== 0);
                 rocket.a = 0;
+                rocket = await this.updateAndPush(rocket, status);
                 await this.receiveStageStatusUpdate(stageUpdate);
-                break;
             case "Second engine start":
                 if (rocket.status !== "Stage separation") {
                     throw new Error("Stage is not separated");
                 }
+                status = "Second engine start";
                 rocket.a = 29.43;
                 break;
             case "Fairing separation":
@@ -107,11 +126,12 @@ export class RocketStatelessService {
                     throw new Error("Fairing is not separated");
                 }
                 rocket.a = 0;
-                break;          
+                rocket = await this.updateAndPush(rocket, status);          
             case "Payload deployed":
                 if (rocket.status !== "Second engine cut-off") {
                     throw new Error("Second engine is still running");
                 }
+                status = "Payload deployed";
                 rocket.a = 0;
                 break;
             case "First Stage Separation Failed":
@@ -132,20 +152,32 @@ export class RocketStatelessService {
             default:
                 break;
             }
-        this.rocketSim.positionAt(rocket, rocket.time);
-        rocket.status = status;
-        rocket.payload.status = status;
-        rocket.stages.forEach(stage => {
-            stage.status = status;
-            stage.a = rocket.a;
-            stage.time = rocket.time;
-        })
-        await this.publisherService.sendTelemetrics('rocket.telemetrics.topic', rocket);
-        await this.publisherService.sendTelemetrics('payload.telemetrics.topic', rocket.payload);
-        await this.publisherService.sendTelemetrics('logs.topic', rocket);
-        return rocket;
-    }
-
+            this.updateAndPush(rocket, status);
+            return rocket;
+        }
+        
+        async updateAndPush(rocket: Rocket, status: string, MainEngineStart?: boolean){
+            this.rocketSim.positionAt(rocket, rocket.time);
+            rocket.status = status;
+            rocket.payload.status = status;
+            rocket.stages.forEach(stage => {
+                stage.status = status;
+                stage.a = rocket.a;
+                stage.time = rocket.time;
+            })
+            let date = new Date();
+            if (MainEngineStart){
+                date.setSeconds(date.getSeconds() + 60);
+            } else {
+                date.setSeconds(date.getSeconds() + 1);
+            }
+            rocket.timestamp = date.toISOString();
+            await this.publisherService.sendTelemetrics('rocket.telemetrics.topic', rocket);
+            await this.publisherService.sendTelemetrics('payload.telemetrics.topic', rocket.payload);
+            await this.publisherService.sendTelemetrics('logs.topic', rocket);
+            return rocket;    
+        }
+        
     async receiveStageStatusUpdate(stageUpdate: StageStatusUpdateDto): Promise<Stage> {
         const status = stageUpdate.status;
         let stage = stageUpdate.stage;
@@ -179,6 +211,7 @@ export class RocketStatelessService {
             stage.status = status;
             this.rocketSim.stageAt(stage, stage.time);
             await this.publisherService.sendTelemetrics('rocket.telemetrics.topic', stage);
+            await this.publisherService.sendTelemetrics('logs.topic', stage);
             return stage;
     }
 }
