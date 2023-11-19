@@ -21,14 +21,14 @@ export class RocketController {
 
     @Get("payload/data")
     @HttpCode(200)
-    async getPayloadData() {
-        const data = await this.rocketService.getLastPayloadTelemetrics()
-        .then((result) => {
-            return result;
-        })
-        .catch((error) => {
-            return {message: "No payload telemetrics found"}
-        });
-        return data;
+    async getPayloadData(): Promise<PayloadTelemetricsDto> {
+    try {
+        // Tentez d'obtenir les dernières télémétries de charge utile
+        return await this.rocketService.getLastPayloadTelemetrics();
+    } catch (error) {
+        // Si une erreur est attrapée, lancez une HttpException pour informer le client
+        throw new HttpException({ message: "No payload telemetrics found" }, HttpStatus.NOT_FOUND);
     }
+    }
+
 }

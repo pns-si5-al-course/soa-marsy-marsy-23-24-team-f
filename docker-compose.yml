@@ -76,12 +76,18 @@ services:
       - 27018:27017
     networks:
       - nestjs-telemetrics-mongo
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.stats()"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
 
   rocket-service:
     image: rocket-status
     restart: always
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     ports:
       - "3001:3001"
     networks:
@@ -154,22 +160,6 @@ services:
         interval: 30s
         timeout: 10s
         retries: 3
-
-  view-service:
-      image: telemetrie-views
-      restart: always
-      ports:
-        - "3007:3007"
-      networks:
-        - rocket-network  
-      depends_on:
-        kafka:
-          condition: service_healthy
-      healthcheck:
-        test: ["CMD", "wget", "-q", "--spider", "http://view-service:3007/"]
-        interval: 10s
-        timeout: 10s
-        retries: 5
   
   scripts-service:
       image: scripts

@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEmail, IsNotEmpty, IsString, IsArray, IsNumber, isNotEmpty, IsNotEmptyObject } from 'class-validator';
+import { Stage } from "../schema/stage.schema";
 
 export class TelemetricsDto {
   @ApiProperty()
@@ -11,26 +12,9 @@ export class TelemetricsDto {
   @IsNotEmpty()
   readonly status: string;
 
-  @ApiProperty({
-    description: 'List of stages',
-    type: [
-      {
-        id: { type: 'number', description: 'Stage ID' },
-        fuel: { type: 'number', description: 'Fuel level' },
-        altitude: { type: 'number', description: 'Altitude' },
-        status: { type: 'string', description: 'Status' },
-        speed: { type: 'number', description: 'Speed' },
-      },
-    ],
-  })
+  @ApiProperty()
   @IsArray()
-  readonly stages: Array<{
-    id: number;
-    fuel: number;
-    altitude: number;
-    status: string;
-    speed: number;
-  }>;
+  readonly stages: Array<Stage>;
 
   @ApiProperty()
   @IsNumber()
@@ -58,4 +42,28 @@ export class TelemetricsDto {
   @ApiProperty()
   @IsString()
   readonly timestamp: string;
+
+  @ApiProperty()
+  @IsNumber()
+  readonly v0: number;
+
+  @ApiProperty()
+  @IsNumber()
+  readonly a: number;
+
+  @ApiProperty()
+  @IsNumber()
+  readonly m: number;
+
+  @ApiProperty()
+  @IsNumber()
+  readonly angle: number;
+
+  @ApiProperty()
+  @IsNumber()
+  readonly time: number;
+
+  @ApiProperty()
+  @IsNumber()
+  readonly scenario: number;
 }

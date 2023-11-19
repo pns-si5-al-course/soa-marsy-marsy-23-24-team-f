@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
-import { RocketService } from './rocket.service';
+//import { RocketService } from './rocket.service';
 import { RocketController } from './rocket.controller';
 import { HttpModule } from '@nestjs/axios';
 import { PublisherModule } from 'src/publisher/publisher.module';
+import { RocketStatelessService } from './rocket.stateless.service';
+import { PublisherService } from '../publisher/publisher.service';
 
 @Module({
   imports : [HttpModule, PublisherModule],
   controllers: [RocketController],
-  providers: [RocketService],
-  exports: [RocketService]
+  providers: [RocketStatelessService, PublisherService],
+  exports: [RocketStatelessService]
 })
 export class RocketModule {}
 

@@ -1,24 +1,17 @@
 //README: this is the controllers for rocket routes --!! not rocket department routes !!--
 
 import { Body, Controller, Get, HttpCode, Post, Headers, HttpException, HttpStatus } from "@nestjs/common";
-import { error } from "console";
 
 import { RocketService } from "../service/rocket.service";
 import { TelemetricsDto } from "../../../dto/create-telemetrics.dto";
 
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { StageDto } from "../../../dto/create-stage.dto";
 
 @ApiTags('Rocket')
 @Controller("rocket")
 export class RocketController {
     constructor(private readonly rocketService: RocketService) {}
-
-    @Post("start-simulation")
-    @HttpCode(201)
-    async startSimulation(): Promise<any> {
-        this.rocketService.startSimulation();
-        return { message: "Simulation started" };
-    }
 
     @Post("telemetrics")
     @HttpCode(201)
@@ -47,30 +40,26 @@ export class RocketController {
         return data;
     }
 
-    @Post("stop-simulation")
-    @HttpCode(201)
+    @Get("stage")
+    @HttpCode(200)
     @ApiResponse({
-        status: 201,
-        description: 'Arret de la mise a jour des telemetries',
+        status: 200,
+        description: 'Get the stage data stored in the database',
         content: {
           'application/json': {
-            example: {
-                acknowledged : true, 
-                deletedCount : 1 
-            },
+            example: StageDto,
           },
         },
-      })
-    async stopSimulation() {
-        this.rocketService.stopSimulation();
-        const data = await this.rocketService.clearTelemetrics()
+    })
+    async getStage() {
+        const data = await this.rocketService.getLastStage()
         .then((result) => {
-            console.log(result);
             return result;
-        }
-        ).catch((error) => {
-            throw new HttpException(error, HttpStatus.BAD_REQUEST);
         })
+        .catch((error) => {
+            return {message: "No stage found"}
+        });
         return data;
     }
+
 }
