@@ -225,7 +225,7 @@ export class RocketStatelessService {
                 } else if (stage.speed >= 0){
                     stage.a = 0;
                 }
-                stage.altitude -= 5;
+                stage.altitude -= 15;
                 if(stage.altitude <= 0){
                     stage.altitude = 0;
                 }
