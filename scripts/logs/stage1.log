@@ -2538,3 +2538,78 @@
 2023-11-18T22:53:11.696Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":195}
 2023-11-18T22:53:12.664Z - {"id":1,"fuel":0,"altitude":0,"status":"Payload deployed","speed":0,"v0":0,"s0":0,"a":0,"time":195}
 2023-11-18T22:53:12.780Z - {"id":1,"fuel":0,"altitude":0,"status":"Second engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":196}
+2023-11-19T10:31:59.155Z - {"id":0,"fuel":2920,"altitude":0,"status":"Rocket on internal power","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-19T10:31:59.431Z - {"id":0,"fuel":2880,"altitude":0,"status":"Startup","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-19T10:31:59.723Z - {"id":0,"fuel":2960,"altitude":0,"status":"Rocket preparation","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-19T10:32:02.466Z - {"id":0,"fuel":2760,"altitude":0,"status":"Liftoff","speed":0,"v0":0,"s0":0,"a":11.77,"time":0}
+2023-11-19T10:32:02.501Z - {"id":0,"fuel":2800,"altitude":0,"status":"Main engine start","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-19T10:32:02.834Z - {"id":0,"fuel":2800,"altitude":0,"status":"Main engine start","speed":0,"v0":0,"s0":0,"a":0,"time":0}
+2023-11-19T10:32:03.844Z - {"id":0,"fuel":2720,"altitude":14.715,"status":"In flight","speed":29.43,"v0":0,"s0":0,"a":29.43,"time":1}
+2023-11-19T10:32:04.884Z - {"id":0,"fuel":2680,"altitude":58.86,"status":"In flight","speed":58.86,"v0":0,"s0":0,"a":29.43,"time":2}
+2023-11-19T10:32:05.818Z - {"id":0,"fuel":2640,"altitude":132.435,"status":"In flight","speed":88.28999999999999,"v0":0,"s0":0,"a":29.43,"time":3}
+2023-11-19T10:32:06.740Z - {"id":0,"fuel":2600,"altitude":235.44,"status":"In flight","speed":117.72,"v0":0,"s0":0,"a":29.43,"time":4}
+2023-11-19T10:32:07.831Z - {"id":0,"fuel":2560,"altitude":367.875,"status":"In flight","speed":147.15,"v0":0,"s0":0,"a":29.43,"time":5}
+2023-11-19T10:32:08.722Z - {"id":0,"fuel":2520,"altitude":529.74,"status":"In flight","speed":176.57999999999998,"v0":0,"s0":0,"a":29.43,"time":6}
+2023-11-19T10:32:09.787Z - {"id":0,"fuel":2480,"altitude":721.035,"status":"In flight","speed":206.01,"v0":0,"s0":0,"a":29.43,"time":7}
+2023-11-19T10:32:10.778Z - {"id":0,"fuel":2440,"altitude":941.76,"status":"In flight","speed":235.44,"v0":0,"s0":0,"a":29.43,"time":8}
+2023-11-19T10:32:11.833Z - {"id":0,"fuel":2400,"altitude":1191.915,"status":"In flight","speed":264.87,"v0":0,"s0":0,"a":29.43,"time":9}
+2023-11-19T10:32:12.825Z - {"id":0,"fuel":2360,"altitude":1471.5,"status":"In flight","speed":294.3,"v0":0,"s0":0,"a":29.43,"time":10}
+2023-11-19T10:32:13.807Z - {"id":0,"fuel":2320,"altitude":1780.515,"status":"In flight","speed":323.73,"v0":0,"s0":0,"a":29.43,"time":11}
+2023-11-19T10:32:14.808Z - {"id":0,"fuel":2280,"altitude":2118.96,"status":"In flight","speed":353.15999999999997,"v0":0,"s0":0,"a":29.43,"time":12}
+2023-11-19T10:32:15.870Z - {"id":0,"fuel":2240,"altitude":2486.835,"status":"In flight","speed":382.59,"v0":0,"s0":0,"a":29.43,"time":13}
+2023-11-19T10:32:16.806Z - {"id":0,"fuel":2200,"altitude":2884.14,"status":"In flight","speed":412.02,"v0":0,"s0":0,"a":29.43,"time":14}
+2023-11-19T10:32:17.815Z - {"id":0,"fuel":2160,"altitude":3310.875,"status":"In flight","speed":441.45,"v0":0,"s0":0,"a":29.43,"time":15}
+2023-11-19T10:32:18.745Z - {"id":0,"fuel":2120,"altitude":3767.04,"status":"In flight","speed":470.88,"v0":0,"s0":0,"a":29.43,"time":16}
+2023-11-19T10:32:19.811Z - {"id":0,"fuel":2080,"altitude":4252.635,"status":"In flight","speed":500.31,"v0":0,"s0":0,"a":29.43,"time":17}
+2023-11-19T10:32:20.880Z - {"id":0,"fuel":2040,"altitude":4767.66,"status":"In flight","speed":529.74,"v0":0,"s0":0,"a":29.43,"time":18}
+2023-11-19T10:32:21.782Z - {"id":0,"fuel":2000,"altitude":5312.115,"status":"In flight","speed":559.17,"v0":0,"s0":0,"a":29.43,"time":19}
+2023-11-19T10:32:22.737Z - {"id":0,"fuel":1960,"altitude":5886,"status":"In flight","speed":588.6,"v0":0,"s0":0,"a":29.43,"time":20}
+2023-11-19T10:32:23.779Z - {"id":0,"fuel":1920,"altitude":6489.315,"status":"In flight","speed":618.03,"v0":0,"s0":0,"a":29.43,"time":21}
+2023-11-19T10:32:24.869Z - {"id":0,"fuel":1880,"altitude":7122.06,"status":"In flight","speed":647.46,"v0":0,"s0":0,"a":29.43,"time":22}
+2023-11-19T10:32:25.796Z - {"id":0,"fuel":1840,"altitude":7784.235,"status":"In flight","speed":676.89,"v0":0,"s0":0,"a":29.43,"time":23}
+2023-11-19T10:32:26.806Z - {"id":0,"fuel":1800,"altitude":8475.84,"status":"In flight","speed":706.3199999999999,"v0":0,"s0":0,"a":29.43,"time":24}
+2023-11-19T10:32:27.897Z - {"id":0,"fuel":1760,"altitude":9196.875,"status":"In flight","speed":735.75,"v0":0,"s0":0,"a":29.43,"time":25}
+2023-11-19T10:32:28.793Z - {"id":0,"fuel":1720,"altitude":9947.34,"status":"In flight","speed":765.18,"v0":0,"s0":0,"a":29.43,"time":26}
+2023-11-19T10:32:29.822Z - {"id":0,"fuel":1680,"altitude":10727.235,"status":"In flight","speed":794.61,"v0":0,"s0":0,"a":29.43,"time":27}
+2023-11-19T10:32:30.819Z - {"id":0,"fuel":1640,"altitude":11536.56,"status":"In flight","speed":824.04,"v0":0,"s0":0,"a":29.43,"time":28}
+2023-11-19T10:32:31.816Z - {"id":0,"fuel":1600,"altitude":12375.315,"status":"In flight","speed":853.47,"v0":0,"s0":0,"a":29.43,"time":29}
+2023-11-19T10:32:32.879Z - {"id":0,"fuel":1560,"altitude":13243.5,"status":"In flight","speed":882.9,"v0":0,"s0":0,"a":29.43,"time":30}
+2023-11-19T10:32:33.811Z - {"id":0,"fuel":1520,"altitude":14141.115,"status":"In flight","speed":912.33,"v0":0,"s0":0,"a":29.43,"time":31}
+2023-11-19T10:32:34.785Z - {"id":0,"fuel":1480,"altitude":15068.16,"status":"In flight","speed":941.76,"v0":0,"s0":0,"a":29.43,"time":32}
+2023-11-19T10:32:35.854Z - {"id":0,"fuel":1440,"altitude":16024.634999999998,"status":"In flight","speed":971.1899999999999,"v0":0,"s0":0,"a":29.43,"time":33}
+2023-11-19T10:32:36.804Z - {"id":0,"fuel":1400,"altitude":17010.54,"status":"In flight","speed":1000.62,"v0":0,"s0":0,"a":29.43,"time":34}
+2023-11-19T10:32:37.771Z - {"id":0,"fuel":1360,"altitude":18025.875,"status":"In flight","speed":1030.05,"v0":0,"s0":0,"a":29.43,"time":35}
+2023-11-19T10:32:38.824Z - {"id":0,"fuel":1320,"altitude":19070.64,"status":"In flight","speed":1059.48,"v0":0,"s0":0,"a":29.43,"time":36}
+2023-11-19T10:32:39.804Z - {"id":0,"fuel":1280,"altitude":20144.835000000003,"status":"In flight","speed":1088.91,"v0":0,"s0":0,"a":29.43,"time":37}
+2023-11-19T10:32:40.821Z - {"id":0,"fuel":1240,"altitude":21248.46,"status":"In flight","speed":1118.34,"v0":0,"s0":0,"a":29.43,"time":38}
+2023-11-19T10:32:41.796Z - {"id":0,"fuel":1200,"altitude":22381.515,"status":"In flight","speed":1147.77,"v0":0,"s0":0,"a":29.43,"time":39}
+2023-11-19T10:32:42.841Z - {"id":0,"fuel":1160,"altitude":23544,"status":"In flight","speed":1177.2,"v0":0,"s0":0,"a":29.43,"time":40}
+2023-11-19T10:32:43.815Z - {"id":0,"fuel":1120,"altitude":24735.914999999997,"status":"In flight","speed":1206.6299999999999,"v0":0,"s0":0,"a":29.43,"time":41}
+2023-11-19T10:32:44.792Z - {"id":0,"fuel":1080,"altitude":25957.26,"status":"In flight","speed":1236.06,"v0":0,"s0":0,"a":29.43,"time":42}
+2023-11-19T10:32:45.822Z - {"id":0,"fuel":1040,"altitude":27208.035,"status":"In flight","speed":1265.49,"v0":0,"s0":0,"a":29.43,"time":43}
+2023-11-19T10:32:46.767Z - {"id":0,"fuel":1000,"altitude":28488.24,"status":"In flight","speed":1294.92,"v0":0,"s0":0,"a":29.43,"time":44}
+2023-11-19T10:32:47.859Z - {"id":0,"fuel":960,"altitude":29797.874999999996,"status":"In flight","speed":1324.35,"v0":0,"s0":0,"a":29.43,"time":45}
+2023-11-19T10:32:48.850Z - {"id":0,"fuel":920,"altitude":31136.94,"status":"In flight","speed":1353.78,"v0":0,"s0":0,"a":29.43,"time":46}
+2023-11-19T10:32:49.907Z - {"id":0,"fuel":880,"altitude":32505.435,"status":"In flight","speed":1383.21,"v0":0,"s0":0,"a":29.43,"time":47}
+2023-11-19T10:32:50.869Z - {"id":0,"fuel":840,"altitude":33903.36,"status":"In flight","speed":1412.6399999999999,"v0":0,"s0":0,"a":29.43,"time":48}
+2023-11-19T10:32:51.805Z - {"id":0,"fuel":800,"altitude":35330.715,"status":"In flight","speed":1442.07,"v0":0,"s0":0,"a":29.43,"time":49}
+2023-11-19T10:32:52.858Z - {"id":0,"fuel":760,"altitude":36787.5,"status":"In flight","speed":1471.5,"v0":0,"s0":0,"a":29.43,"time":50}
+2023-11-19T10:32:53.851Z - {"id":0,"fuel":720,"altitude":38273.715000000004,"status":"In flight","speed":1500.93,"v0":0,"s0":0,"a":29.43,"time":51}
+2023-11-19T10:32:54.746Z - {"id":0,"fuel":680,"altitude":39789.36,"status":"In flight","speed":1530.36,"v0":0,"s0":0,"a":29.43,"time":52}
+2023-11-19T10:32:55.869Z - {"id":0,"fuel":640,"altitude":41334.435,"status":"In flight","speed":1559.79,"v0":0,"s0":0,"a":29.43,"time":53}
+2023-11-19T10:32:56.822Z - {"id":0,"fuel":600,"altitude":42908.94,"status":"In flight","speed":1589.22,"v0":0,"s0":0,"a":29.43,"time":54}
+2023-11-19T10:32:57.926Z - {"id":0,"fuel":560,"altitude":44512.875,"status":"In flight","speed":1618.65,"v0":0,"s0":0,"a":29.43,"time":55}
+2023-11-19T10:32:58.872Z - {"id":0,"fuel":520,"altitude":46146.24,"status":"In flight","speed":1648.08,"v0":0,"s0":0,"a":29.43,"time":56}
+2023-11-19T10:32:59.816Z - {"id":0,"fuel":480,"altitude":47809.034999999996,"status":"In flight","speed":1677.51,"v0":0,"s0":0,"a":29.43,"time":57}
+2023-11-19T10:33:00.843Z - {"id":0,"fuel":440,"altitude":49501.26,"status":"In flight","speed":1706.94,"v0":0,"s0":0,"a":29.43,"time":58}
+2023-11-19T10:33:01.881Z - {"id":0,"fuel":400,"altitude":51222.91499999999,"status":"In flight","speed":1736.37,"v0":0,"s0":0,"a":29.43,"time":59}
+2023-11-19T10:33:02.837Z - {"id":0,"fuel":360,"altitude":52974,"status":"In flight","speed":1765.8,"v0":0,"s0":0,"a":29.43,"time":60}
+2023-11-19T10:33:03.928Z - {"id":0,"fuel":320,"altitude":54754.515,"status":"In flight","speed":1795.23,"v0":0,"s0":0,"a":29.43,"time":61}
+2023-11-19T10:33:04.863Z - {"id":0,"fuel":280,"altitude":56564.46,"status":"In flight","speed":1824.66,"v0":0,"s0":0,"a":29.43,"time":62}
+2023-11-19T10:33:05.852Z - {"id":0,"fuel":240,"altitude":58403.835,"status":"In flight","speed":1854.09,"v0":0,"s0":0,"a":29.43,"time":63}
+2023-11-19T10:33:06.823Z - {"id":0,"fuel":240,"altitude":60272.64,"status":"In flight","speed":1883.52,"v0":0,"s0":0,"a":29.43,"time":64}
+2023-11-19T10:33:06.841Z - {"id":0,"fuel":200,"altitude":0,"status":"Main engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":63}
+2023-11-19T10:33:07.447Z - {"id":0,"fuel":200,"altitude":0,"status":"Main engine cut-off","speed":0,"v0":0,"s0":0,"a":0,"time":64}
+2023-11-19T10:33:07.727Z - {"id":1,"fuel":2970,"altitude":0,"status":"Stage separation","speed":0,"v0":0,"s0":0,"a":0,"time":63}
+2023-11-19T10:33:08.373Z - {"id":1,"fuel":2970,"altitude":0,"status":"Stage separation","speed":0,"v0":0,"s0":0,"a":0,"time":64}
+2023-11-19T10:33:09.511Z - {"id":1,"fuel":2940,"altitude":60272.64,"status":"Second engine start","speed":1883.52,"v0":0,"s0":0,"a":29.43,"time":64}
