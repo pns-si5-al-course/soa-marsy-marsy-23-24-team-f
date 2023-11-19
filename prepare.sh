@@ -35,6 +35,7 @@ prepare "weather-department/"
 prepare "scripts/"
 prepare "rocket-department/"
 prepare "mission-commander-department/"
+prepare "webcaster/"
 
 
 docker compose -p soa-marsy up -d

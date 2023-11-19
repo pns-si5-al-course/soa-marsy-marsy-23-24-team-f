@@ -13,3 +13,5 @@ wait-for-it-to-be-up localhost:3002/weather weather-dept
 wait-for-it-to-be-up localhost:3004/payload payload-dept
 
 wait-for-it-to-be-up localhost:3005/ rocket-object-service
+
+wait-for-it-to-be-up localhost:3010/ webcaster-service
