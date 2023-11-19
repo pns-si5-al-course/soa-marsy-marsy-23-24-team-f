@@ -26,10 +26,15 @@
       function fetchMessages() {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4 && xhr.status == 200) {
-            document.getElementById("messages").innerHTML = xhr.responseText;
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              document.getElementById("messages").innerHTML = xhr.responseText;
+            } else {
+              console.error("AJAX error:", xhr.status, xhr.statusText);
+            }
           }
         };
+
         xhr.open("GET", "/fetch-messages", true);
         xhr.send();
       }
