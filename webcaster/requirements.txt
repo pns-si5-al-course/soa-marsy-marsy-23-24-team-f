@@ -1,2 +1,4 @@
 Flask
 confluent-kafka
+python-dotenv
+Flask-CORS
