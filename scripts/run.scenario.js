@@ -92,10 +92,18 @@ socket.on('logs', (data) => {
     // RICHARD VIEW
     const logs = JSON.parse(data).body;
 
-    //check if the status is for the rocket is Destruct
+    if(scenario_id==1){
+        if(log.status === 'Landing burn' && log.altitude <= 0) {
+            console.log(chalk.green('----------------------------------------'));
+            console.log(chalk.green('---Rocket landed Successfully----------'));
+            console.log(chalk.green('----------------------------------------'));
+            console.log('Richard : mission terminée');
+            clearInterval(interval);
+            process.exit(0);
+        }
+    }
     if(logs.status && logs.status === 'Destruct') {
         //need to stringify the logs to console.log it
-        console.log(logs);
         if(scenario_id==2){
             console.log(chalk.red('First Stage Seperation Failed : CRITICAL !!!'));
             console.log(chalk.red('Aborting mission : Auto destruction'));

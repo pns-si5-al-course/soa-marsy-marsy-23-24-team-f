@@ -77,9 +77,9 @@ export class RocketStatelessService {
                         rocket.v0 = this.rocketSim.velocityAt(rocket, rocket.time);
                         rocket = await this.updateAndPush(rocket, status, rocket.altitude);
                     }
-                    if(rocket.scenario === 3 && rocket.stages[0].fuel >= 2000 && rocket.stages[0].fuel <= 2500){
+                    if(rocket.scenario === 3 && rocket.stages[0].fuel > 800 && rocket.stages[0].fuel <= 1700){
                         // fuel tank leak
-                        rocket.stages[0].fuel = 1800;
+                        rocket.stages[0].fuel = 800;
                     }
                     break;
                 } else {
@@ -207,19 +207,27 @@ export class RocketStatelessService {
             case "Entry burn":
                 if (stage.speed < 0){
                     stage.a += 2;
-                    stage.fuel -= 5;
+                    stage.fuel -= 1;
                 } else if (stage.speed >= 0){
                     stage.a = 0;
                 }
+                stage.altitude -= 2000;
                 break;
             case "Guidance":
+                stage.a = 0;
+                stage.altitude -= 100;
+                stage.fuel -= 1;
                 break;
             case "Landing burn":
                 if (Math.abs(stage.speed) > 0){
                     stage.a += 9.81*3;
-                    stage.fuel -= 10;
+                    stage.fuel -= 1;
                 } else if (stage.speed >= 0){
                     stage.a = 0;
+                }
+                stage.altitude -= 5;
+                if(stage.altitude <= 0){
+                    stage.altitude = 0;
                 }
                 break;
             case "Landing legs deployed":
@@ -240,7 +248,8 @@ export class RocketStatelessService {
               break;
             }
             stage.status = status;
-            this.rocketSim.stageAt(stage, stage.time);
+            if(stage.status != "Entry burn" &&  stage.status !="Guidance" && stage.status != "Landing burn")
+                this.rocketSim.stageAt(stage, stage.time);
             console.log("Stage altitude : "+stage.altitude);
             await this.publisherService.sendTelemetrics('rocket.telemetrics.topic', stage);
             await this.publisherService.sendTelemetrics('logs.topic', stage);
