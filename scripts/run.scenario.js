@@ -91,6 +91,26 @@ socket.on('logs', (data) => {
     // It receives all the logs from the mission, sent by the rocket
     // RICHARD VIEW
     const logs = JSON.parse(data).body;
+
+    //check if the status is for the rocket is Destruct
+    if(logs.status && logs.status === 'Destruct') {
+        //need to stringify the logs to console.log it
+        console.log(logs);
+        if(scenario_id==2){
+            console.log(chalk.red('First Stage Seperation Failed : CRITICAL !!!'));
+            console.log(chalk.red('Aborting mission : Auto destruction'));
+        }
+        else if(scenario_id==3){
+            console.log(chalk.red('Fuel leak detected : warning'));
+            console.log(chalk.red('Richard : ordre de destruction de la fusée'));
+        }
+        console.log(chalk.red('Rocket is going to explode'));
+        console.log(chalk.red('Payload is destroyed'));
+        console.log(chalk.red('Rocket is destroyed'));
+        console.log(chalk.red('Mission is failed'));
+        clearInterval(interval);
+        process.exit(0);
+    }
     if(logs.payload){
         handleAltitudeChange(logs);
         handleStatusChange(logs);

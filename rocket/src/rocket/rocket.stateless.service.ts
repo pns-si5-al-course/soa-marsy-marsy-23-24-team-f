@@ -24,7 +24,10 @@ export class RocketStatelessService {
     async receiveStatusUpdate(satusUpdate: StatusUpdateDto): Promise<Rocket | Stage> {
         let status = satusUpdate.status;
         let rocket = satusUpdate.rocket;
-        console.log(rocket)
+        console.log(status);
+        if(status === "Destruct")
+            console.log("Destruct received !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        
         switch(status) {
             case "Rocket preparation":
                 if(rocket.time !== 0 || rocket.status !== "On Ground") {
@@ -73,6 +76,10 @@ export class RocketStatelessService {
                         rocket.a = 0;
                         rocket.v0 = this.rocketSim.velocityAt(rocket, rocket.time);
                         rocket = await this.updateAndPush(rocket, status, rocket.altitude);
+                    }
+                    if(rocket.scenario === 3 && rocket.stages[0].fuel >= 2000 && rocket.stages[0].fuel <= 2500){
+                        // fuel tank leak
+                        rocket.stages[0].fuel = 1800;
                     }
                     break;
                 } else {

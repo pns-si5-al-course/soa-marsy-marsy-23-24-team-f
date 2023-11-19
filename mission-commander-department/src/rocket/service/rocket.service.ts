@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ReadyToLaunchDTO } from '../../dto/ReadyToLaunch.dto';
 import { RocketDTO } from '../../dto/Rocket.dto';
+import { AnomalyReportDTO } from 'src/dto/AnomalyReport.dto';
 
 
 @Injectable()
@@ -73,12 +74,19 @@ export class RocketService {
         }
     }
 
-    async destroyRocket(): Promise<void> {
-        try {
-            await this.httpService.post('http://rocket-object-service:3005/rocket/destroy').toPromise();
-            console.log("Sent destroy command.");
-        } catch (error) {
-            throw new Error("Failed to send destroy command.");
+    async reportAnomaly(anomalyReport: AnomalyReportDTO): Promise<void> {
+        console.log('Anomaly reported:', anomalyReport);
+        if(anomalyReport.anomaly === "warning"){
+            try {
+                console.log("Anomaly checked : need to destroy manualy the rocket.");
+                const statusUpdate = {
+                    rocket: anomalyReport.rocket,
+                    status: "Destruct"
+                }
+                await this.httpService.post('http://rocket-object-service:3005/rocket/status', statusUpdate).toPromise();
+            } catch (error) {
+                throw new Error("Failed to send anomaly report.");
+            }
         }
     }
 }

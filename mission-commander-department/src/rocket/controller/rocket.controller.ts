@@ -61,23 +61,11 @@ export class RocketController {
         }
     }
 
-    //destroy the rocket
-    @Post('destroy')
-    @HttpCode(201)
-    async destroyRocket(): Promise<{ message: string }> {
-        try {
-            await this.rocketService.destroyRocket();
-            return { message: "Rocket destroyed successfully." };
-        } catch (error) {
-            throw new InternalServerErrorException("Failed to destroy the rocket.");
-        }
-    }
-
     @Post('anomaly')
     @HttpCode(200)
     async reportAnomaly(@Body() anomalyReport: AnomalyReportDTO): Promise<void> {
         try {
-            console.log('Anomaly reported:', anomalyReport);
+            await this.rocketService.reportAnomaly(anomalyReport);
         } catch (error) {
             throw new InternalServerErrorException("Failed to report anomaly: "+error.message);
         }
