@@ -10,11 +10,11 @@ Injectable()
 export class RocketStatelessService {
     private rocketSim: RocketSimulation = new RocketSimulation();
     constructor(@Inject(PublisherService) private publisherService : PublisherService) {
-        console.log(this.publisherService)
+        
     }
 
-    getPositionAt(rocket: Rocket, t: number): void {
-        this.rocketSim.positionAt(rocket, t);
+    getPositionAt(rocket: Rocket, t: number, s0: number): void {
+        this.rocketSim.positionAt(rocket, t, s0);
     }  
 
     getStageAt(stage: Stage, t: number): void {
@@ -51,7 +51,7 @@ export class RocketStatelessService {
                 } else if (rocket.time !== 0) {
                     throw new Error("Rocket is already launched");
                 }
-                this.updateAndPush(rocket, status, true);
+                this.updateAndPush(rocket, status, 0, true);
                 break;
             case "Liftoff":  
                 if(rocket.status !== "Main engine start") {
@@ -71,27 +71,28 @@ export class RocketStatelessService {
                     if (rocket.payload.altitude >= 130_000){
                         // reached target altitude for payload
                         rocket.a = 0;
-                        rocket = await this.updateAndPush(rocket, status);
+                        rocket.v0 = this.rocketSim.velocityAt(rocket, rocket.time);
+                        rocket = await this.updateAndPush(rocket, status, rocket.altitude);
                     }
                     break;
                 } else {
                     if ( rocket.status.length > 1){
-                        rocket = await this.updateAndPush(rocket, status);
+                        rocket = await this.updateAndPush(rocket, status, rocket.altitude);
+                        console.log(rocket)
                     } else{
                         break;
                     }
                 }
             case "Main engine cut-off":
                 rocket.a = 0;
+                rocket.v0 = this.rocketSim.velocityAt(rocket, rocket.time);
                 status = "Main engine cut-off";
-                rocket = await this.updateAndPush(rocket, status);
+                rocket = await this.updateAndPush(rocket, status, rocket.altitude);
                 console.log("Main engine cut-off required")
-                console.log(rocket)
             case "Stage separation":
                 if(rocket.status !== "Main engine cut-off") {
                     throw new Error("Main engine is still running");
                 }
-                rocket = this.rocketSim.positionAt(rocket, rocket.time);
                 console.log("Booster altitude : "+ rocket.altitude)
                 if(rocket.scenario === 2){
                     status = "First Stage Separation Failed";
@@ -116,8 +117,7 @@ export class RocketStatelessService {
                 }
                 status = "Stage separation";
                 rocket.stages = rocket.stages.filter(s => s.id !== 0);
-                rocket.a = 0;
-                rocket = await this.updateAndPush(rocket, status);
+                //rocket = await this.updateAndPush(rocket, status);
                 await this.receiveStageStatusUpdate(stageUpdate);
             case "Second engine start":
                 status = "Second engine start";
@@ -130,21 +130,25 @@ export class RocketStatelessService {
                 break;
             case "Second engine cut-off":
                 rocket.a = 0;
-                rocket = await this.updateAndPush(rocket, status);          
+                rocket.v0 = this.rocketSim.velocityAt(rocket, rocket.time);
+                rocket = await this.updateAndPush(rocket, status, rocket.altitude);          
             case "Payload deployed":
                 if (rocket.status !== "Second engine cut-off") {
                     throw new Error("Second engine is still running");
                 }
                 status = "Payload deployed";
                 rocket.a = 0;
+                rocket.v0 = this.rocketSim.velocityAt(rocket, rocket.time);
                 break;
             case "First Stage Separation Failed":
                 rocket.a = 0;
+                rocket.v0 = this.rocketSim.velocityAt(rocket, rocket.time);
                 break;
             case "Wrong orbit":
                 break;
             case "Destruct":
                 rocket.a = 0;
+                rocket.v0 = this.rocketSim.velocityAt(rocket, rocket.time);
                 rocket.payload.speed = 0;
                 rocket.status = "Destruct";
                 rocket.stages.forEach(s => {
@@ -156,12 +160,17 @@ export class RocketStatelessService {
             default:
                 break;
             }
-            this.updateAndPush(rocket, status);
+            this.updateAndPush(rocket, status, 0);
             return rocket;
         }
         
-        async updateAndPush(rocket: Rocket, status: string, MainEngineStart?: boolean){
-            rocket = this.rocketSim.positionAt(rocket, rocket.time);
+        async updateAndPush(rocket: Rocket, status: string, s0: number, MainEngineStart?: boolean){
+            rocket = this.rocketSim.positionAt(rocket, rocket.time, s0);
+
+            console.log("----------New update----------");
+            console.log(rocket)
+            console.log("------------------------------");
+
             rocket.status = status;
             rocket.payload.status = status;
             rocket.stages.forEach(stage => {
@@ -189,15 +198,25 @@ export class RocketStatelessService {
             case "Flip maneuver":
                 break;
             case "Entry burn":
-                stage.a = -9.81;
+                if (stage.speed < 0){
+                    stage.a += 2;
+                    stage.fuel -= 5;
+                } else if (stage.speed >= 0){
+                    stage.a = 0;
+                }
                 break;
             case "Guidance":
                 break;
             case "Landing burn":
-                stage.a = -9.81*3;
+                if (Math.abs(stage.speed) > 0){
+                    stage.a += 9.81*3;
+                    stage.fuel -= 10;
+                } else if (stage.speed >= 0){
+                    stage.a = 0;
+                }
                 break;
             case "Landing legs deployed":
-                if(stage.speed > 40) {
+                if(Math.abs(stage.speed) > 40) {
                     throw new Error("Speed is too high for landing legs deployment");
                 }
                 stage.status = status;

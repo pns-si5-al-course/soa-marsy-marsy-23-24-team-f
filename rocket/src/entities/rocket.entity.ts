@@ -44,7 +44,7 @@ export class Rocket {
 
 
 export const RocketExample = new Rocket('MarsY-1', 'On Ground', [
-      new Stage(0, 3000, 0, "On Ground", 0, 0, 0, 0, 0),
+      new Stage(0, 2000, 0, "On Ground", 0, 0, 0, 0, 0),
       new Stage(1, 3000, 0, "On Ground", 0, 0, 0, 0, 0),
     ], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, 
     new Date().toISOString(),

@@ -42,7 +42,7 @@ const FlightStatus = {
     maxQ: false,
     isFairingSeparated: false,
     secondEngineCutOff: false,
-    
+    isPayloadDeployed: false,
 }
 
 const StageFLightStatus = {
@@ -116,7 +116,7 @@ async function handleStageStatusChange(logs) {
 
 async function handleStageAltitudeChange(logs) {
     // for first stage
-    if (logs.altitude >= 20_000 && StageFLightStatus.entryBurn === false) {
+    if (logs.altitude >= 20_000 && logs.altitude <= 25_000 && StageFLightStatus.entryBurn === false) {
         stage_status_update.stage = logs;
         stage_status_update.status = 'Entry burn';
         StageFLightStatus.entryBurn = true;
@@ -174,10 +174,10 @@ async function handleStatusChange(logs) {
         console.log(chalk.green('---Main Engine Cut-Off Successfully-----'));
         console.log(chalk.green('----------------------------------------'));
         clearInterval(interval);
+        console.log(logs)
         console.log('First stage separation');
         FlightStatus.mainEngineStarted = true;
         await sleep(2000);
-        status_update.rocket = logs;
         startUpdatinStatus();
 
         await sleep(1000);
@@ -195,6 +195,15 @@ async function handleStatusChange(logs) {
         console.log(chalk.green('----------------------------------------'));
         console.log(chalk.green('---Fairing Separation Successfully-----'));
         console.log(chalk.green('----------------------------------------'));
+    } 
+
+    if (logs.status ===  "Payload deployed" && FlightStatus.isPayloadDeployed === false) {
+        clearInterval(interval);
+        console.log(chalk.green('----------------------------------------'));
+        console.log(chalk.green('------Payload Deployed Successfully-----'));
+        console.log(chalk.green('----------------------------------------'));
+        console.log('Richard : mission terminée');
+        FlightStatus.isPayloadDeployed = true;
     }
 
     // if(logs.stages[0].status === 'Separated' && status.stageSeparated === false) {

@@ -4,12 +4,12 @@ import { Stage } from "./stage.entity";
 export class RocketSimulation {
 
     // Modify the rocket position at the instant t
-    positionAt(rocket: Rocket, t: number) {
+    positionAt(rocket: Rocket, t: number, s0:number) {
       if (rocket.stages[0].fuel <= 0) {
         rocket.stages[0].fuel = 0;
         return 
       }
-      rocket.altitude = 0 + rocket.v0 * t + 0.5 * rocket.a * t * t;
+      rocket.altitude = s0 + rocket.v0 * t + 0.5 * rocket.a * t * t;
       rocket.payload.altitude = rocket.altitude;
       rocket.payload.speed = this.velocityAt(rocket, t);
       rocket.stages.forEach(stage => {
@@ -31,6 +31,10 @@ export class RocketSimulation {
 
     stageAt(stage: Stage, t: number) {
       // use for first stage safe landing
+      if (stage.fuel <= 0) {
+        stage.fuel = 0;
+        return 
+      }
       stage.altitude = stage.s0 + stage.v0 * t + 0.5 * stage.a * t * t;
       stage.speed = this.stageVelocityAt(stage, t);
     }
