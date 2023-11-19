@@ -99,6 +99,7 @@ socket.on('logs', (data) => {
         console.log(chalk.yellow('---First stage Logs------'));
         console.log(chalk.yellow('-------------------------'));
         console.log(logs);
+        stage_status_update.stage = logs;
         handleStageStatusChange(logs);
         handleStageAltitudeChange(logs);
     }
@@ -108,7 +109,6 @@ socket.on('logs', (data) => {
 async function handleStageStatusChange(logs) {
     // for first stage
     if(StageFLightStatus.firstStageLanding === false){
-        stage_status_update.stage = logs;
         stage_status_update.stage.status = 'Separated';
         stage_status_update.status = 'Flip maneuver';
         startStageUpdatinStatus();
@@ -191,6 +191,7 @@ async function handleStatusChange(logs) {
         console.log(chalk.green('----------------------------------------'));
         console.log(chalk.green('---First Stage Separation Successfully--'));
         console.log(chalk.green('----------------------------------------'));
+        stage_status_update.status = 'Guidance';
     }
 
     if (logs.status === "Fairing separation") {
@@ -392,11 +393,11 @@ async function startUpdatinStatus() {
 async function startStageUpdatinStatus() {
     interval_stage = setInterval(async ()=>{
         stage_status_update.stage.time += READ_INT/1000;   
-        const rocket_in_flight = await post(rocketServiceUrl + '/rocket/stage/status', status_update);
-        stage_status_update.stage = rocket_in_flight;
-        console.log(chalk.purple('------------ Stage 1 logs ---------------------'));
+        const stage_in_flight = await post(rocketServiceUrl + '/rocket/stage/status', stage_status_update);
+        stage_status_update.stage = stage_in_flight;
+        console.log(chalk.green('------------ Stage 1 logs ---------------------'));
         console.log(stage_status_update.stage);
-        console.log(chalk.purple('-----------------------------------------------'));
+        console.log(chalk.green('-----------------------------------------------'));
         //readLastLine('logs/payload.log');
         
     }, READ_INT);

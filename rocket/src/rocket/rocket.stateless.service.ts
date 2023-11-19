@@ -174,9 +174,6 @@ export class RocketStatelessService {
         let stage = stageUpdate.stage;
         switch (status) {
             case "Flip maneuver":
-                if (stage.status !== "Separated") {
-                    throw new Error("Stage is not separated");
-                }
                 break;
             case "Entry burn":
                 stage.a = -9.81;
