@@ -86,7 +86,8 @@ services:
     image: rocket-status
     restart: always
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     ports:
       - "3001:3001"
     networks:

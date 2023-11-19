@@ -6,6 +6,7 @@ import { RocketModule } from './rocket/rocket.module';
 import { AppService } from './app.service';
 import { HttpModule } from '@nestjs/axios';
 import { KafkaModule } from './kafka/kafka.module';
+import { ConsumerModule } from './consumer/consumer.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -18,7 +19,8 @@ import { KafkaModule } from './kafka/kafka.module';
       clientId: 'rocket-consumer',
       brokers: [process.env.KAFKA_BROKER],
       groupId: 'rocket-group',
-    })
+    }),
+    ConsumerModule
   ],
   controllers: [AppController],
   providers: [AppService],
