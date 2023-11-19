@@ -93,7 +93,11 @@ socket.on('logs', (data) => {
     const logs = JSON.parse(data).body;
 
     if(scenario_id==1){
-        if(log.status === 'Landing burn' && log.altitude <= 0) {
+        console.log(chalk.yellow('------------------TEST----------------------'));
+        console.log(logs.status)
+        console.log(logs.altitude)
+        console.log(chalk.yellow('----------------------------------------'));
+        if(logs.status === 'Landing burn' && logs.altitude <= 0) {
             console.log(chalk.green('----------------------------------------'));
             console.log(chalk.green('---Rocket landed Successfully----------'));
             console.log(chalk.green('----------------------------------------'));
