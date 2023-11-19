@@ -28,7 +28,6 @@ export function printFormatedTelemetrics(telemetrics) {
 process.on('SIGINT', async() => {
     try {
         console.log(chalk.red('Simulation stopped by user'));
-        await post("http://localhost:3001" + "/stop-simulation", {});
         process.exit();
     } catch (error) {
         console.error(error);
@@ -50,12 +49,12 @@ export function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 export const post = async(url, data) => {
+    //console.log("POST -- ", url, data, "\n--------")
     try {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                Authorization: `${authToken}`,
+                "Content-Type": "application/json"
             },
             body: data ? JSON.stringify(data) : null,
         });
@@ -66,7 +65,7 @@ export const post = async(url, data) => {
             );
         }
 
-        return response;
+        return response.json();
     } catch (error) {
         console.error(error.message);
         throw error;
@@ -74,6 +73,7 @@ export const post = async(url, data) => {
 };
 
 export const get = async(url) => {
+    // console.log("GET -- ", url, "\n--------")
     try {
         const response = await fetch(url, {
             method: "GET",

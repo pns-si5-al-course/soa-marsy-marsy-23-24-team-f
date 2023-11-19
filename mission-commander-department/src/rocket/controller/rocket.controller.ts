@@ -1,36 +1,73 @@
 import { Controller, Get, Post, HttpCode, Body, InternalServerErrorException } from '@nestjs/common';
 import { RocketService } from '../service/rocket.service';
+import { RocketDTO } from '../../dto/Rocket.dto';
+import { ReadyToLaunchDTO } from '../../dto/ReadyToLaunch.dto';
+import { AnomalyReportDTO } from 'src/dto/AnomalyReport.dto';
 
 @Controller('rocket')
 export class RocketController {
     constructor(private readonly rocketService: RocketService) {}
     
-    //ask for rocket status so we can decide if we can destroy it using the destroy endpoint
-    @Get('status')
+    @Get('weatherDepartment/status')
     @HttpCode(200)
-    async getRocketStatus(): Promise<{ status: string }> {
-        return await this.rocketService.getCurrentRocketStatus();
+    async getWeatherStatus(): Promise<{ status: string }> {
+        return this.rocketService.getWeatherStatus();
+    }
+    
+    @Get('rocketDepartment/status')
+    @HttpCode(200)
+    async getRocketDeptStatus(): Promise<{ status: string }> {
+        return this.rocketService.getRocketDeptStatus();
     }
 
-    //record the rocket failure status
-    @HttpCode(201)
-    @Post('failure')
-    async recordRocketFailure(@Body() data: { status: string }): Promise<any> {
-        console.log("Received rocket failure status:", data.status);
-        await this.rocketService.recordRocketFailure(data.status);
-        this.destroyRocket();
-        return { message: "Rocket failure status recorded successfully." };
-    }
-
-    //destroy the rocket
-    @Post('destroy')
-    @HttpCode(201)
-    async destroyRocket(): Promise<{ message: string }> {
+    @Post('initiate-startup')
+    @HttpCode(200)
+    async initiateStartup(@Body() readyToLaunch: ReadyToLaunchDTO): Promise<any> {
         try {
-            await this.rocketService.destroyRocket();
-            return { message: "Rocket destroyed successfully." };
+            return await this.rocketService.initiateStartupSequence(readyToLaunch);
         } catch (error) {
-            throw new InternalServerErrorException("Failed to destroy the rocket.");
+            throw new InternalServerErrorException("Failed to initiate rocket startup : "+error);
+        }
+    }
+
+    @Post('initiate-main-engine-start')
+    @HttpCode(200)
+    async initiateMainEngineStart(@Body() rocket: RocketDTO): Promise<any> {
+        try {
+            return await this.rocketService.initiateMainEngineStart(rocket);
+        } catch (error) {
+            throw new InternalServerErrorException("Failed to initiate rocket main engine start.");
+        }
+    }
+
+    @Post('initiate-liftoff')
+    @HttpCode(200)
+    async initiateLiftoff(@Body() rocket: RocketDTO): Promise<any> {
+        try {
+            return await this.rocketService.initiateLiftoff(rocket);
+        } catch (error) {
+            throw new InternalServerErrorException("Failed to initiate rocket liftoff.");
+        }
+    }
+
+    @Post('launch')
+    @HttpCode(200)
+    async launchRocket(@Body() readyToLaunch: ReadyToLaunchDTO): Promise<any> {
+        try {
+            await this.rocketService.launchRocket(readyToLaunch);
+            return readyToLaunch.rocket;
+        } catch (error) {
+            throw new InternalServerErrorException("Failed to launch the rocket.");
+        }
+    }
+
+    @Post('anomaly')
+    @HttpCode(200)
+    async reportAnomaly(@Body() anomalyReport: AnomalyReportDTO): Promise<void> {
+        try {
+            await this.rocketService.reportAnomaly(anomalyReport);
+        } catch (error) {
+            throw new InternalServerErrorException("Failed to report anomaly: "+error.message);
         }
     }
 }

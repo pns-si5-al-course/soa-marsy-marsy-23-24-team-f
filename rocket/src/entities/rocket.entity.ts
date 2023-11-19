@@ -1,18 +1,52 @@
+import { Stage } from "./stage.entity";
+
 export class Rocket {
     
     name: string;
     status: string;
-    stages: Array<{ id: number, fuel: number, altitude: number, status: string, speed: number }>;
+    stages: Array<Stage>;
     altitude: number;
     payload: { passengers: number, altitude: number, speed:number, status:string, weight: number};
     timestamp: string;
+    v0: number;
+    a: number;
+    m: number;
+    angle: number;
+    time: number;
+    scenario: number;
 
-    constructor(name: string, status: string, stages: Array<{ id: number, fuel: number, altitude: number, status: string, speed: number }>, altitude: number, payload: { passengers: number, altitude: number, speed:number, status:string, weight: number}, timestamp: string) {
+    constructor(name: string, 
+        status: string, 
+        stages: Array<Stage>, 
+        altitude: number, 
+        payload: { passengers: number, altitude: number, speed:number, status:string, weight: number}, 
+        timestamp: string,
+        v0: number,
+        a: number,
+        m: number,
+        angle: number, 
+        time: number,
+        scenario: number) {
         this.name = name;
         this.status = status;
         this.stages = stages;
         this.altitude = altitude;
         this.payload = payload;
         this.timestamp = timestamp;
+        this.v0 = v0;
+        this.a = a;
+        this.m = m;
+        this.angle = angle;
+        this.time = time;
+        this.scenario = scenario;
     }
 }
+
+
+export const RocketExample = new Rocket('MarsY-1', 'On Ground', [
+      new Stage(0, 2000, 0, "On Ground", 0, 0, 0, 0, 0),
+      new Stage(1, 3000, 0, "On Ground", 0, 0, 0, 0, 0),
+    ], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, 
+    new Date().toISOString(),
+    0,0,1000+1000,0, 0, 0)
+    
