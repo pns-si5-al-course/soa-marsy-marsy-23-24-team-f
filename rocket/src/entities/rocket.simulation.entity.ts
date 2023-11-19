@@ -22,7 +22,7 @@ export class RocketSimulation {
       } else {
         rocket.stages[0].fuel -= 40;
       }
-
+      return rocket
     }
     
     velocityAt(rocket: Rocket, t: number) {

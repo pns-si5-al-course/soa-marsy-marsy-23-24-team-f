@@ -24,7 +24,7 @@ export class RocketStatelessService {
     async receiveStatusUpdate(satusUpdate: StatusUpdateDto): Promise<Rocket | Stage> {
         let status = satusUpdate.status;
         let rocket = satusUpdate.rocket;
-        console.log("Rocket object is receiving new status : "+status);
+        console.log(rocket)
         switch(status) {
             case "Rocket preparation":
                 if(rocket.time !== 0 || rocket.status !== "On Ground") {
@@ -91,11 +91,12 @@ export class RocketStatelessService {
                 if(rocket.status !== "Main engine cut-off") {
                     throw new Error("Main engine is still running");
                 }
+                rocket = this.rocketSim.positionAt(rocket, rocket.time);
+                console.log("Booster altitude : "+ rocket.altitude)
                 rocket.stages[0].a = -9.81;
                 rocket.stages[0].status = "Separated";
-                rocket.stages[0].altitude = rocket.altitude;
                 rocket.stages[0].v0 = rocket.stages[0].speed
-                rocket.stages[0].s0 = rocket.stages[0].altitude;
+                rocket.stages[0].s0 = rocket.altitude;
                 rocket.stages[0].time = 0;
                 const stageUpdate: StageStatusUpdateDto = {
                     stage: rocket.stages[0],
@@ -148,7 +149,7 @@ export class RocketStatelessService {
         }
         
         async updateAndPush(rocket: Rocket, status: string, MainEngineStart?: boolean){
-            this.rocketSim.positionAt(rocket, rocket.time);
+            rocket = this.rocketSim.positionAt(rocket, rocket.time);
             rocket.status = status;
             rocket.payload.status = status;
             rocket.stages.forEach(stage => {
@@ -202,6 +203,7 @@ export class RocketStatelessService {
             }
             stage.status = status;
             this.rocketSim.stageAt(stage, stage.time);
+            console.log("Stage altitude : "+stage.altitude);
             await this.publisherService.sendTelemetrics('rocket.telemetrics.topic', stage);
             await this.publisherService.sendTelemetrics('logs.topic', stage);
             return stage;

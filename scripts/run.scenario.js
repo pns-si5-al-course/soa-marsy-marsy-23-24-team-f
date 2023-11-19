@@ -103,6 +103,7 @@ socket.on('logs', (data) => {
 
 
 async function handleStageStatusChange(logs) {
+    log(JSON.stringify(logs), 'logs/booster.log');
     // for first stage
     if(StageFLightStatus.firstStageLanding === false){
         StageFLightStatus.firstStageLanding = true;
@@ -391,9 +392,9 @@ async function startStageUpdatinStatus() {
         stage_status_update.stage.time += READ_INT/1000;   
         const stage_in_flight = await post(rocketServiceUrl + '/rocket/stage/status', stage_status_update);
         stage_status_update.stage = stage_in_flight;
-        // console.log(chalk.green('------------ Stage 1 logs ---------------------'));
-        // console.log(stage_status_update.stage);
-        // console.log(chalk.green('-----------------------------------------------'));
+        console.log(chalk.green('------------ Stage 1 logs ---------------------'));
+        console.log(stage_status_update.stage);
+        console.log(chalk.green('-----------------------------------------------'));
         //readLastLine('logs/payload.log');
         
     }, READ_INT);
