@@ -2,6 +2,7 @@ import { Controller, Get, Post, HttpCode, Body, InternalServerErrorException } f
 import { RocketService } from '../service/rocket.service';
 import { RocketDTO } from '../../dto/Rocket.dto';
 import { ReadyToLaunchDTO } from '../../dto/ReadyToLaunch.dto';
+import { AnomalyReportDTO } from 'src/dto/AnomalyReport.dto';
 
 @Controller('rocket')
 export class RocketController {
@@ -69,6 +70,16 @@ export class RocketController {
             return { message: "Rocket destroyed successfully." };
         } catch (error) {
             throw new InternalServerErrorException("Failed to destroy the rocket.");
+        }
+    }
+
+    @Post('anomaly')
+    @HttpCode(200)
+    async reportAnomaly(@Body() anomalyReport: AnomalyReportDTO): Promise<void> {
+        try {
+            console.log('Anomaly reported:', anomalyReport);
+        } catch (error) {
+            throw new InternalServerErrorException("Failed to report anomaly: "+error.message);
         }
     }
 }

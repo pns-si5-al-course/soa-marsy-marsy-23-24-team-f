@@ -112,7 +112,7 @@ export class RocketDTO {
     angle: number;
 
     @ApiProperty({
-      description: 'The timeline of the rocket',
+      description: 'The time since the last status update',
       example: 0
     })
     @IsNumber()

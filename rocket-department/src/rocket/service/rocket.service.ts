@@ -4,6 +4,12 @@ import { RocketDTO } from '../dto/rocket.dto';
 import { StatusUpdateDto } from '../dto/statusUpdate.dto';
 import { ApiService } from '../../common/api/api.service';
 import { PayloadDTO } from '../dto/payload.dto';
+import { DataStore } from "../../gateway/DataStore";
+
+import { promises as fsPromises } from 'fs';
+import * as fs from 'fs';
+import * as path from 'path';
+import { AnomalyReportDTO } from '../dto/anomalyReport.dto';
 
 @Injectable()
 export class RocketService {
@@ -12,6 +18,75 @@ export class RocketService {
     private httpService: HttpService,
     private apiService: ApiService
   ) {}
+
+  async onModuleInit(): Promise<void> {
+    DataStore.eventEmitter.on('dataAdded', async (data) => {
+      const telemetricsRocketDto: RocketDTO = JSON.parse(data).body;
+      if (telemetricsRocketDto.status != "Destruct") {
+        const telemetricsRocketDto: RocketDTO = JSON.parse(data).body;
+
+        // Récupérez toutes les données existantes
+        const allTelemetrics = DataStore.getDatas();
+
+        const previousTelemetricsData = allTelemetrics
+          .reverse()
+          .find(d => JSON.parse(d).body.name === telemetricsRocketDto.name && d !== data);
+
+        let previousTelemetrics: RocketDTO | undefined;
+        if (previousTelemetricsData) {
+          previousTelemetrics = JSON.parse(previousTelemetricsData).body;
+        }
+
+        const anomaly = this.checkAnomaly(telemetricsRocketDto, previousTelemetrics);
+        console.log('Anomaly : ', anomaly);
+        if (anomaly === "critical" || anomaly === "warning") {
+          const anomalyReport: AnomalyReportDTO = {
+            rocket: telemetricsRocketDto,
+            anomaly: anomaly
+          };
+          if (anomaly === "critical") {
+            this.updateRocketStatus(telemetricsRocketDto, "Destruct")
+          }
+
+          try {
+            await this.apiService.post('http://mission-commander-service:3006/rocket/anomaly', anomalyReport);
+            console.log('Anomaly report sent successfully');
+          } catch (error) {
+            console.error('Error sending anomaly report:', error);
+          }
+        }
+      }
+    });
+  }
+
+  /**
+   * @description checkAnomaly
+   * @param currentTelemetrics previousTelemetrics
+   * @returns string
+   * @memberof RocketService
+  */
+  checkAnomaly(currentTelemetrics: RocketDTO, previousTelemetrics?: RocketDTO): string {
+    // Check for critical anomalies
+    if (currentTelemetrics.status === "First Stage Separation Failed") {
+      return "critical";
+    }
+
+    // Check for warning-level anomalies
+    if (
+      previousTelemetrics &&
+      currentTelemetrics.stages &&
+      previousTelemetrics.stages &&
+      currentTelemetrics.stages.length > 0 &&
+      previousTelemetrics.stages.length > 0 &&
+      currentTelemetrics.stages[0].fuel < previousTelemetrics.stages[0].fuel - 500 &&
+      currentTelemetrics.status === previousTelemetrics.status
+    ) {
+      return "warning";
+    }
+
+    // No anomalies detected
+    return "ok";
+  }
 
   /**
    * @description initiateStartupSequence
