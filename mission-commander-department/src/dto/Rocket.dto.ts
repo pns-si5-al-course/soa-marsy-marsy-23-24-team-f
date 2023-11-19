@@ -54,4 +54,8 @@ export class RocketDTO {
     @ApiProperty()
     @IsNumber()
     time: number;
+
+    @ApiProperty()
+    @IsNumber()
+    scenario: number;
 }

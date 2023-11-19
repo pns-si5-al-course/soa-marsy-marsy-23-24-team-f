@@ -259,15 +259,18 @@ async function main() {
         console.log(chalk.green.bgWhite('\n-------------------------------------'));
         console.log(chalk.green.bgWhite('--- SCENARIO 1: ORBITAL INSERTION ---'));
         console.log(chalk.green.bgWhite('-------------------------------------\n'));
+        rocket_1.scenario = 1;
     } else if (scenario_id === '2') {
         console.log(chalk.red.bgWhite('\n---------------------------------------------'));
         console.log(chalk.red.bgWhite('--- SCENARIO 2: FAILURE DURING SEPARATION ---'));
         console.log(chalk.red.bgWhite('---------------------------------------------\n'));
+        rocket_1.scenario = 2;
     }
     else if (scenario_id === '3') {
         console.log(chalk.red.bgWhite('\n--------------------------------------'));
         console.log(chalk.red.bgWhite('--- SCENARIO 3: MANUAL DESTRUCTION ---'));
         console.log(chalk.red.bgWhite('--------------------------------------\n'));
+        rocket_1.scenario = 3;
     }
     await sleep(1000);
 
@@ -338,9 +341,7 @@ async function main() {
             console.log(chalk.green('Tous les systèmes sont prêts !'));
             console.log('Richard : demande au rocket dept de lancer la fusée');
             console.log('-- POST mission-commander:3006/rocket/initiate-main-engine-start --');
-            rocketStatus.status = (scenario_id==='1') ? 'GO' :'Fail';
-
-
+            
             const rocket_engine_started = await post(missionCommanderUrl + '/rocket/initiate-main-engine-start', rocket_1);
             rocket_1 = rocket_engine_started;
             let timestamp = new Date();
@@ -355,12 +356,6 @@ async function main() {
             
             startUpdatinStatus();
             await sleep(2000);
-        }
-
-        if (scenario_id === '3') {
-            setTimeout(async ()=>{
-                await post(rocketServiceUrl + "/rocket/fuelLeak", {})
-            }, 80000)
         }
 
         //spawn('gnome-terminal', ['--', 'bash', '-c', 'node logReader.js; read']);

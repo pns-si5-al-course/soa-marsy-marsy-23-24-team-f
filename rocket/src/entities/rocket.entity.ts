@@ -13,6 +13,7 @@ export class Rocket {
     m: number;
     angle: number;
     time: number;
+    scenario: number;
 
     constructor(name: string, 
         status: string, 
@@ -24,7 +25,8 @@ export class Rocket {
         a: number,
         m: number,
         angle: number, 
-        time: number) {
+        time: number,
+        scenario: number) {
         this.name = name;
         this.status = status;
         this.stages = stages;
@@ -36,6 +38,7 @@ export class Rocket {
         this.m = m;
         this.angle = angle;
         this.time = time;
+        this.scenario = scenario;
     }
 }
 
@@ -45,5 +48,5 @@ export const RocketExample = new Rocket('MarsY-1', 'On Ground', [
       new Stage(1, 3000, 0, "On Ground", 0, 0, 0, 0, 0),
     ], 0, {passengers: 0, altitude: 0, status:"Grounded", speed:0, weight: 1000}, 
     new Date().toISOString(),
-    0,0,1000+1000,0, 0)
+    0,0,1000+1000,0, 0, 0)
     

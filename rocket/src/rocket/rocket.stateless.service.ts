@@ -93,6 +93,18 @@ export class RocketStatelessService {
                 }
                 rocket = this.rocketSim.positionAt(rocket, rocket.time);
                 console.log("Booster altitude : "+ rocket.altitude)
+                if(rocket.scenario === 2){
+                    status = "First Stage Separation Failed";
+                    rocket = await this.updateAndPush(rocket, status);
+                    rocket.payload.speed = 0;
+                    status = "Destruct";
+                    rocket.stages.forEach(s => {
+                        s.status = "Destruct";
+                        s.a = 0;
+                        s.speed = 0;
+                    })
+                    break;
+                }
                 rocket.stages[0].a = -9.81;
                 rocket.stages[0].status = "Separated";
                 rocket.stages[0].v0 = rocket.stages[0].speed

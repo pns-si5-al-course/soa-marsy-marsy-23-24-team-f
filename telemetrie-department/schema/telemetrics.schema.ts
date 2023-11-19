@@ -39,6 +39,8 @@ export class Telemetrics {
     @Prop({ required: true })
     time: number;
 
+    @Prop({ required: true })
+    scenario: number;
 }
 
 export const TelemetricsSchema = SchemaFactory.createForClass(Telemetrics);

@@ -117,4 +117,11 @@ export class RocketDTO {
     })
     @IsNumber()
     time: number;
+
+    @ApiProperty({
+      description: 'The current scenario of the rocket',
+      example: 0
+    })
+    @IsNumber()
+    scenario: number;
 }

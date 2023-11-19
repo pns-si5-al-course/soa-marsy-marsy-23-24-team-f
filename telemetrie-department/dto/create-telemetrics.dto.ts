@@ -62,4 +62,8 @@ export class TelemetricsDto {
   @ApiProperty()
   @IsNumber()
   readonly time: number;
+
+  @ApiProperty()
+  @IsNumber()
+  readonly scenario: number;
 }
