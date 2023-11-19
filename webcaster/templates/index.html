@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Webcaster Service</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .highlight {
+        font-weight: bold;
+        color: red;
+      }
+    </style>
+    <script>
+      function fetchMessages() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              document.getElementById("messages").innerHTML = xhr.responseText;
+            } else {
+              console.error("AJAX error:", xhr.status, xhr.statusText);
+            }
+          }
+        };
+
+        xhr.open("GET", "/fetch-messages", true);
+        xhr.send();
+      }
+
+      setInterval(fetchMessages, 1000); // Poll for new messages every 1000 milliseconds (1 second)
+    </script>
+  </head>
+  <body>
+    <h1>Launch Event Messages</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Rocket Name</th>
+          <th>Status</th>
+          <th>Altitude</th>
+          <th>Stages Info</th>
+          <th>Payload Info</th>
+        </tr>
+      </thead>
+      <tbody id="messages">
+        <!-- Messages will be loaded here -->
+      </tbody>
+    </table>
+  </body>
+</html>
