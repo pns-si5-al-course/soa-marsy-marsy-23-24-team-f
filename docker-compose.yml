@@ -171,3 +171,17 @@ services:
         - "3000:3000"
       networks:
         - rocket-network
+
+  
+  webcaster-service:
+    image: webcaster:latest
+    restart: always
+    depends_on:
+      - kafka
+    ports:
+      - "3010:3010"
+    networks:
+      - rocket-network
+    environment:
+      - KAFKA_BROKER=kafka:19092
+      - APP_PORT=3010

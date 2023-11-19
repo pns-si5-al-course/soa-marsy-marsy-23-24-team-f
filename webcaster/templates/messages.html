@@ -1,0 +1,28 @@
+<!-- templates/messages.html -->
+{% for message in messages %}
+<tr>
+  <td>{{ message.body.name if message.body.name is defined else 'N/A' }}</td>
+  <td>
+    <strong
+      >{{ message.body.status if message.body.status is defined else 'N/A'
+      }}</strong
+    >
+  </td>
+  <td>
+    {{ message.body.altitude if message.body.altitude is defined else 'N/A' }}
+    meters
+  </td>
+  <td>
+    {% for stage in message.body.stages if message.body.stages is defined %}
+    Stage {{ stage.id if stage.id is defined else 'N/A' }}: {{ stage.status if
+    stage.status is defined else 'N/A' }}, Fuel: {{ stage.fuel if stage.fuel is
+    defined else 'N/A' }} {% else %} N/A {% endfor %}
+  </td>
+  <td>
+    Payload: {{ message.body.payload.status if message.body.payload and
+    message.body.payload.status is defined else 'N/A' }}, Weight: {{
+    message.body.payload.weight if message.body.payload and
+    message.body.payload.weight is defined else 'N/A' }} kg
+  </td>
+</tr>
+{% endfor %}
